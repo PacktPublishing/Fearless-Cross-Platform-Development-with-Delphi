@@ -1,0 +1,62 @@
+inherited frmDelphiVersionsFM_LgXhdpiPh: TfrmDelphiVersionsFM_LgXhdpiPh
+  ClientHeight = 695
+  ClientWidth = 450
+  DesignerMasterStyle = 3
+  inherited ToolbarHolder: TLayout
+    inherited ToolbarPopup: TPopup
+      inherited ToolBar1: TToolBar
+        Size.Height = 75.000000000000000000
+        inherited ToolbarApplyButton: TButton
+          Size.Height = 60.000000000000000000
+        end
+        inherited ToolbarCloseButton: TButton
+          Size.Height = 60.000000000000000000
+        end
+        inherited ToolbarAddButton: TButton
+          Size.Height = 60.000000000000000000
+        end
+      end
+    end
+  end
+  inherited lblIntro: TLabel
+    Size.Width = 440.000000000000000000
+  end
+  inherited lbDefines: TListBox
+    Size.Width = 450.000000000000000000
+    Size.Height = 490.000000000000000000
+    Viewport.Width = 450.000000000000000000
+    Viewport.Height = 490.000000000000000000
+  end
+  inherited pnlBottom: TPanel
+    Position.Y = 581.000000000000000000
+    Size.Width = 450.000000000000000000
+    inherited lblRef1: TLabel
+      Size.Width = 185.000000000000000000
+    end
+    inherited lblRef2: TLabel
+      Size.Width = 193.000000000000000000
+    end
+    inherited Label1: TLabel
+      Size.Width = 217.000000000000000000
+    end
+    inherited Label2: TLabel
+      Size.Width = 225.000000000000000000
+    end
+    inherited edtAboutLink: TEdit
+      TextSettings.Font.StyleExt = {04040000000000000004000000}
+      Size.Height = 32.000000000000000000
+    end
+    inherited edtClassLink: TEdit
+      TextSettings.Font.StyleExt = {04040000000000000004000000}
+      Size.Height = 32.000000000000000000
+    end
+    inherited edtDirectivesLink: TEdit
+      TextSettings.Font.StyleExt = {04040000000000000004000000}
+      Size.Height = 32.000000000000000000
+    end
+    inherited edtVersionsLink: TEdit
+      TextSettings.Font.StyleExt = {04040000000000000004000000}
+      Size.Height = 32.000000000000000000
+    end
+  end
+end

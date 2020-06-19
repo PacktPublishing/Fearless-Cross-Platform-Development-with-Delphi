@@ -1,0 +1,216 @@
+object frmDelphiVersionsFM: TfrmDelphiVersionsFM
+  Left = 0
+  Top = 0
+  Caption = 'Delphi/FireMonkey Versions'
+  ClientHeight = 503
+  ClientWidth = 612
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop, iPhone, iPad]
+  OnActivate = FormActivate
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  DesignerMasterStyle = 0
+  object ToolbarHolder: TLayout
+    Locked = True
+    Position.Y = 512.000000000000000000
+    Size.Width = 50.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    Visible = False
+    object ToolbarPopup: TPopup
+      DragMode = dmAutomatic
+      PlacementRectangle.Left = -1.000000000000000000
+      PlacementRectangle.Top = -1.000000000000000000
+      PlacementRectangle.Right = -1.000000000000000000
+      PlacementRectangle.Bottom = -1.000000000000000000
+      Size.Width = 50.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object ToolbarPopupAnimation: TFloatAnimation
+        Duration = 0.200000002980232200
+        PropertyName = 'Position.Y'
+        StartValue = 0.000000000000000000
+        StopValue = 0.000000000000000000
+        Trigger = 'IsOpen=true'
+        TriggerInverse = 'IsOpen=false'
+      end
+      object ToolBar1: TToolBar
+        StyleName = 'StyleBook1'
+        Padding.Left = 50.000000000000000000
+        Padding.Top = 5.000000000000000000
+        Padding.Right = 50.000000000000000000
+        Size.Width = 50.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object ToolbarApplyButton: TButton
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 141.000000000000000000
+          Position.Y = 10.000000000000000000
+          Size.Width = 80.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'applybuttontext'
+          TabOrder = 0
+          Text = 'Apply'
+        end
+        object ToolbarCloseButton: TButton
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 505.000000000000000000
+          Position.Y = 10.000000000000000000
+          Size.Width = 80.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'closebuttontext'
+          TabOrder = 1
+          Text = 'Close App'
+          OnClick = ToolbarCloseButtonClick
+        end
+        object ToolbarAddButton: TButton
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 55.000000000000000000
+          Position.Y = 10.000000000000000000
+          Size.Width = 80.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          StyleLookup = 'addbuttontext'
+          TabOrder = 2
+          Text = 'Add'
+        end
+      end
+    end
+  end
+  object lblIntro: TLabel
+    Align = Top
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 2.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 2.000000000000000000
+    Position.X = 5.000000000000000000
+    Position.Y = 2.000000000000000000
+    Size.Width = 602.000000000000000000
+    Size.Height = 87.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'lblIntro'
+  end
+  object lbDefines: TListBox
+    Align = Client
+    Size.Width = 612.000000000000000000
+    Size.Height = 298.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    DisableFocusEffect = True
+    DefaultItemStyles.ItemStyle = ''
+    DefaultItemStyles.GroupHeaderStyle = ''
+    DefaultItemStyles.GroupFooterStyle = ''
+    Viewport.Width = 608.000000000000000000
+    Viewport.Height = 294.000000000000000000
+  end
+  object pnlBottom: TPanel
+    Align = Bottom
+    Position.Y = 389.000000000000000000
+    Size.Width = 612.000000000000000000
+    Size.Height = 114.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    object lblRef1: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 13.000000000000000000
+      Size.Width = 265.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'About Conditional Compilation:'
+    end
+    object lblRef2: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 36.000000000000000000
+      Size.Width = 265.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Classifications of Compiler Directives:'
+    end
+    object Label1: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 59.000000000000000000
+      Size.Width = 265.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Compiler Directives for this Delphi version:'
+    end
+    object Label2: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 84.000000000000000000
+      Size.Width = 265.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Compiler Version Directives for all versions:'
+    end
+    object edtAboutLink: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 2
+      Cursor = crHandPoint
+      TextSettings.Font.StyleExt = {04040000000000000004000000}
+      Position.X = 265.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 332.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      StyledSettings = [Family, Size, FontColor]
+      OnClick = edtLinkClick
+    end
+    object edtClassLink: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 3
+      Cursor = crHandPoint
+      TextSettings.Font.StyleExt = {04040000000000000004000000}
+      Position.X = 265.000000000000000000
+      Position.Y = 32.000000000000000000
+      Size.Width = 332.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      StyledSettings = [Family, Size, FontColor]
+      OnClick = edtLinkClick
+    end
+    object edtDirectivesLink: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 6
+      Cursor = crHandPoint
+      TextSettings.Font.StyleExt = {04040000000000000004000000}
+      Position.X = 265.000000000000000000
+      Position.Y = 56.000000000000000000
+      Size.Width = 332.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      StyledSettings = [Family, Size, FontColor]
+      OnClick = edtLinkClick
+    end
+    object edtVersionsLink: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Anchors = [akLeft, akTop, akRight]
+      TabOrder = 7
+      Cursor = crHandPoint
+      TextSettings.Font.StyleExt = {04040000000000000004000000}
+      Position.X = 265.000000000000000000
+      Position.Y = 80.000000000000000000
+      Size.Width = 332.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      StyledSettings = [Family, Size, FontColor]
+      OnClick = edtLinkClick
+    end
+  end
+end
