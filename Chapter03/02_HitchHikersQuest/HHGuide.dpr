@@ -1,11 +1,7 @@
 library HHGuide;
 
-function UniversalLifeAnswer: Integer;
-begin
-  Result := 42;
-end;
-
-exports UniversalLifeAnswer;
+uses
+  uHHGuideFuncs in 'uHHGuideFuncs.pas';
 
 begin
 end.
