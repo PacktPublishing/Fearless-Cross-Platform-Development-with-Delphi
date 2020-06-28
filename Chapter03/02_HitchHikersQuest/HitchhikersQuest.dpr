@@ -2,19 +2,19 @@ program HitchhikersQuest;
 {$APPTYPE CONSOLE}
 
 uses
-  {$IFDEF MSWINDOWS}
-  WinAPI.Windows,
-  {$ENDIF}
+  {$IFDEF MSWINDOWS} WinAPI.Windows, {$ENDIF}
   System.SysUtils;
 
 const
   {$IFDEF MSWINDOWS}
   LibName = 'HHGuide.dll';
+  {$ELSEIF DEFINED(MACOS)}
+  LibName = 'libHHGuide.dylib';
   {$ELSEIF DEFINED(LINUX)}
   LibName = 'libHHGuide.so';
   {$ENDIF}
 type
-  TUniversalLifeAnswerFunc = function: Integer; stdcall;
+  TUniversalLifeAnswerFunc = function: Integer; cdecl;
 var
   DLLHandle: HModule;
   LifesAnswer: TUniversalLifeAnswerFunc;

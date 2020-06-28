@@ -84,8 +84,17 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="OSX64\Release\libHHGuide.dylib" Condition="'$(Config)'=='Release'">
+            <RemoteDir>HitchhikersQuest.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>libHHGuide.dylib</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="OSX64\Release\libHitchhikersGuide.dylib" Condition="'$(Config)'=='Release'">
-            <RemoteDir>HitchhikersQuest.app\Contents\Resources\StartUp\</RemoteDir>
+            <RemoteDir>HitchhikersQuest.app\Contents\MacOS\</RemoteDir>
             <RemoteName>libHitchhikersGuide.dylib</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>

@@ -5,8 +5,8 @@
         <FrameworkType>None</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Release</Config>
-        <Platform Condition="'$(Platform)'==''">Linux64</Platform>
-        <TargetedPlatforms>130</TargetedPlatforms>
+        <Platform Condition="'$(Platform)'==''">Win64</Platform>
+        <TargetedPlatforms>4226</TargetedPlatforms>
         <AppType>Library</AppType>
         <MainSource>HHGuide.dpr</MainSource>
     </PropertyGroup>
@@ -106,6 +106,7 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
+        <DCCReference Include="uHHGuideFuncs.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -129,7 +130,7 @@
             </Delphi.Personality>
             <Platforms>
                 <Platform value="Linux64">True</Platform>
-                <Platform value="OSX64">False</Platform>
+                <Platform value="OSX64">True</Platform>
                 <Platform value="Win32">False</Platform>
                 <Platform value="Win64">True</Platform>
             </Platforms>
