@@ -5,7 +5,7 @@
         <FrameworkType>None</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Release</Config>
-        <Platform Condition="'$(Platform)'==''">OSX64</Platform>
+        <Platform Condition="'$(Platform)'==''">Win64</Platform>
         <TargetedPlatforms>4099</TargetedPlatforms>
         <AppType>Library</AppType>
         <MainSource>TwilioSMS.dpr</MainSource>
@@ -84,7 +84,6 @@
         <GenDll>true</GenDll>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
         <SanitizedProjectName>TwilioSMS</SanitizedProjectName>
-        <UsePackages>true</UsePackages>
         <DCC_UsePackage>rtl;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Linux64)'!=''">
