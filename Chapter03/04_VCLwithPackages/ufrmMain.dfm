@@ -1,0 +1,53 @@
+object frmVCLApp: TfrmVCLApp
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsToolWindow
+  Caption = 'KSVC Clock'
+  ClientHeight = 135
+  ClientWidth = 413
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object RzBackground1: TRzBackground
+    Left = 0
+    Top = 0
+    Width = 413
+    Height = 135
+    Active = True
+    Align = alClient
+    ImageStyle = isCenter
+    ShowGradient = True
+    ShowImage = False
+    ShowTexture = False
+    ExplicitLeft = 72
+    ExplicitTop = 32
+    ExplicitWidth = 200
+    ExplicitHeight = 100
+  end
+  object RzClockStatus1: TRzClockStatus
+    Left = 0
+    Top = 0
+    Width = 413
+    Height = 135
+    Align = alClient
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clYellow
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Alignment = taCenter
+    ExplicitLeft = 56
+    ExplicitTop = 40
+    ExplicitWidth = 305
+    ExplicitHeight = 73
+  end
+end
