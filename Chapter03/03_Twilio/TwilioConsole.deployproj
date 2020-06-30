@@ -24,6 +24,25 @@
         </DeployFile>
     </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='Linux64'">
+        <DeployFile Include="$(BDS)\Redist\Linux64\bplrtl270.so" Condition="'$(Config)'=='Release'">
+            <RemoteDir>TwilioConsole\</RemoteDir>
+            <RemoteName>bplrtl270.so</RemoteName>
+            <DeployClass>DependencyPackage</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
+        <DeployFile Include="Linux64\Release\libTwilioSMS.so" Condition="'$(Config)'=='Release'">
+            <RemoteDir>TwilioConsole\</RemoteDir>
+            <RemoteName>libTwilioSMS.so</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="Linux64\Release\TwilioConsole" Condition="'$(Config)'=='Release'">
             <RemoteDir>TwilioConsole\</RemoteDir>
             <RemoteName>TwilioConsole</RemoteName>
@@ -44,6 +63,25 @@
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="OSX64\Release\TwilioConsole.entitlements" Condition="'$(Config)'=='Release'">
+            <RemoteDir>TwilioConsole.app\..\</RemoteDir>
+            <RemoteName>TwilioConsole.entitlements</RemoteName>
+            <DeployClass>ProjectOSXEntitlements</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="OSX64\Release\TwilioConsole" Condition="'$(Config)'=='Release'">
+            <RemoteDir>TwilioConsole.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>TwilioConsole</RemoteName>
+            <DeployClass>ProjectOutput</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
         </DeployFile>
         <DeployFile Include="$(BDS)\Redist\OSX64\bplrtl270.dylib" Condition="'$(Config)'=='Release'">
             <RemoteDir>TwilioConsole.app\Contents\MacOS\</RemoteDir>
@@ -72,25 +110,6 @@
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="OSX64\Release\TwilioConsole.entitlements" Condition="'$(Config)'=='Release'">
-            <RemoteDir>TwilioConsole.app\..\</RemoteDir>
-            <RemoteName>TwilioConsole.entitlements</RemoteName>
-            <DeployClass>ProjectOSXEntitlements</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="OSX64\Release\TwilioConsole" Condition="'$(Config)'=='Release'">
-            <RemoteDir>TwilioConsole.app\Contents\MacOS\</RemoteDir>
-            <RemoteName>TwilioConsole</RemoteName>
-            <DeployClass>ProjectOutput</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-            <Required>True</Required>
         </DeployFile>
     </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='Android'"/>

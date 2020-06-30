@@ -11,18 +11,23 @@ uses
 const
   {$IFDEF MSWINDOWS}       LibName = 'TwilioSMS.dll';
   {$ELSEIF DEFINED(MACOS)} LibName = 'libTwilioSMS.dylib';
+  {$ELSEIF DEFINED(LINUX)} LibName = 'libTwilioSMS.so';
   {$ENDIF}
 
   TwilioAccount = '<MyTwilioAccountSID>';
   TwilioPassword = '<MyTwilioAuthToken>';
   FromPhone = '<MyTwilioPhoneNumber>';
   ToPhone = '<DestinationPhone>';
+const
+  ResponseMaxLen = 500;
 type
-  TTwilioSMSSendFunc = function (const AccountSID, Password, FromPhone, ToPhone, Msg: string): string; stdcall;
+  TTwilioSMSSendFunc = function (AccountSID, Password, FromPhone, ToPhone, Msg, Response: PChar; ResponseLen: Integer): Integer; stdcall;
 var
   TwilioLibHandle: HModule;
   SendSMS: TTwilioSMSSendFunc;
-  response: string;
+  SendMsg: string;
+  ResponseStr: string;
+  ResponseLen: Integer;
 begin
   TwilioLibHandle := LoadLibrary(LibName);
   if TwilioLibHandle = 0 then
@@ -31,13 +36,18 @@ begin
     @SendSMS := GetProcAddress(TwilioLibHandle, 'SendTwilioSMS');
 
     {$IFDEF MSWINDOWS}
-    response := SendSMS(TwilioAccount, TwilioPassword, FromPhone, ToPhone, 'Hello SMS - from Windows');
+    SendMsg := 'Hello SMS - from Windows';
     {$ELSEIF DEFINED(MACOS)}
-    response := SendSMS(TwilioAccount, TwilioPassword, FromPhone, ToPhone, 'Hello SMS - from Mac');
+    SendMsg := 'Hello SMS - from Mac';
+    {$ELSEIF DEFINED(LINUX)}
+    SendMsg := 'Hello SMS - from Linux';
     {$ENDIF}
 
-    Writeln('Twilio SMS Response: ' + response);
+    SetLength(ResponseStr, ResponseMaxLen);
+    ResponseLen := SendSMS(TwilioAccount, TwilioPassword, FromPhone, ToPhone, PChar(SendMsg), PChar(ResponseStr), ResponseMaxLen);
+    SetLength(ResponseStr, ResponseLen);
 
+    Writeln('Twilio SMS Response: ' + ResponseStr);
     Writeln('Press ENTER to exit.');
     Readln;
   end;

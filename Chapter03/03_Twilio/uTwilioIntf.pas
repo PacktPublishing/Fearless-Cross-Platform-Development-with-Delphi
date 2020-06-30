@@ -3,47 +3,54 @@ unit uTwilioIntf;
 interface
 
 uses
-  System.Classes,
-  System.SysUtils,
+  System.Classes, System.SysUtils, System.Math,
   {$IFDEF MSWINDOWS} WinAPI.Windows, {$ENDIF}
   System.JSON,
   System.Net.HttpClient,
   uTwilioClient;
 
-function SendTwilioSMS(const AccountSID, Password, FromPhone, ToPhone, Msg: string): string; stdcall;
+function SendTwilioSMS(AccountSID, Password, FromPhone, ToPhone, Msg, Response: PChar; ResponseLen: Integer): Integer; stdcall;
 
 exports SendTwilioSMS;
 
+
 implementation
 
-function SendTwilioSMS(const AccountSID, Password, FromPhone, ToPhone, Msg: string): string; stdcall;
+function SendTwilioSMS(AccountSID, Password, FromPhone, ToPhone, Msg, Response: PChar; ResponseLen: Integer): Integer; stdcall;
 var
-  client: TTwilioClient;
-  allParams: TStringList;
-  response: TTwilioClientResponse;
+  Client: TTwilioClient;
+  AllParams: TStringList;
+  ClientResponse: TTwilioClientResponse;
+  ResponseStr: string;
 begin
-  client := TTwilioClient.Create(AccountSID, Password, AccountSID);
+  ResponseStr := EmptyStr;
+
+  Client := TTwilioClient.Create(AccountSID, Password, AccountSID);
   try
-    allParams := TStringList.Create;
+    AllParams := TStringList.Create;
     try
-      allParams.Add('From=' + FromPhone);
-      allParams.Add('To=' + ToPhone);
-      allParams.Add('Body=' + Msg);
+      AllParams.Add('From=' + FromPhone);
+      AllParams.Add('To=' + ToPhone);
+      AllParams.Add('Body=' + Msg);
 
       // POST to the Messages resource
-      response := client.Post('Messages', allParams);
-      if response.Success then
-        Result := 'SUCCESS: ' + response.ResponseData.GetValue<string>('sid')
-      else if response.ResponseData <> nil then
-        Result := response.ResponseData.ToString
+      ClientResponse := Client.Post('Messages', AllParams);
+      if ClientResponse.Success then
+        ResponseStr := 'SUCCESS: ' + ClientResponse.ResponseData.GetValue<string>('sid')
+      else if ClientResponse.ResponseData <> nil then
+        ResponseStr := ClientResponse.ResponseData.ToString
       else
-        Result := 'HTTP status: ' + response.HTTPResponse.StatusCode.ToString;
+        ResponseStr := 'HTTP status: ' + ClientResponse.HTTPResponse.StatusCode.ToString;
     finally
-      allParams.Free;
+      AllParams.Free;
     end;
   finally
-    client.Free;
+    Client.Free;
   end;
+
+  Result := Min(ResponseLen, Length(ResponseStr));
+  if (Response <> nil) and (Result > 0) then
+    StrPCopy(Response, ResponseStr);
 end;
 
 end.
