@@ -73,7 +73,7 @@
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <DCC_UsePackage>RaizeComponentsVcl;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>RaizeComponentsVcl;vcl;vclx;rtl;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
@@ -81,6 +81,9 @@
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <PostBuildEventExecuteWhen>TargetOutOfDate</PostBuildEventExecuteWhen>
         <PostBuildEvent><![CDATA[copy /y "$(BDSCatalogRepositoryAllUsers)\KonopkaControls-270-6.2.3\Deploy\Win32\RaizeComponentsVcl270.bpl" "$(OUTPUTDIR)\RaizeComponentsVcl270.bpl"
+copy /v "$(BDSBIN)\rtl270.bpl" "$(OUTPUTDIR)\rtl270.bpl"
+copy /v "$(BDSBIN)\vcl270.bpl" "$(OUTPUTDIR)\vcl270.bpl"
+copy /v "$(BDSBIN)\vclx270.bpl" "$(OUTPUTDIR)\vclx270.bpl"
 $(PostBuildEvent)]]></PostBuildEvent>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
@@ -815,7 +818,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>copy /y &quot;$(BDSCatalogRepositoryAllUsers)\KonopkaControls-270-6.2.3\Deploy\Win32\RaizeComponentsVcl270.bpl&quot; &quot;$(OUTPUTDIR)\RaizeComponentsVcl270.bpl&quot;</PostBuildEvent>
+        <PostBuildEvent>copy /y &quot;$(BDSCatalogRepositoryAllUsers)\KonopkaControls-270-6.2.3\Deploy\Win32\RaizeComponentsVcl270.bpl&quot; &quot;$(OUTPUTDIR)\RaizeComponentsVcl270.bpl&quot;&amp;&amp;copy /v &quot;$(BDSBIN)\rtl270.bpl&quot; &quot;$(OUTPUTDIR)\rtl270.bpl&quot;&amp;&amp;copy /v &quot;$(BDSBIN)\vcl270.bpl&quot; &quot;$(OUTPUTDIR)\vcl270.bpl&quot;&amp;&amp;copy /v &quot;$(BDSBIN)\vclx270.bpl&quot; &quot;$(OUTPUTDIR)\vclx270.bpl&quot;</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win32'">
@@ -823,7 +826,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>copy /y &quot;$(BDSCatalogRepositoryAllUsers)\KonopkaControls-270-6.2.3\Deploy\Win32\RaizeComponentsVcl270.bpl&quot; &quot;$(OUTPUTDIR)\RaizeComponentsVcl270.bpl&quot;</PostBuildEvent>
+        <PostBuildEvent>copy /y &quot;$(BDSCatalogRepositoryAllUsers)\KonopkaControls-270-6.2.3\Deploy\Win32\RaizeComponentsVcl270.bpl&quot; &quot;$(OUTPUTDIR)\RaizeComponentsVcl270.bpl&quot;&amp;&amp;copy /v &quot;$(BDSBIN)\rtl270.bpl&quot; &quot;$(OUTPUTDIR)\rtl270.bpl&quot;&amp;&amp;copy /v &quot;$(BDSBIN)\vcl270.bpl&quot; &quot;$(OUTPUTDIR)\vcl270.bpl&quot;&amp;&amp;copy /v &quot;$(BDSBIN)\vclx270.bpl&quot; &quot;$(OUTPUTDIR)\vclx270.bpl&quot;</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>
