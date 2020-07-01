@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{457E4088-20D5-4C9F-8D9D-94CF684B476A}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="TwilioPkg.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TwilioComponents.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="TwilioTestFM.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="TwilioPkg">
+        <MSBuild Projects="TwilioPkg.dproj"/>
+    </Target>
+    <Target Name="TwilioPkg:Clean">
+        <MSBuild Projects="TwilioPkg.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TwilioPkg:Make">
+        <MSBuild Projects="TwilioPkg.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TwilioComponents">
+        <MSBuild Projects="TwilioComponents.dproj"/>
+    </Target>
+    <Target Name="TwilioComponents:Clean">
+        <MSBuild Projects="TwilioComponents.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TwilioComponents:Make">
+        <MSBuild Projects="TwilioComponents.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TwilioTestFM">
+        <MSBuild Projects="TwilioTestFM.dproj"/>
+    </Target>
+    <Target Name="TwilioTestFM:Clean">
+        <MSBuild Projects="TwilioTestFM.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TwilioTestFM:Make">
+        <MSBuild Projects="TwilioTestFM.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="TwilioPkg;TwilioComponents;TwilioTestFM"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="TwilioPkg:Clean;TwilioComponents:Clean;TwilioTestFM:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="TwilioPkg:Make;TwilioComponents:Make;TwilioTestFM:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
