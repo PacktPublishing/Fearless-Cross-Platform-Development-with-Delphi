@@ -36,22 +36,32 @@ begin
   valid := False;
   repeat
     Writeln;
-    Write('Enter a number from 1 to 9: ');
-    Readln(NumStr);
-    if TryStrToInt(NumStr, Num) then begin
-      valid := True;
-      case Num of
-        1,2,3,4: Writeln('Your answer was in the bottom half of the range.');
-        5:       Writeln('Your answer was in the middle of the range.');
-        6..9:    Writeln('Your answer was in the upper half of the range.');
-      else
-        begin
-          Writeln('Your answer was outside of the requested range.');
-          valid := False;
+
+    repeat
+      Write('Enter a number from 1 to 9: ');
+      try
+        try
+          Readln(NumStr);
+          Num := StrToInt(NumStr);
+          valid := True;
+        finally
+          Writeln('You entered: "' + NumStr + '"');
         end;
+      except
+        Writeln('Please give a valid numberic answer.');
       end;
-    end else
-      Writeln('Your answer could not be understood.');
+    until valid;
+
+    case Num of
+      1,2,3,4: Writeln('Your answer was in the bottom half of the range.');
+      5:       Writeln('Your answer was in the middle of the range.');
+      6..9:    Writeln('Your answer was in the upper half of the range.');
+    else
+      begin
+        Writeln('Your answer was outside of the requested range.');
+        valid := False;
+      end;
+    end;
   until valid;
 
   Readln;
