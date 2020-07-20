@@ -6,6 +6,7 @@ const
   OTHER_LANGUAGES: array[1..4] of string = ('C++', 'Java', 'Python', 'SQL');
 var
   i: Integer;
+  lang: string;
   Found: Boolean;
   MyLanguageName: string;
 begin
@@ -16,8 +17,8 @@ begin
     Writeln('Really? That''s mine, too!')
   else begin
     Found := False;
-    for i := 1 to 4 do
-      if MyLanguageName = OTHER_LANGUAGES[i] then begin
+    for lang in OTHER_LANGUAGES do
+      if MyLanguageName = lang then begin
         Writeln('That''s a good language');
         Found := True;
         Break;
