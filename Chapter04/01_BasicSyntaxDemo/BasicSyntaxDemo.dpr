@@ -1,4 +1,4 @@
-program ControlDemo;
+program BasicSyntaxDemo;
 {$APPTYPE CONSOLE}
 
 uses
@@ -15,6 +15,7 @@ var
   MyLanguageName: string;
   valid: Boolean;
 begin
+  { favorite language }
   Write('What''s your favorite language? ');
   Readln(MyLanguageName);
 
@@ -22,7 +23,7 @@ begin
     Writeln('Really? That''s mine, too!')
   else begin
     Found := False;
-    for lang in OTHER_LANGUAGES do
+    for lang in OTHER_LANGUAGES do      // do we know about the entered language?
       if MyLanguageName = lang then begin
         Writeln('That''s a good language');
         Found := True;
@@ -33,6 +34,7 @@ begin
       Writeln('I do not know about that language');
   end;
 
+  { pick a number }
   valid := False;
   repeat
     Writeln;
@@ -41,7 +43,7 @@ begin
       Write('Enter a number from 1 to 9: ');
       try
         try
-          Readln(NumStr);
+          Readln(NumStr);            // read the input into a string to prevent errors
           Num := StrToInt(NumStr);
           valid := True;
         finally
