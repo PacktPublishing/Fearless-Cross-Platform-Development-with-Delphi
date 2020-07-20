@@ -15,6 +15,7 @@ var
   MyLanguageName: string;
   valid: Boolean;
 begin
+(*
   { favorite language }
   Write('What''s your favorite language? ');
   Readln(MyLanguageName);
@@ -33,6 +34,7 @@ begin
     if not Found then
       Writeln('I do not know about that language');
   end;
+*)
 
   { pick a number }
   valid := False;
