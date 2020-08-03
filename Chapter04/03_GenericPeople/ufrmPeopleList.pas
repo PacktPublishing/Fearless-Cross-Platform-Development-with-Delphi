@@ -48,6 +48,7 @@ type
     var
       FPeopleList: TList<TPerson>;
     procedure AddPersonToList(ANewPerson: TPerson);
+    procedure ListSortedPeople(const Comparer: IComparer<TPerson>);
     procedure ListPeople;
   end;
 
@@ -120,18 +121,12 @@ begin
   FPeopleList.Add(ANewPerson);
 end;
 
-procedure TfrmPeopleList.ListPeople;
+procedure TfrmPeopleList.ListSortedPeople(const Comparer: IComparer<TPerson>);
 var
   APerson: TPerson;
   SortedList: TList<TPerson>;
 begin
-  case cmbPersonSort.ItemIndex of
-    0: SortedList := TList<TPerson>.Create(TFirstNameComparer.Create);
-    1: SortedList := TList<TPerson>.Create(TLastNameComparer.Create);
-    2: SortedList := TList<TPerson>.Create(TBirthDateNameComparer.Create);
-  else
-    SortedList := TList<TPerson>.Create;  // no sorting
-  end;
+  SortedList := TList<TPerson>.Create(Comparer);
 
   lbPeople.Items.Clear;
   for APerson in FPeopleList do
@@ -141,6 +136,15 @@ begin
   for APerson in SortedList do
     lbPeople.Items.Add(Format('%s %s, Age: %d',
                [APerson.FirstName, APerson.LastName, APerson.Age]));
+end;
+
+procedure TfrmPeopleList.ListPeople;
+begin
+  case cmbPersonSort.ItemIndex of
+    0: ListSortedPeople(TFirstNameComparer.Create);
+    1: ListSortedPeople(TLastNameComparer.Create);
+    2: ListSortedPeople(TBirthDateNameComparer.Create);
+  end;
 end;
 
 procedure TfrmPeopleList.btnAddClick(Sender: TObject);
