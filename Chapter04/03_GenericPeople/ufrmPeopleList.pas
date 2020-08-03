@@ -36,15 +36,6 @@ type
         property LastName: string read FLastName write FLastName;
         property DateOfBirth: TDate read FDateOfBirth write FDateOfBirth;
       end;
-      TLastNameComparer = class(TComparer<TPerson>)
-        function Compare(const Left, Right: TPerson): Integer; override;
-      end;
-      TFirstNameComparer = class(TComparer<TPerson>)
-        function Compare(const Left, Right: TPerson): Integer; override;
-      end;
-      TBirthDateNameComparer = class(TComparer<TPerson>)
-        function Compare(const Left, Right: TPerson): Integer; override;
-      end;
     var
       FPeopleList: TList<TPerson>;
     procedure AddPersonToList(ANewPerson: TPerson);
@@ -61,27 +52,6 @@ implementation
 
 uses
   System.DateUtils;
-
-{ TfrmPeopleList.TLastNameComparer }
-
-function TfrmPeopleList.TLastNameComparer.Compare(const Left, Right: TPerson): Integer;
-begin
-  Result := CompareText(Left.LastName, Right.LastName);
-end;
-
-{ TfrmPeopleList.TFirstNameComparer }
-
-function TfrmPeopleList.TFirstNameComparer.Compare(const Left, Right: TPerson): Integer;
-begin
-  Result := CompareText(Left.FirstName, Right.FirstName);
-end;
-
-{ TfrmPeopleList.TBirthDateNameComparer }
-
-function TfrmPeopleList.TBirthDateNameComparer.Compare(const Left, Right: TPerson): Integer;
-begin
-  Result := CompareDate(Left.DateOfBirth, Right.DateOfBirth);
-end;
 
 { TfrmPeopleList.TPerson }
 
@@ -141,9 +111,21 @@ end;
 procedure TfrmPeopleList.ListPeople;
 begin
   case cmbPersonSort.ItemIndex of
-    0: ListSortedPeople(TFirstNameComparer.Create);
-    1: ListSortedPeople(TLastNameComparer.Create);
-    2: ListSortedPeople(TBirthDateNameComparer.Create);
+    0: ListSortedPeople(TComparer<TPerson>.Construct(
+         function (const Left, Right: TPerson): Integer
+         begin
+           Result := CompareText(Left.FirstName, Right.FirstName);
+         end));
+    1: ListSortedPeople(TComparer<TPerson>.Construct(
+         function (const Left, Right: TPerson): Integer
+         begin
+           Result := CompareText(Left.LastName, Right.LastName);
+         end));
+    2: ListSortedPeople(TComparer<TPerson>.Construct(
+         function (const Left, Right: TPerson): Integer
+         begin
+           Result := CompareDate(Left.DateOfBirth, Right.DateOfBirth);
+         end));
   end;
 end;
 
