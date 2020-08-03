@@ -95,7 +95,9 @@ object frmPeopleList: TfrmPeopleList
     Width = 145
     Height = 24
     Style = csDropDownList
+    ItemIndex = 0
     TabOrder = 2
+    Text = 'First Name'
     OnChange = cmbPersonSortChange
     Items.Strings = (
       'First Name'
