@@ -8,14 +8,10 @@ const
   MY_FAV_LANG = 'Delphi';
   OTHER_LANGUAGES: array[1..4] of string = ('C++', 'Java', 'Python', 'SQL');
 var
-  lang: string;
   NumStr: string;
   Num: Integer;
-  Found: Boolean;
   MyLanguageName: string;
-  valid: Boolean;
 begin
-(*
   { favorite language }
   Write('What''s your favorite language? ');
   Readln(MyLanguageName);
@@ -23,8 +19,8 @@ begin
   if MyLanguageName = MY_FAV_LANG then
     Writeln('Really? That''s mine, too!')
   else begin
-    Found := False;
-    for lang in OTHER_LANGUAGES do      // do we know about the entered language?
+    var Found := False;
+    for var lang in OTHER_LANGUAGES do      // do we know about the entered language?
       if MyLanguageName = lang then begin
         Writeln('That''s a good language');
         Found := True;
@@ -34,10 +30,9 @@ begin
     if not Found then
       Writeln('I do not know about that language');
   end;
-*)
 
   { pick a number }
-  valid := False;
+  var valid := False;
   repeat
     Writeln;
 
