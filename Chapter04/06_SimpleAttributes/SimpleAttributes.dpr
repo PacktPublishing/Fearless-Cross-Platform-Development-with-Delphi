@@ -24,7 +24,7 @@ begin
 
     Writeln('My name is: ' + LMySettings.MyName);
     Writeln('My birthdate is: ' + FormatDateTime('mmm dd, yyyy', LMySettings.MyBirthDate));
-    Writeln('My favorite number is: ' + IntToStr(LMySettings.MyFavNumber));
+    Writeln('My favorite number is: ' + LMySettings.MyFavNumber.ToString);
 
     // change the settings so they're different next time we run this
     LMySettings.MyName := NAME_LIST[Random(10) + 1];
