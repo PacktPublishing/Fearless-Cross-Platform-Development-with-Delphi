@@ -54,7 +54,6 @@ end;
 class function TIniSave.GetClassName(MyObj: TRttiObject; const MyObjName: string): IniSaveClassAttribute;
 var
   Attr: TCustomAttribute;
-  MyObjTyp: TRttiType;
 begin
   Result := nil;
 
