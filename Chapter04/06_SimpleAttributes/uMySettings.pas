@@ -18,6 +18,7 @@ type
   published
     [IniDefault('42')]
     property MyFavNumber: Integer read FMyFavNumber write FMyFavNumber;
+    [IniDefault('Zeek')]
     property MyName: string read FMyName write FMyName;
     [IniIgnore]
     property MyBirthDate: TDateTime read GetMyBirthDate write SetMyBirthDate;
