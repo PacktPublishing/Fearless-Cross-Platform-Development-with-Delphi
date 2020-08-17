@@ -1,0 +1,191 @@
+object frmRttiMainFM: TfrmRttiMainFM
+  Left = 0
+  Top = 0
+  Caption = 'RTTI Explorer FM'
+  ClientHeight = 453
+  ClientWidth = 552
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object pnlTop: TPanel
+    Align = Top
+    Size.Width = 552.000000000000000000
+    Size.Height = 41.000000000000000000
+    Size.PlatformDefault = False
+    OnClick = ComponentClick
+    object lblPanelCaption: TLabel
+      Align = VertCenter
+      Padding.Left = 10.000000000000000000
+      Padding.Top = 10.000000000000000000
+      Padding.Right = 10.000000000000000000
+      Padding.Bottom = 10.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 552.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Center
+      Text = 'Click on various controls to view RTTI details.'
+      OnClick = ComponentClick
+    end
+  end
+  object lbRttiInfo: TListBox
+    Align = Left
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    Position.Y = 41.000000000000000000
+    Size.Width = 323.000000000000000000
+    Size.Height = 412.000000000000000000
+    Size.PlatformDefault = False
+    OnClick = ComponentClick
+    DisableFocusEffect = True
+    DefaultItemStyles.ItemStyle = ''
+    DefaultItemStyles.GroupHeaderStyle = ''
+    DefaultItemStyles.GroupFooterStyle = ''
+    Viewport.Width = 319.000000000000000000
+    Viewport.Height = 408.000000000000000000
+  end
+  object grpSample: TGroupBox
+    Anchors = [akTop, akRight]
+    Position.X = 330.000000000000000000
+    Position.Y = 48.000000000000000000
+    Size.Width = 217.000000000000000000
+    Size.Height = 137.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Sample Group Box'
+    OnClick = ComponentClick
+    object lblEditLabel: TLabel
+      AutoSize = True
+      Position.X = 16.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 161.000000000000000000
+      Size.Height = 16.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Label for the TEdit control'
+      OnClick = ComponentClick
+    end
+    object Edit1: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Position.X = 16.000000000000000000
+      Position.Y = 40.000000000000000000
+      Size.Width = 169.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      OnClick = ComponentClick
+    end
+    object lblSecondLabel: TLabel
+      AutoSize = True
+      Position.X = 16.000000000000000000
+      Position.Y = 72.000000000000000000
+      Size.Width = 193.000000000000000000
+      Size.Height = 16.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'No LabeledEdit, just another label'
+      OnClick = ComponentClick
+    end
+    object edtEdit2: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Position.X = 16.000000000000000000
+      Position.Y = 88.000000000000000000
+      Size.Width = 169.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      OnClick = ComponentClick
+    end
+  end
+  object grpColors: TGroupBox
+    Anchors = [akTop, akRight]
+    Position.X = 330.000000000000000000
+    Position.Y = 192.000000000000000000
+    Size.Width = 217.000000000000000000
+    Size.Height = 113.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Colors'
+    OnClick = ComponentClick
+    object radWhite: TRadioButton
+      Position.X = 24.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 81.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'White'
+      OnClick = ComponentClick
+    end
+    object radSilver: TRadioButton
+      Position.X = 24.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 81.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Silver'
+      OnClick = ComponentClick
+    end
+    object radRed: TRadioButton
+      Position.X = 24.000000000000000000
+      Position.Y = 72.000000000000000000
+      Size.Width = 81.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Red'
+      OnClick = ComponentClick
+    end
+    object radGreen: TRadioButton
+      Position.X = 120.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 81.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Green'
+      OnClick = ComponentClick
+    end
+    object radBlue: TRadioButton
+      Position.X = 120.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 81.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Blue'
+      OnClick = ComponentClick
+    end
+    object radBlack: TRadioButton
+      Position.X = 120.000000000000000000
+      Position.Y = 72.000000000000000000
+      Size.Width = 81.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Black'
+      OnClick = ComponentClick
+    end
+  end
+  object tbSample: TTrackBar
+    Anchors = [akTop, akRight]
+    CanParentFocus = True
+    Frequency = 1.000000000000000000
+    Max = 10.000000000000000000
+    Orientation = Horizontal
+    Position.X = 330.000000000000000000
+    Position.Y = 320.000000000000000000
+    Size.Width = 209.000000000000000000
+    Size.Height = 19.000000000000000000
+    Size.PlatformDefault = False
+    OnClick = ComponentClick
+  end
+  object cbCheckSample: TCheckBox
+    Anchors = [akTop, akRight]
+    IsChecked = True
+    Position.X = 344.000000000000000000
+    Position.Y = 384.000000000000000000
+    Size.Width = 89.000000000000000000
+    Size.Height = 19.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Enable OK'
+    OnChange = cbCheckSampleChange
+  end
+  object btnOK: TButton
+    Anchors = [akTop, akRight]
+    ImageIndex = 0
+    Position.X = 344.000000000000000000
+    Position.Y = 408.000000000000000000
+    Text = 'OK'
+    OnClick = ComponentClick
+  end
+end
