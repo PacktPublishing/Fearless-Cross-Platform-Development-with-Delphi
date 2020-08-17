@@ -1,0 +1,34 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = '['
+  ClientHeight = 236
+  ClientWidth = 324
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object edtName: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    MaxLength = 30
+    Position.X = 102.000000000000000000
+    Position.Y = 103.000000000000000000
+    Size.Width = 113.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object Label1: TLabel
+    StyledSettings = [Family]
+    Position.X = 102.000000000000000000
+    Position.Y = 79.000000000000000000
+    TextSettings.Font.Size = 14.000000000000000000
+    TextSettings.Font.StyleExt = {00020000000000000004000000}
+    Text = 'Enter your name:'
+  end
+  object btnSayHello: TButton
+    Position.X = 102.000000000000000000
+    Position.Y = 135.000000000000000000
+    Text = 'Say Hello'
+    OnClick = btnSayHelloClick
+  end
+end
