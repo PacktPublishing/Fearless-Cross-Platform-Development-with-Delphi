@@ -1,6 +1,7 @@
 program HideStringLibDemo;
 
 uses
+  ShareMem,
   System.StartUpCopy,
   FMX.Forms,
   ufrmHideStringMain in 'ufrmHideStringMain.pas' {frmHideStrMain};

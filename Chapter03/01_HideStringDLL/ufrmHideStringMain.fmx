@@ -1,9 +1,9 @@
 object frmHideStrMain: TfrmHideStrMain
   Left = 0
   Top = 0
-  Caption = 'Form1'
-  ClientHeight = 275
-  ClientWidth = 332
+  Caption = 'Hide String - DLL Demo'
+  ClientHeight = 263
+  ClientWidth = 307
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
