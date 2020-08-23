@@ -22,3 +22,7 @@ Chapter03/06_TwilioFM/Android/
 Chapter03/06_TwilioFM/Android64/
 Chapter04/06_SimpleAttributes/Win32/
 Chapter05/03_ClientList/OSX64/
+Chapter03/01_SecretString/Win32/
+*.bpl
+*.dcp
+*.lib
