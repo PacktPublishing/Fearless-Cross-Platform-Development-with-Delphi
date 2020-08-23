@@ -1,8 +1,15 @@
 program SecretStringConsole;
 {$APPTYPE CONSOLE}
 
-uses SysUtils, Winapi.Windows;
+uses
+  {$IFDEF MSWINDOWS} Winapi.Windows, {$ENDIF}
+  System.SysUtils;
 
+const
+  {$IFDEF MSWINDOWS}       LIB_NAME = 'HideStringLib.dll';
+  {$ELSEIF DEFINED(MACOS)} LIB_NAME = 'HideStringLib.dylib';
+  {$ELSEIF DEFINED(LINUX)} LIB_NAME = 'HideStringLib.so';
+  {$ENDIF}
 type
   // declare function types that we'll access
   THideStringFunc = function(const MyString: ShortString): ShortString; stdcall;
@@ -17,7 +24,7 @@ var
   HideString: THideStringFunc;
 begin
   // initialize the DLL handle
-  DllHandle := LoadLibrary('HideStringLib.dll');
+  DllHandle := LoadLibrary(LIB_NAME);
 
   if DLLHandle = 0 then begin
     Write('Could not find function library...');
