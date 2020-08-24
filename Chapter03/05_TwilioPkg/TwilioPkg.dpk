@@ -1,7 +1,0 @@
-package TwilioPkg;
-requires
-  rtl;
-contains
-  uTwilioclient in 'uTwilioClient.pas',
-  uTwilioIntf in 'uTwilioIntf.pas';
-end.
