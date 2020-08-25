@@ -1,7 +1,7 @@
 object frmHideStrMain: TfrmHideStrMain
   Left = 0
   Top = 0
-  Caption = 'Hide String - Dynamicly Loadded DLL Demo'
+  Caption = 'Hide String Demo using Packages'
   ClientHeight = 263
   ClientWidth = 307
   FormFactor.Width = 320
