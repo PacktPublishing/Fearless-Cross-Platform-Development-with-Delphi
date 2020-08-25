@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{8D632AD9-E4FD-4687-A95D-2D402C28D0FD}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="HideStringLib.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="HideStringDynLibDemo.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="HideStringLib">
+        <MSBuild Projects="HideStringLib.dproj"/>
+    </Target>
+    <Target Name="HideStringLib:Clean">
+        <MSBuild Projects="HideStringLib.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="HideStringLib:Make">
+        <MSBuild Projects="HideStringLib.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="HideStringDynLibDemo">
+        <MSBuild Projects="HideStringDynLibDemo.dproj"/>
+    </Target>
+    <Target Name="HideStringDynLibDemo:Clean">
+        <MSBuild Projects="HideStringDynLibDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="HideStringDynLibDemo:Make">
+        <MSBuild Projects="HideStringDynLibDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="HideStringLib;HideStringDynLibDemo"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="HideStringLib:Clean;HideStringDynLibDemo:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="HideStringLib:Make;HideStringDynLibDemo:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
