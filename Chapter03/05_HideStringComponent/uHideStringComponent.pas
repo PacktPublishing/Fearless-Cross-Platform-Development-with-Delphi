@@ -7,8 +7,14 @@ uses
 
 type
   THideString = class(TComponent)
+  private
+    FReverse: Boolean;
+    FUseDigits: Boolean;
   public
     function Execute(const OrigString: string): string;
+  published
+    property Reverse: Boolean read FReverse write FReverse;
+    property UseDigits: Boolean read FUseDigits write FUseDigits;
   end;
 
 procedure Register;
@@ -20,7 +26,7 @@ uses
 
 function THideString.Execute(const OrigString: string): string;
 begin
-  Result := HideString(OrigString);
+  Result := HideString(OrigString, FUseDigits, FReverse);
 end;
 
 procedure Register;

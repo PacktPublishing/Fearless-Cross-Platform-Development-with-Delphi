@@ -15,6 +15,8 @@ type
     btnHideString: TButton;
     lblHidden: TLabel;
     HideString1: THideString;
+    chkUseDigits: TCheckBox;
+    chkReverse: TCheckBox;
     procedure btnHideStringClick(Sender: TObject);
   end;
 
@@ -28,6 +30,9 @@ implementation
 
 procedure TfrmHideStrMain.btnHideStringClick(Sender: TObject);
 begin
+  HideString1.UseDigits := chkUseDigits.IsChecked;
+  HideString1.Reverse   := chkReverse.IsChecked;
+
   lblHidden.Text := HideString1.Execute(edtInput.Text);
 end;
 
