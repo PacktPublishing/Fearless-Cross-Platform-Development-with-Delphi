@@ -15,9 +15,13 @@ object frmHideStrMain: TfrmHideStrMain
   end
   object edtInput: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
-    MaxLength = 10
+    Anchors = [akLeft, akTop, akRight]
+    MaxLength = 50
     Position.X = 80.000000000000000000
     Position.Y = 56.000000000000000000
+    Size.Width = 193.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
   end
   object Label2: TLabel
     StyledSettings = [Family, Size, FontColor]

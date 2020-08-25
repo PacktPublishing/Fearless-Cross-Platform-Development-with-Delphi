@@ -6,6 +6,7 @@ uses
   System.Classes;
 
 type
+  [ComponentPlatforms(pidAllPlatforms)]
   THideString = class(TComponent)
   private
     FReverse: Boolean;
