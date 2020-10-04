@@ -1,0 +1,25 @@
+object frmHello: TfrmHello
+  Left = 0
+  Top = 0
+  Caption = 'Hello!'
+  ClientHeight = 130
+  ClientWidth = 245
+  Position = DesktopCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object lblHello: TLabel
+    StyledSettings = [Family, Style, FontColor]
+    Position.X = 24.000000000000000000
+    Position.Y = 32.000000000000000000
+    Size.Width = 185.000000000000000000
+    Size.Height = 57.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 16.000000000000000000
+    TextSettings.HorzAlign = Center
+    Text = 'lblHello'
+    TabOrder = 0
+  end
+end
