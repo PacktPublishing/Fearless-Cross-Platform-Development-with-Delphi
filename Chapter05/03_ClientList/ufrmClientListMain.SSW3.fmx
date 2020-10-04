@@ -1,101 +1,41 @@
-object MasterDetailForm: TMasterDetailForm
-  Left = 0
-  Top = 0
-  Caption = 'Master Detail'
-  ClientHeight = 480
-  ClientWidth = 640
-  FormFactor.Width = 320
-  FormFactor.Height = 480
-  FormFactor.Devices = [Desktop]
+inherited MasterDetailForm_SSW3: TMasterDetailForm_SSW3
+  ClientHeight = 183
+  ClientWidth = 183
   DesignerMasterStyle = 0
-  object Layout1: TLayout
-    Align = Client
-    Size.Width = 640.000000000000000000
-    Size.Height = 480.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 2
-    object DetailToolbar: TToolBar
-      Size.Width = 640.000000000000000000
-      Size.Height = 48.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 0
-      object DetailLabel: TLabel
-        Align = Contents
-        Size.Width = 640.000000000000000000
-        Size.Height = 48.000000000000000000
-        Size.PlatformDefault = False
-        StyleLookup = 'toollabel'
-        TextSettings.HorzAlign = Center
-        Text = 'Detail'
+  inherited Layout1: TLayout
+    Size.Width = 183.000000000000000000
+    Size.Height = 183.000000000000000000
+    inherited DetailToolbar: TToolBar
+      Size.Width = 183.000000000000000000
+      inherited DetailLabel: TLabel
+        Size.Width = 183.000000000000000000
       end
-      object MasterButton: TSpeedButton
-        Align = Client
-        Size.Width = 539.000000000000000000
-        Size.Height = 48.000000000000000000
-        Size.PlatformDefault = False
-        StyleLookup = 'detailstoolbutton'
-      end
-      object btnUp: TSpeedButton
-        Action = LiveBindingsBindNavigatePrior1
-        Align = Right
-        Enabled = True
-        ImageIndex = -1
-        Position.X = 539.000000000000000000
+      inherited MasterButton: TSpeedButton
         Size.Width = 48.000000000000000000
-        Size.Height = 48.000000000000000000
-        Size.PlatformDefault = False
-        StyleLookup = 'arrowuptoolbuttonborderedleft'
       end
-      object btnDown: TSpeedButton
-        Action = LiveBindingsBindNavigateNext1
-        Align = Right
-        Enabled = True
-        ImageIndex = -1
-        Margins.Right = 5.000000000000000000
-        Position.X = 587.000000000000000000
-        Size.Width = 48.000000000000000000
-        Size.Height = 48.000000000000000000
-        Size.PlatformDefault = False
-        StyleLookup = 'arrowdowntoolbuttonborderedright'
+      inherited btnUp: TSpeedButton
+        Position.X = 82.000000000000000000
+      end
+      inherited btnDown: TSpeedButton
+        Position.X = 130.000000000000000000
       end
     end
-    object Layout2: TLayout
-      Align = Top
-      Margins.Top = 10.000000000000000000
-      Position.Y = 58.000000000000000000
-      Size.Width = 640.000000000000000000
-      Size.Height = 57.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 1
-      object Layout3: TLayout
-        Align = Client
-        Size.Width = 559.000000000000000000
-        Size.Height = 57.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 0
-        object lblName: TLabel
-          Align = Top
-          StyledSettings = [Family, Style, FontColor]
-          Size.Width = 559.000000000000000000
-          Size.Height = 28.000000000000000000
-          Size.PlatformDefault = False
-          StyleLookup = 'listboxitemlabel'
-          TextSettings.Font.Size = 18.000000000000000000
-          Text = 'Adam Brown'
+    inherited Layout2: TLayout
+      Size.Width = 183.000000000000000000
+      inherited Layout3: TLayout
+        Size.Width = 102.000000000000000000
+        inherited lblName: TLabel
+          Size.Width = 102.000000000000000000
         end
-        object lblTitle: TLabel
-          Align = Client
-          StyledSettings = [Family, Style, FontColor]
-          Size.Width = 559.000000000000000000
-          Size.Height = 29.000000000000000000
-          Size.PlatformDefault = False
-          StyleLookup = 'embossedlabel'
-          TextSettings.Font.Size = 15.000000000000000000
-          Text = 'Accountant'
+        inherited lblTitle: TLabel
+          Size.Width = 102.000000000000000000
         end
       end
-      object imgContact: TImage
+      inherited imgContact: TImage
         MultiResBitmap = <
+          item
+            Scale = 2.000000000000000000
+          end
           item
             Width = 150
             Height = 150
@@ -296,196 +236,27 @@ object MasterDetailForm: TMasterDetailForm
               2AA89AC556C1560FB775601DD0663970D07238C472600A1C623930050EB11C98
               0287580E4C81432C07A6C021960353E010CB81297088E5C01438C472600A1C62
               3930050EB11C9800E0FF01FDDE2138CC5FE8EB0000000049454E44AE426082}
-          end
-          item
-            Scale = 2.000000000000000000
           end>
-        Align = Left
-        Size.Width = 81.000000000000000000
-        Size.Height = 57.000000000000000000
-        Size.PlatformDefault = False
       end
     end
-    object Memo1: TMemo
-      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
-      DataDetectorTypes = []
-      Lines.Strings = (
-        
-          'ipsum mi vehicula purus, eu congue sapien orci eu est. Morbi bla' +
-          'ndit volutpat ante, non ultrices eros semper at. Fusce leo leo, ' +
-          'mollis id viverra a, pulvinar non diam. Praesent ornare mauris a' +
-          'c magna placerat rutrum.Curabitur volutpat urna fermentum sem ia' +
-          'culis ultrices. Maecenas adipiscing sapien risus, nec consectetu' +
-          'r arcu. Sed in arcu iaculis felis placerat elementum vitae porta' +
-          ' libero. Donec quis purus nisi, ac ultrices lorem. Proin vitae d' +
-          'iam id turpis rhoncus vestibulum scelerisque vel leo. Nulla quis' +
-          ' scelerisque sem. Etiam imperdiet lacinia nulla sit amet varius.' +
-          ' Aliquam in interdum mauris. Praesent placerat, libero vel biben' +
-          'dum malesuada, velit libero vestibulum erat, vel porttitor diam ' +
-          'urna et nibh. Nullam fringilla cursus tempor. Cras eleifend male' +
-          'suada lacus quis consectetur. Cum sociis natoque penatibus et ma' +
-          'gnis dis parturient montes, nascetur ridiculus mus. Sed vestibul' +
-          'um bibendum sodales.Mauris consectetur ipsum ac turpis aliquam i' +
-          'd placerat justo ornare. Donec nisl arcu, faucibus vel dictum vi' +
-          'tae, dapibus vel mauris. Sed lacinia, elit ut commodo tempor, ma' +
-          'uris felis consequat nisl, sit amet laoreet est quam et tortor. ' +
-          'Proin mattis interdum tempus. Etiam ac vehicula neque. Donec tem' +
-          'por, velit sit')
-      ReadOnly = True
-      TextSettings.WordWrap = True
-      Align = Client
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 15.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Margins.Bottom = 5.000000000000000000
-      Size.Width = 630.000000000000000000
-      Size.Height = 345.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 2
-      Viewport.Width = 626.000000000000000000
-      Viewport.Height = 341.000000000000000000
-    end
-  end
-  object StyleBook1: TStyleBook
-    Styles = <
-      item
-      end>
-    Left = 466
-    Top = 360
-  end
-  object MultiView1: TMultiView
-    MasterButton = MasterButton
-    Size.Width = 250.000000000000000000
-    Size.Height = 480.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 1
-    object ListView1: TListView
-      ItemAppearanceClassName = 'TImageListItemAppearance'
-      ItemEditAppearanceClassName = 'TImageListItemShowCheck'
-      HeaderAppearanceClassName = 'TListHeaderObjects'
-      FooterAppearanceClassName = 'TListHeaderObjects'
-      ItemIndex = 0
-      Align = Client
-      Size.Width = 50.000000000000000000
-      Size.Height = 432.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 1
-      ItemAppearanceObjects.ItemObjects.Accessory.Visible = False
-      CanSwipeDelete = False
-      OnItemClick = ListView1ItemClick
-      SearchAlwaysOnTop = False
-    end
-    object MasterToolbar: TToolBar
-      Size.Width = 50.000000000000000000
+    inherited Memo1: TMemo
+      Size.Width = 173.000000000000000000
       Size.Height = 48.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 0
-      object MasterLabel: TLabel
-        Align = Client
-        Size.Width = 50.000000000000000000
-        Size.Height = 48.000000000000000000
-        Size.PlatformDefault = False
-        StyleLookup = 'toollabel'
-        TextSettings.HorzAlign = Center
-        Text = 'Master List'
-      end
+      Viewport.Width = 173.000000000000000000
+      Viewport.Height = 48.000000000000000000
     end
   end
-  object PrototypeBindSource1: TPrototypeBindSource
-    AutoActivate = True
-    AutoPost = False
-    FieldDefs = <
-      item
-        Name = 'ContactBitmap1'
-        FieldType = ftBitmap
-        Generator = 'ContactBitmaps'
-        Options = [optRepeat]
-        ReadOnly = False
+  inherited MultiView1: TMultiView
+    Size.Width = 250.000000000000000000
+    Visible = False
+    inherited ListView1: TListView
+      Size.Width = 250.000000000000000000
+    end
+    inherited MasterToolbar: TToolBar
+      Size.Width = 250.000000000000000000
+      inherited MasterLabel: TLabel
+        Size.Width = 250.000000000000000000
       end
-      item
-        Name = 'ContactBitmapL1'
-        FieldType = ftBitmap
-        Generator = 'ContactBitmapsL'
-        Options = [optRepeat]
-        ReadOnly = False
-      end
-      item
-        Name = 'ContactName1'
-        Generator = 'ContactNames'
-        Options = [optRepeat]
-        ReadOnly = False
-      end
-      item
-        Name = 'ContactTitle1'
-        Generator = 'ContactTitles'
-        Options = [optRepeat]
-        ReadOnly = False
-      end
-      item
-        Name = 'LoremIpsum1'
-        Generator = 'LoremIpsum'
-        ReadOnly = False
-      end>
-    ScopeMappings = <>
-    Left = 296
-  end
-  object BindingsList1: TBindingsList
-    Methods = <>
-    OutputConverters = <>
-    Left = 20
-    Top = 5
-    object LinkPropertyToFieldBitmap: TLinkPropertyToField
-      Category = 'Quick Bindings'
-      DataSource = PrototypeBindSource1
-      FieldName = 'ContactBitmapL1'
-      Component = imgContact
-      ComponentProperty = 'Bitmap'
-    end
-    object LinkPropertyToFieldText: TLinkPropertyToField
-      Category = 'Quick Bindings'
-      DataSource = PrototypeBindSource1
-      FieldName = 'ContactName1'
-      Component = lblName
-      ComponentProperty = 'Text'
-    end
-    object LinkPropertyToFieldText2: TLinkPropertyToField
-      Category = 'Quick Bindings'
-      DataSource = PrototypeBindSource1
-      FieldName = 'ContactTitle1'
-      Component = lblTitle
-      ComponentProperty = 'Text'
-    end
-    object LinkControlToField1: TLinkControlToField
-      Category = 'Quick Bindings'
-      DataSource = PrototypeBindSource1
-      FieldName = 'LoremIpsum1'
-      Control = Memo1
-      Track = False
-    end
-    object LinkListControlToField1: TLinkListControlToField
-      Category = 'Quick Bindings'
-      DataSource = PrototypeBindSource1
-      FieldName = 'ContactName1'
-      Control = ListView1
-      FillExpressions = <
-        item
-          SourceMemberName = 'ContactBitmap1'
-          ControlMemberName = 'Bitmap'
-        end>
-      FillHeaderExpressions = <>
-      FillBreakGroups = <>
-    end
-  end
-  object ActionList1: TActionList
-    Left = 152
-    Top = 160
-    object LiveBindingsBindNavigateNext1: TFMXBindNavigateNext
-      Category = 'LiveBindings'
-      DataSource = PrototypeBindSource1
-    end
-    object LiveBindingsBindNavigatePrior1: TFMXBindNavigatePrior
-      Category = 'LiveBindings'
-      DataSource = PrototypeBindSource1
     end
   end
 end

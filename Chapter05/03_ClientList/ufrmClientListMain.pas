@@ -38,6 +38,7 @@ type
     LiveBindingsBindNavigatePrior1: TFMXBindNavigatePrior;
     btnUp: TSpeedButton;
     btnDown: TSpeedButton;
+    StyleBook1: TStyleBook;
     procedure ListView1ItemClick(const Sender: TObject; const AItem: TListViewItem);
   private
     { Private declarations }
@@ -51,6 +52,17 @@ var
 implementation
 
 {$R *.fmx}
+{$R *.iPhone55in.fmx IOS}
+{$R *.Macintosh.fmx MACOS}
+{$R *.LgXhdpiPh.fmx ANDROID}
+{$R *.NmXhdpiPh.fmx ANDROID}
+{$R *.Windows.fmx MSWINDOWS}
+{$R *.GGlass.fmx ANDROID}
+{$R *.SSW3.fmx ANDROID}
+{$R *.LgXhdpiTb.fmx ANDROID}
+{$R *.XLgXhdpiTb.fmx ANDROID}
+{$R *.iPhone4in.fmx IOS}
+{$R *.SmXhdpiPh.fmx ANDROID}
 
 procedure TMasterDetailForm.ListView1ItemClick(const Sender: TObject; const AItem: TListViewItem);
 begin
