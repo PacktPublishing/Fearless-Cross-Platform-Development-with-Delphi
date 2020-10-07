@@ -1,0 +1,53 @@
+inherited HeaderFooterwithNavigation_iPhone4in: THeaderFooterwithNavigation_iPhone4in
+  ClientHeight = 548
+  ClientWidth = 320
+  DesignerMasterStyle = 0
+  inherited TopToolBar: TToolBar
+    Size.Width = 320.000000000000000000
+    Size.Height = 44.000000000000000000
+    inherited ToolBarLabel: TLabel
+      Size.Width = 320.000000000000000000
+      Size.Height = 44.000000000000000000
+    end
+    inherited btnBack: TSpeedButton
+      Size.Height = 44.000000000000000000
+    end
+    inherited btnNext: TSpeedButton
+      Position.X = 276.000000000000000000
+      Size.Width = 44.000000000000000000
+      Size.Height = 44.000000000000000000
+    end
+  end
+  inherited TabControl1: TTabControl
+    Size.Width = 320.000000000000000000
+    Size.Height = 460.000000000000000000
+    Sizes = (
+      320s
+      460s
+      320s
+      460s)
+    inherited tabName: TTabItem
+      Size.Width = 11.000000000000000000
+      Size.Height = 11.000000000000000000
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      inherited edtMyName: TEdit
+        Size.Height = 30.000000000000000000
+      end
+    end
+    inherited tabNumber: TTabItem
+      Size.Width = 11.000000000000000000
+      Size.Height = 11.000000000000000000
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      inherited ATrackBar: TTrackBar
+        Size.Height = 36.000000000000000000
+      end
+    end
+  end
+  inherited BottomToolBar: TToolBar
+    Position.Y = 504.000000000000000000
+    Size.Width = 320.000000000000000000
+    Size.Height = 44.000000000000000000
+  end
+end

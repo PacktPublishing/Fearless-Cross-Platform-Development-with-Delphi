@@ -1,0 +1,187 @@
+object HeaderFooterwithNavigation: THeaderFooterwithNavigation
+  Left = 0
+  Top = 0
+  Caption = 'HeaderFooter'
+  ClientHeight = 567
+  ClientWidth = 384
+  FormFactor.Width = 1440
+  FormFactor.Height = 900
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 3
+  object TopToolBar: TToolBar
+    Anchors = []
+    Size.Width = 384.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object ToolBarLabel: TLabel
+      Action = TitleAction
+      Align = Contents
+      Enabled = True
+      Size.Width = 384.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'toollabel'
+      TextSettings.HorzAlign = Center
+    end
+    object btnBack: TSpeedButton
+      Action = PreviousTabAction1
+      Align = MostLeft
+      Enabled = True
+      ImageIndex = -1
+      Size.Width = 48.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'backtoolbutton'
+    end
+    object btnNext: TSpeedButton
+      Action = NextTabAction1
+      Align = MostRight
+      Enabled = True
+      ImageIndex = -1
+      Position.X = 336.000000000000000000
+      Size.Width = 48.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'nexttoolbutton'
+    end
+  end
+  object TabControl1: TTabControl
+    Align = Client
+    FullSize = True
+    Size.Width = 384.000000000000000000
+    Size.Height = 471.000000000000000000
+    Size.PlatformDefault = False
+    TabHeight = 49.000000000000000000
+    TabIndex = 1
+    TabOrder = 1
+    TabPosition = None
+    Sizes = (
+      384s
+      471s
+      384s
+      471s)
+    object tabName: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 8.000000000000000000
+      Size.Height = 8.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Copied Name'
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      object lblCopiedName: TLabel
+        Position.X = 80.000000000000000000
+        Position.Y = 256.000000000000000000
+        Size.Width = 217.000000000000000000
+        Size.Height = 23.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'lblCopiedName'
+        TabOrder = 0
+      end
+      object edtMyName: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        TabOrder = 1
+        Text = 'lblCopiedName'
+        Position.X = 80.000000000000000000
+        Position.Y = 152.000000000000000000
+        Size.Width = 209.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object lblNamePrompt: TLabel
+        Position.X = 80.000000000000000000
+        Position.Y = 128.000000000000000000
+        Text = 'Name:'
+        TabOrder = 2
+      end
+    end
+    object tabNumber: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
+      Size.Width = 8.000000000000000000
+      Size.Height = 8.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'TrackBar Tracker'
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      object ATrackBar: TTrackBar
+        CanParentFocus = True
+        Orientation = Horizontal
+        Position.X = 72.000000000000000000
+        Position.Y = 96.000000000000000000
+        Size.Width = 225.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+      end
+      object lblTrackbarValue: TLabel
+        Position.X = 72.000000000000000000
+        Position.Y = 144.000000000000000000
+        Size.Width = 217.000000000000000000
+        Size.Height = 23.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Center
+        Text = 'lblTrackbarValue'
+        TabOrder = 1
+      end
+    end
+  end
+  object BottomToolBar: TToolBar
+    Align = Bottom
+    Anchors = [akLeft]
+    Position.Y = 519.000000000000000000
+    Size.Width = 384.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'bottomtoolbar'
+    TabOrder = 2
+  end
+  object ActionList1: TActionList
+    Left = 176
+    Top = 56
+    object TitleAction: TControlAction
+      Category = 'Tab'
+      Text = 'TitleAction'
+      OnUpdate = TitleActionUpdate
+    end
+    object PreviousTabAction1: TPreviousTabAction
+      Category = 'Tab'
+      TabControl = TabControl1
+      ShortCut = 137
+    end
+    object NextTabAction1: TNextTabAction
+      Category = 'Tab'
+      TabControl = TabControl1
+    end
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 60
+    Top = 333
+    object LinkControlToPropertyText: TLinkControlToProperty
+      Category = 'Quick Bindings'
+      Control = edtMyName
+      Track = False
+      Component = lblCopiedName
+      ComponentProperty = 'Text'
+    end
+    object LinkControlToPropertyText2: TLinkControlToProperty
+      Category = 'Quick Bindings'
+      Control = ATrackBar
+      Track = False
+      Component = lblTrackbarValue
+      ComponentProperty = 'Text'
+    end
+  end
+end
