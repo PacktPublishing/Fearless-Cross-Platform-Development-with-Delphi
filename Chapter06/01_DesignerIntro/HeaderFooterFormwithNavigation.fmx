@@ -54,10 +54,12 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     Size.Height = 471.000000000000000000
     Size.PlatformDefault = False
     TabHeight = 49.000000000000000000
-    TabIndex = 1
+    TabIndex = 2
     TabOrder = 1
     TabPosition = None
     Sizes = (
+      384s
+      471s
       384s
       471s
       384s
@@ -81,13 +83,11 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         Size.Width = 217.000000000000000000
         Size.Height = 23.000000000000000000
         Size.PlatformDefault = False
-        Text = 'lblCopiedName'
         TabOrder = 0
       end
       object edtMyName: TEdit
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         TabOrder = 1
-        Text = 'lblCopiedName'
         Position.X = 80.000000000000000000
         Position.Y = 152.000000000000000000
         Size.Width = 209.000000000000000000
@@ -105,7 +105,7 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       CustomIcon = <
         item
         end>
-      IsSelected = True
+      IsSelected = False
       Size.Width = 8.000000000000000000
       Size.Height = 8.000000000000000000
       Size.PlatformDefault = False
@@ -135,6 +135,88 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
         TabOrder = 1
       end
     end
+    object tabColors: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
+      Size.Width = 8.000000000000000000
+      Size.Height = 8.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Fun With Controls'
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      object rectBackground: TRectangle
+        Align = Client
+        Fill.Color = claLightskyblue
+        Padding.Left = 4.000000000000000000
+        Padding.Top = 4.000000000000000000
+        Padding.Right = 4.000000000000000000
+        Padding.Bottom = 4.000000000000000000
+        Size.Width = 384.000000000000000000
+        Size.Height = 471.000000000000000000
+        Size.PlatformDefault = False
+        object ArcDial: TArcDial
+          Position.X = 152.000000000000000000
+          Position.Y = 168.000000000000000000
+          Size.Width = 81.000000000000000000
+          Size.Height = 73.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+        end
+        object cmbColor: TComboColorBox
+          Color = claBlanchedalmond
+          Position.X = 224.000000000000000000
+          Position.Y = 65.000000000000000000
+          Size.Width = 121.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 3
+        end
+        object spinMargins: TSpinBox
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 4
+          Cursor = crIBeam
+          Position.X = 32.000000000000000000
+          Position.Y = 49.000000000000000000
+          Size.Width = 113.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblColor: TLabel
+          Position.X = 224.000000000000000000
+          Position.Y = 40.000000000000000000
+          Size.Width = 113.000000000000000000
+          Size.Height = 23.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.HorzAlign = Center
+          Text = 'Background'
+          TabOrder = 2
+        end
+        object lblMargins: TLabel
+          Position.X = 32.000000000000000000
+          Position.Y = 28.000000000000000000
+          Size.Width = 113.000000000000000000
+          Size.Height = 23.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.HorzAlign = Center
+          Text = 'Margins:'
+          TabOrder = 5
+        end
+        object lblRotate: TLabel
+          Position.X = 144.000000000000000000
+          Position.Y = 264.000000000000000000
+          Size.Width = 113.000000000000000000
+          Size.Height = 23.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.HorzAlign = Center
+          Text = 'Rotate Me!'
+          TabOrder = 1
+        end
+      end
+    end
   end
   object BottomToolBar: TToolBar
     Align = Bottom
@@ -147,8 +229,8 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
     TabOrder = 2
   end
   object ActionList1: TActionList
-    Left = 176
-    Top = 56
+    Left = 280
+    Top = 24
     object TitleAction: TControlAction
       Category = 'Tab'
       Text = 'TitleAction'
@@ -182,6 +264,51 @@ object HeaderFooterwithNavigation: THeaderFooterwithNavigation
       Track = False
       Component = lblTrackbarValue
       ComponentProperty = 'Text'
+    end
+    object LinkControlToPropertyMarginsBottom: TLinkControlToProperty
+      Category = 'Quick Bindings'
+      Control = spinMargins
+      Track = True
+      Component = rectBackground
+      ComponentProperty = 'Margins.Bottom'
+    end
+    object LinkControlToPropertyMarginsLeft: TLinkControlToProperty
+      Category = 'Quick Bindings'
+      Control = spinMargins
+      Track = True
+      Component = rectBackground
+      ComponentProperty = 'Margins.Left'
+      InitializeControlValue = False
+    end
+    object LinkControlToPropertyMarginsRight: TLinkControlToProperty
+      Category = 'Quick Bindings'
+      Control = spinMargins
+      Track = True
+      Component = rectBackground
+      ComponentProperty = 'Margins.Right'
+      InitializeControlValue = False
+    end
+    object LinkControlToPropertyMarginsTop: TLinkControlToProperty
+      Category = 'Quick Bindings'
+      Control = spinMargins
+      Track = True
+      Component = rectBackground
+      ComponentProperty = 'Margins.Top'
+      InitializeControlValue = False
+    end
+    object LinkControlToPropertyFillColor: TLinkControlToProperty
+      Category = 'Quick Bindings'
+      Control = cmbColor
+      Track = True
+      Component = rectBackground
+      ComponentProperty = 'Fill.Color'
+    end
+    object LinkControlToPropertyRotationAngle: TLinkControlToProperty
+      Category = 'Quick Bindings'
+      Control = ArcDial
+      Track = False
+      Component = lblRotate
+      ComponentProperty = 'RotationAngle'
     end
   end
 end

@@ -22,6 +22,8 @@ inherited HeaderFooterwithNavigation_LgXhdpiPh: THeaderFooterwithNavigation_LgXh
       450s
       599s
       450s
+      599s
+      450s
       599s)
     inherited tabName: TTabItem
       ExplicitSize.cx = 8.000000000000000000
@@ -30,6 +32,21 @@ inherited HeaderFooterwithNavigation_LgXhdpiPh: THeaderFooterwithNavigation_LgXh
     inherited tabNumber: TTabItem
       ExplicitSize.cx = 8.000000000000000000
       ExplicitSize.cy = 8.000000000000000000
+    end
+    inherited tabColors: TTabItem
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      inherited rectBackground: TRectangle
+        Margins.Left = 4.000000000000000000
+        Margins.Top = 4.000000000000000000
+        Margins.Right = 4.000000000000000000
+        Margins.Bottom = 4.000000000000000000
+        Size.Width = 442.000000000000000000
+        Size.Height = 591.000000000000000000
+        inherited spinMargins: TSpinBox
+          Value = 4.000000000000000000
+        end
+      end
     end
   end
   inherited BottomToolBar: TToolBar

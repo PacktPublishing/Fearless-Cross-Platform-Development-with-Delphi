@@ -25,6 +25,8 @@ inherited HeaderFooterwithNavigation_iPhone4in: THeaderFooterwithNavigation_iPho
       320s
       460s
       320s
+      460s
+      320s
       460s)
     inherited tabName: TTabItem
       Size.Width = 11.000000000000000000
@@ -42,6 +44,27 @@ inherited HeaderFooterwithNavigation_iPhone4in: THeaderFooterwithNavigation_iPho
       ExplicitSize.cy = 8.000000000000000000
       inherited ATrackBar: TTrackBar
         Size.Height = 36.000000000000000000
+      end
+    end
+    inherited tabColors: TTabItem
+      Size.Width = 11.000000000000000000
+      Size.Height = 11.000000000000000000
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      inherited rectBackground: TRectangle
+        Margins.Left = 4.000000000000000000
+        Margins.Top = 4.000000000000000000
+        Margins.Right = 4.000000000000000000
+        Margins.Bottom = 4.000000000000000000
+        Size.Width = 312.000000000000000000
+        Size.Height = 452.000000000000000000
+        inherited cmbColor: TComboColorBox
+          Size.Height = 30.000000000000000000
+        end
+        inherited spinMargins: TSpinBox
+          Value = 4.000000000000000000
+          Size.Height = 30.000000000000000000
+        end
       end
     end
   end

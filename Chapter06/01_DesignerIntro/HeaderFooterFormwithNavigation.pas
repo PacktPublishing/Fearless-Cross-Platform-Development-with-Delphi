@@ -7,7 +7,8 @@ uses
   FMX.Types, FMX.Controls, FMX.Graphics, FMX.Forms, FMX.Dialogs, FMX.TabControl, System.Actions, FMX.ActnList,
   FMX.Objects, FMX.StdCtrls, FMX.Controls.Presentation, FMX.Edit,
   Data.Bind.EngExt, Fmx.Bind.DBEngExt, System.Rtti, System.Bindings.Outputs,
-  Fmx.Bind.Editors, Data.Bind.Components;
+  Fmx.Bind.Editors, Data.Bind.Components, FMX.Colors, FMX.ComboEdit,
+  FMX.SpinBox, FMX.EditBox, FMX.NumberBox, FMX.DateTimeCtrls;
 
 type
   THeaderFooterwithNavigation = class(TForm)
@@ -31,6 +32,20 @@ type
     BindingsList1: TBindingsList;
     LinkControlToPropertyText: TLinkControlToProperty;
     LinkControlToPropertyText2: TLinkControlToProperty;
+    tabColors: TTabItem;
+    ArcDial: TArcDial;
+    spinMargins: TSpinBox;
+    cmbColor: TComboColorBox;
+    rectBackground: TRectangle;
+    lblMargins: TLabel;
+    LinkControlToPropertyMarginsBottom: TLinkControlToProperty;
+    LinkControlToPropertyMarginsLeft: TLinkControlToProperty;
+    LinkControlToPropertyMarginsRight: TLinkControlToProperty;
+    LinkControlToPropertyMarginsTop: TLinkControlToProperty;
+    LinkControlToPropertyFillColor: TLinkControlToProperty;
+    lblColor: TLabel;
+    lblRotate: TLabel;
+    LinkControlToPropertyRotationAngle: TLinkControlToProperty;
     procedure FormCreate(Sender: TObject);
     procedure TitleActionUpdate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
