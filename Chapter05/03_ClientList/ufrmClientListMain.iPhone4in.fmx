@@ -248,6 +248,8 @@ inherited MasterDetailForm_iPhone4in: TMasterDetailForm_iPhone4in
       end
     end
     inherited Memo1: TMemo
+      StyledSettings = [Family, Style, FontColor]
+      TextSettings.Font.Size = 20.000000000000000000
       Size.Width = 310.000000000000000000
       Size.Height = 417.000000000000000000
       Viewport.Width = 310.000000000000000000
