@@ -1,5 +1,7 @@
 program PrototypeContacts;
 
+
+
 {$R *.dres}
 
 uses

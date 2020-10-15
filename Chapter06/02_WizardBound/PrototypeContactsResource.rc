@@ -1,4 +1,4 @@
-Bitmap_Adam RCDATA "V:\\images\\Aha-soft\\bmp\\48x48\\Android head.bmp"
-Bitmap_Brenda RCDATA "V:\\images\\Aha-soft\\bmp\\48x48\\Android.bmp"
-Bitmap_George RCDATA "V:\\images\\Aha-soft\\bmp\\48x48\\Blue robot.bmp"
-Bitmap_Jack RCDATA "V:\\images\\Aha-soft\\bmp\\48x48\\Classic robot.bmp"
+Bitmap_Brenda RCDATA "Android.bmp"
+Bitmap_Adam RCDATA "Armed robot.bmp"
+Bitmap_George RCDATA "Blue robot.bmp"
+Bitmap_Jack RCDATA "Dancing robot.bmp"

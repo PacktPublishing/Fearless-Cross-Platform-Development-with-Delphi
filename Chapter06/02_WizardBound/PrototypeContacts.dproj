@@ -215,19 +215,19 @@
             <Form>frmWizardBoundMain</Form>
             <FormType>fmx</FormType>
         </DCCReference>
-        <RcItem Include="V:\images\Aha-soft\bmp\48x48\Android head.bmp">
-            <ResourceType>RCDATA</ResourceType>
-            <ResourceId>Bitmap_Adam</ResourceId>
-        </RcItem>
-        <RcItem Include="V:\images\Aha-soft\bmp\48x48\Android.bmp">
+        <RcItem Include="Android.bmp">
             <ResourceType>RCDATA</ResourceType>
             <ResourceId>Bitmap_Brenda</ResourceId>
         </RcItem>
-        <RcItem Include="V:\images\Aha-soft\bmp\48x48\Blue robot.bmp">
+        <RcItem Include="Armed robot.bmp">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>Bitmap_Adam</ResourceId>
+        </RcItem>
+        <RcItem Include="Blue robot.bmp">
             <ResourceType>RCDATA</ResourceType>
             <ResourceId>Bitmap_George</ResourceId>
         </RcItem>
-        <RcItem Include="V:\images\Aha-soft\bmp\48x48\Classic robot.bmp">
+        <RcItem Include="Dancing robot.bmp">
             <ResourceType>RCDATA</ResourceType>
             <ResourceId>Bitmap_Jack</ResourceId>
         </RcItem>
@@ -253,18 +253,18 @@
                 </Source>
             </Delphi.Personality>
             <Deployment Version="3">
-                <DeployFile LocalName="V:\images\Aha-soft\bmp\48x48\Android.bmp" Configuration="Debug" Class="ProjectFile">
-                    <Platform Name="Win32">
-                        <RemoteDir>.\</RemoteDir>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
                 <DeployFile LocalName="$(BDS)\Redist\osx32\libcgunwind.1.0.dylib" Class="DependencyModule">
                     <Platform Name="OSX32">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="V:\images\Aha-soft\bmp\48x48\Android head.bmp" Configuration="Debug" Class="ProjectFile">
+                <DeployFile LocalName="Android.bmp" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Armed robot.bmp" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
@@ -273,12 +273,6 @@
                 <DeployFile LocalName="Win32\Debug\PrototypeContacts.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>PrototypeContacts.exe</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="V:\images\Aha-soft\bmp\48x48\Classic robot.bmp" Configuration="Debug" Class="ProjectFile">
-                    <Platform Name="Win32">
-                        <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -292,7 +286,13 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="V:\images\Aha-soft\bmp\48x48\Blue robot.bmp" Configuration="Debug" Class="ProjectFile">
+                <DeployFile LocalName="Blue robot.bmp" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Dancing robot.bmp" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
