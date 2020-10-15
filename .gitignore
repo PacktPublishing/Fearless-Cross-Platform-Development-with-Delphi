@@ -26,3 +26,15 @@ Chapter03/01_SecretString/Win32/
 *.bpl
 *.dcp
 *.lib
+Chapter03/03_HideStringCrossPlatDLL/OSX64/
+Chapter03/04_HideStringPackage/Android64/
+Chapter03/05_HideStringComponent/Android64/
+Chapter03/05_HideStringComponent/OSX64/
+Chapter05/04_HelloDevice/OSX64/
+Chapter05/04_HelloDevice/Android/
+Chapter05/03_ClientList/Android64/
+Chapter05/03_ClientList/Android/
+Chapter05/03_ClientList/iOSDevice64/
+*.xml
+Chapter03/05_HideStringComponent/HideStringComponentDemo
+*.dex
