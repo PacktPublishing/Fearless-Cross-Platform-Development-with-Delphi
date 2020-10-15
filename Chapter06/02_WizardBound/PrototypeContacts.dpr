@@ -1,14 +1,16 @@
 program PrototypeContacts;
 
+{$R *.dres}
+
 uses
   System.StartUpCopy,
   FMX.Forms,
-  ufrmPrototypedHires in 'ufrmPrototypedHires.pas' {Form1};
+  ufrmPrototypedHires in 'ufrmPrototypedHires.pas' {frmWizardBoundMain};
 
 {$R *.res}
 
 begin
   Application.Initialize;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TfrmWizardBoundMain, frmWizardBoundMain);
   Application.Run;
 end.

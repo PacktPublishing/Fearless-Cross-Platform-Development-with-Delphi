@@ -28,7 +28,6 @@ type
                        const NewHireDate: TDate;
                        const NewSalary: Integer;
                        const NewAvail: Boolean);
-  published
     property ContactBitmap: TBitmap read FContactBitmap write FContactBitmap;
     property ContactName: string read FContactName write FContactName;
     property Title: string read FTitle write FTitle;
@@ -37,7 +36,7 @@ type
     property AvailNow: Boolean read FAvailNow write FAvailNow;
   end;
 
-  TForm1 = class(TForm)
+  TfrmWizardBoundMain = class(TForm)
     EditContactTitle1: TEdit;
     LabelContactTitle1: TLabel;
     NavigatorPrototypeBindSource1: TBindNavigator;
@@ -45,7 +44,7 @@ type
     LabelDateTimeField1: TLabel;
     EditContactName1: TEdit;
     LabelContactName1: TLabel;
-    ImageContactBitmap1: TImage;
+    ImageContactBitmap: TImage;
     CheckBoxBoolField1: TCheckBox;
     NumberBoxIntField1: TNumberBox;
     LabelIntField1: TLabel;
@@ -57,7 +56,7 @@ type
     LinkControlToField3: TLinkControlToField;
     LinkControlToField4: TLinkControlToField;
     LinkControlToField5: TLinkControlToField;
-    GridPrototypeBindSource1: TGrid;
+    grdContacts: TGrid;
     LinkGridToDataSourcePrototypeBindSource12: TLinkGridToDataSource;
     Rectangle1: TRectangle;
     lblContactName: TLabel;
@@ -71,7 +70,7 @@ type
   end;
 
 var
-  Form1: TForm1;
+  frmWizardBoundMain: TfrmWizardBoundMain;
 
 implementation
 
@@ -82,29 +81,41 @@ implementation
 constructor TEmployee.Create(const NewName: string; const NewTitle: string;
                        const NewHireDate: TDate; const NewSalary: Integer;
                        const NewAvail: Boolean);
+var
+  NewBitmap: TBitmap;
+  ResStream: TResourceStream;
 begin
-  FContactName := NewName;
-  FTitle       := NewTitle;
-  FHireDate    := NewHireDate;
-  FSalary      := NewSalary;
-  FAvailNow    := NewAvail;
+  ResStream := TResourceStream.Create(HINSTANCE, 'Bitmap_' + NewName, RT_RCDATA);
+  try
+    NewBitmap := TBitmap.Create;
+    NewBitmap.LoadFromStream(ResStream);
+  finally
+    ResStream.Free;
+  end;
+
+  FContactName   := NewName;
+  FTitle         := NewTitle;
+  FContactBitmap := NewBitmap;
+  FHireDate      := NewHireDate;
+  FSalary        := NewSalary;
+  FAvailNow      := NewAvail;
 end;
 
 { TForm1 }
 
-constructor TForm1.Create(AOwner: TComponent);
+constructor TfrmWizardBoundMain.Create(AOwner: TComponent);
 begin
   FEmployeeList := TObjectList<TEmployee>.Create;
 
-  FEmployeeList.Add(TEmployee.Create('Adam', 'Manager', EncodeDate(2012, 1, 1), 50000, True));
+  FEmployeeList.Add(TEmployee.Create('Adam', 'Manager',  EncodeDate(2012, 1, 1), 50000, True));
   FEmployeeList.Add(TEmployee.Create('George', 'Driver', EncodeDate(2017, 7, 11), 75000, False));
-  FEmployeeList.Add(TEmployee.Create('Brenda', 'Coder', EncodeDate(2014, 11, 5), 68000, True));
-  FEmployeeList.Add(TEmployee.Create('Jack', 'Janitor', EncodeDate(2019, 5, 20), 35000, False));
+  FEmployeeList.Add(TEmployee.Create('Brenda', 'Coder',  EncodeDate(2014, 11, 5), 68000, True));
+  FEmployeeList.Add(TEmployee.Create('Jack', 'Janitor',  EncodeDate(2019, 5, 20), 35000, False));
 
   inherited;
 end;
 
-procedure TForm1.PrototypeBindSource1CreateAdapter(Sender: TObject;
+procedure TfrmWizardBoundMain.PrototypeBindSource1CreateAdapter(Sender: TObject;
   var ABindSourceAdapter: TBindSourceAdapter);
 begin
   ABindSourceAdapter := TListBindSourceAdapter<TEmployee>.Create(self, FEmployeeList, True);

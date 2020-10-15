@@ -1,42 +1,38 @@
 ﻿[EditContactTitle1]
-Coordinates=440,330,99,51
+Coordinates=450,350,99,51
 
 [LabelContactTitle1]
 Coordinates=10,198,106,33
 Visible=False
 
 []
-Coordinates=222,12,147,51
+Coordinates=640,20,100,33
+Visible=False
 
 [LabelDateTimeField1]
 Coordinates=389,71,117,33
 Visible=False
 
 [CheckBoxBoolField1]
-Coordinates=440,200,117,51
+Coordinates=470,210,117,51
 
 [DateEditDateTimeField1]
-Coordinates=440,140,132,51
+Coordinates=450,140,132,51
 
 [EditContactName1]
-Coordinates=420,70,105,51
+Coordinates=430,70,105,51
 
 [LabelContactName1]
 Coordinates=133,70,113,33
 Visible=False
-
-[NavigatorPrototypeBindSource1]
-Coordinates=30,30,173,51
-
-[ImageContactBitmap1]
-Coordinates=410,10,123,51
 
 [LabelIntField1]
 Coordinates=240,300,83,33
 Visible=False
 
 [NumberBoxIntField1]
-Coordinates=440,270,115,51
+Coordinates=450,280,115,51
+Visible=True
 
 [PrototypeBindSource1]
 Coordinates=240,120,125,249
@@ -44,12 +40,24 @@ Coordinates=240,120,125,249
 [BindingsList1]
 Coordinates=163,159,82,33
 
-[GridPrototypeBindSource1]
-Coordinates=10,200,147,123
-
 [Rectangle1]
 Coordinates=222,12,69,33
+Visible=False
 
 [lblContactName]
 Coordinates=50,110,92,51
+
+[AdapterBindSource1]
+Coordinates=640,40,116,33
+Visible=False
+
+[NavigatorPrototypeBindSource1]
+Coordinates=0,0,173,51
+
+[ImageContactBitmap]
+Coordinates=420,10,117,51
+Visible=True
+
+[grdContacts]
+Coordinates=10,200,74,123
 
