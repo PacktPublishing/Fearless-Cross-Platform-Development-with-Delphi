@@ -235,8 +235,8 @@ object frmWizardBoundMain: TfrmWizardBoundMain
   object BindingsList1: TBindingsList
     Methods = <>
     OutputConverters = <>
-    Left = 28
-    Top = 133
+    Left = 60
+    Top = 181
     object LinkPropertyToFieldTitle: TLinkPropertyToField
       DataSource = PrototypeBindSource1
       FieldName = 'Title'
@@ -351,8 +351,8 @@ object frmWizardBoundMain: TfrmWizardBoundMain
       end>
     ScopeMappings = <>
     OnCreateAdapter = PrototypeBindSource1CreateAdapter
-    Left = 80
-    Top = 160
+    Left = 144
+    Top = 184
   end
   object AdapterBindSource1: TAdapterBindSource
     AutoActivate = True
