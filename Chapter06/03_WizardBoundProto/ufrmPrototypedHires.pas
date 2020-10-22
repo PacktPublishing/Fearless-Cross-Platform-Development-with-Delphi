@@ -50,7 +50,6 @@ type
     LabelIntField1: TLabel;
     BindingsList1: TBindingsList;
     PrototypeBindSource1: TPrototypeBindSource;
-    LinkPropertyToFieldTitle: TLinkPropertyToField;
     LinkControlToField1: TLinkControlToField;
     LinkControlToField2: TLinkControlToField;
     LinkControlToField3: TLinkControlToField;
@@ -62,6 +61,7 @@ type
     lblContactName: TLabel;
     LinkPropertyToFieldContactName: TLinkPropertyToField;
     AdapterBindSource1: TAdapterBindSource;
+    LinkControlToField6: TLinkControlToField;
     procedure PrototypeBindSource1CreateAdapter(Sender: TObject; var ABindSourceAdapter: TBindSourceAdapter);
   private
     FEmployeeList: TObjectList<TEmployee>;
@@ -107,10 +107,10 @@ constructor TfrmWizardBoundMain.Create(AOwner: TComponent);
 begin
   FEmployeeList := TObjectList<TEmployee>.Create;
 
-  FEmployeeList.Add(TEmployee.Create('Adam', 'Manager',  EncodeDate(2012, 1, 1), 50000, True));
-  FEmployeeList.Add(TEmployee.Create('George', 'Driver', EncodeDate(2017, 7, 11), 75000, False));
-  FEmployeeList.Add(TEmployee.Create('Brenda', 'Coder',  EncodeDate(2014, 11, 5), 68000, True));
-  FEmployeeList.Add(TEmployee.Create('Jack', 'Janitor',  EncodeDate(2019, 5, 20), 35000, False));
+  FEmployeeList.Add(TEmployee.Create('Adam', 'Manager',  EncodeDate(2012, 1, 1), 50, True));
+  FEmployeeList.Add(TEmployee.Create('George', 'Driver', EncodeDate(2017, 7, 11), 75, False));
+  FEmployeeList.Add(TEmployee.Create('Brenda', 'Coder',  EncodeDate(2014, 11, 5), 68, True));
+  FEmployeeList.Add(TEmployee.Create('Jack', 'Janitor',  EncodeDate(2019, 5, 20), 35, False));
 
   inherited;
 end;

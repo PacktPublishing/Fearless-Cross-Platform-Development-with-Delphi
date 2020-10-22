@@ -2,8 +2,8 @@ object frmWizardBoundMain: TfrmWizardBoundMain
   Left = 0
   Top = 0
   Caption = 'Wizard Bound'
-  ClientHeight = 369
-  ClientWidth = 429
+  ClientHeight = 379
+  ClientWidth = 479
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
@@ -14,6 +14,9 @@ object frmWizardBoundMain: TfrmWizardBoundMain
     Text = 'Software Engineer'
     Position.X = 320.000000000000000000
     Position.Y = 80.000000000000000000
+    Size.Width = 121.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
     object LabelContactTitle1: TLabel
       Position.Y = -16.000000000000000000
       TextSettings.WordWrap = False
@@ -202,26 +205,26 @@ object frmWizardBoundMain: TfrmWizardBoundMain
     Margins.Right = 2.000000000000000000
     Margins.Bottom = 2.000000000000000000
     Position.X = 2.000000000000000000
-    Position.Y = 195.000000000000000000
-    Size.Width = 425.000000000000000000
+    Position.Y = 205.000000000000000000
+    Size.Width = 475.000000000000000000
     Size.Height = 172.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 12
     RowCount = 200
     Options = [ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
-    Viewport.Width = 405.000000000000000000
+    Viewport.Width = 455.000000000000000000
     Viewport.Height = 147.000000000000000000
   end
   object Rectangle1: TRectangle
     Align = Top
     Fill.Color = claBlack
-    Size.Width = 429.000000000000000000
+    Size.Width = 479.000000000000000000
     Size.Height = 50.000000000000000000
     Size.PlatformDefault = False
     object lblContactName: TLabel
       Align = Client
       StyledSettings = [Family]
-      Size.Width = 429.000000000000000000
+      Size.Width = 479.000000000000000000
       Size.Height = 50.000000000000000000
       Size.PlatformDefault = False
       TextSettings.Font.Size = 24.000000000000000000
@@ -237,12 +240,6 @@ object frmWizardBoundMain: TfrmWizardBoundMain
     OutputConverters = <>
     Left = 60
     Top = 181
-    object LinkPropertyToFieldTitle: TLinkPropertyToField
-      DataSource = PrototypeBindSource1
-      FieldName = 'Title'
-      Component = EditContactTitle1
-      ComponentProperty = 'Text'
-    end
     object LinkControlToField1: TLinkControlToField
       Category = 'Quick Bindings'
       DataSource = PrototypeBindSource1
@@ -288,14 +285,18 @@ object frmWizardBoundMain: TfrmWizardBoundMain
           Width = 100
         end
         item
+          MemberName = 'Title'
+          Width = 120
+        end
+        item
+          MemberName = 'Salary'
+          Width = 50
+        end
+        item
           MemberName = 'HireDate'
           Header = 'Hired'
           Width = 80
           Alignment = taCenter
-        end
-        item
-          MemberName = 'Title'
-          Width = 120
         end
         item
           MemberName = 'AvailNow'
@@ -309,6 +310,13 @@ object frmWizardBoundMain: TfrmWizardBoundMain
       FieldName = 'ContactName'
       Component = lblContactName
       ComponentProperty = 'Text'
+    end
+    object LinkControlToField6: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = PrototypeBindSource1
+      FieldName = 'Title'
+      Control = EditContactTitle1
+      Track = False
     end
   end
   object PrototypeBindSource1: TPrototypeBindSource
