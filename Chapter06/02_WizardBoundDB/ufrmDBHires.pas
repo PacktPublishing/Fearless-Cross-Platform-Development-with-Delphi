@@ -38,14 +38,14 @@ type
     EditJOB_CODE: TEdit;
     LabelJOB_CODE: TLabel;
     LinkControlToFieldJOB_CODE: TLinkControlToField;
-    NumberBoxSALARY: TNumberBox;
-    LabelSALARY: TLabel;
-    LinkControlToFieldSALARY: TLinkControlToField;
     boxNameBG: TRectangle;
     GridBindSourceEMPLOYEE: TGrid;
     LinkGridToDataSourceBindSourceEMPLOYEE: TLinkGridToDataSource;
     lblFullName: TLabel;
     LinkPropertyToFieldFULL_NAME: TLinkPropertyToField;
+    EditSALARY: TEdit;
+    LabelSALARY: TLabel;
+    LinkControlToFieldSALARY2: TLinkControlToField;
   private
     { Private declarations }
   public

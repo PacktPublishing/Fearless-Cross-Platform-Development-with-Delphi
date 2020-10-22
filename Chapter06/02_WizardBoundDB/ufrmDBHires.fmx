@@ -3,7 +3,7 @@ object frmDBContacts: TfrmDBContacts
   Top = 0
   Caption = 'Wizard DB Contacts'
   ClientHeight = 414
-  ClientWidth = 452
+  ClientWidth = 458
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
@@ -20,14 +20,14 @@ object frmDBContacts: TfrmDBContacts
     object LabelFIRST_NAME: TLabel
       Position.Y = -16.000000000000000000
       TextSettings.WordWrap = False
-      Text = 'FIRST_NAME'
+      Text = 'First Name'
       TabOrder = 0
     end
   end
   object NavigatorBindSourceEMPLOYEE: TBindNavigator
     Position.X = 24.000000000000000000
     Position.Y = 104.000000000000000000
-    Size.Width = 409.000000000000000000
+    Size.Width = 400.000000000000000000
     Size.Height = 25.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 7
@@ -47,7 +47,7 @@ object frmDBContacts: TfrmDBContacts
     object LabelLAST_NAME: TLabel
       Position.Y = -16.000000000000000000
       TextSettings.WordWrap = False
-      Text = 'LAST_NAME'
+      Text = 'Last Name'
       TabOrder = 0
     end
   end
@@ -59,7 +59,7 @@ object frmDBContacts: TfrmDBContacts
     object LabelHIRE_DATE: TLabel
       Position.Y = -16.000000000000000000
       TextSettings.WordWrap = False
-      Text = 'HIRE_DATE'
+      Text = 'Hire Date'
       TabOrder = 15
     end
   end
@@ -75,37 +75,20 @@ object frmDBContacts: TfrmDBContacts
     object LabelJOB_CODE: TLabel
       Position.Y = -16.000000000000000000
       TextSettings.WordWrap = False
-      Text = 'JOB_CODE'
-      TabOrder = 0
-    end
-  end
-  object NumberBoxSALARY: TNumberBox
-    Touch.InteractiveGestures = [LongTap, DoubleTap]
-    TabOrder = 11
-    Cursor = crIBeam
-    Value = 100.000000000000000000
-    Position.X = 376.000000000000000000
-    Position.Y = 72.000000000000000000
-    Size.Width = 57.000000000000000000
-    Size.Height = 22.000000000000000000
-    Size.PlatformDefault = False
-    object LabelSALARY: TLabel
-      Position.Y = -16.000000000000000000
-      TextSettings.WordWrap = False
-      Text = 'SALARY'
+      Text = 'Job Code'
       TabOrder = 0
     end
   end
   object boxNameBG: TRectangle
     Align = Top
     Fill.Color = claBlack
-    Size.Width = 452.000000000000000000
+    Size.Width = 458.000000000000000000
     Size.Height = 49.000000000000000000
     Size.PlatformDefault = False
     object lblFullName: TLabel
       Align = Client
       StyledSettings = [Family]
-      Size.Width = 452.000000000000000000
+      Size.Width = 458.000000000000000000
       Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
       TextSettings.Font.Size = 24.000000000000000000
@@ -121,19 +104,36 @@ object frmDBContacts: TfrmDBContacts
     CanFocus = True
     ClipChildren = True
     Position.Y = 141.000000000000000000
-    Size.Width = 452.000000000000000000
+    Size.Width = 458.000000000000000000
     Size.Height = 273.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 13
+    TabOrder = 12
     RowCount = 42
-    Viewport.Width = 432.000000000000000000
+    Options = [Editing, ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
+    Viewport.Width = 438.000000000000000000
     Viewport.Height = 248.000000000000000000
+  end
+  object EditSALARY: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 20
+    Text = '105900'
+    Position.X = 376.000000000000000000
+    Position.Y = 72.000000000000000000
+    Size.Width = 73.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    object LabelSALARY: TLabel
+      Position.Y = -16.000000000000000000
+      TextSettings.WordWrap = False
+      Text = 'Salary'
+      TabOrder = 0
+    end
   end
   object BindingsList1: TBindingsList
     Methods = <>
     OutputConverters = <>
-    Left = 36
-    Top = 21
+    Left = 76
+    Top = 157
     object LinkControlToFieldFIRST_NAME: TLinkControlToField
       DataSource = BindSourceEMPLOYEE
       FieldName = 'FIRST_NAME'
@@ -156,12 +156,6 @@ object frmDBContacts: TfrmDBContacts
       DataSource = BindSourceEMPLOYEE
       FieldName = 'JOB_CODE'
       Control = EditJOB_CODE
-      Track = False
-    end
-    object LinkControlToFieldSALARY: TLinkControlToField
-      DataSource = BindSourceEMPLOYEE
-      FieldName = 'SALARY'
-      Control = NumberBoxSALARY
       Track = False
     end
     object LinkGridToDataSourceBindSourceEMPLOYEE: TLinkGridToDataSource
@@ -206,6 +200,12 @@ object frmDBContacts: TfrmDBContacts
       FieldName = 'FULL_NAME'
       Component = lblFullName
       ComponentProperty = 'Text'
+    end
+    object LinkControlToFieldSALARY2: TLinkControlToField
+      DataSource = BindSourceEMPLOYEE
+      FieldName = 'SALARY'
+      Control = EditSALARY
+      Track = False
     end
   end
   object FDConnectionEMPLOYEE: TFDConnection

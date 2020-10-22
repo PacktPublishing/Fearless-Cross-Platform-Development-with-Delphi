@@ -27,8 +27,8 @@ ExplicitSubNodes=Position.X;Position.Y
 Visible=False
 
 []
-Coordinates=510,0,79,51
-Visible=True
+Coordinates=90,300,115,51
+Visible=False
 
 [EditLAST_NAME]
 Coordinates=50,120,96,51
@@ -51,24 +51,24 @@ Coordinates=100,240,90,51
 Coordinates=59,1,97,33
 Visible=False
 
-[NumberBoxSALARY]
-Coordinates=90,300,115,51
-
-[LabelSALARY]
-Coordinates=10,90,83,33
-Visible=False
-
 [GridBindSourceEMPLOYEE]
 Coordinates=540,150,150,159
 Visible=True
 
 [lblFullName]
-Coordinates=195,1,72,51
+Coordinates=170,0,72,51
 
 [boxNameBG]
 Coordinates=0,0,76,33
 Visible=False
 
+[EditSALARY]
+Coordinates=110,320,76,51
+
+[LabelSALARY]
+Coordinates=0,310,83,33
+Visible=False
+
 [NavigatorBindSourceEMPLOYEE]
-Coordinates=457,1,176,51
+Coordinates=480,0,176,51
 
