@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{049CC276-6DE0-49DA-834C-2C62C6432801}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="CustomMethodsContacts.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="FearlessLiveMethods.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="CustomMethodsContacts">
+        <MSBuild Projects="CustomMethodsContacts.dproj"/>
+    </Target>
+    <Target Name="CustomMethodsContacts:Clean">
+        <MSBuild Projects="CustomMethodsContacts.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CustomMethodsContacts:Make">
+        <MSBuild Projects="CustomMethodsContacts.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FearlessLiveMethods">
+        <MSBuild Projects="FearlessLiveMethods.dproj"/>
+    </Target>
+    <Target Name="FearlessLiveMethods:Clean">
+        <MSBuild Projects="FearlessLiveMethods.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FearlessLiveMethods:Make">
+        <MSBuild Projects="FearlessLiveMethods.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="CustomMethodsContacts;FearlessLiveMethods"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="CustomMethodsContacts:Clean;FearlessLiveMethods:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="CustomMethodsContacts:Make;FearlessLiveMethods:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{049CC276-6DE0-49DA-834C-2C62C6432801}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="CustomContacts.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="CustomContacts">
+        <MSBuild Projects="CustomContacts.dproj"/>
+    </Target>
+    <Target Name="CustomContacts:Clean">
+        <MSBuild Projects="CustomContacts.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CustomContacts:Make">
+        <MSBuild Projects="CustomContacts.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="CustomContacts"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="CustomContacts:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="CustomContacts:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
