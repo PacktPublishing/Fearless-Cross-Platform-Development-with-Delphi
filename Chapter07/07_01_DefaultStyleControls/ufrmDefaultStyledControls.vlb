@@ -11,10 +11,6 @@ Coordinates=240,180,53,51
 [Edit1]
 Coordinates=160,180,40,51
 
-[ComboBox1]
-Coordinates=159,10,84,141
-ExplicitSubNodes=ItemIndex
-
 [GroupBox1]
 Coordinates=480,10,70,33
 Visible=False
@@ -34,4 +30,8 @@ Coordinates=365,87,82,33
 [RadioButton1]
 Coordinates=460,10,81,51
 ExplicitSubNodes=IsChecked
+
+[cmbStyle]
+Coordinates=159,10,84,141
+ExplicitSubNodes=ItemIndex
 

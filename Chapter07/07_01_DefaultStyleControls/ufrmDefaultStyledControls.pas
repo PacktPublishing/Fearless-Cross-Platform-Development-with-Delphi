@@ -17,13 +17,14 @@ type
     GroupBox1: TGroupBox;
     ProgressBar1: TProgressBar;
     ListBox1: TListBox;
-    ComboBox1: TComboBox;
+    cmbStyle: TComboBox;
     Edit1: TEdit;
     TrackBar1: TTrackBar;
     BindingsList1: TBindingsList;
     LinkControlToPropertyValue: TLinkControlToProperty;
     LinkControlToPropertyIsChecked: TLinkControlToProperty;
     StyleBookDark: TStyleBook;
+    StyleBookGreen: TStyleBook;
     procedure cmbStyleChange(Sender: TObject);
   private
     { Private declarations }
@@ -40,14 +41,12 @@ implementation
 
 procedure TfrmDefaultStyledControls.cmbStyleChange(Sender: TObject);
 begin
-{
   case cmbStyle.ItemIndex of
     1: StyleBook := StyleBookDark;
     2: StyleBook := StyleBookGreen;
   else
     StyleBook := nil;
   end;
-}
 end;
 
 end.
