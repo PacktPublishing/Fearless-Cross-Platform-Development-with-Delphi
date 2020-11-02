@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{6A283241-7153-468B-8EAE-9F3CB92B2F14}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="CustomStyledControls.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="CustomStyledControls">
+        <MSBuild Projects="CustomStyledControls.dproj"/>
+    </Target>
+    <Target Name="CustomStyledControls:Clean">
+        <MSBuild Projects="CustomStyledControls.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CustomStyledControls:Make">
+        <MSBuild Projects="CustomStyledControls.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="CustomStyledControls"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="CustomStyledControls:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="CustomStyledControls:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
