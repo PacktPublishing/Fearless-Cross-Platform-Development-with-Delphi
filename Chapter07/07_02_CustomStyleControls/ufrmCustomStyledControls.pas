@@ -23,6 +23,9 @@ type
     BindingsList1: TBindingsList;
     LinkControlToPropertyValue: TLinkControlToProperty;
     LinkControlToPropertyIsChecked: TLinkControlToProperty;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    StyleBook1: TStyleBook;
   private
     { Private declarations }
   public
