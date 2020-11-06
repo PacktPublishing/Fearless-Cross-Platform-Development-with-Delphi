@@ -54,9 +54,6 @@ Coordinates=42,224,104,33
 [actShowCoralForm]
 Coordinates=42,224,108,33
 
-[actShowPurtoRicoForm]
-Coordinates=42,224,131,33
-
 [Button2]
 Coordinates=42,224,53,33
 Visible=False
@@ -64,4 +61,7 @@ Visible=False
 [Button3]
 Coordinates=281,1,53,33
 Visible=False
+
+[actShowPuertoRicoForm]
+Coordinates=42,224,131,33
 

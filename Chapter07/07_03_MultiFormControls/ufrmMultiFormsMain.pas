@@ -26,12 +26,12 @@ type
     aclFormButtons: TActionList;
     actShowBlueForm: TAction;
     actShowCoralForm: TAction;
-    actShowPurtoRicoForm: TAction;
+    actShowPuertoRicoForm: TAction;
     Button2: TButton;
     Button3: TButton;
     procedure cmbStyleChange(Sender: TObject);
     procedure actShowBlueFormExecute(Sender: TObject);
-    procedure actShowPurtoRicoFormExecute(Sender: TObject);
+    procedure actShowPuertoRicoFormExecute(Sender: TObject);
     procedure actShowCoralFormExecute(Sender: TObject);
   private
     { Private declarations }
@@ -59,7 +59,7 @@ begin
   frmMultiFormCoral.Show;
 end;
 
-procedure TfrmMultiFormsMain.actShowPurtoRicoFormExecute(Sender: TObject);
+procedure TfrmMultiFormsMain.actShowPuertoRicoFormExecute(Sender: TObject);
 begin
   frmMultiFormPuertoRico.Show;
 end;

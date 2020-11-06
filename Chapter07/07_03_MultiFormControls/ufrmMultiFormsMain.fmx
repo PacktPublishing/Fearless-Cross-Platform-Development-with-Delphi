@@ -136,7 +136,7 @@ object frmMultiFormsMain: TfrmMultiFormsMain
     TabOrder = 36
   end
   object Button3: TButton
-    Action = actShowPurtoRicoForm
+    Action = actShowPuertoRicoForm
     Enabled = True
     ImageIndex = -1
     Position.X = 304.000000000000000000
@@ -171,9 +171,9 @@ object frmMultiFormsMain: TfrmMultiFormsMain
       Text = 'Coral Crystal'
       OnExecute = actShowCoralFormExecute
     end
-    object actShowPurtoRicoForm: TAction
-      Text = 'Purto Rico'
-      OnExecute = actShowPurtoRicoFormExecute
+    object actShowPuertoRicoForm: TAction
+      Text = 'Puerto Rico'
+      OnExecute = actShowPuertoRicoFormExecute
     end
   end
 end

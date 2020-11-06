@@ -36,6 +36,15 @@
     </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='Linux64'"/>
     <ItemGroup Condition="'$(Platform)'=='OSX64'">
+        <DeployFile Include="OSX64\Debug\MultiFormControls.info.plist" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MultiFormControls.app\Contents\</RemoteDir>
+            <RemoteName>Info.plist</RemoteName>
+            <DeployClass>ProjectOSXInfoPList</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="$(BDS)\bin\delphi_PROJECTICNS.icns" Condition="'$(Config)'=='Debug'">
             <RemoteDir>MultiFormControls.app\Contents\Resources\</RemoteDir>
             <RemoteName>MultiFormControls.icns</RemoteName>
@@ -55,28 +64,19 @@
             <Overwrite>True</Overwrite>
             <Required>True</Required>
         </DeployFile>
-        <DeployFile Include="OSX64\Debug\MultiFormControls.entitlements" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>MultiFormControls.app\..\</RemoteDir>
-            <RemoteName>MultiFormControls.entitlements</RemoteName>
-            <DeployClass>ProjectOSXEntitlements</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="OSX64\Debug\MultiFormControls.info.plist" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>MultiFormControls.app\Contents\</RemoteDir>
-            <RemoteName>Info.plist</RemoteName>
-            <DeployClass>ProjectOSXInfoPList</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="OSX64\Debug\MultiFormControls.dSYM" Condition="'$(Config)'=='Debug'">
             <RemoteDir>MultiFormControls.app\..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF\</RemoteDir>
             <RemoteName>MultiFormControls</RemoteName>
             <DeployClass>ProjectOSXDebug</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="OSX64\Debug\MultiFormControls.entitlements" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MultiFormControls.app\..\</RemoteDir>
+            <RemoteName>MultiFormControls.entitlements</RemoteName>
+            <DeployClass>ProjectOSXEntitlements</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -269,15 +269,6 @@
             <RemoteDir>MultiFormControls\classes\</RemoteDir>
             <RemoteName>classes.dex</RemoteName>
             <DeployClass>AndroidClassesDexFile</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="$(NDKBasePath)\prebuilt\android-arm\gdbserver\gdbserver" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>MultiFormControls\library\lib\armeabi-v7a\</RemoteDir>
-            <RemoteName>gdbserver</RemoteName>
-            <DeployClass>AndroidGDBServer</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
