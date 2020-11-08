@@ -22,6 +22,7 @@ type
     TrackBar1: TTrackBar;
     BindingsList1: TBindingsList;
     LinkControlToPropertyValue: TLinkControlToProperty;
+    StyleBook1: TStyleBook;
   private
     { Private declarations }
   public
