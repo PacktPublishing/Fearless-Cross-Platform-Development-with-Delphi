@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{9022CC6C-76E5-446B-8633-49A2BABD2F79}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="CentralStyleForms.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="CentralStyleForms">
+        <MSBuild Projects="CentralStyleForms.dproj"/>
+    </Target>
+    <Target Name="CentralStyleForms:Clean">
+        <MSBuild Projects="CentralStyleForms.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CentralStyleForms:Make">
+        <MSBuild Projects="CentralStyleForms.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="CentralStyleForms"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="CentralStyleForms:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="CentralStyleForms:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

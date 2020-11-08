@@ -1,0 +1,12 @@
+inherited frmMultiFormsMain_Windows: TfrmMultiFormsMain_Windows
+  DesignerMasterStyle = 3
+  inherited lbStyles: TListBox
+    Viewport.Width = 229.000000000000000000
+    Viewport.Height = 173.000000000000000000
+  end
+  inherited aclFormButtons: TActionList
+    inherited actFileExit: TFileExit
+      ImageIndex = 43
+    end
+  end
+end

@@ -1,0 +1,106 @@
+object frmMultiFormsMain: TfrmMultiFormsMain
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = Single
+  Caption = 'Centrally Managed StyleBooks'
+  ClientHeight = 288
+  ClientWidth = 432
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 3
+  object btnShowBlueForm: TButton
+    Action = actShowFormOne
+    Enabled = True
+    ImageIndex = -1
+    Position.X = 280.000000000000000000
+    Position.Y = 22.000000000000000000
+    Size.Width = 137.000000000000000000
+    Size.Height = 51.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'Button1Style1'
+    TabOrder = 36
+  end
+  object Button2: TButton
+    Action = actShowFormTwo
+    Enabled = True
+    ImageIndex = -1
+    Position.X = 280.000000000000000000
+    Position.Y = 86.000000000000000000
+    Size.Width = 137.000000000000000000
+    Size.Height = 51.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'Button1Style1'
+    TabOrder = 35
+  end
+  object Button3: TButton
+    Action = actShowFormThree
+    Enabled = True
+    ImageIndex = -1
+    Position.X = 280.000000000000000000
+    Position.Y = 152.000000000000000000
+    Size.Width = 137.000000000000000000
+    Size.Height = 49.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'Button1Style1'
+    TabOrder = 34
+  end
+  object lbStyles: TListBox
+    Position.X = 24.000000000000000000
+    Position.Y = 24.000000000000000000
+    Size.Width = 233.000000000000000000
+    Size.Height = 177.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 38
+    DisableFocusEffect = True
+    Items.Strings = (
+      'Calypso'
+      'Vapor'
+      'Wedgewood'
+      'Emerald')
+    DefaultItemStyles.ItemStyle = ''
+    DefaultItemStyles.GroupHeaderStyle = ''
+    DefaultItemStyles.GroupFooterStyle = ''
+    OnChange = lbStylesChange
+    Viewport.Width = 233.000000000000000000
+    Viewport.Height = 177.000000000000000000
+  end
+  object btnClose: TButton
+    Action = actFileExit
+    Enabled = True
+    ImageIndex = 43
+    Position.X = 24.000000000000000000
+    Position.Y = 216.000000000000000000
+    Size.Width = 233.000000000000000000
+    Size.Height = 57.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 39
+  end
+  object aclFormButtons: TActionList
+    Left = 160
+    Top = 120
+    object actShowFormOne: TAction
+      Category = 'SubForm'
+      Text = 'Form One'
+      OnExecute = actShowFormOneExecute
+    end
+    object actShowFormTwo: TAction
+      Category = 'SubForm'
+      Text = 'Form Two'
+      OnExecute = actShowFormTwoExecute
+    end
+    object actShowFormThree: TAction
+      Category = 'SubForm'
+      Text = 'Form Three'
+      OnExecute = actShowFormThreeExecute
+    end
+    object actFileExit: TFileExit
+      Category = 'File'
+      CustomText = 'Quit'
+      Hint = 'Quit|Quits the application'
+      ImageIndex = 43
+      ImageIndex = 43
+    end
+  end
+end

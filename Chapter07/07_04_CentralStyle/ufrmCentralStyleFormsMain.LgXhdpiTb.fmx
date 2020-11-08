@@ -1,0 +1,14 @@
+inherited frmMultiFormsMain_LgXhdpiTb: TfrmMultiFormsMain_LgXhdpiTb
+  ClientHeight = 829
+  ClientWidth = 480
+  DesignerMasterStyle = 3
+  inherited lbStyles: TListBox
+    Viewport.Width = 233.000000000000000000
+    Viewport.Height = 177.000000000000000000
+  end
+  inherited aclFormButtons: TActionList
+    inherited actFileExit: TFileExit
+      ImageIndex = 43
+    end
+  end
+end
