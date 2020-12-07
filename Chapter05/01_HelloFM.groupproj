@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{B733DDDB-A3A6-4D4E-8170-89605DC302B2}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="01_HelloFireMonkey\HelloFireMonkey.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="HelloFireMonkey">
+        <MSBuild Projects="01_HelloFireMonkey\HelloFireMonkey.dproj"/>
+    </Target>
+    <Target Name="HelloFireMonkey:Clean">
+        <MSBuild Projects="01_HelloFireMonkey\HelloFireMonkey.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="HelloFireMonkey:Make">
+        <MSBuild Projects="01_HelloFireMonkey\HelloFireMonkey.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="HelloFireMonkey"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="HelloFireMonkey:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="HelloFireMonkey:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
