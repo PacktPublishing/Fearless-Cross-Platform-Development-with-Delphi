@@ -38,3 +38,17 @@ Chapter05/03_ClientList/iOSDevice64/
 *.xml
 Chapter03/05_HideStringComponent/HideStringComponentDemo
 *.dex
+*.dres
+Chapter07/07_01_DefaultStyleControls/OSX64/
+Chapter07/07_01_DefaultStyleControls/Android/
+Chapter07/07_02_CustomStyleControls/OSX64/
+Chapter07/07_03_MultiFormControls/Android/
+Chapter07/07_03_MultiFormControls/Win32/
+Chapter07/07_03_MultiFormControls/Win64/
+Chapter07/07_03_MultiFormControls/OSX64/
+Chapter07/07_03_MultiFormControls/Android64/
+Chapter07/07_04_CentralStyle/Android/
+Chapter07/07_04_CentralStyle/Android64/
+Chapter07/07_04_CentralStyle/iOSDevice64/
+Chapter07/07_04_CentralStyle/LaunchScreen.TemplateiOS/
+Chapter07/07_04_CentralStyle/OSX64/
