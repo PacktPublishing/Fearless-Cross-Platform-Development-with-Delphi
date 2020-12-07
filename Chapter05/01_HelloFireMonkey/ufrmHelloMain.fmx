@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = '['
+  Caption = 'Hello FireMonkey!'
   ClientHeight = 236
   ClientWidth = 324
   FormFactor.Width = 320
