@@ -13,10 +13,6 @@ type
     Label1: TLabel;
     btnSayHello: TButton;
     procedure btnSayHelloClick(Sender: TObject);
-  private
-    { Private declarations }
-  public
-    { Public declarations }
   end;
 
 var
@@ -26,9 +22,12 @@ implementation
 
 {$R *.fmx}
 
+uses
+  FMX.DialogService;
+
 procedure TForm1.btnSayHelloClick(Sender: TObject);
 begin
-  MessageDlg('Hello, ' + edtName.Text, TMsgDlgType.mtInformation, [TMsgDlgBtn.mbOK], 0);
+  TDialogService.ShowMessage('Hello, ' + edtName.Text);
 end;
 
 end.

@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{970F5E0D-5033-47CA-9B5A-0CBDF4AB9AB6}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="02_RttiExplorerFM\RttiExplorerFM.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="RttiExplorerFM">
+        <MSBuild Projects="02_RttiExplorerFM\RttiExplorerFM.dproj"/>
+    </Target>
+    <Target Name="RttiExplorerFM:Clean">
+        <MSBuild Projects="02_RttiExplorerFM\RttiExplorerFM.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="RttiExplorerFM:Make">
+        <MSBuild Projects="02_RttiExplorerFM\RttiExplorerFM.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="RttiExplorerFM"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="RttiExplorerFM:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="RttiExplorerFM:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

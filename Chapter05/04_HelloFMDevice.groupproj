@@ -1,0 +1,36 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{A5C568E6-CB6C-4A92-848A-5D9B5BB4797D}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="04_HelloDevice\HelloDevice.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="HelloDevice">
+        <MSBuild Projects="04_HelloDevice\HelloDevice.dproj"/>
+    </Target>
+    <Target Name="HelloDevice:Clean">
+        <MSBuild Projects="04_HelloDevice\HelloDevice.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="HelloDevice:Make">
+        <MSBuild Projects="04_HelloDevice\HelloDevice.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="HelloDevice"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="HelloDevice:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="HelloDevice:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
