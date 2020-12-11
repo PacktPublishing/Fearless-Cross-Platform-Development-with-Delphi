@@ -1,7 +1,7 @@
-object Form8: TForm8
+object frm3DQuadrants: Tfrm3DQuadrants
   Left = 0
   Top = 0
-  Caption = 'Quadrants'
+  Caption = '3D Quadrants'
   Color = claGainsboro
   ClientHeight = 480
   ClientWidth = 640
@@ -18,7 +18,7 @@ object Form8: TForm8
     Width = 4.992723464965820000
     Height = 2.900550603866577000
     Depth = 3.635525941848755000
-    MaterialSource = LightMaterialSourceGreen
+    MaterialSource = LightMaterialSourceBlue
     Quanternion = 
       '(0.0176682602614164,-0.455704838037491,-0.0471909046173096,-0.88' +
       '8703227043152)'
@@ -74,8 +74,8 @@ object Form8: TForm8
   object Text3D1: TText3D
     Position.X = 5.000000000000000000
     Position.Y = 5.000000000000000000
-    RotationAngle.X = 354.206146240234400000
-    RotationAngle.Y = 7.795965194702148000
+    RotationAngle.X = 339.060363769531300000
+    RotationAngle.Y = 354.065277099609400000
     Width = 7.991156578063965000
     Height = 3.636036396026611000
     Depth = 1.719969272613525000
@@ -84,25 +84,10 @@ object Form8: TForm8
     WordWrap = False
     Flatness = 1.000000000000000000
     Sides = [Front, Back, Shaft]
-    MaterialShaftSource = LightMaterialSourceGreen
-    MaterialSource = ColorMaterialSourceBlue
+    MaterialShaftSource = LightMaterialSourceBlue
     Quanternion = 
-      '(0.0248525161296129,-0.0713382437825203,0.118839859962463,-0.990' +
-      '034818649292)'
-  end
-  object ColorMaterialSourceBlue: TColorMaterialSource
-    Color = claRoyalblue
-    Left = 512
-    Top = 360
-  end
-  object LightMaterialSourceGreen: TLightMaterialSource
-    Diffuse = claWhite
-    Ambient = xFF202020
-    Emissive = claNull
-    Specular = claDarkseagreen
-    Shininess = 30
-    Left = 168
-    Top = 384
+      '(-0.209896728396416,0.0406539291143417,-0.0982353389263153,0.971' +
+      '925437450409)'
   end
   object TextureMaterialSourceGlobe: TTextureMaterialSource
     Texture.PNG = {
@@ -29955,10 +29940,10 @@ object Form8: TForm8
     Top = 328
   end
   object LightMaterialSourceBlue: TLightMaterialSource
-    Diffuse = claWhite
+    Diffuse = claCornflowerblue
     Ambient = xFF202020
     Emissive = claNull
-    Specular = claBlue
+    Specular = claDarkblue
     Shininess = 30
     Left = 432
     Top = 296

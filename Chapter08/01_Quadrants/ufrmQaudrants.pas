@@ -9,13 +9,11 @@ uses
   FMX.MaterialSources;
 
 type
-  TForm8 = class(TForm3D)
+  Tfrm3DQuadrants = class(TForm3D)
     Cube1: TCube;
     Cone1: TCone;
     PlaneVertical: TPlane;
     PlaneHorizontal: TPlane;
-    ColorMaterialSourceBlue: TColorMaterialSource;
-    LightMaterialSourceGreen: TLightMaterialSource;
     Sphere1: TSphere;
     TextureMaterialSourceGlobe: TTextureMaterialSource;
     LightMaterialSourceBlue: TLightMaterialSource;
@@ -29,7 +27,7 @@ type
   end;
 
 var
-  Form8: TForm8;
+  frm3DQuadrants: Tfrm3DQuadrants;
 
 implementation
 

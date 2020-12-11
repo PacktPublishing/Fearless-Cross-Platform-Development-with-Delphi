@@ -3,12 +3,12 @@ program Quadrants3D;
 uses
   System.StartUpCopy,
   FMX.Forms,
-  ufrmQaudrants in 'ufrmQaudrants.pas' {Form8};
+  ufrmQaudrants in 'ufrmQaudrants.pas' {frm3DQuadrants};
 
 {$R *.res}
 
 begin
   Application.Initialize;
-  Application.CreateForm(TForm8, Form8);
+  Application.CreateForm(Tfrm3DQuadrants, frm3DQuadrants);
   Application.Run;
 end.
