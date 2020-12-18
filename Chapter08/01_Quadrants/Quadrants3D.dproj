@@ -271,7 +271,7 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="ufrmQaudrants.pas">
+        <DCCReference Include="ufrmQuadrants.pas">
             <Form>frm3DQuadrants</Form>
             <FormType>fmx</FormType>
         </DCCReference>

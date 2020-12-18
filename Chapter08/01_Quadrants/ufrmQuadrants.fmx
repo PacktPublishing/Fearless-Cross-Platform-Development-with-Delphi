@@ -54106,7 +54106,7 @@ object frm3DQuadrants: Tfrm3DQuadrants
         Size.Height = 19.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 44
-        Value = 45.000000000000000000
+        Value = 25.000000000000000000
       end
       object lblElkRotate: TLabel
         Position.X = 29.000000000000000000
@@ -59308,6 +59308,11 @@ object frm3DQuadrants: Tfrm3DQuadrants
       00550A0000580A0000590A00005A0A0000580A00005B0A0000590A00005C0A00
       005D0A00005E0A00005C0A00005F0A00005D0A00000000}
   end
+  object ColorMaterialSourceBrown: TColorMaterialSource
+    Color = claSaddlebrown
+    Left = 640
+    Top = 320
+  end
   object BindingsList1: TBindingsList
     Methods = <>
     OutputConverters = <>
@@ -59365,10 +59370,5 @@ object frm3DQuadrants: Tfrm3DQuadrants
       Component = Model3DElk
       ComponentProperty = 'RotationAngle.Y'
     end
-  end
-  object ColorMaterialSourceBrown: TColorMaterialSource
-    Color = claSaddlebrown
-    Left = 640
-    Top = 320
   end
 end

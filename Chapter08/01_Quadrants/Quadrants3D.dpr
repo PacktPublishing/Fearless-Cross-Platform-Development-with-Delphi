@@ -3,7 +3,7 @@ program Quadrants3D;
 uses
   System.StartUpCopy,
   FMX.Forms,
-  ufrmQaudrants in 'ufrmQaudrants.pas' {frm3DQuadrants};
+  ufrmQuadrants in 'ufrmQuadrants.pas' {frm3DQuadrants};
 
 {$R *.res}
 

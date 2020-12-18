@@ -1,5 +1,5 @@
 
-unit ufrmQaudrants;
+unit ufrmQuadrants;
 
 interface
 
