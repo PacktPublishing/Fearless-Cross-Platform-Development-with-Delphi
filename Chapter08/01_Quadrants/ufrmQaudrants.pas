@@ -1,3 +1,4 @@
+
 unit ufrmQaudrants;
 
 interface
@@ -12,7 +13,6 @@ type
   Tfrm3DQuadrants = class(TForm3D)
     Cube1: TCube;
     ConeChristmasTree: TCone;
-    PlaneVertical: TPlane;
     PlaneHorizontal: TPlane;
     SphereGlobe: TSphere;
     TextureMaterialSourceGlobe: TTextureMaterialSource;
@@ -59,6 +59,10 @@ type
     Path3D2: TPath3D;
     ColorMaterialSource2: TColorMaterialSource;
     ColorAnimation3: TColorAnimation;
+    FloatAnimationBackAndForth: TFloatAnimation;
+    cylArrowStemY: TCylinder;
+    coneArrowTipY: TCone;
+    Text3D1: TText3D;
   private
     { Private declarations }
   public

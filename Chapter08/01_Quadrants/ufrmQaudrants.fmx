@@ -24,12 +24,16 @@ object frm3DQuadrants: Tfrm3DQuadrants
       '8703227043152)'
   end
   object ConeChristmasTree: TCone
-    Position.X = 5.000000000000000000
-    Position.Y = -5.000000000000000000
+    Position.X = 4.950373172760010000
+    Position.Y = -3.894762992858887000
+    RotationAngle.Z = 355.598022460937500000
     Width = 3.500000000000000000
     Height = 4.000000000000000000
     Depth = 5.000000000000000000
     MaterialSource = LightMaterialSourceGreenery
+    Quanternion = 
+      '(-0.0300429668277502,0.00095150456763804,0.0383933410048485,-0.9' +
+      '98809933662415)'
     object bulb7: TSphere
       Position.Z = -3.000000000000000000
       Width = 0.200000002980232200
@@ -125,15 +129,11 @@ object frm3DQuadrants: Tfrm3DQuadrants
       end
     end
   end
-  object PlaneVertical: TPlane
-    Width = 0.100000001490116100
-    Height = 50.000000000000000000
-    Depth = 0.001000000047497451
-  end
   object PlaneHorizontal: TPlane
     Width = 50.000000000000000000
     Height = 0.100000001490116100
     Depth = 0.001000000047497451
+    MaterialSource = ColorMaterialSourceBlack
   end
   object SphereGlobe: TSphere
     Position.X = -5.000000000000000000
@@ -162,23 +162,22 @@ object frm3DQuadrants: Tfrm3DQuadrants
     LightType = Directional
     SpotCutOff = 60.000000000000000000
     SpotExponent = 4.000000000000000000
-    Position.X = -7.923200130462646000
-    Position.Y = -0.831789970397949200
+    Position.X = -8.087711334228516000
+    Position.Y = -1.525113344192505000
     RotationAngle.X = 6.558853149414063000
-    RotationAngle.Y = 21.253700256347660000
-    RotationAngle.Z = 6.305259704589844000
+    RotationAngle.Y = 36.177810668945310000
+    RotationAngle.Z = 347.326416015625000000
     Width = 1.000000000000000000
     Height = 1.000000000000000000
     Depth = 1.000000000000000000
     Quanternion = 
-      '(-0.349279701709747,0.463292837142944,-0.0199862029403448,0.8142' +
-      '24123954773)'
+      '(-0.535199582576752,0.62055766582489,-0.0705386698246002,0.56875' +
+      '9381771088)'
   end
   object txtQuadrant: TText3D
     Position.X = 5.000000000000000000
     Position.Y = 5.000000000000000000
-    RotationAngle.X = 2.658042907714844000
-    RotationAngle.Y = 351.102111816406300000
+    RotationAngle.X = 330.000000000000000000
     Width = 7.991156578063965000
     Height = 3.636036396026611000
     Depth = 1.719969272613525000
@@ -189,9 +188,16 @@ object frm3DQuadrants: Tfrm3DQuadrants
     Sides = [Front, Back, Shaft]
     MaterialShaftSource = ColorMaterialSourceGray
     MaterialSource = ColorMaterialSourceBlack
-    Quanternion = 
-      '(-0.194278448820114,-0.0367464274168015,-0.0808267742395401,0.97' +
-      '691822052002)'
+    Quanternion = '(-0.258819162845612,0,0,0.965925812721252)'
+    object FloatAnimationBackAndForth: TFloatAnimation
+      AutoReverse = True
+      Enabled = True
+      Duration = 4.000000000000000000
+      Loop = True
+      PropertyName = 'RotationAngle.Y'
+      StartValue = -80.000000000000000000
+      StopValue = 80.000000000000000000
+    end
   end
   object TextureMaterialSourceGlobe: TTextureMaterialSource
     Texture.PNG = {
@@ -30040,8 +30046,8 @@ object frm3DQuadrants: Tfrm3DQuadrants
       ED5BB46779D78C5790FBA473F95FC1F2AF193F03752E8D9DF5955D9F7A2EC0F9
       EA3F4C2807CD573D9DBDBCEED7DD36FEB3F16AE7D6BA07FFFB3BFE43DF9F8977
       FB7DB3BFFDE5BF01F52F6F23AAB1D19B0000000049454E44AE426082}
-    Left = 392
-    Top = 328
+    Left = 384
+    Top = 208
   end
   object LightMaterialSourceBlue: TLightMaterialSource
     Diffuse = claCornflowerblue
@@ -30062,20 +30068,20 @@ object frm3DQuadrants: Tfrm3DQuadrants
     StopValue = claDarkturquoise
   end
   object Cone1: TCone
-    Position.X = 7.645622253417969000
-    Position.Y = -4.647465229034424000
+    Position.X = 7.826920986175537000
+    Position.Y = -4.612412929534912000
     Position.Z = 2.000000000000000000
     Scale.X = 0.800000011920929000
     Scale.Y = 0.800000011920929000
     Scale.Z = 0.800000011920929000
-    RotationAngle.Y = 1.655402421951294000
+    RotationAngle.Y = 3.299999952316284000
     Width = 3.500000000000000000
     Height = 4.000000000000000000
     Depth = 5.000000000000000000
     MaterialSource = LightMaterialSourceGreenery
-    Quanternion = '(0,-0.014445380307734,0,-0.999895632266998)'
+    Quanternion = '(0,0.028793953359127,0,0.999585330486298)'
     object Sphere1: TSphere
-      Position.Z = -3.000000000000000000
+      Position.Z = -2.700000047683716000
       Width = 0.200000002980232200
       Height = 0.200000002980232200
       Depth = 0.200000002980232200
@@ -30249,6 +30255,7 @@ object frm3DQuadrants: Tfrm3DQuadrants
     end
     object Path3D2: TPath3D
       Position.Y = -2.000000000000000000
+      Position.Z = -0.100000001490116100
       RotationAngle.Y = 45.000000000000000000
       Width = 0.500000000000000000
       Height = 0.500000000000000000
@@ -53970,12 +53977,39 @@ object frm3DQuadrants: Tfrm3DQuadrants
   end
   object ColorMaterialSourceGray: TColorMaterialSource
     Color = claGray
-    Left = 464
-    Top = 272
+    Left = 520
+    Top = 288
   end
   object ColorMaterialSourceBlack: TColorMaterialSource
     Color = claBlack
     Left = 344
     Top = 224
+  end
+  object cylArrowStemY: TCylinder
+    Position.Y = 1.000000000000000000
+    Width = 0.100000001490116100
+    Height = 15.000000000000000000
+    Depth = 1.000000000000000000
+    object coneArrowTipY: TCone
+      Position.Y = 8.000000000000000000
+      RotationAngle.X = 180.000000000000000000
+      Width = 0.500000000000000000
+      Height = 0.800000011920929000
+      Depth = 0.500000000000000000
+      Quanternion = '(1,0,0,-4.37113882867379E-8)'
+    end
+    object Text3D1: TText3D
+      Position.Y = -2.500000000000000000
+      Position.Z = -0.500000000000000000
+      Width = 2.000000000000000000
+      Height = 0.500000000000000000
+      Depth = 0.100000001490116100
+      Text = 'Y-Axis'
+      Stretch = True
+      WordWrap = False
+      Flatness = 1.000000000000000000
+      Sides = [Front]
+      MaterialSource = ColorMaterialSourceBlack
+    end
   end
 end
