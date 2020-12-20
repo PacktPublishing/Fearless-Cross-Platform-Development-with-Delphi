@@ -77,7 +77,19 @@ type
     LinkControlToPropertyEnabled2: TLinkControlToProperty;
     LinkControlToPropertyRotationAngleX: TLinkControlToProperty;
     btnShowOptions: TButton;
+    Model3DElk: TModel3D;
+    ColorMaterialSourceBrown: TColorMaterialSource;
+    grpElk: TGroupBox;
+    tbElkRotate: TTrackBar;
+    lblElkRotate: TLabel;
+    tbElkScale: TTrackBar;
+    lblElkScale: TLabel;
+    LinkControlToPropertyScaleX: TLinkControlToProperty;
+    LinkControlToPropertyScaleY: TLinkControlToProperty;
+    LinkControlToPropertyScaleZ: TLinkControlToProperty;
+    LinkControlToPropertyRotationAngleY: TLinkControlToProperty;
     procedure btnShowOptionsClick(Sender: TObject);
+    procedure Form3DCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -100,6 +112,12 @@ begin
     Layer3DOptions.Width := 20;
     btnShowOptions.StyleLookup := 'arrowlefttoolbutton';
   end;
+end;
+
+procedure Tfrm3DQuadrants.Form3DCreate(Sender: TObject);
+begin
+  for var AMesh in Model3DElk.MeshCollection do
+    AMesh.MaterialSource := ColorMaterialSourceBrown;
 end;
 
 end.
