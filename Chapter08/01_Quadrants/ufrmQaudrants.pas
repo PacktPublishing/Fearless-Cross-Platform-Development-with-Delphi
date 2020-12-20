@@ -7,7 +7,9 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms3D, FMX.Types3D, FMX.Forms, FMX.Graphics, 
   FMX.Dialogs, FMX.Objects, System.Math.Vectors, FMX.Objects3D, FMX.Controls3D,
-  FMX.MaterialSources, FMX.Ani;
+  FMX.MaterialSources, FMX.Ani, FMX.StdCtrls, FMX.Controls.Presentation,
+  FMX.Layers3D, Data.Bind.EngExt, Fmx.Bind.DBEngExt, System.Rtti,
+  System.Bindings.Outputs, Fmx.Bind.Editors, Data.Bind.Components;
 
 type
   Tfrm3DQuadrants = class(TForm3D)
@@ -63,6 +65,19 @@ type
     cylArrowStemY: TCylinder;
     coneArrowTipY: TCone;
     Text3D1: TText3D;
+    Layer3DOptions: TLayer3D;
+    grpLight: TGroupBox;
+    Label3: TLabel;
+    SwitchLight: TSwitch;
+    tbLightRotateX: TTrackBar;
+    Label2: TLabel;
+    Label1: TLabel;
+    BindingsList1: TBindingsList;
+    LinkControlToPropertyEnabled: TLinkControlToProperty;
+    LinkControlToPropertyEnabled2: TLinkControlToProperty;
+    LinkControlToPropertyRotationAngleX: TLinkControlToProperty;
+    btnShowOptions: TButton;
+    procedure btnShowOptionsClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -75,5 +90,16 @@ var
 implementation
 
 {$R *.fmx}
+
+procedure Tfrm3DQuadrants.btnShowOptionsClick(Sender: TObject);
+begin
+  if Layer3DOptions.Width = 20 then begin
+    Layer3DOptions.Width := 100;
+    btnShowOptions.StyleLookup := 'arrowrighttoolbutton';
+  end else begin
+    Layer3DOptions.Width := 20;
+    btnShowOptions.StyleLookup := 'arrowlefttoolbutton';
+  end;
+end;
 
 end.

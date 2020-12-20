@@ -4,7 +4,7 @@ object frm3DQuadrants: Tfrm3DQuadrants
   Caption = '3D Quadrants'
   Color = claLightgray
   ClientHeight = 480
-  ClientWidth = 640
+  ClientWidth = 663
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
@@ -12,16 +12,38 @@ object frm3DQuadrants: Tfrm3DQuadrants
   object Cube1: TCube
     Position.X = -5.000000000000000000
     Position.Y = -5.000000000000000000
-    RotationAngle.X = 358.047851562500000000
-    RotationAngle.Y = 352.069763183593800000
-    RotationAngle.Z = 2.280853271484375000
+    RotationAngle.X = 5.000000000000000000
+    RotationAngle.Y = 45.000000000000000000
     Width = 4.992723464965820000
     Height = 2.900550603866577000
     Depth = 3.635525941848755000
     MaterialSource = LightMaterialSourceBlue
     Quanternion = 
-      '(0.0176682602614164,-0.455704838037491,-0.0471909046173096,-0.88' +
-      '8703227043152)'
+      '(0.0435778684914112,0.382319211959839,-0.00190265069250017,0.923' +
+      '00021648407)'
+    object txtQuadrant: TText3D
+      Position.X = 2.200000047683716000
+      RotationAngle.Y = 270.000000000000000000
+      Width = 3.000000000000000000
+      Height = 2.000000000000000000
+      Depth = 1.200000047683716000
+      Text = 'Quadrant 1'
+      Stretch = True
+      WordWrap = False
+      Flatness = 1.000000000000000000
+      Sides = [Front, Back, Shaft]
+      MaterialShaftSource = ColorMaterialSourceGray
+      Quanternion = '(0,0.70710676908493,0,-0.70710676908493)'
+    end
+    object FloatAnimationBackAndForth: TFloatAnimation
+      AutoReverse = True
+      Enabled = True
+      Duration = 4.000000000000000000
+      Loop = True
+      PropertyName = 'RotationAngle.Y'
+      StartValue = 10.000000000000000000
+      StopValue = 150.000000000000000000
+    end
   end
   object ConeChristmasTree: TCone
     Position.X = 4.950373172760010000
@@ -130,7 +152,8 @@ object frm3DQuadrants: Tfrm3DQuadrants
     end
   end
   object PlaneHorizontal: TPlane
-    Width = 50.000000000000000000
+    WrapMode = Original
+    Width = 20.000000000000000000
     Height = 0.100000001490116100
     Depth = 0.001000000047497451
     MaterialSource = ColorMaterialSourceBlack
@@ -158,46 +181,21 @@ object frm3DQuadrants: Tfrm3DQuadrants
     end
   end
   object Light1: TLight
-    Color = claIvory
+    Color = claWhite
     LightType = Directional
     SpotCutOff = 60.000000000000000000
     SpotExponent = 4.000000000000000000
     Position.X = -8.087711334228516000
     Position.Y = -1.525113344192505000
-    RotationAngle.X = 6.558853149414063000
+    RotationAngle.X = 15.000000000000000000
     RotationAngle.Y = 36.177810668945310000
     RotationAngle.Z = 347.326416015625000000
     Width = 1.000000000000000000
     Height = 1.000000000000000000
     Depth = 1.000000000000000000
     Quanternion = 
-      '(-0.535199582576752,0.62055766582489,-0.0705386698246002,0.56875' +
-      '9381771088)'
-  end
-  object txtQuadrant: TText3D
-    Position.X = 5.000000000000000000
-    Position.Y = 5.000000000000000000
-    RotationAngle.X = 330.000000000000000000
-    Width = 7.991156578063965000
-    Height = 3.636036396026611000
-    Depth = 1.719969272613525000
-    Text = 'Quadrant 4'
-    Stretch = True
-    WordWrap = False
-    Flatness = 1.000000000000000000
-    Sides = [Front, Back, Shaft]
-    MaterialShaftSource = ColorMaterialSourceGray
-    MaterialSource = ColorMaterialSourceBlack
-    Quanternion = '(-0.258819162845612,0,0,0.965925812721252)'
-    object FloatAnimationBackAndForth: TFloatAnimation
-      AutoReverse = True
-      Enabled = True
-      Duration = 4.000000000000000000
-      Loop = True
-      PropertyName = 'RotationAngle.Y'
-      StartValue = -80.000000000000000000
-      StopValue = 80.000000000000000000
-    end
+      '(-0.491889297962189,0.6136834025383,-0.116018392145634,0.6066059' +
+      '4701767)'
   end
   object TextureMaterialSourceGlobe: TTextureMaterialSource
     Texture.PNG = {
@@ -53982,8 +53980,8 @@ object frm3DQuadrants: Tfrm3DQuadrants
   end
   object ColorMaterialSourceBlack: TColorMaterialSource
     Color = claBlack
-    Left = 344
-    Top = 224
+    Left = 680
+    Top = 264
   end
   object cylArrowStemY: TCylinder
     Position.Y = 1.000000000000000000
@@ -54010,6 +54008,113 @@ object frm3DQuadrants: Tfrm3DQuadrants
       Flatness = 1.000000000000000000
       Sides = [Front]
       MaterialSource = ColorMaterialSourceBlack
+    end
+  end
+  object Layer3DOptions: TLayer3D
+    Align = Right
+    Height = 480.000000000000000000
+    Position.X = 653.000000000000000000
+    Position.Y = 240.000000000000000000
+    Projection = Screen
+    Resolution = 50
+    StyleLookup = 'backgroundstyle'
+    Width = 20.000000000000000000
+    object grpLight: TGroupBox
+      Align = Top
+      Size.Width = 20.000000000000000000
+      Size.Height = 137.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Light'
+      object Label3: TLabel
+        Position.X = 109.000000000000000000
+        Position.Y = 56.000000000000000000
+        RotationAngle = 90.000000000000000000
+        Size.Width = 100.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Center
+        Text = 'y-rotation'
+        TabOrder = 40
+      end
+      object SwitchLight: TSwitch
+        IsChecked = True
+        Position.X = 21.000000000000000000
+        Position.Y = 70.000000000000000000
+        Size.Width = 60.000000000000000000
+        Size.Height = 27.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 41
+      end
+      object tbLightRotateX: TTrackBar
+        CanParentFocus = True
+        Max = 180.000000000000000000
+        Orientation = Horizontal
+        Position.X = 20.000000000000000000
+        Position.Y = 30.000000000000000000
+        Size.Width = 61.000000000000000000
+        Size.Height = 19.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 42
+        Value = 15.000000000000000000
+      end
+      object Label2: TLabel
+        Position.X = 21.000000000000000000
+        Position.Y = 48.000000000000000000
+        Size.Width = 68.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Center
+        Text = 'x-rotation'
+        TabOrder = 39
+      end
+      object Label1: TLabel
+        Position.X = 21.000000000000000000
+        Position.Y = 96.000000000000000000
+        Size.Width = 60.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.HorzAlign = Center
+        Text = 'on/off'
+        TabOrder = 38
+      end
+      object btnShowOptions: TButton
+        Position.Y = 216.000000000000000000
+        Size.Width = 17.000000000000000000
+        Size.Height = 25.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'arrowlefttoolbutton'
+        TabOrder = 43
+        Text = 'btnShowOptions'
+        OnClick = btnShowOptionsClick
+      end
+    end
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 20
+    Top = 5
+    object LinkControlToPropertyEnabled: TLinkControlToProperty
+      Category = 'Quick Bindings'
+      Control = SwitchLight
+      Track = True
+      Component = Light1
+      ComponentProperty = 'Enabled'
+    end
+    object LinkControlToPropertyEnabled2: TLinkControlToProperty
+      Category = 'Quick Bindings'
+      Control = SwitchLight
+      Track = True
+      Component = tbLightRotateX
+      ComponentProperty = 'Enabled'
+      InitializeControlValue = False
+    end
+    object LinkControlToPropertyRotationAngleX: TLinkControlToProperty
+      Category = 'Quick Bindings'
+      Control = tbLightRotateX
+      Track = False
+      Component = Light1
+      ComponentProperty = 'RotationAngle.X'
     end
   end
 end
