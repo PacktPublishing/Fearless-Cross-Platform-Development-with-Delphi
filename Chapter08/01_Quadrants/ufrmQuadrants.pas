@@ -75,7 +75,6 @@ type
     BindingsList1: TBindingsList;
     LinkControlToPropertyEnabled: TLinkControlToProperty;
     LinkControlToPropertyEnabled2: TLinkControlToProperty;
-    LinkControlToPropertyRotationAngleX: TLinkControlToProperty;
     btnShowOptions: TButton;
     Model3DElk: TModel3D;
     ColorMaterialSourceBrown: TColorMaterialSource;
@@ -88,6 +87,11 @@ type
     LinkControlToPropertyScaleY: TLinkControlToProperty;
     LinkControlToPropertyScaleZ: TLinkControlToProperty;
     LinkControlToPropertyRotationAngleY: TLinkControlToProperty;
+    LinkControlToPropertyRotationAngleY2: TLinkControlToProperty;
+    CylinderTreeTrunk: TCylinder;
+    LightMaterialSourceWood: TLightMaterialSource;
+    Cylinder1: TCylinder;
+    Cylinder2: TCylinder;
     procedure btnShowOptionsClick(Sender: TObject);
     procedure Form3DCreate(Sender: TObject);
   private

@@ -151,6 +151,15 @@ object frm3DQuadrants: Tfrm3DQuadrants
         end
       end
     end
+    object Cylinder2: TCylinder
+      Position.X = 2.608899831771851000
+      Position.Y = 1.304425477981567000
+      Position.Z = 0.818263769149780300
+      Width = 0.500000000000000000
+      Height = 1.000000000000000000
+      Depth = 0.500000000000000000
+      MaterialSource = ColorMaterialSourceBrown
+    end
   end
   object PlaneHorizontal: TPlane
     WrapMode = Original
@@ -184,19 +193,10 @@ object frm3DQuadrants: Tfrm3DQuadrants
   object Light1: TLight
     Color = claWhite
     LightType = Directional
-    SpotCutOff = 60.000000000000000000
-    SpotExponent = 4.000000000000000000
-    Position.X = -8.087711334228516000
-    Position.Y = -1.525113344192505000
-    RotationAngle.X = 15.000000000000000000
-    RotationAngle.Y = 36.177810668945310000
-    RotationAngle.Z = 347.326416015625000000
+    SpotCutOff = 180.000000000000000000
     Width = 1.000000000000000000
     Height = 1.000000000000000000
     Depth = 1.000000000000000000
-    Quanternion = 
-      '(-0.491889297962189,0.6136834025383,-0.116018392145634,0.6066059' +
-      '4701767)'
   end
   object TextureMaterialSourceGlobe: TTextureMaterialSource
     Texture.PNG = {
@@ -30049,13 +30049,13 @@ object frm3DQuadrants: Tfrm3DQuadrants
     Top = 208
   end
   object LightMaterialSourceBlue: TLightMaterialSource
-    Diffuse = claCornflowerblue
-    Ambient = xFF202020
-    Emissive = claNull
+    Diffuse = claSkyblue
+    Ambient = claMidnightblue
+    Emissive = claBlue
     Specular = claDarkblue
     Shininess = 30
-    Left = 432
-    Top = 296
+    Left = 424
+    Top = 328
   end
   object ColorAnimation1: TColorAnimation
     AutoReverse = True
@@ -30073,12 +30073,12 @@ object frm3DQuadrants: Tfrm3DQuadrants
     Scale.X = 0.800000011920929000
     Scale.Y = 0.800000011920929000
     Scale.Z = 0.800000011920929000
-    RotationAngle.Y = 3.299999952316284000
+    RotationAngle.Y = 0.505219995975494400
     Width = 3.500000000000000000
     Height = 4.000000000000000000
     Depth = 5.000000000000000000
     MaterialSource = LightMaterialSourceGreenery
-    Quanternion = '(0,0.028793953359127,0,0.999585330486298)'
+    Quanternion = '(0,-0.0332004651427269,0,-0.999448478221893)'
     object Sphere1: TSphere
       Position.Z = -2.700000047683716000
       Width = 0.200000002980232200
@@ -30181,15 +30181,15 @@ object frm3DQuadrants: Tfrm3DQuadrants
     Scale.X = 0.800000011920929000
     Scale.Y = 0.800000011920929000
     Scale.Z = 0.800000011920929000
-    RotationAngle.X = 358.106475830078100000
-    RotationAngle.Y = 352.631256103515600000
+    RotationAngle.X = 0.782196044921875000
+    RotationAngle.Y = 355.000000000000000000
     Width = 3.500000000000000000
     Height = 4.000000000000000000
     Depth = 5.000000000000000000
     MaterialSource = LightMaterialSourceGreenery
     Quanternion = 
-      '(-0.0164903048425913,-0.0642520189285278,0.00106187467463315,0.9' +
-      '97796952724457)'
+      '(-0.00681926822289824,0.04361841827631,0.000297736056381837,-0.9' +
+      '99024748802185)'
     object Sphere9: TSphere
       Position.Z = -3.000000000000000000
       Width = 0.200000002980232200
@@ -54048,7 +54048,7 @@ object frm3DQuadrants: Tfrm3DQuadrants
       end
       object tbLightRotateX: TTrackBar
         CanParentFocus = True
-        Max = 180.000000000000000000
+        Max = 360.000000000000000000
         Orientation = Horizontal
         Position.X = 20.000000000000000000
         Position.Y = 30.000000000000000000
@@ -54056,16 +54056,16 @@ object frm3DQuadrants: Tfrm3DQuadrants
         Size.Height = 19.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 42
-        Value = 15.000000000000000000
+        Value = 35.000000000000000000
       end
       object Label2: TLabel
-        Position.X = 21.000000000000000000
+        Position.X = 8.000000000000000000
         Position.Y = 48.000000000000000000
-        Size.Width = 68.000000000000000000
+        Size.Width = 105.000000000000000000
         Size.Height = 17.000000000000000000
         Size.PlatformDefault = False
         TextSettings.HorzAlign = Center
-        Text = 'x-rotation'
+        Text = 'y-rotation'
         TabOrder = 39
       end
       object Label1: TLabel
@@ -54105,7 +54105,7 @@ object frm3DQuadrants: Tfrm3DQuadrants
         Size.Width = 61.000000000000000000
         Size.Height = 19.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 44
+        TabOrder = 43
         Value = 25.000000000000000000
       end
       object lblElkRotate: TLabel
@@ -54116,7 +54116,7 @@ object frm3DQuadrants: Tfrm3DQuadrants
         Size.PlatformDefault = False
         TextSettings.HorzAlign = Center
         Text = 'Rotate'
-        TabOrder = 40
+        TabOrder = 39
       end
       object tbElkScale: TTrackBar
         CanParentFocus = True
@@ -54128,7 +54128,7 @@ object frm3DQuadrants: Tfrm3DQuadrants
         Size.Width = 61.000000000000000000
         Size.Height = 19.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 43
+        TabOrder = 42
         Value = 1.000000000000000000
       end
       object lblElkScale: TLabel
@@ -54139,7 +54139,7 @@ object frm3DQuadrants: Tfrm3DQuadrants
         Size.PlatformDefault = False
         TextSettings.HorzAlign = Center
         Text = 'Scale'
-        TabOrder = 39
+        TabOrder = 38
       end
     end
   end
@@ -59313,6 +59313,23 @@ object frm3DQuadrants: Tfrm3DQuadrants
     Left = 640
     Top = 320
   end
+  object CylinderTreeTrunk: TCylinder
+    Position.X = 5.000000000000000000
+    Position.Y = -1.000000000000000000
+    Width = 0.500000000000000000
+    Height = 1.000000000000000000
+    Depth = 0.500000000000000000
+    MaterialSource = ColorMaterialSourceBrown
+  end
+  object Cylinder1: TCylinder
+    Position.X = 3.128892898559570000
+    Position.Y = -1.711117744445801000
+    Position.Z = 1.000000000000000000
+    Width = 0.500000000000000000
+    Height = 1.000000000000000000
+    Depth = 0.500000000000000000
+    MaterialSource = ColorMaterialSourceBrown
+  end
   object BindingsList1: TBindingsList
     Methods = <>
     OutputConverters = <>
@@ -59332,13 +59349,6 @@ object frm3DQuadrants: Tfrm3DQuadrants
       Component = tbLightRotateX
       ComponentProperty = 'Enabled'
       InitializeControlValue = False
-    end
-    object LinkControlToPropertyRotationAngleX: TLinkControlToProperty
-      Category = 'Quick Bindings'
-      Control = tbLightRotateX
-      Track = False
-      Component = Light1
-      ComponentProperty = 'RotationAngle.X'
     end
     object LinkControlToPropertyScaleX: TLinkControlToProperty
       Category = 'Quick Bindings'
@@ -59370,5 +59380,21 @@ object frm3DQuadrants: Tfrm3DQuadrants
       Component = Model3DElk
       ComponentProperty = 'RotationAngle.Y'
     end
+    object LinkControlToPropertyRotationAngleY2: TLinkControlToProperty
+      Category = 'Quick Bindings'
+      Control = tbLightRotateX
+      Track = False
+      Component = Light1
+      ComponentProperty = 'RotationAngle.Y'
+    end
+  end
+  object LightMaterialSourceWood: TLightMaterialSource
+    Diffuse = claSienna
+    Ambient = xFF202020
+    Emissive = claBrown
+    Specular = xFF606060
+    Shininess = 30
+    Left = 344
+    Top = 256
   end
 end
