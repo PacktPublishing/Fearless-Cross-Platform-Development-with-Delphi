@@ -14,14 +14,23 @@ object frm3DQuadrants: Tfrm3DQuadrants
     Position.X = -5.000000000000000000
     Position.Y = -5.000000000000000000
     RotationAngle.X = 5.000000000000000000
-    RotationAngle.Y = 45.000000000000000000
-    Width = 4.992723464965820000
+    RotationAngle.Y = 55.000000000000000000
+    Width = 4.500000000000000000
     Height = 2.900550603866577000
-    Depth = 3.635525941848755000
+    Depth = 3.500000000000000000
     MaterialSource = LightMaterialSourceBlue
     Quanternion = 
-      '(0.0435778684914112,0.382319211959839,-0.00190265069250017,0.923' +
-      '00021648407)'
+      '(-0.0435778684914112,-0.461309254169464,-0.00190265569835901,-0.' +
+      '886166512966156)'
+    object FloatAnimationBackAndForth: TFloatAnimation
+      AutoReverse = True
+      Enabled = True
+      Duration = 4.000000000000000000
+      Loop = True
+      PropertyName = 'RotationAngle.Y'
+      StartValue = 10.000000000000000000
+      StopValue = 150.000000000000000000
+    end
     object txtQuadrant: TText3D
       Position.X = 2.200000047683716000
       RotationAngle.Y = 270.000000000000000000
@@ -33,17 +42,9 @@ object frm3DQuadrants: Tfrm3DQuadrants
       WordWrap = False
       Flatness = 1.000000000000000000
       Sides = [Front, Back, Shaft]
-      MaterialShaftSource = ColorMaterialSourceGray
+      MaterialShaftSource = ColorMaterialSourceBrown
+      MaterialSource = ColorMaterialSourceBlack
       Quanternion = '(0,0.70710676908493,0,-0.70710676908493)'
-    end
-    object FloatAnimationBackAndForth: TFloatAnimation
-      AutoReverse = True
-      Enabled = True
-      Duration = 4.000000000000000000
-      Loop = True
-      PropertyName = 'RotationAngle.Y'
-      StartValue = 10.000000000000000000
-      StopValue = 150.000000000000000000
     end
   end
   object ConeChristmasTree: TCone
@@ -119,12 +120,12 @@ object frm3DQuadrants: Tfrm3DQuadrants
       Height = 0.200000002980232200
       Depth = 0.200000002980232200
     end
-    object path3dStar: TPath3D
+    object Path3dStar: TPath3D
       Position.Y = -2.000000000000000000
       RotationAngle.Y = 45.000000000000000000
       Width = 0.500000000000000000
       Height = 0.500000000000000000
-      Depth = 0.500000000000000000
+      Depth = 0.100000001490116100
       Path.Path = {
         0B00000000000000886C86438C675042010000009062654350DE294201000000
         9D1347432E078B42010000005E0B4443460BE8410100000098F420438E9D0841
@@ -133,28 +134,13 @@ object frm3DQuadrants: Tfrm3DQuadrants
         886C86438C675042}
       Flatness = 2.000000000000000000
       Sides = [Front, Back, Shaft]
-      MaterialShaftSource = ColorMaterialStar
-      MaterialSource = ColorMaterialStar
+      MaterialBackSource = ColorMaterialSourceStar
+      MaterialShaftSource = ColorMaterialSourceStar
+      MaterialSource = ColorMaterialSourceStar
       Quanternion = '(0,0.382683455944061,0,0.923879504203796)'
-      object ColorMaterialStar: TColorMaterialSource
-        Color = claYellow
-        Left = 544
-        Top = 216
-        object ColorAnimationStarGlow: TColorAnimation
-          AutoReverse = True
-          Enabled = True
-          Duration = 0.200000002980232200
-          Loop = True
-          PropertyName = 'Color'
-          StartValue = claYellow
-          StopValue = claOrange
-        end
-      end
     end
-    object Cylinder2: TCylinder
-      Position.X = 2.608899831771851000
-      Position.Y = 1.304425477981567000
-      Position.Z = 0.818263769149780300
+    object CylinderTreeTrunk: TCylinder
+      Position.Y = 3.000000000000000000
       Width = 0.500000000000000000
       Height = 1.000000000000000000
       Depth = 0.500000000000000000
@@ -30057,16 +30043,7 @@ object frm3DQuadrants: Tfrm3DQuadrants
     Left = 424
     Top = 328
   end
-  object ColorAnimation1: TColorAnimation
-    AutoReverse = True
-    Enabled = True
-    Duration = 5.000000000000000000
-    Loop = True
-    PropertyName = 'Color'
-    StartValue = claSnow
-    StopValue = claDarkturquoise
-  end
-  object Cone1: TCone
+  object ConeChristmasTree3: TCone
     Position.X = 7.826920986175537000
     Position.Y = -4.612412929534912000
     Position.Z = 2.000000000000000000
@@ -30141,7 +30118,7 @@ object frm3DQuadrants: Tfrm3DQuadrants
       Height = 0.200000002980232200
       Depth = 0.200000002980232200
     end
-    object Path3D1: TPath3D
+    object Path3DStar3: TPath3D
       Position.Y = -2.000000000000000000
       RotationAngle.Y = 45.000000000000000000
       Width = 0.500000000000000000
@@ -30155,26 +30132,22 @@ object frm3DQuadrants: Tfrm3DQuadrants
         886C86438C675042}
       Flatness = 2.000000000000000000
       Sides = [Front, Back, Shaft]
-      MaterialShaftSource = ColorMaterialSource1
-      MaterialSource = ColorMaterialSource1
+      MaterialBackSource = ColorMaterialSourceStar
+      MaterialShaftSource = ColorMaterialSourceStar
+      MaterialSource = ColorMaterialSourceStar
       Quanternion = '(0,0.382683455944061,0,0.923879504203796)'
-      object ColorMaterialSource1: TColorMaterialSource
-        Color = claYellow
-        Left = 544
-        Top = 216
-        object ColorAnimation2: TColorAnimation
-          AutoReverse = True
-          Enabled = True
-          Duration = 0.200000002980232200
-          Loop = True
-          PropertyName = 'Color'
-          StartValue = claYellow
-          StopValue = claOrange
-        end
-      end
+    end
+    object Cylinder2: TCylinder
+      Position.X = 0.800000011920929000
+      Position.Y = 3.000000000000000000
+      Position.Z = 2.000000000000000000
+      Width = 0.500000000000000000
+      Height = 1.000000000000000000
+      Depth = 0.500000000000000000
+      MaterialSource = ColorMaterialSourceBrown
     end
   end
-  object Cone2: TCone
+  object ConeChristmasTree2: TCone
     Position.X = 3.145541906356812000
     Position.Y = -3.620002985000610000
     Position.Z = 2.000000000000000000
@@ -30252,13 +30225,13 @@ object frm3DQuadrants: Tfrm3DQuadrants
       Height = 0.200000002980232200
       Depth = 0.200000002980232200
     end
-    object Path3D2: TPath3D
+    object Path3DStar2: TPath3D
       Position.Y = -2.000000000000000000
       Position.Z = -0.100000001490116100
       RotationAngle.Y = 45.000000000000000000
       Width = 0.500000000000000000
       Height = 0.500000000000000000
-      Depth = 0.500000000000000000
+      Depth = 0.100000001490116100
       Path.Path = {
         0B00000000000000886C86438C675042010000009062654350DE294201000000
         9D1347432E078B42010000005E0B4443460BE8410100000098F420438E9D0841
@@ -30267,23 +30240,19 @@ object frm3DQuadrants: Tfrm3DQuadrants
         886C86438C675042}
       Flatness = 2.000000000000000000
       Sides = [Front, Back, Shaft]
-      MaterialShaftSource = ColorMaterialSource2
-      MaterialSource = ColorMaterialSource2
+      MaterialBackSource = ColorMaterialSourceStar
+      MaterialShaftSource = ColorMaterialSourceStar
+      MaterialSource = ColorMaterialSourceStar
       Quanternion = '(0,0.382683455944061,0,0.923879504203796)'
-      object ColorMaterialSource2: TColorMaterialSource
-        Color = claYellow
-        Left = 544
-        Top = 216
-        object ColorAnimation3: TColorAnimation
-          AutoReverse = True
-          Enabled = True
-          Duration = 0.200000002980232200
-          Loop = True
-          PropertyName = 'Color'
-          StartValue = claYellow
-          StopValue = claOrange
-        end
-      end
+    end
+    object Cylinder1: TCylinder
+      Position.X = 0.500000000000000000
+      Position.Y = 3.500000000000000000
+      Position.Z = 2.000000000000000000
+      Width = 0.500000000000000000
+      Height = 1.000000000000000000
+      Depth = 0.500000000000000000
+      MaterialSource = ColorMaterialSourceBrown
     end
   end
   object LightMaterialSourceGreenery: TLightMaterialSource
@@ -53989,12 +53958,14 @@ object frm3DQuadrants: Tfrm3DQuadrants
     Width = 0.100000001490116100
     Height = 15.000000000000000000
     Depth = 1.000000000000000000
+    MaterialSource = ColorMaterialSourceBlack
     object coneArrowTipY: TCone
       Position.Y = 8.000000000000000000
       RotationAngle.X = 180.000000000000000000
       Width = 0.500000000000000000
       Height = 0.800000011920929000
       Depth = 0.500000000000000000
+      MaterialSource = ColorMaterialSourceBlack
       Quanternion = '(1,0,0,-4.37113882867379E-8)'
     end
     object Text3D1: TText3D
@@ -54002,13 +53973,12 @@ object frm3DQuadrants: Tfrm3DQuadrants
       Position.Z = -0.500000000000000000
       Width = 2.000000000000000000
       Height = 0.500000000000000000
-      Depth = 0.100000001490116100
+      Depth = 0.500000000000000000
       Text = 'Y-Axis'
       Stretch = True
       WordWrap = False
       Flatness = 1.000000000000000000
       Sides = [Front]
-      MaterialSource = ColorMaterialSourceBlack
     end
   end
   object Layer3DOptions: TLayer3D
@@ -54056,7 +54026,6 @@ object frm3DQuadrants: Tfrm3DQuadrants
         Size.Height = 19.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 42
-        Value = 35.000000000000000000
       end
       object Label2: TLabel
         Position.X = 8.000000000000000000
@@ -59313,22 +59282,33 @@ object frm3DQuadrants: Tfrm3DQuadrants
     Left = 640
     Top = 320
   end
-  object CylinderTreeTrunk: TCylinder
-    Position.X = 5.000000000000000000
-    Position.Y = -1.000000000000000000
-    Width = 0.500000000000000000
-    Height = 1.000000000000000000
-    Depth = 0.500000000000000000
-    MaterialSource = ColorMaterialSourceBrown
+  object LightMaterialSourceWood: TLightMaterialSource
+    Diffuse = claSienna
+    Ambient = xFF202020
+    Emissive = claBrown
+    Specular = xFF606060
+    Shininess = 30
+    Left = 344
+    Top = 256
   end
-  object Cylinder1: TCylinder
-    Position.X = 3.128892898559570000
-    Position.Y = -1.711117744445801000
-    Position.Z = 1.000000000000000000
-    Width = 0.500000000000000000
-    Height = 1.000000000000000000
-    Depth = 0.500000000000000000
-    MaterialSource = ColorMaterialSourceBrown
+  object ColorMaterialSourceStar: TColorMaterialSource
+    Color = claYellow
+    Left = 240
+    Top = 240
+    object ColorAnimationTwinkle: TColorAnimation
+      AutoReverse = True
+      Enabled = True
+      Duration = 0.200000002980232200
+      Loop = True
+      PropertyName = 'Color'
+      StartValue = claYellow
+      StopValue = claOrange
+    end
+  end
+  object FloatAnimation2: TFloatAnimation
+    Duration = 0.200000002980232200
+    StartValue = 0.000000000000000000
+    StopValue = 0.000000000000000000
   end
   object BindingsList1: TBindingsList
     Methods = <>
@@ -59387,14 +59367,5 @@ object frm3DQuadrants: Tfrm3DQuadrants
       Component = Light1
       ComponentProperty = 'RotationAngle.Y'
     end
-  end
-  object LightMaterialSourceWood: TLightMaterialSource
-    Diffuse = claSienna
-    Ambient = xFF202020
-    Emissive = claBrown
-    Specular = xFF606060
-    Shininess = 30
-    Left = 344
-    Top = 256
   end
 end

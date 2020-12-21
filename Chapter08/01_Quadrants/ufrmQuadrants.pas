@@ -25,7 +25,6 @@ type
     LightMaterialSourceGreenery: TLightMaterialSource;
     ColorMaterialSourceGray: TColorMaterialSource;
     ColorMaterialSourceBlack: TColorMaterialSource;
-    ColorAnimation1: TColorAnimation;
     bulb7: TSphere;
     bulb8: TSphere;
     bulb1: TSphere;
@@ -34,10 +33,8 @@ type
     bulb4: TSphere;
     bulb5: TSphere;
     bulb6: TSphere;
-    path3dStar: TPath3D;
-    ColorAnimationStarGlow: TColorAnimation;
-    ColorMaterialStar: TColorMaterialSource;
-    Cone1: TCone;
+    Path3dStar: TPath3D;
+    ConeChristmasTree3: TCone;
     Sphere1: TSphere;
     Sphere2: TSphere;
     Sphere3: TSphere;
@@ -46,10 +43,8 @@ type
     Sphere6: TSphere;
     Sphere7: TSphere;
     Sphere8: TSphere;
-    Path3D1: TPath3D;
-    ColorMaterialSource1: TColorMaterialSource;
-    ColorAnimation2: TColorAnimation;
-    Cone2: TCone;
+    Path3DStar3: TPath3D;
+    ConeChristmasTree2: TCone;
     Sphere9: TSphere;
     Sphere10: TSphere;
     Sphere11: TSphere;
@@ -58,9 +53,7 @@ type
     Sphere14: TSphere;
     Sphere15: TSphere;
     Sphere16: TSphere;
-    Path3D2: TPath3D;
-    ColorMaterialSource2: TColorMaterialSource;
-    ColorAnimation3: TColorAnimation;
+    Path3DStar2: TPath3D;
     FloatAnimationBackAndForth: TFloatAnimation;
     cylArrowStemY: TCylinder;
     coneArrowTipY: TCone;
@@ -92,12 +85,11 @@ type
     LightMaterialSourceWood: TLightMaterialSource;
     Cylinder1: TCylinder;
     Cylinder2: TCylinder;
+    ColorMaterialSourceStar: TColorMaterialSource;
+    FloatAnimation2: TFloatAnimation;
+    ColorAnimationTwinkle: TColorAnimation;
     procedure btnShowOptionsClick(Sender: TObject);
     procedure Form3DCreate(Sender: TObject);
-  private
-    { Private declarations }
-  public
-    { Public declarations }
   end;
 
 var
