@@ -5,11 +5,11 @@ interface
 
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Controls, FMX.Forms3D, FMX.Types3D, FMX.Forms, FMX.Graphics, 
+  FMX.Types, FMX.Controls, FMX.Forms3D, FMX.Types3D, FMX.Forms, FMX.Graphics,
   FMX.Dialogs, FMX.Objects, System.Math.Vectors, FMX.Objects3D, FMX.Controls3D,
   FMX.MaterialSources, FMX.Ani, FMX.StdCtrls, FMX.Controls.Presentation,
   FMX.Layers3D, Data.Bind.EngExt, Fmx.Bind.DBEngExt, System.Rtti,
-  System.Bindings.Outputs, Fmx.Bind.Editors, Data.Bind.Components;
+  System.Bindings.Outputs, Fmx.Bind.Editors, Data.Bind.Components, FMX.Media;
 
 type
   Tfrm3DQuadrants = class(TForm3D)
@@ -88,8 +88,21 @@ type
     ColorMaterialSourceStar: TColorMaterialSource;
     FloatAnimation2: TFloatAnimation;
     ColorAnimationTwinkle: TColorAnimation;
+    grpCamera: TGroupBox;
+    CameraCube: TCamera;
+    radCameraLeft: TRadioButton;
+    radCameraRight: TRadioButton;
+    CameraElk: TCamera;
+    radCameraDefault: TRadioButton;
+    CameraEarthSat: TCamera;
+    radCameraEarth: TRadioButton;
     procedure btnShowOptionsClick(Sender: TObject);
     procedure Form3DCreate(Sender: TObject);
+    procedure radCameraLeftClick(Sender: TObject);
+    procedure radCameraRightChange(Sender: TObject);
+    procedure radCameraDefaultClick(Sender: TObject);
+    procedure btnShowXYClick(Sender: TObject);
+    procedure radCameraEarthChange(Sender: TObject);
   end;
 
 var
@@ -110,10 +123,43 @@ begin
   end;
 end;
 
+procedure Tfrm3DQuadrants.btnShowXYClick(Sender: TObject);
+begin
+  ShowMessage(Format('Current camera position (%f, %f, %f)',
+                     [Camera.Position.X, Camera.Position.Y, Camera.Position.Z]));
+end;
+
 procedure Tfrm3DQuadrants.Form3DCreate(Sender: TObject);
 begin
   for var AMesh in Model3DElk.MeshCollection do
     AMesh.MaterialSource := ColorMaterialSourceBrown;
+end;
+
+procedure Tfrm3DQuadrants.radCameraDefaultClick(Sender: TObject);
+begin
+  UsingDesignCamera := True;
+  Camera.Repaint;
+end;
+
+procedure Tfrm3DQuadrants.radCameraEarthChange(Sender: TObject);
+begin
+  UsingDesignCamera := False;
+  Camera := CameraEarthSat;
+  Camera.Repaint;
+end;
+
+procedure Tfrm3DQuadrants.radCameraLeftClick(Sender: TObject);
+begin
+  UsingDesignCamera := False;
+  Camera := CameraCube;
+  Camera.Repaint;
+end;
+
+procedure Tfrm3DQuadrants.radCameraRightChange(Sender: TObject);
+begin
+  UsingDesignCamera := False;
+  Camera := CameraElk;
+  Camera.Repaint;
 end;
 
 end.

@@ -1,140 +1,140 @@
 ﻿[bulb5]
-Coordinates=134,1,41,33
+Coordinates=134,1,46,36
 
 [Sphere2]
-Coordinates=115,55,54,33
+Coordinates=115,55,63,36
 
 [TextureMaterialSourceGlobe]
-Coordinates=199,1,154,33
+Coordinates=199,1,179,36
 
 [bulb4]
-Coordinates=218,56,41,33
+Coordinates=218,56,46,36
 
 [Cube1]
-Coordinates=218,111,45,33
+Coordinates=218,111,52,36
 
 [Sphere11]
-Coordinates=416,1,60,33
+Coordinates=416,1,70,36
 
 [Sphere3]
-Coordinates=149,129,54,33
+Coordinates=149,129,63,36
 
 [ColorMaterialSourceBlack]
-Coordinates=416,56,142,33
+Coordinates=416,56,164,36
 
 [Sphere15]
-Coordinates=416,111,60,33
+Coordinates=416,111,70,36
 
 [Sphere9]
-Coordinates=21,129,54,33
+Coordinates=21,129,63,36
 
 [bulb2]
-Coordinates=416,166,41,33
+Coordinates=416,166,46,36
 
 [Sphere8]
-Coordinates=397,203,54,33
+Coordinates=397,203,63,36
 
 [bulb3]
-Coordinates=348,203,41,33
+Coordinates=348,203,46,36
 
 [FloatAnimationBackAndForth]
-Coordinates=618,111,160,33
+Coordinates=618,111,182,36
 
 [bulb6]
-Coordinates=299,203,41,33
+Coordinates=299,203,46,36
 
 [bulb7]
-Coordinates=250,203,41,33
+Coordinates=250,203,46,36
 
 [FloatAnimation1]
-Coordinates=618,166,95,33
+Coordinates=618,166,108,36
 
 [coneArrowTipY]
-Coordinates=599,203,90,33
+Coordinates=599,203,102,36
 
 [PlaneHorizontal]
-Coordinates=580,240,92,33
+Coordinates=580,240,106,36
 
 [ConeChristmasTree]
-Coordinates=441,240,112,33
+Coordinates=441,240,129,36
 
 [bulb1]
-Coordinates=201,203,41,33
+Coordinates=201,203,46,36
 
 [Sphere1]
-Coordinates=132,203,54,33
+Coordinates=132,203,63,36
 
 [Sphere14]
-Coordinates=520,203,60,33
+Coordinates=520,203,70,36
 
 [Sphere5]
-Coordinates=63,203,54,33
+Coordinates=63,203,63,36
 
 [Sphere16]
-Coordinates=838,56,60,33
+Coordinates=838,56,70,36
 
 [LightMaterialSourceBlue]
-Coordinates=280,20,135,33
+Coordinates=280,20,155,36
 Visible=False
 
 [Sphere4]
-Coordinates=561,277,54,33
+Coordinates=561,277,63,36
 
 [Sphere13]
-Coordinates=838,166,60,33
+Coordinates=838,166,70,36
 
 [Sphere7]
-Coordinates=423,277,54,33
+Coordinates=423,277,63,36
 
 [Light1]
-Coordinates=80,110,80,87
+Coordinates=80,110,96,102
 Visible=True
 ExplicitSubNodes=Enabled;RotationAngle.X;RotationAngle.Y
 
 [ColorMaterialSourceGray]
-Coordinates=838,221,138,33
+Coordinates=838,221,160,36
 
 [Text3D1]
-Coordinates=295,277,54,33
+Coordinates=295,277,63,36
 
 [SphereGlobe]
-Coordinates=838,276,78,33
+Coordinates=838,276,90,36
 
 [bulb8]
-Coordinates=246,277,41,33
+Coordinates=246,277,46,36
 
 [txtQuadrant]
-Coordinates=749,277,72,33
+Coordinates=749,277,82,36
 
 [Sphere12]
-Coordinates=670,277,60,33
+Coordinates=670,277,70,36
 
 [Sphere10]
-Coordinates=167,277,60,33
+Coordinates=167,277,70,36
 
 [LightMaterialSourceGreenery]
-Coordinates=819,314,158,33
+Coordinates=819,314,183,36
 
 [cylArrowStemY]
-Coordinates=58,277,90,33
+Coordinates=58,277,102,36
 
 [Sphere6]
-Coordinates=800,351,54,33
+Coordinates=800,351,63,36
 
 [grpLight]
-Coordinates=94,10,56,33
+Coordinates=94,10,61,36
 Visible=False
 
 [Label3]
-Coordinates=10,78,46,33
+Coordinates=10,78,53,36
 Visible=False
 
 [Label2]
-Coordinates=157,78,46,33
+Coordinates=157,78,53,36
 Visible=False
 
 [Label1]
-Coordinates=228,10,46,33
+Coordinates=228,10,53,36
 Visible=False
 
 []
@@ -143,74 +143,83 @@ Visible=False
 ExplicitSubNodes=Enabled
 
 [BindingsList1]
-Coordinates=223,1,82,33
+Coordinates=223,1,91,36
 
 [SwitchLight]
-Coordinates=50,10,72,69
+Coordinates=50,10,81,72
 Visible=True
 
 [tbLightRotateX]
-Coordinates=260,20,88,69
+Coordinates=260,20,100,80
 ExplicitSubNodes=Enabled
 
 [btnShowOptions]
-Coordinates=141,1,96,33
+Coordinates=141,1,109,36
 Visible=False
 
 [Layer3DOptions]
-Coordinates=1036,1,93,33
+Coordinates=1036,1,107,36
 
 [ColorMaterialSourceBrown]
-Coordinates=838,111,147,33
+Coordinates=838,111,168,36
 
 [lblElkRotate]
-Coordinates=391,351,73,33
+Coordinates=391,351,84,36
 Visible=False
 
 [lblElkScale]
-Coordinates=590,20,68,33
+Coordinates=590,20,78,36
 Visible=False
 
 [grpElk]
-Coordinates=480,351,46,33
+Coordinates=480,351,51,36
 Visible=False
 
 [Model3DElk]
-Coordinates=400,10,80,105
+Coordinates=400,10,96,124
 Visible=True
 ExplicitSubNodes=RotationAngle.Y;Scale.X;Scale.Y;Scale.Z
 
 [tbElkScale]
-Coordinates=570,80,66,87
+Coordinates=570,80,76,90
 
 [tbElkRotate]
-Coordinates=570,10,71,51
+Coordinates=570,10,81,58
 Visible=True
 
 [LightMaterialSourceWood]
-Coordinates=386,134,141,33
+Coordinates=386,134,163,36
 
 [CylinderTreeTrunk]
-Coordinates=141,1,105,33
+Coordinates=141,1,121,36
 
 [Cylinder1]
-Coordinates=141,1,61,33
+Coordinates=141,1,69,36
 
 [Cylinder2]
-Coordinates=141,1,61,33
+Coordinates=141,1,69,36
 
 [ConeChristmasTree2]
-Coordinates=90,129,45,33
+Coordinates=90,129,136,36
 
 [ConeChristmasTree3]
-Coordinates=0,167,45,33
+Coordinates=0,167,136,36
 
 [Path3DStar2]
-Coordinates=492,277,55,33
+Coordinates=492,277,88,36
 
 [Path3dStar]
-Coordinates=337,129,68,33
+Coordinates=337,129,79,36
 
 [Path3DStar3]
-Coordinates=46,55,55,33
+Coordinates=46,55,88,36
+
+[FloatAnimation2]
+Coordinates=724,1,108,36
+
+[ColorMaterialSourceStar]
+Coordinates=838,1,156,36
+
+[ColorAnimationTwinkle]
+Coordinates=651,351,146,36
 
