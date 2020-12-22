@@ -1,7 +1,6 @@
 object frm3DQuadrants: Tfrm3DQuadrants
   Left = 0
   Top = 0
-  Camera = CameraEarthSat
   Caption = '3D Quadrants'
   Color = claLightgray
   ClientHeight = 543
@@ -141,7 +140,7 @@ object frm3DQuadrants: Tfrm3DQuadrants
       Quanternion = '(0,0.382683455944061,0,0.923879504203796)'
     end
     object CylinderTreeTrunk: TCylinder
-      Position.Y = 3.000000000000000000
+      Position.Y = 2.750000000000000000
       Width = 0.500000000000000000
       Height = 1.000000000000000000
       Depth = 0.500000000000000000
@@ -30146,9 +30145,7 @@ object frm3DQuadrants: Tfrm3DQuadrants
       Quanternion = '(0,0.382683455944061,0,0.923879504203796)'
     end
     object Cylinder2: TCylinder
-      Position.X = 0.800000011920929000
-      Position.Y = 3.000000000000000000
-      Position.Z = 2.000000000000000000
+      Position.Y = 2.500000000000000000
       Width = 0.500000000000000000
       Height = 1.000000000000000000
       Depth = 0.500000000000000000
@@ -30156,8 +30153,8 @@ object frm3DQuadrants: Tfrm3DQuadrants
     end
   end
   object ConeChristmasTree2: TCone
-    Position.X = 3.145541906356812000
-    Position.Y = -3.620002985000610000
+    Position.X = 3.099999904632568000
+    Position.Y = -3.599999904632568000
     Position.Z = 2.000000000000000000
     Scale.X = 0.800000011920929000
     Scale.Y = 0.800000011920929000
@@ -30254,9 +30251,7 @@ object frm3DQuadrants: Tfrm3DQuadrants
       Quanternion = '(0,0.382683455944061,0,0.923879504203796)'
     end
     object Cylinder1: TCylinder
-      Position.X = 0.500000000000000000
-      Position.Y = 3.500000000000000000
-      Position.Z = 2.000000000000000000
+      Position.Y = 2.500000000000000000
       Width = 0.500000000000000000
       Height = 1.000000000000000000
       Depth = 0.500000000000000000
@@ -53976,16 +53971,16 @@ object frm3DQuadrants: Tfrm3DQuadrants
       MaterialSource = ColorMaterialSourceBlack
       Quanternion = '(1,0,0,-4.37113882867379E-8)'
     end
-    object Text3D1: TText3D
-      Position.Y = -2.500000000000000000
+    object Text3DYAxis: TText3D
+      Position.Y = -2.000000000000000000
       Position.Z = -0.500000000000000000
       Width = 2.000000000000000000
       Height = 0.500000000000000000
-      Depth = 0.500000000000000000
+      Depth = 0.100000001490116100
       Text = 'Y-Axis'
       Stretch = True
       WordWrap = False
-      Flatness = 1.000000000000000000
+      Flatness = 5.000000000000000000
       Sides = [Front]
     end
   end
@@ -54126,7 +54121,7 @@ object frm3DQuadrants: Tfrm3DQuadrants
       Size.Height = 112.000000000000000000
       Size.PlatformDefault = False
       Text = 'Camera'
-      object radCameraLeft: TRadioButton
+      object radCameraCube: TRadioButton
         Position.X = 32.000000000000000000
         Position.Y = 44.000000000000000000
         Size.Width = 73.000000000000000000
@@ -54134,9 +54129,9 @@ object frm3DQuadrants: Tfrm3DQuadrants
         Size.PlatformDefault = False
         TabOrder = 41
         Text = 'Cube'
-        OnClick = radCameraLeftClick
+        OnClick = radCameraCubeClick
       end
-      object radCameraRight: TRadioButton
+      object radCameraElk: TRadioButton
         Position.X = 32.000000000000000000
         Position.Y = 64.000000000000000000
         Size.Width = 73.000000000000000000
@@ -54144,7 +54139,7 @@ object frm3DQuadrants: Tfrm3DQuadrants
         Size.PlatformDefault = False
         TabOrder = 39
         Text = 'Elk'
-        OnChange = radCameraRightChange
+        OnChange = radCameraElkChange
       end
       object radCameraDefault: TRadioButton
         Position.X = 32.000000000000000000
@@ -59370,8 +59365,8 @@ object frm3DQuadrants: Tfrm3DQuadrants
   object CameraCube: TCamera
     AngleOfView = 50.000000000000000000
     Target = Cube1
-    Position.X = -3.019536256790161000
-    Position.Y = -4.378930568695068000
+    Position.X = -3.000000000000000000
+    Position.Y = -4.500000000000000000
     Position.Z = -10.000000000000000000
     RotationAngle.X = 350.000000000000000000
     RotationAngle.Y = 350.000000000000000000
@@ -59385,17 +59380,17 @@ object frm3DQuadrants: Tfrm3DQuadrants
   object CameraElk: TCamera
     AngleOfView = 50.000000000000000000
     Target = Model3DElk
-    Position.X = 4.822773456573486000
-    Position.Y = 4.102644443511963000
-    Position.Z = -5.000000000000000000
-    RotationAngle.X = 355.282043457031300000
-    RotationAngle.Y = 28.320991516113280000
+    Position.X = 5.000000000000000000
+    Position.Y = 4.000000000000000000
+    Position.Z = -7.000000000000000000
+    RotationAngle.X = 355.000000000000000000
+    RotationAngle.Y = 30.000000000000000000
     Width = 1.000000000000000000
     Height = 1.000000000000000000
     Depth = 1.000000000000000000
     Quanternion = 
-      '(-0.271820604801178,0.0592454671859741,-0.023297680541873,0.9602' +
-      '39827632904)'
+      '(0.273814618587494,-0.073355458676815,0.027166523039341,-0.95859' +
+      '5931529999)'
   end
   object BindingsList1: TBindingsList
     Methods = <>

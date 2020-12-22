@@ -57,7 +57,7 @@ type
     FloatAnimationBackAndForth: TFloatAnimation;
     cylArrowStemY: TCylinder;
     coneArrowTipY: TCone;
-    Text3D1: TText3D;
+    Text3DYAxis: TText3D;
     Layer3DOptions: TLayer3D;
     grpLight: TGroupBox;
     Label3: TLabel;
@@ -90,16 +90,16 @@ type
     ColorAnimationTwinkle: TColorAnimation;
     grpCamera: TGroupBox;
     CameraCube: TCamera;
-    radCameraLeft: TRadioButton;
-    radCameraRight: TRadioButton;
+    radCameraCube: TRadioButton;
+    radCameraElk: TRadioButton;
     CameraElk: TCamera;
     radCameraDefault: TRadioButton;
     CameraEarthSat: TCamera;
     radCameraEarth: TRadioButton;
     procedure btnShowOptionsClick(Sender: TObject);
     procedure Form3DCreate(Sender: TObject);
-    procedure radCameraLeftClick(Sender: TObject);
-    procedure radCameraRightChange(Sender: TObject);
+    procedure radCameraCubeClick(Sender: TObject);
+    procedure radCameraElkChange(Sender: TObject);
     procedure radCameraDefaultClick(Sender: TObject);
     procedure btnShowXYClick(Sender: TObject);
     procedure radCameraEarthChange(Sender: TObject);
@@ -148,14 +148,14 @@ begin
   Camera.Repaint;
 end;
 
-procedure Tfrm3DQuadrants.radCameraLeftClick(Sender: TObject);
+procedure Tfrm3DQuadrants.radCameraCubeClick(Sender: TObject);
 begin
   UsingDesignCamera := False;
   Camera := CameraCube;
   Camera.Repaint;
 end;
 
-procedure Tfrm3DQuadrants.radCameraRightChange(Sender: TObject);
+procedure Tfrm3DQuadrants.radCameraElkChange(Sender: TObject);
 begin
   UsingDesignCamera := False;
   Camera := CameraElk;

@@ -94,9 +94,6 @@ ExplicitSubNodes=Enabled;RotationAngle.X;RotationAngle.Y
 [ColorMaterialSourceGray]
 Coordinates=838,221,160,36
 
-[Text3D1]
-Coordinates=295,277,63,36
-
 [SphereGlobe]
 Coordinates=838,276,90,36
 
@@ -222,4 +219,7 @@ Coordinates=838,1,156,36
 
 [ColorAnimationTwinkle]
 Coordinates=651,351,146,36
+
+[Text3DYAxis]
+Coordinates=295,277,63,36
 
