@@ -86,23 +86,27 @@ type
     Cylinder1: TCylinder;
     Cylinder2: TCylinder;
     ColorMaterialSourceStar: TColorMaterialSource;
-    FloatAnimation2: TFloatAnimation;
     ColorAnimationTwinkle: TColorAnimation;
-    grpCamera: TGroupBox;
     CameraCube: TCamera;
-    radCameraCube: TRadioButton;
-    radCameraElk: TRadioButton;
     CameraElk: TCamera;
-    radCameraDefault: TRadioButton;
     CameraEarthSat: TCamera;
-    radCameraEarth: TRadioButton;
+    StyleBook1: TStyleBook;
     procedure btnShowOptionsClick(Sender: TObject);
     procedure Form3DCreate(Sender: TObject);
-    procedure radCameraCubeClick(Sender: TObject);
-    procedure radCameraElkChange(Sender: TObject);
-    procedure radCameraDefaultClick(Sender: TObject);
     procedure btnShowXYClick(Sender: TObject);
-    procedure radCameraEarthChange(Sender: TObject);
+    procedure Model3DElkDblClick(Sender: TObject);
+    procedure Form3DKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
+      Shift: TShiftState);
+    procedure Model3DElkClick(Sender: TObject);
+    procedure CubeClick(Sender: TObject);
+    procedure SphereGlobeClick(Sender: TObject);
+  private
+    procedure SwitchToCameraElk;
+    procedure SwitchToCameraCube;
+    procedure SwitchToCameraEarthSat;
+    procedure SwitchToCameraDefault;
+    procedure ResetCameras;
+    procedure StartTreeLightsBlinking;
   end;
 
 var
@@ -111,16 +115,21 @@ var
 implementation
 
 {$R *.fmx}
+{$R *.iPhone55in.fmx IOS}
+{$R *.LgXhdpiPh.fmx ANDROID}
 
 procedure Tfrm3DQuadrants.btnShowOptionsClick(Sender: TObject);
 begin
   if Layer3DOptions.Width = 20 then begin
-    Layer3DOptions.Width := 100;
+    Layer3DOptions.Width := 120;
     btnShowOptions.StyleLookup := 'arrowrighttoolbutton';
   end else begin
     Layer3DOptions.Width := 20;
     btnShowOptions.StyleLookup := 'arrowlefttoolbutton';
   end;
+
+  grpLight.Visible  := Layer3DOptions.Width = 120;
+  grpElk.Visible    := Layer3DOptions.Width = 120;
 end;
 
 procedure Tfrm3DQuadrants.btnShowXYClick(Sender: TObject);
@@ -129,37 +138,109 @@ begin
                      [Camera.Position.X, Camera.Position.Y, Camera.Position.Z]));
 end;
 
+procedure Tfrm3DQuadrants.CubeClick(Sender: TObject);
+begin
+  SwitchToCameraCube;
+end;
+
 procedure Tfrm3DQuadrants.Form3DCreate(Sender: TObject);
 begin
   for var AMesh in Model3DElk.MeshCollection do
     AMesh.MaterialSource := ColorMaterialSourceBrown;
+
+  grpLight.Visible := False;
+  grpElk.Visible := False;
+
+  Layer3DOptions.Width := 20;
+
+  StartTreeLightsBlinking;
 end;
 
-procedure Tfrm3DQuadrants.radCameraDefaultClick(Sender: TObject);
+procedure Tfrm3DQuadrants.Form3DKeyDown(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+  if Key = vkEscape then
+    ResetCameras;
+end;
+
+procedure Tfrm3DQuadrants.Model3DElkClick(Sender: TObject);
+begin
+  SwitchToCameraElk;
+end;
+
+procedure Tfrm3DQuadrants.Model3DElkDblClick(Sender: TObject);
+begin
+  SwitchToCameraElk;
+end;
+
+procedure Tfrm3DQuadrants.ResetCameras;
+begin
+  SwitchToCameraDefault;
+end;
+
+procedure Tfrm3DQuadrants.SphereGlobeClick(Sender: TObject);
+begin
+  SwitchToCameraEarthSat;
+end;
+
+procedure Tfrm3DQuadrants.StartTreeLightsBlinking;
+var
+  NewFloatAnimation: TFloatAnimation;
+begin
+  for var bulb := 1 to 8 do begin
+    NewFloatAnimation := TFloatAnimation.Create(self);
+    NewFloatAnimation.Parent := FindComponent('bulb' + bulb.ToString) as TSphere;
+    if Assigned(NewFloatAnimation.Parent) then begin
+      NewFloatAnimation.Duration := 0.5 + Random;
+      NewFloatAnimation.Delay := 0.5 + Random;
+      NewFloatAnimation.StartValue := 0.0;
+      NewFloatAnimation.StopValue  := 1.0;
+      NewFloatAnimation.Loop := True;
+      NewFloatAnimation.AutoReverse := True;
+      NewFloatAnimation.PropertyName := 'Opacity';
+      NewFloatAnimation.Enabled := True;
+    end;
+  end;
+end;
+
+procedure Tfrm3DQuadrants.SwitchToCameraCube;
+begin
+  if Camera = CameraCube then
+    SwitchToCameraDefault
+  else begin
+    UsingDesignCamera := False;
+    Camera := CameraCube;
+    Camera.Repaint;
+  end;
+end;
+
+procedure Tfrm3DQuadrants.SwitchToCameraDefault;
 begin
   UsingDesignCamera := True;
+  Sleep(100); // prevents needing to call this method twice
   Camera.Repaint;
 end;
 
-procedure Tfrm3DQuadrants.radCameraEarthChange(Sender: TObject);
+procedure Tfrm3DQuadrants.SwitchToCameraEarthSat;
 begin
-  UsingDesignCamera := False;
-  Camera := CameraEarthSat;
-  Camera.Repaint;
+  if Camera = CameraEarthSat then
+    SwitchToCameraDefault
+  else begin
+    UsingDesignCamera := False;
+    Camera := CameraEarthSat;
+    Camera.Repaint;
+  end;
 end;
 
-procedure Tfrm3DQuadrants.radCameraCubeClick(Sender: TObject);
+procedure Tfrm3DQuadrants.SwitchToCameraElk;
 begin
-  UsingDesignCamera := False;
-  Camera := CameraCube;
-  Camera.Repaint;
-end;
-
-procedure Tfrm3DQuadrants.radCameraElkChange(Sender: TObject);
-begin
-  UsingDesignCamera := False;
-  Camera := CameraElk;
-  Camera.Repaint;
+  if Camera = CameraElk then
+    SwitchToCameraDefault
+  else begin
+    UsingDesignCamera := False;
+    Camera := CameraElk;
+    Camera.Repaint;
+  end;
 end;
 
 end.

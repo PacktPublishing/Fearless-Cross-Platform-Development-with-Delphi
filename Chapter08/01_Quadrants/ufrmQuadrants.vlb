@@ -135,7 +135,7 @@ Coordinates=228,10,53,36
 Visible=False
 
 []
-Coordinates=203,240,97,33
+Coordinates=724,1,108,36
 Visible=False
 ExplicitSubNodes=Enabled
 
@@ -210,9 +210,6 @@ Coordinates=337,129,79,36
 
 [Path3DStar3]
 Coordinates=46,55,88,36
-
-[FloatAnimation2]
-Coordinates=724,1,108,36
 
 [ColorMaterialSourceStar]
 Coordinates=838,1,156,36
