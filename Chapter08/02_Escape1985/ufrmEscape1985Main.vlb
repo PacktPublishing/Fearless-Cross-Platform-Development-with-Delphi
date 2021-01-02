@@ -1,9 +1,6 @@
 ﻿[CameraRoom]
 Coordinates=0,0,94,36
 
-[Dummy1]
-Coordinates=113,1,65,36
-
 [Image3DRoom]
 Coordinates=94,55,100,36
 
@@ -22,7 +19,7 @@ Coordinates=393,56,165,36
 Coordinates=393,111,158,36
 
 []
-Coordinates=35,394,91,36
+Coordinates=180,80,144,58
 Visible=False
 ExplicitSubNodes=Position.X;Position.Y;RotationAngle.Z
 
@@ -134,9 +131,6 @@ Coordinates=570,374,119,36
 Coordinates=312,374,99,36
 Visible=False
 
-[pbControlsPowerLevel]
-Coordinates=180,80,144,58
-
 [RectSecCode1]
 Coordinates=223,374,80,36
 Visible=False
@@ -160,4 +154,7 @@ Visible=False
 [RectSecCode4]
 Coordinates=658,320,80,36
 Visible=False
+
+[DummyMain]
+Coordinates=113,1,65,36
 

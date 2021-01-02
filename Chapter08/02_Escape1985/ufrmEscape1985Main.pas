@@ -11,7 +11,7 @@ uses
 
 type
   TfrmEscape1985 = class(TForm3D)
-    Dummy1: TDummy;
+    DummyMain: TDummy;
     Image3DRoom: TImage3D;
     CameraRoom: TCamera;
     Rectangle3DNotepad: TRectangle3D;
@@ -55,7 +55,6 @@ type
     RectSecCode4: TRectangle;
     RectSecCode5: TRectangle;
     RectSecCode6: TRectangle;
-    pbControlsPowerLevel: TProgressBar;
     lblControlPWR: TLabel;
     lblSecCode1: TLabel;
     lblSecCode2: TLabel;
@@ -64,24 +63,39 @@ type
     lblSecCode5: TLabel;
     lblSecCode6: TLabel;
     StyleBook1: TStyleBook;
+    CylinderPowerLevelOuter: TCylinder;
+    LightMaterialSourceBlack: TLightMaterialSource;
+    LightMaterialSourceRed: TLightMaterialSource;
+    LightRoom: TLight;
+    CylinderPowerLevelInner: TCylinder;
+    LightMaterialSourceGreen: TLightMaterialSource;
+    LightMaterialSourceYellow: TLightMaterialSource;
+    Button1: TButton;
+    Button2: TButton;
     procedure Rectangle3DNotepadClick(Sender: TObject);
     procedure Form3DCreate(Sender: TObject);
     procedure FloatAnimationFinish(Sender: TObject);
     procedure Rectangle3DControlsClick(Sender: TObject);
     procedure tmrSecCodePrefixTimer(Sender: TObject);
     procedure lblSecCodeClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     const
       CLICKABLE_OBJECTS_Z = -0.8;
       ZOOMED_OBJECTS_Z = -1.0;
-      MAX_SEC_CODE_COUNTDOWN = 30;
+      MAX_SEC_CODE_COUNTDOWN = 60;
       MAX_SEC_CODES = 6;
+      POWER_LEVEL_GREEN_MAX = 80;
+      POWER_LEVEL_YELLOW_MAX = 100;
+      POWER_LEVEL_RED_MAX = 150;
     var
       FNotepadShowing: Boolean;
       FControlsShowing: Boolean;
       FSecCodePrefix: Integer;
       FSecCodeCountdown: Integer;
       FSecCodes: array[1..MAX_SEC_CODES] of Integer;
+      FCurrPowerPercent: Integer;
+    procedure InvalidActionSound;
     procedure ResetSecCodeCountDown;
     procedure InitializeSecCodes;
     procedure UpdateSecCodeDisplay;
@@ -89,6 +103,9 @@ type
     procedure SetupControls;
     procedure ShowNotepad;
     procedure ShowControls;
+    procedure SetPowerLevel(const NewPowerPercent: Integer);
+    procedure RaisePower(const PowerIncreasePercent: Integer);
+    procedure LowerPower(const PowerDecreasePercent: Integer);
   end;
 
 var
@@ -100,6 +117,14 @@ implementation
 
 {.$DEFINE VisualTestNotepad}
 {.$DEFINE VisualTestControls}
+
+uses
+  System.Math;
+
+procedure TfrmEscape1985.Button1Click(Sender: TObject);
+begin
+  RaisePower(10);
+end;
 
 procedure TfrmEscape1985.FloatAnimationFinish(Sender: TObject);
 begin
@@ -124,6 +149,11 @@ procedure TfrmEscape1985.InitializeSecCodes;
 begin
   for var i := 1 to MAX_SEC_CODES do
     FSecCodes[i] := 0;
+end;
+
+procedure TfrmEscape1985.InvalidActionSound;
+begin
+  { TODO : add short sound that indicates invalid action }
 end;
 
 procedure TfrmEscape1985.lblSecCodeClick(Sender: TObject);
@@ -173,6 +203,28 @@ end;
 procedure TfrmEscape1985.Rectangle3DNotepadClick(Sender: TObject);
 begin
   ShowNotepad;
+end;
+
+procedure TfrmEscape1985.SetPowerLevel(const NewPowerPercent: Integer);
+begin
+  // calculate height and width of inner cylinder
+  // if new power percent crosses color threshhold, change color of inner cylinder
+end;
+
+procedure TfrmEscape1985.RaisePower(const PowerIncreasePercent: Integer);
+begin
+  if FCurrPowerPercent < POWER_LEVEL_RED_MAX then
+    SetPowerLevel(Min(Inc(FCurrPowerPercent, PowerIncreasePercent), POWER_LEVEL_RED_MAX))
+  else
+    InvalidActionSound;
+end;
+
+procedure TfrmEscape1985.LowerPower(const PowerDecreasePercent: Integer);
+begin
+  if FCurrPowerPercent > 0 then
+    SetPowerLevel(Max(Dec(FCurrPowerPercent, PowerDecreasePercent), 0))
+  else
+    InvalidActionSound;
 end;
 
 procedure TfrmEscape1985.SetupControls;
