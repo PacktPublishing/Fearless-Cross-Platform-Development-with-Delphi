@@ -72,6 +72,7 @@ type
     LightMaterialSourceYellow: TLightMaterialSource;
     Button1: TButton;
     Button2: TButton;
+    Text3DPowerPercent: TText3D;
     procedure Rectangle3DNotepadClick(Sender: TObject);
     procedure Form3DCreate(Sender: TObject);
     procedure FloatAnimationFinish(Sender: TObject);
@@ -79,6 +80,7 @@ type
     procedure tmrSecCodePrefixTimer(Sender: TObject);
     procedure lblSecCodeClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
     const
       CLICKABLE_OBJECTS_Z = -0.8;
@@ -88,6 +90,8 @@ type
       POWER_LEVEL_GREEN_MAX = 80;
       POWER_LEVEL_YELLOW_MAX = 100;
       POWER_LEVEL_RED_MAX = 150;
+      POWER_LEVEL_RESET_THRESHHOLD = 90;
+      POWER_LEVEL_LIGHTS = 35;
     var
       FNotepadShowing: Boolean;
       FControlsShowing: Boolean;
@@ -126,6 +130,11 @@ begin
   RaisePower(10);
 end;
 
+procedure TfrmEscape1985.Button2Click(Sender: TObject);
+begin
+  LowerPower(10);
+end;
+
 procedure TfrmEscape1985.FloatAnimationFinish(Sender: TObject);
 begin
   (Sender as TFloatAnimation).Enabled := False;
@@ -138,11 +147,6 @@ begin
 
   SetupNotepad;
   SetupControls;
-
-  pbControlSCP.Max := MAX_SEC_CODE_COUNTDOWN;
-  InitializeSecCodes;
-  UpdateSecCodeDisplay;
-  ResetSecCodeCountDown;
 end;
 
 procedure TfrmEscape1985.InitializeSecCodes;
@@ -177,6 +181,9 @@ begin
 
   FSecCodeCountdown := MAX_SEC_CODE_COUNTDOWN;
   pbControlSCP.Value := FSecCodeCountdown;
+
+  if FCurrPowerPercent > POWER_LEVEL_RESET_THRESHHOLD then
+    SetPowerLevel(POWER_LEVEL_GREEN_MAX);
 end;
 
 procedure TfrmEscape1985.tmrSecCodePrefixTimer(Sender: TObject);
@@ -206,25 +213,54 @@ begin
 end;
 
 procedure TfrmEscape1985.SetPowerLevel(const NewPowerPercent: Integer);
+// calculate height and width of inner cylinder to simulate power level meter
+// if new power percent crosses color threshhold, change color of inner cylinder
+const
+  POWER_100_PERCENT_HEIGHT = 3.4;
+  POWER_MAX_PERCENT_HEIGHT = 3.8;
+var
+  CalculatedHeight: Single;
+  CalculatedY: Single;
 begin
-  // calculate height and width of inner cylinder
-  // if new power percent crosses color threshhold, change color of inner cylinder
+  // never go below 0%
+  if NewPowerPercent >= 0 then begin
+    FCurrPowerPercent := NewPowerPercent;
+    Text3DPowerPercent.Text := FCurrPowerPercent.ToString + '%';
+
+    CalculatedHeight := (NewPowerPercent / 100.0) * POWER_100_PERCENT_HEIGHT;
+    if CalculatedHeight > POWER_MAX_PERCENT_HEIGHT then
+      CalculatedHeight := POWER_MAX_PERCENT_HEIGHT;
+
+    CalculatedY := (POWER_MAX_PERCENT_HEIGHT / 2.0) - (CalculatedHeight / 2.0);
+
+    CylinderPowerLevelInner.Height := CalculatedHeight;
+    CylinderPowerLevelInner.Position.Y := CalculatedY;
+
+    if (FCurrPowerPercent >= 0) and (FCurrPowerPercent <= POWER_LEVEL_GREEN_MAX) then
+      CylinderPowerLevelInner.MaterialSource := LightMaterialSourceGreen
+    else if FCurrPowerPercent <= POWER_LEVEL_YELLOW_MAX then
+      CylinderPowerLevelInner.MaterialSource := LightMaterialSourceYellow
+    else
+      CylinderPowerLevelInner.MaterialSource := LightMaterialSourceRed;
+  end;
 end;
 
 procedure TfrmEscape1985.RaisePower(const PowerIncreasePercent: Integer);
 begin
   if FCurrPowerPercent < POWER_LEVEL_RED_MAX then
-    SetPowerLevel(Min(Inc(FCurrPowerPercent, PowerIncreasePercent), POWER_LEVEL_RED_MAX))
+    SetPowerLevel(FCurrPowerPercent + PowerIncreasePercent)
   else
     InvalidActionSound;
 end;
 
 procedure TfrmEscape1985.LowerPower(const PowerDecreasePercent: Integer);
 begin
-  if FCurrPowerPercent > 0 then
-    SetPowerLevel(Max(Dec(FCurrPowerPercent, PowerDecreasePercent), 0))
-  else
+  if FCurrPowerPercent - PowerDecreasePercent > POWER_LEVEL_LIGHTS then
+    SetPowerLevel(FCurrPowerPercent - PowerDecreasePercent)
+  else begin
     InvalidActionSound;
+    ShowMessage('Please don''t turn off the lights.');
+  end;
 end;
 
 procedure TfrmEscape1985.SetupControls;
@@ -259,6 +295,13 @@ begin
   {$IFNDEF VisualTestControls}
   Rectangle3DControls.Opacity := 0;
   {$ENDIF}
+
+  pbControlSCP.Max := MAX_SEC_CODE_COUNTDOWN;
+  InitializeSecCodes;
+  UpdateSecCodeDisplay;
+  ResetSecCodeCountDown;
+
+  SetPowerLevel(78);
 end;
 
 procedure TfrmEscape1985.SetupNotepad;
