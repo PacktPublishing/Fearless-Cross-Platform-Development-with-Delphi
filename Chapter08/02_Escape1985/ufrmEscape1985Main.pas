@@ -7,7 +7,8 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms3D, FMX.Types3D, FMX.Forms, FMX.Graphics, 
   FMX.Dialogs, System.Math.Vectors, FMX.Layers3D, FMX.Controls3D, FMX.Objects3D,
   FMX.Ani, FMX.MaterialSources, FMX.Controls.Presentation, FMX.StdCtrls,
-  FMX.Memo.Types, FMX.ScrollBox, FMX.Memo, FMX.Edit, FMX.Objects;
+  FMX.Memo.Types, FMX.ScrollBox, FMX.Memo, FMX.Edit, FMX.Objects,
+  System.Actions, FMX.ActnList, FMX.EditBox, FMX.SpinBox, FMX.ListBox;
 
 type
   TfrmEscape1985 = class(TForm3D)
@@ -49,19 +50,7 @@ type
     mmoControlNotice: TMemo;
     pbControlSCP: TProgressBar;
     tmrSecCodePrefix: TTimer;
-    RectSecCode1: TRectangle;
-    RectSecCode2: TRectangle;
-    RectSecCode3: TRectangle;
-    RectSecCode4: TRectangle;
-    RectSecCode5: TRectangle;
-    RectSecCode6: TRectangle;
     lblControlPWR: TLabel;
-    lblSecCode1: TLabel;
-    lblSecCode2: TLabel;
-    lblSecCode3: TLabel;
-    lblSecCode4: TLabel;
-    lblSecCode5: TLabel;
-    lblSecCode6: TLabel;
     StyleBook1: TStyleBook;
     CylinderPowerLevelOuter: TCylinder;
     LightMaterialSourceBlack: TLightMaterialSource;
@@ -70,28 +59,44 @@ type
     CylinderPowerLevelInner: TCylinder;
     LightMaterialSourceGreen: TLightMaterialSource;
     LightMaterialSourceYellow: TLightMaterialSource;
+    Text3DPowerPercent: TText3D;
+    LightMaterialSourceBlue: TLightMaterialSource;
+    lblSecurityAuthorized: TLabel;
+    TmrAuthMessage: TTimer;
+    btnPowerUp10: TButton;
+    btnPowerUp5: TButton;
+    btnPowerDown5: TButton;
+    btnPowerDown10: TButton;
+    btnSecCode1: TButton;
     Button1: TButton;
     Button2: TButton;
-    Text3DPowerPercent: TText3D;
-    procedure Rectangle3DNotepadClick(Sender: TObject);
+    Button3: TButton;
+    Button4: TButton;
+    Button5: TButton;
     procedure Form3DCreate(Sender: TObject);
     procedure FloatAnimationFinish(Sender: TObject);
-    procedure Rectangle3DControlsClick(Sender: TObject);
     procedure tmrSecCodePrefixTimer(Sender: TObject);
-    procedure lblSecCodeClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure TmrAuthMessageTimer(Sender: TObject);
+    procedure Image3DRoomClick(Sender: TObject);
+    procedure Rectangle3DNotepadClick(Sender: TObject);
+    procedure Rectangle3DControlsClick(Sender: TObject);
+    procedure cmbSecCode1Change(Sender: TObject);
+    procedure btnPowerClick(Sender: TObject);
+    procedure btnSecCodeClick(Sender: TObject);
   private
     const
       CLICKABLE_OBJECTS_Z = -0.8;
       ZOOMED_OBJECTS_Z = -1.0;
       MAX_SEC_CODE_COUNTDOWN = 60;
       MAX_SEC_CODES = 6;
-      POWER_LEVEL_GREEN_MAX = 80;
+      POWER_LEVEL_GREEN_MAX = 90;
       POWER_LEVEL_YELLOW_MAX = 100;
       POWER_LEVEL_RED_MAX = 150;
       POWER_LEVEL_RESET_THRESHHOLD = 90;
+      POWER_LEVEL_COMPUTERS = 80;
       POWER_LEVEL_LIGHTS = 35;
+      SEC_CODE_OPERATOR = 315;
+      SEC_CODE_POWER = 417;
     var
       FNotepadShowing: Boolean;
       FControlsShowing: Boolean;
@@ -99,10 +104,11 @@ type
       FSecCodeCountdown: Integer;
       FSecCodes: array[1..MAX_SEC_CODES] of Integer;
       FCurrPowerPercent: Integer;
+      FUserAuthorized: Boolean;
+      FPowerAuthorized: Boolean;
     procedure InvalidActionSound;
     procedure ResetSecCodeCountDown;
-    procedure InitializeSecCodes;
-    procedure UpdateSecCodeDisplay;
+    procedure CheckSecCodes;
     procedure SetupNotepad;
     procedure SetupControls;
     procedure ShowNotepad;
@@ -118,6 +124,9 @@ var
 implementation
 
 {$R *.fmx}
+{$R *.iPad.fmx IOS}
+{$R *.iPhone55in.fmx IOS}
+{$R *.LgXhdpiPh.fmx ANDROID}
 
 {.$DEFINE VisualTestNotepad}
 {.$DEFINE VisualTestControls}
@@ -125,34 +134,23 @@ implementation
 uses
   System.Math;
 
-procedure TfrmEscape1985.Button1Click(Sender: TObject);
-begin
-  RaisePower(10);
-end;
-
-procedure TfrmEscape1985.Button2Click(Sender: TObject);
-begin
-  LowerPower(10);
-end;
-
-procedure TfrmEscape1985.FloatAnimationFinish(Sender: TObject);
-begin
-  (Sender as TFloatAnimation).Enabled := False;
-end;
-
 procedure TfrmEscape1985.Form3DCreate(Sender: TObject);
 begin
-  FNotepadShowing := False;
+  FNotepadShowing  := False;
   FControlsShowing := False;
+  FUserAuthorized  := False;
+  FPowerAuthorized := False;
 
   SetupNotepad;
   SetupControls;
 end;
 
-procedure TfrmEscape1985.InitializeSecCodes;
+procedure TfrmEscape1985.Image3DRoomClick(Sender: TObject);
 begin
-  for var i := 1 to MAX_SEC_CODES do
-    FSecCodes[i] := 0;
+  if FNotepadShowing then
+    ShowNotepad
+  else if FControlsShowing then
+    ShowControls;
 end;
 
 procedure TfrmEscape1985.InvalidActionSound;
@@ -160,18 +158,16 @@ begin
   { TODO : add short sound that indicates invalid action }
 end;
 
-procedure TfrmEscape1985.lblSecCodeClick(Sender: TObject);
-var
-  LSecNum: ShortInt;
+procedure TfrmEscape1985.Rectangle3DControlsClick(Sender: TObject);
 begin
-  LSecNum := (Sender as TLabel).Tag;
-  if LSecNum in [1..MAX_SEC_CODES] then begin
-    FSecCodes[LSecNum] := FSecCodes[LSecNum] + 1;
-    if FSecCodes[LSecNum] > 9 then
-      FSecCodes[LSecNum] := 0;
-  end;
+  if not FControlsShowing then
+    ShowControls;
+end;
 
-  UpdateSecCodeDisplay;
+procedure TfrmEscape1985.Rectangle3DNotepadClick(Sender: TObject);
+begin
+  if not FNotepadShowing then
+    ShowNotepad;
 end;
 
 procedure TfrmEscape1985.ResetSecCodeCountDown;
@@ -184,6 +180,8 @@ begin
 
   if FCurrPowerPercent > POWER_LEVEL_RESET_THRESHHOLD then
     SetPowerLevel(POWER_LEVEL_GREEN_MAX);
+
+  FPowerAuthorized := False;
 end;
 
 procedure TfrmEscape1985.tmrSecCodePrefixTimer(Sender: TObject);
@@ -196,20 +194,64 @@ begin
   end;
 end;
 
-procedure TfrmEscape1985.UpdateSecCodeDisplay;
+procedure TfrmEscape1985.btnPowerClick(Sender: TObject);
 begin
-  for var i := 1 to 6 do
-    (FindComponent('lblSecCode' + i.ToString) as TLabel).Text := IntToStr(FSecCodes[i]);
+  if FUserAuthorized then begin
+    var PowerChange := (Sender as TButton).Tag;
+    if PowerChange > 0 then
+      RaisePower(PowerChange)
+    else
+      LowerPower(Abs(PowerChange));
+  end else
+    InvalidActionSound;
 end;
 
-procedure TfrmEscape1985.Rectangle3DControlsClick(Sender: TObject);
+procedure TfrmEscape1985.btnSecCodeClick(Sender: TObject);
+var
+  CurrValue: Integer;
+  LSecNum: ShortInt;
 begin
-  ShowControls;
+  if TryStrToInt((Sender as TButton).Text, CurrValue) then begin
+    if CurrValue >= 9 then
+      CurrValue := 0;
+    (Sender as TButton).Text := (CurrValue + 1).ToString;
+
+    LSecNum := (Sender as TButton).Tag;
+    if LSecNum in [1..MAX_SEC_CODES] then begin
+      FSecCodes[LSecNum] := FSecCodes[LSecNum] + 1;
+      if FSecCodes[LSecNum] > 9 then
+        FSecCodes[LSecNum] := 0;
+    end;
+
+    CheckSecCodes;
+  end;
 end;
 
-procedure TfrmEscape1985.Rectangle3DNotepadClick(Sender: TObject);
+procedure TfrmEscape1985.CheckSecCodes;
+var
+  SecCodeTotal: Integer;
 begin
-  ShowNotepad;
+  SecCodeTotal := 0;
+
+  for var i := 1 to MAX_SEC_CODES do
+    SecCodeTotal := SecCodeTotal + FSecCodes[i] * Round(Power(10, i-1));
+
+  if not FUserAuthorized then begin
+    if SecCodeTotal = FSecCodePrefix * 1000 + SEC_CODE_OPERATOR then begin
+      lblSecurityAuthorized.Visible := True;
+      TmrAuthMessage.Enabled := True;
+      btnPowerUp10.Enabled := True;
+      btnPowerUp5.Enabled := True;
+      btnPowerDown5.Enabled := True;
+      btnPowerDown10.Enabled := True;
+      FUserAuthorized := True;
+    end;
+  end else if not FPowerAuthorized then
+    if SecCodeTotal = FSecCodePrefix * 1000 + SEC_CODE_POWER then begin
+      lblSecurityAuthorized.Visible := True;
+      TmrAuthMessage.Enabled := True;
+      FPowerAuthorized := True;
+    end;
 end;
 
 procedure TfrmEscape1985.SetPowerLevel(const NewPowerPercent: Integer);
@@ -247,9 +289,12 @@ end;
 
 procedure TfrmEscape1985.RaisePower(const PowerIncreasePercent: Integer);
 begin
-  if FCurrPowerPercent < POWER_LEVEL_RED_MAX then
-    SetPowerLevel(FCurrPowerPercent + PowerIncreasePercent)
-  else
+  if FCurrPowerPercent < POWER_LEVEL_RED_MAX then begin
+    if (not FPowerAuthorized) and (FCurrPowerPercent + PowerIncreasePercent > POWER_LEVEL_GREEN_MAX) then
+      InvalidActionSound
+    else
+      SetPowerLevel(FCurrPowerPercent + PowerIncreasePercent);
+  end else
     InvalidActionSound;
 end;
 
@@ -261,6 +306,24 @@ begin
     InvalidActionSound;
     ShowMessage('Please don''t turn off the lights.');
   end;
+end;
+
+procedure TfrmEscape1985.cmbSecCode1Change(Sender: TObject);
+var
+  NewNum: Integer;
+  LSecNum: ShortInt;
+begin
+  LSecNum := (Sender as TComboBox).Tag;
+  if LSecNum in [1..MAX_SEC_CODES] then
+    if TryStrToInt((Sender as TComboBox).Selected.Text, NewNum) then begin
+      FSecCodes[LSecNum] := NewNum;
+      CheckSecCodes;
+    end;
+end;
+
+procedure TfrmEscape1985.FloatAnimationFinish(Sender: TObject);
+begin
+  (Sender as TFloatAnimation).Enabled := False;
 end;
 
 procedure TfrmEscape1985.SetupControls;
@@ -297,11 +360,9 @@ begin
   {$ENDIF}
 
   pbControlSCP.Max := MAX_SEC_CODE_COUNTDOWN;
-  InitializeSecCodes;
-  UpdateSecCodeDisplay;
   ResetSecCodeCountDown;
 
-  SetPowerLevel(78);
+  SetPowerLevel(POWER_LEVEL_COMPUTERS);
 end;
 
 procedure TfrmEscape1985.SetupNotepad;
@@ -400,6 +461,11 @@ begin
     FloatAnimCtrlOpacity.Enabled := True;
     {$ENDIF}
   end;
+
+  btnPowerUp10.Enabled := FControlsShowing and FUserAuthorized;
+  btnPowerUp5.Enabled := FControlsShowing and FUserAuthorized;
+  btnPowerDown5.Enabled := FControlsShowing and FUserAuthorized;
+  btnPowerDown10.Enabled := FControlsShowing and FUserAuthorized;
 end;
 
 procedure TfrmEscape1985.ShowNotepad;
@@ -465,6 +531,12 @@ begin
     FloatAnimationNotepadOpacity.Enabled := True;
     {$ENDIF}
   end;
+end;
+
+procedure TfrmEscape1985.TmrAuthMessageTimer(Sender: TObject);
+begin
+  TmrAuthMessage.Enabled := False;
+  lblSecurityAuthorized.Visible := False;
 end;
 
 end.

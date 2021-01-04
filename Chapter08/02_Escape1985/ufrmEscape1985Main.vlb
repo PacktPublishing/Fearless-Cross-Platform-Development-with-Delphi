@@ -19,7 +19,7 @@ Coordinates=393,56,165,36
 Coordinates=393,111,158,36
 
 []
-Coordinates=180,80,144,58
+Coordinates=223,374,80,36
 Visible=False
 ExplicitSubNodes=Position.X;Position.Y;RotationAngle.Z
 
@@ -129,30 +129,6 @@ Coordinates=570,374,119,36
 
 [lblControlPWR]
 Coordinates=312,374,99,36
-Visible=False
-
-[RectSecCode1]
-Coordinates=223,374,80,36
-Visible=False
-
-[RectSecCode5]
-Coordinates=134,374,80,36
-Visible=False
-
-[RectSecCode6]
-Coordinates=445,232,80,36
-Visible=False
-
-[RectSecCode2]
-Coordinates=0,338,80,36
-Visible=False
-
-[RectSecCode3]
-Coordinates=540,330,80,36
-Visible=False
-
-[RectSecCode4]
-Coordinates=658,320,80,36
 Visible=False
 
 [DummyMain]
