@@ -91,7 +91,6 @@ type
     procedure Image3DRoomClick(Sender: TObject);
     procedure Rectangle3DNotepadClick(Sender: TObject);
     procedure Rectangle3DControlsClick(Sender: TObject);
-    procedure cmbSecCode1Change(Sender: TObject);
     procedure btnPowerClick(Sender: TObject);
     procedure btnSecCodeClick(Sender: TObject);
     procedure Image3DPhoneClick(Sender: TObject);
@@ -147,6 +146,17 @@ implementation
 {$R *.iPad.fmx IOS}
 {$R *.iPhone55in.fmx IOS}
 {$R *.LgXhdpiPh.fmx ANDROID}
+{$R *.Macintosh.fmx MACOS}
+{$R *.iPhone47in.fmx IOS}
+{$R *.iPhone.fmx IOS}
+{$R *.XLgXhdpiTb.fmx ANDROID}
+{$R *.LgXhdpiTb.fmx ANDROID}
+{$R *.GGlass.fmx ANDROID}
+{$R *.Moto360.fmx ANDROID}
+{$R *.iPhone4in.fmx IOS}
+{$R *.Windows.fmx MSWINDOWS}
+{$R *.Surface.fmx MSWINDOWS}
+{$R *.NmXhdpiPh.fmx ANDROID}
 
 {.$DEFINE VisualTestNotepad}
 {.$DEFINE VisualTestControls}
@@ -247,7 +257,6 @@ begin
   if TryStrToInt((Sender as TButton).Text, CurrValue) then begin
     if CurrValue >= 9 then
       CurrValue := 0;
-    (Sender as TButton).Text := (CurrValue + 1).ToString;
 
     LSecNum := (Sender as TButton).Tag;
     if LSecNum in [1..MAX_SEC_CODES] then begin
@@ -257,6 +266,9 @@ begin
     end;
 
     CheckSecCodes;
+
+    // do this last to make sure another button click hasn't interrupted
+    (Sender as TButton).Text := (CurrValue + 1).ToString;
   end;
 end;
 
@@ -271,6 +283,7 @@ begin
 
   if not FUserAuthorized then begin
     if SecCodeTotal = FSecCodePrefix * 1000 + SEC_CODE_OPERATOR then begin
+      lblSecurityAuthorized.Text := 'Authorization: OK';
       lblSecurityAuthorized.Visible := True;
       TmrAuthMessage.Enabled := True;
       btnPowerUp10.Enabled := True;
@@ -281,6 +294,7 @@ begin
     end;
   end else if not FPowerAuthorized then
     if SecCodeTotal = FSecCodePrefix * 1000 + SEC_CODE_POWER then begin
+      lblSecurityAuthorized.Text := 'Power Override: OK';
       lblSecurityAuthorized.Visible := True;
       TmrAuthMessage.Enabled := True;
       FPowerAuthorized := True;
@@ -341,19 +355,6 @@ begin
   end;
 end;
 
-procedure TfrmEscape1985.cmbSecCode1Change(Sender: TObject);
-var
-  NewNum: Integer;
-  LSecNum: ShortInt;
-begin
-  LSecNum := (Sender as TComboBox).Tag;
-  if LSecNum in [1..MAX_SEC_CODES] then
-    if TryStrToInt((Sender as TComboBox).Selected.Text, NewNum) then begin
-      FSecCodes[LSecNum] := NewNum;
-      CheckSecCodes;
-    end;
-end;
-
 procedure TfrmEscape1985.Die;
 begin
   ShowPhone;
@@ -387,7 +388,9 @@ procedure TfrmEscape1985.FloatAnimRoomOpacityFinish(Sender: TObject);
 begin
   FloatAnimRoomOpacity.Enabled := False;
   ShowMessage('You have died.');
+  {$IFNDEF IOS}
   Close;
+  {$ENDIF}
 end;
 
 procedure TfrmEscape1985.SetupControls;
@@ -549,14 +552,18 @@ begin
     {$ENDIF}
   end;
 
+  // disable or enable all buttons on the control panel
+  for var i := 0 to Layer3DControls.ChildrenCount - 1 do begin
+    var children := Layer3DControls.Children;
+    for var child in children do
+      if child is TButton then
+        TButton(child).Enabled := FControlsShowing;
+  end;
+
   btnPowerUp10.Enabled := FControlsShowing and FUserAuthorized;
   btnPowerUp5.Enabled := FControlsShowing and FUserAuthorized;
   btnPowerDown5.Enabled := FControlsShowing and FUserAuthorized;
   btnPowerDown10.Enabled := FControlsShowing and FUserAuthorized;
-
-  for var i := 0 to Layer3DControls.ComponentCount - 1 do
-    if (Layer3DControls.Components[i] is TButton) then
-      TButton(Layer3DControls.Components[i]).Enabled := FControlsShowing;
 end;
 
 procedure TfrmEscape1985.ShowNotepad;

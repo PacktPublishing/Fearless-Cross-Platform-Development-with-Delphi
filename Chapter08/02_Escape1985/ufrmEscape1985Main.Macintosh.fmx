@@ -1,0 +1,52 @@
+inherited frmEscape1985_Macintosh: TfrmEscape1985_Macintosh
+  ClientHeight = 499
+  DesignerMasterStyle = 0
+  inherited DummyMain: TDummy
+    Quanternion = '(-0.13052599132061,0,0,0.991444885730743)'
+    inherited Image3DRoom: TImage3D
+      inherited DummyNotepad: TDummy
+        inherited Rectangle3DNotepad: TRectangle3D
+          inherited Layer3DNotepad: TLayer3D
+            inherited lblNotepadPowerLevelHdr: TLabel
+              TextSettings.Font.StyleExt = {04040000000100000004000000}
+            end
+            inherited lblNotepadLights: TLabel
+              TextSettings.Font.StyleExt = {00040000000100000004000000}
+            end
+            inherited lblNotepadComputers: TLabel
+              TextSettings.Font.StyleExt = {00040000000100000004000000}
+            end
+            inherited lblNotepadTimePortal: TLabel
+              TextSettings.Font.StyleExt = {00040000000100000004000000}
+            end
+            inherited lblNotepadOpSecCode: TLabel
+              TextSettings.Font.StyleExt = {00040000000100000004000000}
+            end
+            inherited lblNotepadSecCodeHdr: TLabel
+              TextSettings.Font.StyleExt = {04040000000100000004000000}
+            end
+            inherited lblNotepadPowerOverride: TLabel
+              TextSettings.Font.StyleExt = {00040000000100000004000000}
+            end
+          end
+        end
+      end
+      inherited DummyControls: TDummy
+        inherited Rectangle3DControls: TRectangle3D
+          inherited Layer3DControls: TLayer3D
+            inherited mmoControlNotice: TMemo
+              Viewport.Width = 265.000000000000000000
+              Viewport.Height = 251.000000000000000000
+            end
+          end
+        end
+      end
+    end
+    inherited Text3DTooMuchPower: TText3D
+      Position.Y = 1.000000000000000000
+      Position.Z = 3.000000000000000000
+      Font.StyleExt = {00070000000000000004000000}
+      Stretch = True
+    end
+  end
+end
