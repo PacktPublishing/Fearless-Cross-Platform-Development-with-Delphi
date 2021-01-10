@@ -73,6 +73,11 @@ type
     Button3: TButton;
     Button4: TButton;
     Button5: TButton;
+    DummyPhone: TDummy;
+    Image3DPhone: TImage3D;
+    FloatAnimPhoneScaleX: TFloatAnimation;
+    FloatAnimPhoneScaleY: TFloatAnimation;
+    FloatAnimPhoneOpacity: TFloatAnimation;
     procedure Form3DCreate(Sender: TObject);
     procedure FloatAnimationFinish(Sender: TObject);
     procedure tmrSecCodePrefixTimer(Sender: TObject);
@@ -83,6 +88,7 @@ type
     procedure cmbSecCode1Change(Sender: TObject);
     procedure btnPowerClick(Sender: TObject);
     procedure btnSecCodeClick(Sender: TObject);
+    procedure Image3DPhoneClick(Sender: TObject);
   private
     const
       CLICKABLE_OBJECTS_Z = -0.8;
@@ -92,6 +98,7 @@ type
       POWER_LEVEL_GREEN_MAX = 90;
       POWER_LEVEL_YELLOW_MAX = 100;
       POWER_LEVEL_RED_MAX = 150;
+      POWER_LEVEL_TIME_PORTAL = 115;
       POWER_LEVEL_RESET_THRESHHOLD = 90;
       POWER_LEVEL_COMPUTERS = 80;
       POWER_LEVEL_LIGHTS = 35;
@@ -100,6 +107,7 @@ type
     var
       FNotepadShowing: Boolean;
       FControlsShowing: Boolean;
+      FPhoneShowing: Boolean;
       FSecCodePrefix: Integer;
       FSecCodeCountdown: Integer;
       FSecCodes: array[1..MAX_SEC_CODES] of Integer;
@@ -111,11 +119,16 @@ type
     procedure CheckSecCodes;
     procedure SetupNotepad;
     procedure SetupControls;
+    procedure SetupPhone;
     procedure ShowNotepad;
     procedure ShowControls;
+    procedure ShowPhone;
     procedure SetPowerLevel(const NewPowerPercent: Integer);
     procedure RaisePower(const PowerIncreasePercent: Integer);
     procedure LowerPower(const PowerDecreasePercent: Integer);
+    procedure PlayNullClick;
+    procedure Die;
+    procedure Escape;
   end;
 
 var
@@ -130,6 +143,7 @@ implementation
 
 {.$DEFINE VisualTestNotepad}
 {.$DEFINE VisualTestControls}
+{.$DEFINE VisualTestPhone}
 
 uses
   System.Math;
@@ -138,11 +152,21 @@ procedure TfrmEscape1985.Form3DCreate(Sender: TObject);
 begin
   FNotepadShowing  := False;
   FControlsShowing := False;
+  FPhoneShowing    := False;
   FUserAuthorized  := False;
   FPowerAuthorized := False;
 
   SetupNotepad;
   SetupControls;
+  SetupPhone;
+end;
+
+procedure TfrmEscape1985.Image3DPhoneClick(Sender: TObject);
+begin
+  if FPhoneShowing then
+    Escape
+  else if (not FNotepadShowing) and (not FPhoneShowing) and (not FControlsShowing) then
+    ShowPhone;
 end;
 
 procedure TfrmEscape1985.Image3DRoomClick(Sender: TObject);
@@ -150,7 +174,9 @@ begin
   if FNotepadShowing then
     ShowNotepad
   else if FControlsShowing then
-    ShowControls;
+    ShowControls
+  else if FPhoneShowing then
+    ShowPhone;
 end;
 
 procedure TfrmEscape1985.InvalidActionSound;
@@ -160,13 +186,13 @@ end;
 
 procedure TfrmEscape1985.Rectangle3DControlsClick(Sender: TObject);
 begin
-  if not FControlsShowing then
+  if (not FNotepadShowing) and (not FPhoneShowing) and (not FControlsShowing) then
     ShowControls;
 end;
 
 procedure TfrmEscape1985.Rectangle3DNotepadClick(Sender: TObject);
 begin
-  if not FNotepadShowing then
+  if (not FNotepadShowing) and (not FPhoneShowing) and (not FControlsShowing) then
     ShowNotepad;
 end;
 
@@ -264,7 +290,7 @@ var
   CalculatedHeight: Single;
   CalculatedY: Single;
 begin
-  // never go below 0%
+  // fail-safe check: never go below 0%
   if NewPowerPercent >= 0 then begin
     FCurrPowerPercent := NewPowerPercent;
     Text3DPowerPercent.Text := FCurrPowerPercent.ToString + '%';
@@ -321,6 +347,27 @@ begin
     end;
 end;
 
+procedure TfrmEscape1985.Die;
+begin
+  ShowMessage('There was too much power.  You have died.');
+end;
+
+procedure TfrmEscape1985.PlayNullClick;
+begin
+  { TODO : play click to indicate nothing happened }
+end;
+
+procedure TfrmEscape1985.Escape;
+begin
+  if FCurrPowerPercent > POWER_LEVEL_TIME_PORTAL then
+    Die
+  else if FCurrPowerPercent < POWER_LEVEL_TIME_PORTAL then
+    PlayNullClick
+  else begin
+    showmessage('escape!!!');
+  end;
+end;
+
 procedure TfrmEscape1985.FloatAnimationFinish(Sender: TObject);
 begin
   (Sender as TFloatAnimation).Enabled := False;
@@ -355,6 +402,10 @@ begin
   Rectangle3DControls.Scale.X := FloatAnimCtrlScaleX.StartValue;
   Rectangle3DControls.Scale.Y := FloatAnimCtrlScaleY.StartValue;
 
+  CylinderPowerLevelOuter.Opacity := 0;
+  CylinderPowerLevelInner.Opacity := 0;
+  Text3DPowerPercent.Opacity := 0;
+
   {$IFNDEF VisualTestControls}
   Rectangle3DControls.Opacity := 0;
   {$ENDIF}
@@ -367,8 +418,8 @@ end;
 
 procedure TfrmEscape1985.SetupNotepad;
 const
-  SMALL_SIZE_X = 12.5;
-  SMALL_SIZE_Y = 8;
+  SMALL_SIZE_X = 12.7;
+  SMALL_SIZE_Y = 8.5;
   SMALL_SIZE_HEIGHT = 1.4;
   SMALL_SIZE_WIDTH  = 1.8;
   SMALL_ROTATION_Z = 25;
@@ -404,6 +455,17 @@ begin
   {$ENDIF}
 end;
 
+procedure TfrmEscape1985.SetupPhone;
+begin
+  DummyPhone.Scale.X    := FloatAnimPhoneScaleX.StartValue;
+  DummyPhone.Scale.Y    := FloatAnimPhoneScaleY.StartValue;
+  DummyPhone.Position.Z := CLICKABLE_OBJECTS_Z;
+
+  {$IFNDEF VisualTestPhone}
+  Image3DPhone.Opacity := 0;
+  {$ENDIF}
+end;
+
 procedure TfrmEscape1985.ShowControls;
 begin
   if FControlsShowing then begin
@@ -427,6 +489,10 @@ begin
     FloatAnimCtrlScaleY.Inverse := True;
     FloatAnimCtrlScaleY.Enabled := True;
 
+    CylinderPowerLevelOuter.Opacity := 0;
+    CylinderPowerLevelInner.Opacity := 0;
+    Text3DPowerPercent.Opacity := 0;
+
     {$IFNDEF VisualTestControls}
     FloatAnimCtrlOpacity.Inverse := True;
     FloatAnimCtrlOpacity.Enabled := True;
@@ -437,6 +503,10 @@ begin
     FControlsShowing := True;
 
     DummyControls.Position.Z := ZOOMED_OBJECTS_Z;
+
+    CylinderPowerLevelOuter.Opacity := 1;
+    CylinderPowerLevelInner.Opacity := 1;
+    Text3DPowerPercent.Opacity := 1;
 
     FloatAnimationCtrlX.Inverse := False;
     FloatAnimationCtrlX.Enabled := True;
@@ -529,6 +599,41 @@ begin
     {$IFNDEF VisualTestNotepad}
     FloatAnimationNotepadOpacity.Inverse := False;
     FloatAnimationNotepadOpacity.Enabled := True;
+    {$ENDIF}
+  end;
+end;
+
+procedure TfrmEscape1985.ShowPhone;
+begin
+  if FPhoneShowing then begin
+    FPhoneShowing := False;
+
+    FloatAnimPhoneScaleX.Inverse := True;
+    FloatAnimPhoneScaleX.Enabled := True;
+
+    FloatAnimPhoneScaleY.Inverse := True;
+    FloatAnimPhoneScaleY.Enabled := True;
+
+    {$IFNDEF VisualTestPhone}
+    FloatAnimPhoneOpacity.Inverse := True;
+    FloatAnimPhoneOpacity.Enabled := True;
+    {$ENDIF}
+
+    DummyPhone.Position.Z := CLICKABLE_OBJECTS_Z;
+  end else begin
+    FPhoneShowing := True;
+
+    DummyPhone.Position.Z := ZOOMED_OBJECTS_Z;
+
+    FloatAnimPhoneScaleX.Inverse := False;
+    FloatAnimPhoneScaleX.Enabled := True;
+
+    FloatAnimPhoneScaleY.Inverse := False;
+    FloatAnimPhoneScaleY.Enabled := True;
+
+    {$IFNDEF VisualTestPhone}
+    FloatAnimPhoneOpacity.Inverse := False;
+    FloatAnimPhoneOpacity.Enabled := True;
     {$ENDIF}
   end;
 end;
