@@ -1,0 +1,52 @@
+inherited frmEscape1985_iPad: TfrmEscape1985_iPad
+  ClientHeight = 1004
+  ClientWidth = 768
+  DesignerMasterStyle = 0
+  inherited DummyMain: TDummy
+    Quanternion = '(-0.13052599132061,0,0,0.991444885730743)'
+    inherited Image3DRoom: TImage3D
+      inherited DummyNotepad: TDummy
+        inherited Rectangle3DNotepad: TRectangle3D
+          inherited Layer3DNotepad: TLayer3D
+            Fill.Color = claSeashell
+            Fill.Kind = Solid
+            inherited lblNotepadPowerLevelHdr: TLabel
+              TextSettings.Font.StyleExt = {04040000000100000004000000}
+            end
+            inherited lblNotepadLights: TLabel
+              TextSettings.Font.StyleExt = {00040000000100000004000000}
+            end
+            inherited lblNotepadComputers: TLabel
+              TextSettings.Font.StyleExt = {00040000000100000004000000}
+            end
+            inherited lblNotepadTimePortal: TLabel
+              TextSettings.Font.StyleExt = {00040000000100000004000000}
+            end
+            inherited lblNotepadOpSecCode: TLabel
+              TextSettings.Font.StyleExt = {00040000000100000004000000}
+            end
+            inherited lblNotepadSecCodeHdr: TLabel
+              TextSettings.Font.StyleExt = {04040000000100000004000000}
+            end
+            inherited lblNotepadPowerOverride: TLabel
+              TextSettings.Font.StyleExt = {00040000000100000004000000}
+            end
+          end
+        end
+      end
+      inherited DummyControls: TDummy
+        inherited Rectangle3DControls: TRectangle3D
+          inherited Layer3DControls: TLayer3D
+            inherited mmoControlNotice: TMemo
+              Viewport.Width = 265.000000000000000000
+              Viewport.Height = 251.000000000000000000
+            end
+            inherited pbControlSCP: TProgressBar
+              Size.Height = 6.000000000000000000
+            end
+          end
+        end
+      end
+    end
+  end
+end
