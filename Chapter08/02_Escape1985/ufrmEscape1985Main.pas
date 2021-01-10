@@ -8,7 +8,8 @@ uses
   FMX.Dialogs, System.Math.Vectors, FMX.Layers3D, FMX.Controls3D, FMX.Objects3D,
   FMX.Ani, FMX.MaterialSources, FMX.Controls.Presentation, FMX.StdCtrls,
   FMX.Memo.Types, FMX.ScrollBox, FMX.Memo, FMX.Edit, FMX.Objects,
-  System.Actions, FMX.ActnList, FMX.EditBox, FMX.SpinBox, FMX.ListBox;
+  System.Actions, FMX.ActnList, FMX.EditBox, FMX.SpinBox, FMX.ListBox,
+  FMX.Effects, FMX.Filter.Effects;
 
 type
   TfrmEscape1985 = class(TForm3D)
@@ -78,6 +79,11 @@ type
     FloatAnimPhoneScaleX: TFloatAnimation;
     FloatAnimPhoneScaleY: TFloatAnimation;
     FloatAnimPhoneOpacity: TFloatAnimation;
+    Text3DTooMuchPower: TText3D;
+    ColorAnimationRedBlack: TColorAnimation;
+    ColorRedBlack: TColorMaterialSource;
+    FloatAnimPowerZoom: TFloatAnimation;
+    FloatAnimRoomOpacity: TFloatAnimation;
     procedure Form3DCreate(Sender: TObject);
     procedure FloatAnimationFinish(Sender: TObject);
     procedure tmrSecCodePrefixTimer(Sender: TObject);
@@ -89,6 +95,7 @@ type
     procedure btnPowerClick(Sender: TObject);
     procedure btnSecCodeClick(Sender: TObject);
     procedure Image3DPhoneClick(Sender: TObject);
+    procedure FloatAnimRoomOpacityFinish(Sender: TObject);
   private
     const
       CLICKABLE_OBJECTS_Z = -0.8;
@@ -128,7 +135,7 @@ type
     procedure LowerPower(const PowerDecreasePercent: Integer);
     procedure PlayNullClick;
     procedure Die;
-    procedure Escape;
+    procedure TryEscape;
   end;
 
 var
@@ -164,7 +171,7 @@ end;
 procedure TfrmEscape1985.Image3DPhoneClick(Sender: TObject);
 begin
   if FPhoneShowing then
-    Escape
+    TryEscape
   else if (not FNotepadShowing) and (not FPhoneShowing) and (not FControlsShowing) then
     ShowPhone;
 end;
@@ -349,7 +356,10 @@ end;
 
 procedure TfrmEscape1985.Die;
 begin
-  ShowMessage('There was too much power.  You have died.');
+  ShowPhone;
+  ColorAnimationRedBlack.Enabled := True;
+  FloatAnimPowerZoom.Enabled := True;
+  FloatAnimRoomOpacity.Enabled := True;
 end;
 
 procedure TfrmEscape1985.PlayNullClick;
@@ -357,7 +367,7 @@ begin
   { TODO : play click to indicate nothing happened }
 end;
 
-procedure TfrmEscape1985.Escape;
+procedure TfrmEscape1985.TryEscape;
 begin
   if FCurrPowerPercent > POWER_LEVEL_TIME_PORTAL then
     Die
@@ -371,6 +381,13 @@ end;
 procedure TfrmEscape1985.FloatAnimationFinish(Sender: TObject);
 begin
   (Sender as TFloatAnimation).Enabled := False;
+end;
+
+procedure TfrmEscape1985.FloatAnimRoomOpacityFinish(Sender: TObject);
+begin
+  FloatAnimRoomOpacity.Enabled := False;
+  ShowMessage('You have died.');
+  Close;
 end;
 
 procedure TfrmEscape1985.SetupControls;
@@ -418,7 +435,7 @@ end;
 
 procedure TfrmEscape1985.SetupNotepad;
 const
-  SMALL_SIZE_X = 12.7;
+  SMALL_SIZE_X = 12.3;
   SMALL_SIZE_Y = 8.5;
   SMALL_SIZE_HEIGHT = 1.4;
   SMALL_SIZE_WIDTH  = 1.8;
@@ -536,6 +553,10 @@ begin
   btnPowerUp5.Enabled := FControlsShowing and FUserAuthorized;
   btnPowerDown5.Enabled := FControlsShowing and FUserAuthorized;
   btnPowerDown10.Enabled := FControlsShowing and FUserAuthorized;
+
+  for var i := 0 to Layer3DControls.ComponentCount - 1 do
+    if (Layer3DControls.Components[i] is TButton) then
+      TButton(Layer3DControls.Components[i]).Enabled := FControlsShowing;
 end;
 
 procedure TfrmEscape1985.ShowNotepad;
