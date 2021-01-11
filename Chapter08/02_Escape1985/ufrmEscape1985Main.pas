@@ -4,11 +4,14 @@ interface
 
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
-  FMX.Types, FMX.Controls, FMX.Forms3D, FMX.Types3D, FMX.Forms, FMX.Graphics, 
+  FMX.Types, FMX.Controls, FMX.Forms3D, FMX.Types3D, FMX.Forms, FMX.Graphics,
   FMX.Dialogs, System.Math.Vectors, FMX.Layers3D, FMX.Controls3D, FMX.Objects3D,
   FMX.Ani, FMX.MaterialSources, FMX.Controls.Presentation, FMX.StdCtrls,
   FMX.Memo.Types, FMX.ScrollBox, FMX.Memo, FMX.Edit, FMX.Objects,
   System.Actions, FMX.ActnList, FMX.EditBox, FMX.SpinBox, FMX.ListBox,
+  {$IFDEF Android}
+  FMX.DialogService,
+  {$ENDIF}
   FMX.Effects, FMX.Filter.Effects;
 
 type
@@ -358,13 +361,19 @@ begin
 end;
 
 procedure TfrmEscape1985.Die;
+const
+  DIED_TEXT = 'You have died.';
 begin
   ShowPhone;
   ColorAnimationRedBlack.Enabled := True;
   FloatAnimPowerZoom.Enabled := True;
   FloatAnimRoomOpacity.Enabled := True;
 
-  ShowMessage('You have died.');
+  {$IFDEF Android}
+  TDialogService.ShowMessage(DIED_TEXT);
+  {$ELSE}
+  ShowMessage(DIED_TEXT);
+  {$ENDIF}
 
   {$IFNDEF IOS}
   Close;
@@ -372,11 +381,17 @@ begin
 end;
 
 procedure TfrmEscape1985.Escape;
+const
+  CONGRATS_TEXT = 'Congratulations! You have escaped 1985!';
 begin
   ShowPhone;
   FloatAnimRoomOpacity.Enabled := True;
 
-  ShowMessage('Congratulations! You have escaped 1985!');
+  {$IFDEF Android}
+  TDialogService.ShowMessage(CONGRATS_TEXT);
+  {$ELSE}
+  ShowMessage(CONGRATS_TEXT);
+  {$ENDIF}
 
   {$IFNDEF IOS}
   Close;
