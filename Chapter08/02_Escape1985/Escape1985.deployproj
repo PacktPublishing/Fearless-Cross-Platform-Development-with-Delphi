@@ -4,8 +4,8 @@
         <ProjectFileVersion>12</ProjectFileVersion>
     </ProjectExtensions>
     <PropertyGroup>
-        <DeviceId Condition="'$(Platform)'=='Android'"/>
-        <DeviceId Condition="'$(Platform)'=='Android64'"/>
+        <DeviceId Condition="'$(Platform)'=='Android'">G0W0XJ089345F0FE</DeviceId>
+        <DeviceId Condition="'$(Platform)'=='Android64'">f49accba</DeviceId>
         <DeviceId Condition="'$(Platform)'=='iOSDevice64'">00008020-000A4D6A3A28402E</DeviceId>
         <DeviceId Condition="'$(Platform)'=='iOSSimulator'"/>
     </PropertyGroup>
@@ -109,19 +109,19 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="$(BDS)\bin\Artwork\iOS\iPhone\FM_LaunchImageDark_3x.png" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="$(BDS)\bin\Artwork\iOS\iPhone\FM_LaunchImageDark_2x.png" Condition="'$(Config)'=='Release'">
             <RemoteDir>Escape1985.app\..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset\</RemoteDir>
-            <RemoteName>FM_LaunchScreenImage_iPhoneDark@3x.png</RemoteName>
-            <DeployClass>iPhone_LaunchDark3x</DeployClass>
+            <RemoteName>FM_LaunchScreenImage_iPhoneDark@2x.png</RemoteName>
+            <DeployClass>iPhone_LaunchDark2x</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="$(BDS)\bin\Artwork\iOS\iPhone\FM_LaunchImageDark_2x.png" Condition="'$(Config)'=='Release'">
+        <DeployFile Include="$(BDS)\bin\Artwork\iOS\iPhone\FM_LaunchImageDark_3x.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>Escape1985.app\..\$(PROJECTNAME).launchscreen\Assets\LaunchScreenImage.imageset\</RemoteDir>
-            <RemoteName>FM_LaunchScreenImage_iPhoneDark@2x.png</RemoteName>
-            <DeployClass>iPhone_LaunchDark2x</DeployClass>
+            <RemoteName>FM_LaunchScreenImage_iPhoneDark@3x.png</RemoteName>
+            <DeployClass>iPhone_LaunchDark3x</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -366,15 +366,6 @@
             <RemoteDir>Escape1985\res\drawable-hdpi\</RemoteDir>
             <RemoteName>ic_notification.png</RemoteName>
             <DeployClass>Android_NotificationIcon36</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="$(NDKBasePath)\prebuilt\android-arm\gdbserver\gdbserver" Condition="'$(Config)'=='Release'">
-            <RemoteDir>Escape1985\library\lib\armeabi-v7a\</RemoteDir>
-            <RemoteName>gdbserver</RemoteName>
-            <DeployClass>AndroidGDBServer</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -863,6 +854,24 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="icons8_Exit_Sign_48.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>Escape1985\res\drawable-mdpi\</RemoteDir>
+            <RemoteName>ic_launcher.png</RemoteName>
+            <DeployClass>Android_LauncherIcon48</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="escape470x320.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>Escape1985\res\drawable-normal\</RemoteDir>
+            <RemoteName>splash_image.png</RemoteName>
+            <DeployClass>Android_SplashImage470</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="$(BDS)\lib\android\debug\armeabi-v7a\libnative-activity.so" Condition="'$(Config)'=='Debug'">
             <RemoteDir>Escape1985\library\lib\armeabi-v7a\</RemoteDir>
             <RemoteName>libEscape1985.so</RemoteName>
@@ -953,6 +962,24 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="escape960x720.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>Escape1985\res\drawable-xlarge\</RemoteDir>
+            <RemoteName>splash_image.png</RemoteName>
+            <DeployClass>Android_SplashImage960</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="escape426x320.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>Escape1985\res\drawable-small\</RemoteDir>
+            <RemoteName>splash_image.png</RemoteName>
+            <DeployClass>Android_SplashImage426</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="$(BDS)\lib\android\debug\armeabi\libnative-activity.so" Condition="'$(Config)'=='Debug'">
             <RemoteDir>Escape1985\library\lib\armeabi\</RemoteDir>
             <RemoteName>libEscape1985.so</RemoteName>
@@ -1012,6 +1039,15 @@
             <RemoteDir>Escape1985\</RemoteDir>
             <RemoteName>AndroidManifest.xml</RemoteName>
             <DeployClass>ProjectAndroidManifest</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="escape640x480.png" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>Escape1985\res\drawable-large\</RemoteDir>
+            <RemoteName>splash_image.png</RemoteName>
+            <DeployClass>Android_SplashImage640</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
