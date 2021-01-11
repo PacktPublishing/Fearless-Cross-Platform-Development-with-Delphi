@@ -84,6 +84,8 @@ type
     ColorRedBlack: TColorMaterialSource;
     FloatAnimPowerZoom: TFloatAnimation;
     FloatAnimRoomOpacity: TFloatAnimation;
+    CylinderResetBtn: TCylinder;
+    ImageControl1: TImageControl;
     procedure Form3DCreate(Sender: TObject);
     procedure FloatAnimationFinish(Sender: TObject);
     procedure tmrSecCodePrefixTimer(Sender: TObject);
@@ -94,7 +96,6 @@ type
     procedure btnPowerClick(Sender: TObject);
     procedure btnSecCodeClick(Sender: TObject);
     procedure Image3DPhoneClick(Sender: TObject);
-    procedure FloatAnimRoomOpacityFinish(Sender: TObject);
   private
     const
       CLICKABLE_OBJECTS_Z = -0.8;
@@ -134,6 +135,7 @@ type
     procedure LowerPower(const PowerDecreasePercent: Integer);
     procedure PlayNullClick;
     procedure Die;
+    procedure Escape;
     procedure TryEscape;
   end;
 
@@ -263,12 +265,12 @@ begin
       FSecCodes[LSecNum] := FSecCodes[LSecNum] + 1;
       if FSecCodes[LSecNum] > 9 then
         FSecCodes[LSecNum] := 0;
+
+      CheckSecCodes;
+
+      // do this last to make sure another button click hasn't interrupted
+      (Sender as TButton).Text := IntToStr(FSecCodes[LSecNum]);
     end;
-
-    CheckSecCodes;
-
-    // do this last to make sure another button click hasn't interrupted
-    (Sender as TButton).Text := (CurrValue + 1).ToString;
   end;
 end;
 
@@ -361,6 +363,24 @@ begin
   ColorAnimationRedBlack.Enabled := True;
   FloatAnimPowerZoom.Enabled := True;
   FloatAnimRoomOpacity.Enabled := True;
+
+  ShowMessage('You have died.');
+
+  {$IFNDEF IOS}
+  Close;
+  {$ENDIF}
+end;
+
+procedure TfrmEscape1985.Escape;
+begin
+  ShowPhone;
+  FloatAnimRoomOpacity.Enabled := True;
+
+  ShowMessage('Congratulations! You have escaped 1985!');
+
+  {$IFNDEF IOS}
+  Close;
+  {$ENDIF}
 end;
 
 procedure TfrmEscape1985.PlayNullClick;
@@ -374,23 +394,13 @@ begin
     Die
   else if FCurrPowerPercent < POWER_LEVEL_TIME_PORTAL then
     PlayNullClick
-  else begin
-    showmessage('escape!!!');
-  end;
+  else
+    Escape;
 end;
 
 procedure TfrmEscape1985.FloatAnimationFinish(Sender: TObject);
 begin
   (Sender as TFloatAnimation).Enabled := False;
-end;
-
-procedure TfrmEscape1985.FloatAnimRoomOpacityFinish(Sender: TObject);
-begin
-  FloatAnimRoomOpacity.Enabled := False;
-  ShowMessage('You have died.');
-  {$IFNDEF IOS}
-  Close;
-  {$ENDIF}
 end;
 
 procedure TfrmEscape1985.SetupControls;

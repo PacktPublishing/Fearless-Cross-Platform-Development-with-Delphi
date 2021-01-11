@@ -41,12 +41,18 @@ inherited frmEscape1985_iPhone55in: TfrmEscape1985_iPhone55in
               Viewport.Width = 265.000000000000000000
               Viewport.Height = 251.000000000000000000
             end
-            inherited pbControlSCP: TProgressBar
-              Size.Height = 6.000000000000000000
-            end
           end
         end
       end
+      inherited CylinderResetBtn: TCylinder
+        RotationAngle.Y = 90.000000000000000000
+        Quanternion = 
+          '(-0.499999940395355,-0.499999940395355,-0.499999940395355,-0.499' +
+          '999940395355)'
+      end
+    end
+    inherited Text3DTooMuchPower: TText3D
+      Font.StyleExt = {00070000000000000004000000}
     end
   end
 end

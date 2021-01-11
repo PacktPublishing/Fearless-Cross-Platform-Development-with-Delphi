@@ -1,6 +1,6 @@
 inherited frmEscape1985_NmXhdpiPh: TfrmEscape1985_NmXhdpiPh
-  ClientHeight = 375
-  ClientWidth = 640
+  ClientHeight = 615
+  ClientWidth = 400
   DesignerMasterStyle = 0
   inherited DummyMain: TDummy
     Quanternion = '(-0.13052599132061,0,0,0.991444885730743)'
@@ -44,6 +44,12 @@ inherited frmEscape1985_NmXhdpiPh: TfrmEscape1985_NmXhdpiPh
             end
           end
         end
+      end
+      inherited CylinderResetBtn: TCylinder
+        RotationAngle.Y = 90.000000000000000000
+        Quanternion = 
+          '(-0.499999940395355,-0.499999940395355,-0.499999940395355,-0.499' +
+          '999940395355)'
       end
     end
     inherited Text3DTooMuchPower: TText3D
