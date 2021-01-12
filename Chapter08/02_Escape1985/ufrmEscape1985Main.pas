@@ -9,10 +9,7 @@ uses
   FMX.Ani, FMX.MaterialSources, FMX.Controls.Presentation, FMX.StdCtrls,
   FMX.Memo.Types, FMX.ScrollBox, FMX.Memo, FMX.Edit, FMX.Objects,
   System.Actions, FMX.ActnList, FMX.EditBox, FMX.SpinBox, FMX.ListBox,
-  {$IFDEF Android}
-  FMX.DialogService,
-  {$ENDIF}
-  FMX.Effects, FMX.Filter.Effects;
+  FMX.DialogService, FMX.Effects, FMX.Filter.Effects;
 
 type
   TfrmEscape1985 = class(TForm3D)
@@ -260,14 +257,13 @@ var
   LSecNum: ShortInt;
 begin
   if TryStrToInt((Sender as TButton).Text, CurrValue) then begin
-    if CurrValue >= 9 then
-      CurrValue := 0;
-
     LSecNum := (Sender as TButton).Tag;
     if LSecNum in [1..MAX_SEC_CODES] then begin
-      FSecCodes[LSecNum] := FSecCodes[LSecNum] + 1;
-      if FSecCodes[LSecNum] > 9 then
-        FSecCodes[LSecNum] := 0;
+      Inc(CurrValue);
+      if CurrValue > 9 then
+        CurrValue := 0;
+
+      FSecCodes[LSecNum] := CurrValue;
 
       CheckSecCodes;
 
@@ -361,19 +357,13 @@ begin
 end;
 
 procedure TfrmEscape1985.Die;
-const
-  DIED_TEXT = 'You have died.';
 begin
   ShowPhone;
   ColorAnimationRedBlack.Enabled := True;
   FloatAnimPowerZoom.Enabled := True;
   FloatAnimRoomOpacity.Enabled := True;
 
-  {$IFDEF Android}
-  TDialogService.ShowMessage(DIED_TEXT);
-  {$ELSE}
-  ShowMessage(DIED_TEXT);
-  {$ENDIF}
+  ShowMessage('You have died.');
 
   {$IFNDEF IOS}
   Close;
@@ -381,17 +371,11 @@ begin
 end;
 
 procedure TfrmEscape1985.Escape;
-const
-  CONGRATS_TEXT = 'Congratulations! You have escaped 1985!';
 begin
   ShowPhone;
   FloatAnimRoomOpacity.Enabled := True;
 
-  {$IFDEF Android}
-  TDialogService.ShowMessage(CONGRATS_TEXT);
-  {$ELSE}
-  ShowMessage(CONGRATS_TEXT);
-  {$ENDIF}
+  TDialogService.ShowMessage('Congratulations! You have escaped 1985!');
 
   {$IFNDEF IOS}
   Close;
