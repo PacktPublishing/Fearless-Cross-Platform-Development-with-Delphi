@@ -53,15 +53,15 @@ type
     tmrSecCodePrefix: TTimer;
     lblControlPWR: TLabel;
     StyleBook1: TStyleBook;
-    CylinderPowerLevelOuter: TCylinder;
-    LightMaterialSourceBlack: TLightMaterialSource;
-    LightMaterialSourceRed: TLightMaterialSource;
+    CylPwrLvlOuter: TCylinder;
+    LitMatBlack: TLightMaterialSource;
+    LitMatRed: TLightMaterialSource;
     LightRoom: TLight;
-    CylinderPowerLevelInner: TCylinder;
-    LightMaterialSourceGreen: TLightMaterialSource;
-    LightMaterialSourceYellow: TLightMaterialSource;
+    CylPwrLvlInner: TCylinder;
+    LitMatGreen: TLightMaterialSource;
+    LitMatYellow: TLightMaterialSource;
     Text3DPowerPercent: TText3D;
-    LightMaterialSourceBlue: TLightMaterialSource;
+    LitMatBlue: TLightMaterialSource;
     lblSecurityAuthorized: TLabel;
     TmrAuthMessage: TTimer;
     btnPowerUp10: TButton;
@@ -102,9 +102,9 @@ type
       ZOOMED_OBJECTS_Z = -1.0;
       MAX_SEC_CODE_COUNTDOWN = 60;
       MAX_SEC_CODES = 6;
-      POWER_LEVEL_GREEN_MAX = 90;
-      POWER_LEVEL_YELLOW_MAX = 100;
-      POWER_LEVEL_RED_MAX = 150;
+      PWR_LVL_GREEN_MAX = 90;
+      PWR_LVL_YELLOW_MAX = 100;
+      PWR_LVL_RED_MAX = 150;
       POWER_LEVEL_TIME_PORTAL = 115;
       POWER_LEVEL_RESET_THRESHHOLD = 90;
       POWER_LEVEL_COMPUTERS = 80;
@@ -118,7 +118,7 @@ type
       FSecCodePrefix: Integer;
       FSecCodeCountdown: Integer;
       FSecCodes: array[1..MAX_SEC_CODES] of Integer;
-      FCurrPowerPercent: Integer;
+      FCurrPwrPcnt: Integer;
       FUserAuthorized: Boolean;
       FPowerAuthorized: Boolean;
     procedure InvalidActionSound;
@@ -130,7 +130,7 @@ type
     procedure ShowNotepad;
     procedure ShowControls;
     procedure ShowPhone;
-    procedure SetPowerLevel(const NewPowerPercent: Integer);
+    procedure SetPowerLevel(const NewPwrPcnt: Integer);
     procedure RaisePower(const PowerIncreasePercent: Integer);
     procedure LowerPower(const PowerDecreasePercent: Integer);
     procedure PlayNullClick;
@@ -223,8 +223,8 @@ begin
   FSecCodeCountdown := MAX_SEC_CODE_COUNTDOWN;
   pbControlSCP.Value := FSecCodeCountdown;
 
-  if FCurrPowerPercent > POWER_LEVEL_RESET_THRESHHOLD then
-    SetPowerLevel(POWER_LEVEL_GREEN_MAX);
+  if FCurrPwrPcnt > POWER_LEVEL_RESET_THRESHHOLD then
+    SetPowerLevel(PWR_LVL_GREEN_MAX);
 
   FPowerAuthorized := False;
 end;
@@ -302,54 +302,51 @@ begin
     end;
 end;
 
-procedure TfrmEscape1985.SetPowerLevel(const NewPowerPercent: Integer);
+procedure TfrmEscape1985.SetPowerLevel(const NewPwrPcnt: Integer);
 // calculate height and width of inner cylinder to simulate power level meter
 // if new power percent crosses color threshhold, change color of inner cylinder
 const
-  POWER_100_PERCENT_HEIGHT = 3.4;
-  POWER_MAX_PERCENT_HEIGHT = 3.8;
+  PWR_100_PCNT_HT = 3.4;
+  PWR_MAX_PCNT_HT = 3.8;
 var
-  CalculatedHeight: Single;
-  CalculatedY: Single;
+  CalcHt: Single;
+  CalcY: Single;
 begin
   // fail-safe check: never go below 0%
-  if NewPowerPercent >= 0 then begin
-    FCurrPowerPercent := NewPowerPercent;
-    Text3DPowerPercent.Text := FCurrPowerPercent.ToString + '%';
+  if NewPwrPcnt >= 0 then begin
+    FCurrPwrPcnt := NewPwrPcnt;
+    Text3DPowerPercent.Text := FCurrPwrPcnt.ToString + '%';
 
-    CalculatedHeight := (NewPowerPercent / 100.0) * POWER_100_PERCENT_HEIGHT;
-    if CalculatedHeight > POWER_MAX_PERCENT_HEIGHT then
-      CalculatedHeight := POWER_MAX_PERCENT_HEIGHT;
+    CalcHt := Min((NewPwrPcnt / 100.0) * PWR_100_PCNT_HT, PWR_MAX_PCNT_HT);
+    CalcY := (PWR_MAX_PCNT_HT / 2.0) - (CalcHt / 2.0);
 
-    CalculatedY := (POWER_MAX_PERCENT_HEIGHT / 2.0) - (CalculatedHeight / 2.0);
+    CylPwrLvlInner.Height := CalcHt;
+    CylPwrLvlInner.Position.Y := CalcY;
 
-    CylinderPowerLevelInner.Height := CalculatedHeight;
-    CylinderPowerLevelInner.Position.Y := CalculatedY;
-
-    if (FCurrPowerPercent >= 0) and (FCurrPowerPercent <= POWER_LEVEL_GREEN_MAX) then
-      CylinderPowerLevelInner.MaterialSource := LightMaterialSourceGreen
-    else if FCurrPowerPercent <= POWER_LEVEL_YELLOW_MAX then
-      CylinderPowerLevelInner.MaterialSource := LightMaterialSourceYellow
+    if (FCurrPwrPcnt >= 0) and (FCurrPwrPcnt <= PWR_LVL_GREEN_MAX) then
+      CylPwrLvlInner.MaterialSource := LitMatGreen
+    else if FCurrPwrPcnt <= PWR_LVL_YELLOW_MAX then
+      CylPwrLvlInner.MaterialSource := LitMatYellow
     else
-      CylinderPowerLevelInner.MaterialSource := LightMaterialSourceRed;
+      CylPwrLvlInner.MaterialSource := LitMatRed;
   end;
 end;
 
 procedure TfrmEscape1985.RaisePower(const PowerIncreasePercent: Integer);
 begin
-  if FCurrPowerPercent < POWER_LEVEL_RED_MAX then begin
-    if (not FPowerAuthorized) and (FCurrPowerPercent + PowerIncreasePercent > POWER_LEVEL_GREEN_MAX) then
+  if FCurrPwrPcnt < PWR_LVL_RED_MAX then begin
+    if (not FPowerAuthorized) and (FCurrPwrPcnt + PowerIncreasePercent > PWR_LVL_GREEN_MAX) then
       InvalidActionSound
     else
-      SetPowerLevel(FCurrPowerPercent + PowerIncreasePercent);
+      SetPowerLevel(FCurrPwrPcnt + PowerIncreasePercent);
   end else
     InvalidActionSound;
 end;
 
 procedure TfrmEscape1985.LowerPower(const PowerDecreasePercent: Integer);
 begin
-  if FCurrPowerPercent - PowerDecreasePercent > POWER_LEVEL_LIGHTS then
-    SetPowerLevel(FCurrPowerPercent - PowerDecreasePercent)
+  if FCurrPwrPcnt - PowerDecreasePercent >= POWER_LEVEL_LIGHTS then
+    SetPowerLevel(FCurrPwrPcnt - PowerDecreasePercent)
   else begin
     InvalidActionSound;
     ShowMessage('Please don''t turn off the lights.');
@@ -389,9 +386,9 @@ end;
 
 procedure TfrmEscape1985.TryEscape;
 begin
-  if FCurrPowerPercent > POWER_LEVEL_TIME_PORTAL then
+  if FCurrPwrPcnt > POWER_LEVEL_TIME_PORTAL then
     Die
-  else if FCurrPowerPercent < POWER_LEVEL_TIME_PORTAL then
+  else if FCurrPwrPcnt < POWER_LEVEL_TIME_PORTAL then
     PlayNullClick
   else
     Escape;
@@ -431,8 +428,8 @@ begin
   Rectangle3DControls.Scale.X := FloatAnimCtrlScaleX.StartValue;
   Rectangle3DControls.Scale.Y := FloatAnimCtrlScaleY.StartValue;
 
-  CylinderPowerLevelOuter.Opacity := 0;
-  CylinderPowerLevelInner.Opacity := 0;
+  CylPwrLvlOuter.Opacity := 0;
+  CylPwrLvlInner.Opacity := 0;
   Text3DPowerPercent.Opacity := 0;
 
   {$IFNDEF VisualTestControls}
@@ -518,8 +515,8 @@ begin
     FloatAnimCtrlScaleY.Inverse := True;
     FloatAnimCtrlScaleY.Enabled := True;
 
-    CylinderPowerLevelOuter.Opacity := 0;
-    CylinderPowerLevelInner.Opacity := 0;
+    CylPwrLvlOuter.Opacity := 0;
+    CylPwrLvlInner.Opacity := 0;
     Text3DPowerPercent.Opacity := 0;
 
     {$IFNDEF VisualTestControls}
@@ -533,8 +530,8 @@ begin
 
     DummyControls.Position.Z := ZOOMED_OBJECTS_Z;
 
-    CylinderPowerLevelOuter.Opacity := 1;
-    CylinderPowerLevelInner.Opacity := 1;
+    CylPwrLvlOuter.Opacity := 1;
+    CylPwrLvlInner.Opacity := 1;
     Text3DPowerPercent.Opacity := 1;
 
     FloatAnimationCtrlX.Inverse := False;
