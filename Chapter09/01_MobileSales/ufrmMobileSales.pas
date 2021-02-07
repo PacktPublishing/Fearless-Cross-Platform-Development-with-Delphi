@@ -26,12 +26,6 @@ type
     tabCustomers: TTabItem;
     ToolBar3: TToolBar;
     lblCustomers: TLabel;
-    tabAlbums: TTabItem;
-    ToolBar4: TToolBar;
-    lblAlbums: TLabel;
-    tabArtitists: TTabItem;
-    ToolBar5: TToolBar;
-    lblArtists: TLabel;
     GestureManager1: TGestureManager;
     ActionList1: TActionList;
     NextTabAction1: TNextTabAction;

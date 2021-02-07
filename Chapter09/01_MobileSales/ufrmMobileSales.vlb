@@ -17,10 +17,6 @@ Visible=False
 Coordinates=379,10,54,33
 Visible=False
 
-[ToolBar4]
-Coordinates=117,192,58,33
-Visible=False
-
 [tbSalesDetails]
 Coordinates=10,192,84,33
 Visible=False
@@ -63,10 +59,6 @@ Visible=False
 Coordinates=311,78,69,33
 Visible=False
 
-[ToolBar5]
-Coordinates=234,78,58,33
-Visible=False
-
 [lblSalesDetails]
 Coordinates=10,78,87,33
 Visible=False
@@ -79,8 +71,8 @@ Coordinates=120,78,90,33
 Visible=False
 
 []
-Coordinates=76,1,82,33
-Visible=True
+Coordinates=234,78,58,33
+Visible=False
 ExplicitSubNodes=Col
 
 [DataModule1.tblSales]
@@ -125,22 +117,6 @@ Coordinates=180,-10,128,303
 
 [tabCustomers]
 Coordinates=453,266,83,33
-Visible=False
-
-[tabAlbums]
-Coordinates=472,221,67,33
-Visible=False
-
-[tabArtitists]
-Coordinates=472,166,68,33
-Visible=False
-
-[lblAlbums]
-Coordinates=10,10,64,33
-Visible=False
-
-[lblArtists]
-Coordinates=149,10,58,33
 Visible=False
 
 [lblCustomers]
