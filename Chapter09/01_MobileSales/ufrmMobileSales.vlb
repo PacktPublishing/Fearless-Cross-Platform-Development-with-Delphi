@@ -71,7 +71,7 @@ Coordinates=120,78,90,33
 Visible=False
 
 []
-Coordinates=234,78,58,33
+Coordinates=73,249,126,33
 Visible=False
 ExplicitSubNodes=Col
 
@@ -84,10 +84,7 @@ Coordinates=200,0,144,285
 [grdSales]
 Coordinates=0,0,57,141
 Visible=True
-
-[TabControl1]
-Coordinates=330,220,74,33
-Visible=False
+LayerNames=sales
 
 [lblTitle2]
 Coordinates=0,0,53,33
@@ -97,23 +94,13 @@ Visible=False
 Coordinates=150,220,58,33
 Visible=False
 
-[TabItem6]
-Coordinates=247,133,59,33
-Visible=False
-
 [ToolBar1]
 Coordinates=48,183,58,33
 Visible=False
 
 [dmInterbaseSales.tblSales]
-Coordinates=180,-10,144,33
+Coordinates=512,10,144,33
 Visible=False
-
-[BindingsList1]
-Coordinates=76,1,82,33
-
-[BindSourceDB1]
-Coordinates=180,-10,128,303
 
 [tabCustomers]
 Coordinates=453,266,83,33
@@ -129,4 +116,133 @@ Visible=False
 
 [StyleBookWedgewoodLight]
 Coordinates=76,1,150,33
+
+[BindingsList]
+Coordinates=76,1,76,33
+
+[dmInterbaseSales.qrySaleCustomers]
+Coordinates=478,1,196,33
+Visible=False
+
+[LabelORDER_STATUS]
+Coordinates=630,130,125,33
+Visible=False
+
+[DateEditSHIP_DATE]
+Coordinates=430,180,115,51
+LayerNames="sale details"
+
+[LabelPAID]
+Coordinates=630,210,65,33
+Visible=False
+
+[LabelSHIP_DATE]
+Coordinates=630,280,99,33
+Visible=False
+
+[CheckBoxPAID]
+Coordinates=410,250,89,51
+LayerNames="sale details"
+
+[EditORDER_STATUS]
+Coordinates=430,120,117,51
+LayerNames="sale details"
+
+[BindSourceSaleCustomer]
+Coordinates=590,20,176,285
+Visible=True
+LayerNames="sale details"
+
+[BindSourceSales]
+Coordinates=220,10,128,321
+LayerNames=sales
+
+[Module Settings]
+ModelLayerNames=sales;"sale details"
+ActiveLayerNames=sales
+EditingLayerName=sales
+
+[EditPO_NUMBER]
+Coordinates=430,50,99,51
+LayerNames="sale details"
+
+[LabelPO_NUMBER]
+Coordinates=84,78,107,33
+Visible=False
+
+[EditCUSTOMER]
+Coordinates=780,20,92,51
+LayerNames="sale details"
+
+[LabelCUSTOMER]
+Coordinates=76,71,100,33
+Visible=False
+
+[EditCONTACT_FIRST]
+Coordinates=830,80,119,51
+LayerNames="sale details"
+
+[LabelCONTACT_FIRST]
+Coordinates=76,141,127,33
+Visible=False
+
+[EditCONTACT_LAST]
+Coordinates=830,140,116,51
+LayerNames="sale details"
+
+[LabelCONTACT_LAST]
+Coordinates=27,160,124,33
+Visible=False
+
+[EditPHONE_NO]
+Coordinates=970,160,91,51
+LayerNames="sale details"
+
+[LabelPHONE_NO]
+Coordinates=171,249,99,33
+Visible=False
+
+[EditADDRESS_LINE1]
+Coordinates=840,200,119,51
+LayerNames="sale details"
+
+[LabelADDRESS_LINE1]
+Coordinates=122,249,126,33
+Visible=False
+
+[EditADDRESS_LINE2]
+Coordinates=860,230,119,51
+LayerNames="sale details"
+
+[EditCITY]
+Coordinates=870,260,57,51
+LayerNames="sale details"
+
+[LabelCITY]
+Coordinates=24,249,64,33
+Visible=False
+
+[EditSTATE_PROVINCE]
+Coordinates=860,300,127,51
+LayerNames="sale details"
+
+[LabelSTATE_PROVINCE]
+Coordinates=386,320,134,33
+Visible=False
+
+[EditPOSTAL_CODE]
+Coordinates=890,320,111,51
+LayerNames="sale details"
+
+[LabelPOSTAL_CODE]
+Coordinates=76,71,118,33
+Visible=False
+
+[tabSaleDetails]
+Coordinates=247,133,84,33
+Visible=False
+
+[tabCtrlMobileSalesIB]
+Coordinates=330,220,74,33
+Visible=False
 
