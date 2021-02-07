@@ -1,0 +1,12 @@
+﻿[FDConnectionIB]
+Coordinates=72,1,95,33
+
+[]
+Coordinates=10,10,89,285
+
+[tblSales]
+Coordinates=0,0,89,285
+
+[qrySaleCustomers]
+Coordinates=186,1,105,267
+
