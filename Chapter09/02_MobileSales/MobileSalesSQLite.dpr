@@ -1,4 +1,4 @@
-program MobileSales;
+program MobileSalesSQLite;
 
 uses
   System.StartUpCopy,

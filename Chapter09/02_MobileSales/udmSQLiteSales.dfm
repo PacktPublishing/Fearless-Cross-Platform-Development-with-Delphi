@@ -6,9 +6,8 @@ object dmSQLiteSales: TdmSQLiteSales
   object FDConnSQLite: TFDConnection
     Params.Strings = (
       
-        'Database=C:\Users\dev\OneDrive\business\Cornelius Concepts\Proje' +
-        'cts\PacktPub\Fearless Cross-Platform Apps with Delphi\Chapter 09' +
-        ' - Mobile Data Storage\databases\chinook.db'
+        'Database=V:\Fearless-Cross-Platform-Development-with-Delphi\Chap' +
+        'ter09\database\chinook.db'
       'DriverID=SQLite')
     Connected = True
     LoginPrompt = False
@@ -16,7 +15,6 @@ object dmSQLiteSales: TdmSQLiteSales
     Top = 56
   end
   object tblCustomers: TFDTable
-    Active = True
     IndexFieldNames = 'CustomerId'
     Connection = FDConnSQLite
     UpdateOptions.UpdateTableName = 'customers'
@@ -48,6 +46,7 @@ object dmSQLiteSales: TdmSQLiteSales
       FieldName = 'InvoiceId'
       Origin = 'InvoiceId'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object tblInvoicesCustomerId: TIntegerField
       FieldName = 'CustomerId'

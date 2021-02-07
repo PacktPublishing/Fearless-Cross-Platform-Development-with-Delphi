@@ -1,9 +1,9 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{72B6F18A-BB4F-44B4-BD1D-74296E49261E}</ProjectGuid>
+        <ProjectGuid>{9A2FF8DF-3CDC-4317-A425-07A607E848F2}</ProjectGuid>
         <ProjectVersion>19.1</ProjectVersion>
         <FrameworkType>FMX</FrameworkType>
-        <MainSource>MobileSales.dpr</MainSource>
+        <MainSource>MobileSalesSQLite.dpr</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
@@ -80,7 +80,7 @@
         <FeatureFilesAdded>false</FeatureFilesAdded>
         <AUP_WRITE_CALENDAR>true</AUP_WRITE_CALENDAR>
         <AUP_ACCESS_COARSE_LOCATION>true</AUP_ACCESS_COARSE_LOCATION>
-        <SanitizedProjectName>MobileSales</SanitizedProjectName>
+        <SanitizedProjectName>MobileSalesSQLite</SanitizedProjectName>
         <AUP_CAMERA>true</AUP_CAMERA>
         <AUP_READ_EXTERNAL_STORAGE>true</AUP_READ_EXTERNAL_STORAGE>
         <AUP_ACCESS_FINE_LOCATION>true</AUP_ACCESS_FINE_LOCATION>
@@ -292,7 +292,7 @@
         <BorlandProject>
             <Delphi.Personality>
                 <Source>
-                    <Source Name="MainSource">MobileSales.dpr</Source>
+                    <Source Name="MainSource">MobileSalesSQLite.dpr</Source>
                 </Source>
             </Delphi.Personality>
             <Platforms>
@@ -309,6 +309,12 @@
                 <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_LauncherIcon_36x36.png" Configuration="Debug" Class="Android_LauncherIcon36">
                     <Platform Name="Android">
                         <RemoteName>ic_launcher.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\MobileSalesSQLite.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>MobileSalesSQLite.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -470,9 +476,9 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="iOSDevice64\Debug\MobileSales" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="iOSDevice64\Debug\MobileSalesSQLite" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="iOSDevice64">
-                        <RemoteName>MobileSales</RemoteName>
+                        <RemoteName>MobileSalesSQLite</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -550,9 +556,9 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Android\Debug\libMobileSales.so" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="Android\Debug\libMobileSalesSQLite.so" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Android">
-                        <RemoteName>libMobileSales.so</RemoteName>
+                        <RemoteName>libMobileSalesSQLite.so</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
