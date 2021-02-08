@@ -26,7 +26,21 @@ type
     tblInvoicesBillingCountry: TWideStringField;
     tblInvoicesBillingPostalCode: TWideStringField;
     tblInvoicesTotal: TBCDField;
-    FDQuery1: TFDQuery;
+    qryInvoiceCustomer: TFDQuery;
+    srcInvoices: TDataSource;
+    qryInvoiceCustomerCustomerId: TFDAutoIncField;
+    qryInvoiceCustomerFirstName: TWideStringField;
+    qryInvoiceCustomerLastName: TWideStringField;
+    qryInvoiceCustomerCompany: TWideStringField;
+    qryInvoiceCustomerAddress: TWideStringField;
+    qryInvoiceCustomerCity: TWideStringField;
+    qryInvoiceCustomerState: TWideStringField;
+    qryInvoiceCustomerCountry: TWideStringField;
+    qryInvoiceCustomerPostalCode: TWideStringField;
+    qryInvoiceCustomerPhone: TWideStringField;
+    qryInvoiceCustomerFax: TWideStringField;
+    qryInvoiceCustomerEmail: TWideStringField;
+    qryInvoiceCustomerSupportRepId: TIntegerField;
     procedure DataModuleCreate(Sender: TObject);
   end;
 

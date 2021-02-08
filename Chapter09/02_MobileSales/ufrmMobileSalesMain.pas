@@ -10,7 +10,7 @@ uses
   System.Bindings.Outputs, Fmx.Bind.Editors, Data.Bind.Components,
   Data.Bind.Grid, Data.Bind.DBScope, FMX.ScrollBox, FMX.Grid,
   FMX.ListView.Types, FMX.ListView.Appearances, FMX.ListView.Adapters.Base,
-  FMX.ListView;
+  FMX.ListView, FMX.Edit, FMX.Objects, FMX.DateTimeCtrls;
 
 type
   TfrmMobileSalesSQLite = class(TForm)
@@ -42,6 +42,43 @@ type
     BindSourceSales: TBindSourceDB;
     grdSales: TGrid;
     LinkGridToDataSourceBindSourceDB12: TLinkGridToDataSource;
+    DateEditInvoiceDate: TDateEdit;
+    LabelInvoiceDate: TLabel;
+    LinkControlToFieldInvoiceDate: TLinkControlToField;
+    BindSourceInvoiceCustomer: TBindSourceDB;
+    EditFirstName: TEdit;
+    LabelFirstName: TLabel;
+    LinkControlToFieldFirstName: TLinkControlToField;
+    EditLastName: TEdit;
+    LabelLastName: TLabel;
+    LinkControlToFieldLastName: TLinkControlToField;
+    EditPhone: TEdit;
+    LabelPhone: TLabel;
+    LinkControlToFieldPhone: TLinkControlToField;
+    EditCompany: TEdit;
+    LabelCompany: TLabel;
+    LinkControlToFieldCompany: TLinkControlToField;
+    EditEmail: TEdit;
+    LabelEmail: TLabel;
+    LinkControlToFieldEmail: TLinkControlToField;
+    EditAddress: TEdit;
+    LabelAddress: TLabel;
+    LinkControlToFieldAddress: TLinkControlToField;
+    EditCity: TEdit;
+    LabelCity: TLabel;
+    LinkControlToFieldCity: TLinkControlToField;
+    EditState: TEdit;
+    LabelState: TLabel;
+    LinkControlToFieldState: TLinkControlToField;
+    EditPostalCode: TEdit;
+    LabelPostalCode: TLabel;
+    LinkControlToFieldPostalCode: TLinkControlToField;
+    EditCountry: TEdit;
+    LabelCountry: TLabel;
+    LinkControlToFieldCountry: TLinkControlToField;
+    EditInvoiceId: TEdit;
+    LabelInvoiceId: TLabel;
+    LinkControlToFieldInvoiceId2: TLinkControlToField;
     procedure GestureDone(Sender: TObject; const EventInfo: TGestureEventInfo; var Handled: Boolean);
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
@@ -61,6 +98,7 @@ procedure TfrmMobileSalesSQLite.FormCreate(Sender: TObject);
 begin
   { This defines the default active tab at runtime }
   tabCtrlMobileSales.ActiveTab := tabSales;
+  tabCtrlSales.ActiveTab := tabSalesList;
 end;
 
 procedure TfrmMobileSalesSQLite.FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);

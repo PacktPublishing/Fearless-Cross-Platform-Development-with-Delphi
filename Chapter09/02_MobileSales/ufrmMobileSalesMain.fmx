@@ -50,7 +50,7 @@ object frmMobileSalesSQLite: TfrmMobileSalesSQLite
         Size.Height = 547.000000000000000000
         Size.PlatformDefault = False
         TabHeight = 49.000000000000000000
-        TabIndex = 0
+        TabIndex = 1
         TabOrder = 0
         TabPosition = None
         Sizes = (
@@ -62,7 +62,7 @@ object frmMobileSalesSQLite: TfrmMobileSalesSQLite
           CustomIcon = <
             item
             end>
-          IsSelected = True
+          IsSelected = False
           Size.Width = 8.000000000000000000
           Size.Height = 8.000000000000000000
           Size.PlatformDefault = False
@@ -115,7 +115,7 @@ object frmMobileSalesSQLite: TfrmMobileSalesSQLite
           CustomIcon = <
             item
             end>
-          IsSelected = False
+          IsSelected = True
           Size.Width = 8.000000000000000000
           Size.Height = 8.000000000000000000
           Size.PlatformDefault = False
@@ -147,7 +147,7 @@ object frmMobileSalesSQLite: TfrmMobileSalesSQLite
               Size.PlatformDefault = False
               StyleLookup = 'toollabel'
               TextSettings.HorzAlign = Center
-              Text = 'Customer Details'
+              Text = 'Sale Details'
             end
             object btnBack: TSpeedButton
               Action = PreviousTabAction1
@@ -159,7 +159,197 @@ object frmMobileSalesSQLite: TfrmMobileSalesSQLite
               Size.Width = 67.000000000000000000
               Size.Height = 48.000000000000000000
               Size.PlatformDefault = False
-              StyleLookup = 'backtoolbutton'
+              StyleLookup = 'priortoolbutton'
+            end
+          end
+          object EditPostalCode: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 2
+            Text = '70174'
+            Position.X = 320.000000000000000000
+            Position.Y = 208.000000000000000000
+            Size.Width = 65.000000000000000000
+            Size.Height = 22.000000000000000000
+            Size.PlatformDefault = False
+            object LabelPostalCode: TLabel
+              Position.Y = -16.000000000000000000
+              Size.Width = 33.000000000000000000
+              Size.Height = 17.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.WordWrap = False
+              Text = 'ZIP'
+              TabOrder = 0
+            end
+          end
+          object EditPhone: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 3
+            Text = '+49 0711 2842222'
+            Position.X = 256.000000000000000000
+            Position.Y = 160.000000000000000000
+            Size.Width = 129.000000000000000000
+            Size.Height = 22.000000000000000000
+            Size.PlatformDefault = False
+            object LabelPhone: TLabel
+              Position.Y = -16.000000000000000000
+              TextSettings.WordWrap = False
+              Text = 'Phone'
+              TabOrder = 0
+            end
+          end
+          object EditState: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 4
+            Position.X = 264.000000000000000000
+            Position.Y = 208.000000000000000000
+            Size.Width = 49.000000000000000000
+            Size.Height = 22.000000000000000000
+            Size.PlatformDefault = False
+            object LabelState: TLabel
+              Position.Y = -16.000000000000000000
+              TextSettings.WordWrap = False
+              Text = 'State'
+              TabOrder = 0
+            end
+          end
+          object EditLastName: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 5
+            Text = 'K'#246'hler'
+            Position.X = 128.000000000000000000
+            Position.Y = 160.000000000000000000
+            object LabelLastName: TLabel
+              Position.Y = -16.000000000000000000
+              TextSettings.WordWrap = False
+              Text = 'LastName'
+              TabOrder = 0
+            end
+          end
+          object EditInvoiceId: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 6
+            Text = '1'
+            Position.X = 88.000000000000000000
+            Position.Y = 64.000000000000000000
+            Size.Width = 49.000000000000000000
+            Size.Height = 22.000000000000000000
+            Size.PlatformDefault = False
+            object LabelInvoiceId: TLabel
+              Position.X = -74.000000000000000000
+              Position.Y = 3.000000000000000000
+              Size.Width = 65.000000000000000000
+              Size.Height = 17.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              TextSettings.WordWrap = False
+              Text = 'Invoice ID'
+              TabOrder = 0
+            end
+          end
+          object EditFirstName: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 7
+            Text = 'Leonie'
+            Position.X = 24.000000000000000000
+            Position.Y = 160.000000000000000000
+            object LabelFirstName: TLabel
+              Position.Y = -16.000000000000000000
+              TextSettings.WordWrap = False
+              Text = 'FirstName'
+              TabOrder = 0
+            end
+          end
+          object EditEmail: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 8
+            Text = 'leonekohler@surfeu.de'
+            Position.X = 192.000000000000000000
+            Position.Y = 120.000000000000000000
+            Size.Width = 193.000000000000000000
+            Size.Height = 22.000000000000000000
+            Size.PlatformDefault = False
+            object LabelEmail: TLabel
+              Position.Y = -16.000000000000000000
+              TextSettings.WordWrap = False
+              Text = 'Email'
+              TabOrder = 0
+            end
+          end
+          object EditCountry: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 9
+            Text = 'Germany'
+            Position.X = 264.000000000000000000
+            Position.Y = 248.000000000000000000
+            Size.Width = 124.000000000000000000
+            Size.Height = 22.000000000000000000
+            Size.PlatformDefault = False
+            object LabelCountry: TLabel
+              Position.Y = -16.000000000000000000
+              TextSettings.WordWrap = False
+              Text = 'Country'
+              TabOrder = 0
+            end
+          end
+          object EditCompany: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 10
+            Position.X = 24.000000000000000000
+            Position.Y = 120.000000000000000000
+            Size.Width = 161.000000000000000000
+            Size.Height = 22.000000000000000000
+            Size.PlatformDefault = False
+            object LabelCompany: TLabel
+              Position.Y = -16.000000000000000000
+              TextSettings.WordWrap = False
+              Text = 'Company'
+              TabOrder = 0
+            end
+          end
+          object EditCity: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 11
+            Text = 'Stuttgart'
+            Position.X = 160.000000000000000000
+            Position.Y = 208.000000000000000000
+            object LabelCity: TLabel
+              Position.Y = -16.000000000000000000
+              TextSettings.WordWrap = False
+              Text = 'City'
+              TabOrder = 0
+            end
+          end
+          object EditAddress: TEdit
+            Touch.InteractiveGestures = [LongTap, DoubleTap]
+            TabOrder = 12
+            Text = 'Theodor-Heuss-Stra'#223'e 34'
+            Position.X = 24.000000000000000000
+            Position.Y = 208.000000000000000000
+            Size.Width = 129.000000000000000000
+            Size.Height = 22.000000000000000000
+            Size.PlatformDefault = False
+            object LabelAddress: TLabel
+              Position.Y = -16.000000000000000000
+              TextSettings.WordWrap = False
+              Text = 'Address'
+              TabOrder = 0
+            end
+          end
+          object DateEditInvoiceDate: TDateEdit
+            Date = 39814.000000000000000000
+            Position.X = 284.000000000000000000
+            Position.Y = 64.000000000000000000
+            TabOrder = 13
+            object LabelInvoiceDate: TLabel
+              Position.X = -40.000000000000000000
+              Position.Y = 3.000000000000000000
+              Size.Width = 37.000000000000000000
+              Size.Height = 17.000000000000000000
+              Size.PlatformDefault = False
+              TextSettings.HorzAlign = Trailing
+              TextSettings.WordWrap = False
+              Text = 'Date'
+              TabOrder = 14
             end
           end
         end
@@ -23325,6 +23515,78 @@ object frmMobileSalesSQLite: TfrmMobileSalesSQLite
           ColumnStyle = 'CurrencyColumn'
         end>
     end
+    object LinkControlToFieldInvoiceDate: TLinkControlToField
+      DataSource = BindSourceSales
+      FieldName = 'InvoiceDate'
+      Control = DateEditInvoiceDate
+      Track = False
+    end
+    object LinkControlToFieldFirstName: TLinkControlToField
+      DataSource = BindSourceInvoiceCustomer
+      FieldName = 'FirstName'
+      Control = EditFirstName
+      Track = False
+    end
+    object LinkControlToFieldLastName: TLinkControlToField
+      DataSource = BindSourceInvoiceCustomer
+      FieldName = 'LastName'
+      Control = EditLastName
+      Track = False
+    end
+    object LinkControlToFieldPhone: TLinkControlToField
+      DataSource = BindSourceInvoiceCustomer
+      FieldName = 'Phone'
+      Control = EditPhone
+      Track = False
+    end
+    object LinkControlToFieldCompany: TLinkControlToField
+      DataSource = BindSourceInvoiceCustomer
+      FieldName = 'Company'
+      Control = EditCompany
+      Track = False
+    end
+    object LinkControlToFieldEmail: TLinkControlToField
+      DataSource = BindSourceInvoiceCustomer
+      FieldName = 'Email'
+      Control = EditEmail
+      Track = False
+    end
+    object LinkControlToFieldAddress: TLinkControlToField
+      DataSource = BindSourceInvoiceCustomer
+      FieldName = 'Address'
+      Control = EditAddress
+      Track = False
+    end
+    object LinkControlToFieldCity: TLinkControlToField
+      DataSource = BindSourceInvoiceCustomer
+      FieldName = 'City'
+      Control = EditCity
+      Track = False
+    end
+    object LinkControlToFieldState: TLinkControlToField
+      DataSource = BindSourceInvoiceCustomer
+      FieldName = 'State'
+      Control = EditState
+      Track = False
+    end
+    object LinkControlToFieldPostalCode: TLinkControlToField
+      DataSource = BindSourceInvoiceCustomer
+      FieldName = 'PostalCode'
+      Control = EditPostalCode
+      Track = False
+    end
+    object LinkControlToFieldCountry: TLinkControlToField
+      DataSource = BindSourceInvoiceCustomer
+      FieldName = 'Country'
+      Control = EditCountry
+      Track = False
+    end
+    object LinkControlToFieldInvoiceId2: TLinkControlToField
+      DataSource = BindSourceSales
+      FieldName = 'InvoiceId'
+      Control = EditInvoiceId
+      Track = False
+    end
   end
   object BindSourceCustomers: TBindSourceDB
     DataSet = dmSQLiteSales.tblCustomers
@@ -23335,7 +23597,13 @@ object frmMobileSalesSQLite: TfrmMobileSalesSQLite
   object BindSourceSales: TBindSourceDB
     DataSet = dmSQLiteSales.tblInvoices
     ScopeMappings = <>
-    Left = 256
-    Top = 384
+    Left = 264
+    Top = 288
+  end
+  object BindSourceInvoiceCustomer: TBindSourceDB
+    DataSet = dmSQLiteSales.qryInvoiceCustomer
+    ScopeMappings = <>
+    Left = 264
+    Top = 336
   end
 end

@@ -48,8 +48,8 @@ Coordinates=504,221,113,33
 
 [Module Settings]
 ModelLayerNames=sales;customers
-ActiveLayerNames=customers
-EditingLayerName=customers
+ActiveLayerNames=sales
+EditingLayerName=sales
 
 [grdCustomers]
 Coordinates=50,20,84,141
@@ -89,7 +89,7 @@ Coordinates=511,276,105,33
 Coordinates=150,1,76,33
 
 [BindSourceCustomers]
-Coordinates=310,10,141,321
+Coordinates=310,10,141,177
 LayerNames=customers
 
 [dmSQLiteSales.qrySales]
@@ -121,4 +121,11 @@ Visible=False
 
 [BindSourceSales]
 Coordinates=517,331,129,231
+Visible=True
+
+[dmSQLiteSales.qryInvoiceCustomer]
+Coordinates=724,1,192,285
+
+[dmSQLiteSales.srcInvoices]
+Coordinates=342,453,149,33
 

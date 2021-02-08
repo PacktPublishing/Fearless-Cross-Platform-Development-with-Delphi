@@ -1,5 +1,5 @@
 ﻿[tblCustomers]
-Coordinates=10,10,80,285
+Coordinates=10,10,80,51
 
 [FDConnSQLite]
 Coordinates=99,71,87,33
@@ -9,9 +9,6 @@ Coordinates=197,10,57,51
 
 [tblInvoicesInvoiceDate]
 Coordinates=175,1,125,33
-
-[FDQuery1]
-Coordinates=264,10,63,51
 
 [tblInvoicesBillingCity]
 Coordinates=338,1,119,33
@@ -39,4 +36,49 @@ Coordinates=338,313,125,33
 
 [tblInvoicesBillingPostalCode]
 Coordinates=338,365,156,33
+
+[qryInvoiceCustomer]
+Coordinates=264,10,113,285
+
+[srcInvoices]
+Coordinates=249,261,71,33
+
+[qryInvoiceCustomerSupportRepId]
+Coordinates=78,242,182,33
+
+[qryInvoiceCustomerPostalCode]
+Coordinates=415,1,170,33
+
+[qryInvoiceCustomerLastName]
+Coordinates=415,53,163,33
+
+[qryInvoiceCustomerState]
+Coordinates=415,105,139,33
+
+[qryInvoiceCustomerAddress]
+Coordinates=415,157,155,33
+
+[qryInvoiceCustomerCompany]
+Coordinates=415,209,160,33
+
+[qryInvoiceCustomerCustomerId]
+Coordinates=415,261,171,33
+
+[qryInvoiceCustomerFirstName]
+Coordinates=415,313,164,33
+
+[qryInvoiceCustomerCity]
+Coordinates=276,333,133,33
+
+[qryInvoiceCustomerCountry]
+Coordinates=117,333,153,33
+
+[qryInvoiceCustomerEmail]
+Coordinates=624,1,141,33
+
+[qryInvoiceCustomerFax]
+Coordinates=624,53,131,33
+
+[qryInvoiceCustomerPhone]
+Coordinates=624,105,145,33
 
