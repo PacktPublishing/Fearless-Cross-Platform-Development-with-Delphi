@@ -1,0 +1,104 @@
+inherited frmMobileSalesSQLite_Macintosh: TfrmMobileSalesSQLite_Macintosh
+  DesignerMasterStyle = 1
+  inherited tabCtrlMobileSales: TTabControl
+    Sizes = (
+      405s
+      547s
+      405s
+      547s)
+    inherited tabSales: TTabItem
+      ExplicitSize.cx = 102.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+      inherited tabCtrlSales: TTabControl
+        Sizes = (
+          405s
+          547s
+          405s
+          547s)
+        inherited tabSalesList: TTabItem
+          ExplicitSize.cx = 8.000000000000000000
+          ExplicitSize.cy = 8.000000000000000000
+          inherited grdSales: TGrid
+            Viewport.Width = 405.000000000000000000
+            Viewport.Height = 499.000000000000000000
+          end
+        end
+        inherited tabSalesDetails: TTabItem
+          ExplicitSize.cx = 8.000000000000000000
+          ExplicitSize.cy = 8.000000000000000000
+          inherited EditPostalCode: TEdit
+            Position.X = 184.000000000000000000
+            Position.Y = 368.000000000000000000
+          end
+          inherited EditPhone: TEdit
+            Position.Y = 232.000000000000000000
+          end
+          inherited EditState: TEdit
+            Position.X = 128.000000000000000000
+            Position.Y = 368.000000000000000000
+          end
+          inherited EditLastName: TEdit
+            Position.X = 136.000000000000000000
+            Position.Y = 232.000000000000000000
+            Size.Width = 113.000000000000000000
+          end
+          inherited EditFirstName: TEdit
+            Position.Y = 232.000000000000000000
+            Size.Width = 105.000000000000000000
+          end
+          inherited EditEmail: TEdit
+            Position.X = 24.000000000000000000
+            Position.Y = 176.000000000000000000
+            Size.Width = 225.000000000000000000
+          end
+          inherited EditCountry: TEdit
+            Position.X = 24.000000000000000000
+            Position.Y = 440.000000000000000000
+          end
+          inherited EditCompany: TEdit
+            Size.Width = 225.000000000000000000
+          end
+          inherited EditCity: TEdit
+            Position.X = 24.000000000000000000
+            Position.Y = 368.000000000000000000
+          end
+          inherited EditAddress: TEdit
+            Position.Y = 296.000000000000000000
+            Size.Width = 225.000000000000000000
+          end
+        end
+      end
+    end
+    inherited tabCustomers: TTabItem
+      ExplicitSize.cx = 101.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+      inherited grdCustomers: TGrid
+        Viewport.Width = 405.000000000000000000
+        Viewport.Height = 499.000000000000000000
+      end
+    end
+  end
+  inherited GestureManager1: TGestureManager
+    GestureData = <
+      item
+        Control = tabCtrlMobileSales
+        Collection = <
+          item
+            GestureID = sgiLeft
+          end
+          item
+            GestureID = sgiRight
+          end>
+      end
+      item
+        Control = tabCtrlSales
+        Collection = <
+          item
+            GestureID = sgiLeft
+          end
+          item
+            GestureID = sgiRight
+          end>
+      end>
+  end
+end

@@ -5,12 +5,9 @@ object dmSQLiteSales: TdmSQLiteSales
   Width = 344
   object FDConnSQLite: TFDConnection
     Params.Strings = (
-      
-        'Database=V:\FearlessCrossPlatformDev\Chapter09\database\chinook.' +
-        'db'
       'DriverID=SQLite')
-    Connected = True
     LoginPrompt = False
+    BeforeConnect = FDConnSQLiteBeforeConnect
     Left = 64
     Top = 56
   end
@@ -35,7 +32,6 @@ object dmSQLiteSales: TdmSQLiteSales
     Top = 160
   end
   object tblInvoices: TFDTable
-    Active = True
     IndexFieldNames = 'InvoiceId'
     Connection = FDConnSQLite
     UpdateOptions.UpdateTableName = 'invoices'
@@ -92,7 +88,6 @@ object dmSQLiteSales: TdmSQLiteSales
     end
   end
   object qryInvoiceCustomer: TFDQuery
-    Active = True
     MasterSource = srcInvoices
     MasterFields = 'CustomerId'
     DetailFields = 'CustomerId'
@@ -183,5 +178,9 @@ object dmSQLiteSales: TdmSQLiteSales
     DataSet = tblInvoices
     Left = 232
     Top = 48
+  end
+  object FDPhysSQLiteDriverLink1: TFDPhysSQLiteDriverLink
+    Left = 56
+    Top = 120
   end
 end

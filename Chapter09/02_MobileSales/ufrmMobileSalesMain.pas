@@ -90,6 +90,12 @@ var
 implementation
 
 {$R *.fmx}
+{$R *.iPhone55in.fmx IOS}
+{$R *.iPhone4in.fmx IOS}
+{$R *.iPad.fmx IOS}
+{$R *.LgXhdpiTb.fmx ANDROID}
+{$R *.LgXhdpiPh.fmx ANDROID}
+{$R *.Macintosh.fmx MACOS}
 
 uses
   udmSQLiteSales;

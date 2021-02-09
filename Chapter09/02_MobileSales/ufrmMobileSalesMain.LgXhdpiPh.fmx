@@ -1,0 +1,159 @@
+inherited frmMobileSalesSQLite_LgXhdpiPh: TfrmMobileSalesSQLite_LgXhdpiPh
+  ClientHeight = 695
+  ClientWidth = 450
+  DesignerMasterStyle = 2
+  inherited tabCtrlMobileSales: TTabControl
+    Size.Width = 450.000000000000000000
+    Size.Height = 695.000000000000000000
+    Sizes = (
+      450s
+      646s
+      450s
+      646s)
+    inherited tabSales: TTabItem
+      Size.Width = 225.000000000000000000
+      ExplicitSize.cx = 102.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+      inherited tabCtrlSales: TTabControl
+        Size.Width = 450.000000000000000000
+        Size.Height = 646.000000000000000000
+        Sizes = (
+          450s
+          646s
+          450s
+          646s)
+        inherited tabSalesList: TTabItem
+          ExplicitSize.cx = 8.000000000000000000
+          ExplicitSize.cy = 8.000000000000000000
+          inherited ToolBar3: TToolBar
+            Size.Width = 450.000000000000000000
+            inherited lblTitle3: TLabel
+              Size.Width = 450.000000000000000000
+            end
+            inherited btnNext: TSpeedButton
+              Position.X = 385.000000000000000000
+            end
+          end
+          inherited grdSales: TGrid
+            Size.Width = 450.000000000000000000
+            Size.Height = 598.000000000000000000
+            Viewport.Width = 450.000000000000000000
+            Viewport.Height = 598.000000000000000000
+          end
+        end
+        inherited tabSalesDetails: TTabItem
+          ExplicitSize.cx = 8.000000000000000000
+          ExplicitSize.cy = 8.000000000000000000
+          inherited lvCustomerDetails: TListView
+            Size.Width = 450.000000000000000000
+            Size.Height = 598.000000000000000000
+          end
+          inherited ToolBar2: TToolBar
+            Size.Width = 450.000000000000000000
+            inherited lblTitle2: TLabel
+              Size.Width = 450.000000000000000000
+            end
+          end
+          inherited EditPostalCode: TEdit
+            Position.X = 200.000000000000000000
+            Position.Y = 328.000000000000000000
+          end
+          inherited EditState: TEdit
+            Position.X = 144.000000000000000000
+            Position.Y = 328.000000000000000000
+          end
+          inherited EditInvoiceId: TEdit
+            Position.X = 104.000000000000000000
+            inherited LabelInvoiceId: TLabel
+              Position.X = -80.000000000000000000
+              Size.Width = 71.000000000000000000
+            end
+          end
+          inherited EditEmail: TEdit
+            Position.X = 208.000000000000000000
+            Size.Width = 225.000000000000000000
+          end
+          inherited EditCountry: TEdit
+            Position.X = 24.000000000000000000
+            Position.Y = 392.000000000000000000
+            inherited LabelCountry: TLabel
+              Position.Y = -24.000000000000000000
+              Size.Width = 82.000000000000000000
+              Size.Height = 31.000000000000000000
+              Size.PlatformDefault = False
+            end
+          end
+          inherited EditCompany: TEdit
+            Size.Width = 177.000000000000000000
+          end
+          inherited EditCity: TEdit
+            Position.X = 24.000000000000000000
+            Position.Y = 328.000000000000000000
+            Size.Width = 113.000000000000000000
+          end
+          inherited EditAddress: TEdit
+            Size.Width = 169.000000000000000000
+          end
+          inherited DateEditInvoiceDate: TDateEdit
+            Size.Height = 32.000000000000000000
+            inherited LabelInvoiceDate: TLabel
+              TabOrder = 13
+            end
+          end
+        end
+      end
+    end
+    inherited tabCustomers: TTabItem
+      Size.Width = 225.000000000000000000
+      ExplicitSize.cx = 101.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+      inherited grdCustomers: TGrid
+        Size.Width = 450.000000000000000000
+        Size.Height = 598.000000000000000000
+        Viewport.Width = 450.000000000000000000
+        Viewport.Height = 598.000000000000000000
+      end
+      inherited tbCustomers: TToolBar
+        Size.Width = 450.000000000000000000
+        inherited lblTitle1: TLabel
+          Size.Width = 450.000000000000000000
+        end
+      end
+    end
+  end
+  inherited GestureManager1: TGestureManager
+    GestureData = <
+      item
+        Control = tabCtrlMobileSales
+        Collection = <
+          item
+            GestureID = sgiLeft
+          end
+          item
+            GestureID = sgiRight
+          end>
+      end
+      item
+        Control = tabCtrlSales
+        Collection = <
+          item
+            GestureID = sgiLeft
+          end
+          item
+            GestureID = sgiRight
+          end>
+      end>
+  end
+  inherited ActionList1: TActionList
+    Left = 40
+    Top = 416
+  end
+  inherited BindSourceSales: TBindSourceDB
+    Left = 304
+    Top = 312
+  end
+  inherited BindSourceInvoiceCustomer: TBindSourceDB
+    Left = 280
+    Top = 384
+  end
+end

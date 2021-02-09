@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.IB,
   FireDAC.Phys.IBDef, FireDAC.FMXUI.Wait, FireDAC.Stan.Param, FireDAC.DatS,
   FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client;
+  FireDAC.Comp.Client, FireDAC.Phys.IBBase;
 
 type
   TdmInterbaseSales = class(TDataModule)
@@ -29,6 +29,9 @@ type
     tblSalesDISCOUNT: TSingleField;
     tblSalesITEM_TYPE: TStringField;
     tblSalesAGED: TFMTBCDField;
+    FDPhysIBDriverLink1: TFDPhysIBDriverLink;
+    procedure FDConnectionIBBeforeConnect(Sender: TObject);
+    procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -43,5 +46,38 @@ implementation
 {%CLASSGROUP 'FMX.Controls.TControl'}
 
 {$R *.dfm}
+
+uses
+  IOUtils;
+
+procedure TdmInterbaseSales.DataModuleCreate(Sender: TObject);
+begin
+  try
+    FDConnectionIB.Open;
+    if FDConnectionIB.Connected then begin
+      tblSales.Open;
+      qrySaleCustomers.Open;
+    end;
+  except
+    on e:EFDException do
+      raise EFDException.Create('Could not open database: ' + FDConnectionIB.Params.Values['Database']
+                  + sLineBreak + e.Message);
+  end;
+end;
+
+procedure TdmInterbaseSales.FDConnectionIBBeforeConnect(Sender: TObject);
+var
+  DataPath: string;
+begin
+  {$IF DEFINED(iOS) or DEFINED(ANDROID)}
+  DataPath := TPath.GetDocumentsPath;
+  {$ELSEIF DEFINED(MSWINDOWS)}
+  DataPath := 'C:\Users\Public\Documents\Embarcadero\Studio\21.0\Samples\Data';
+  {$ELSE}
+  raise EProgrammerNotFound.Create('This platform is not supported in this application');
+  {$ENDIF}
+
+  FDConnectionIB.Params.Values['Database'] := TPath.Combine(DataPath, 'EMPLOYEE.GDB');
+end;
 
 end.

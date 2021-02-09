@@ -89,6 +89,7 @@ var
 implementation
 
 {$R *.fmx}
+{$R *.NmXhdpiPh.fmx ANDROID}
 
 uses udmInterBaseSales;
 

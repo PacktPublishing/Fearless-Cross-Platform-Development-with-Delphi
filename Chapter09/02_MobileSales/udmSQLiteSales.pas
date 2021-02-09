@@ -41,7 +41,9 @@ type
     qryInvoiceCustomerFax: TWideStringField;
     qryInvoiceCustomerEmail: TWideStringField;
     qryInvoiceCustomerSupportRepId: TIntegerField;
+    FDPhysSQLiteDriverLink1: TFDPhysSQLiteDriverLink;
     procedure DataModuleCreate(Sender: TObject);
+    procedure FDConnSQLiteBeforeConnect(Sender: TObject);
   end;
 
 var
@@ -53,10 +55,37 @@ implementation
 
 {$R *.dfm}
 
+uses
+  IOUtils;
+
 procedure TdmSQLiteSales.DataModuleCreate(Sender: TObject);
 begin
-  FDConnSQLite.Open;
-  qrySales.Open;
+  try
+    FDConnSQLite.Open;
+    if FDConnSQLite.Connected then begin
+      tblInvoices.Open;
+      qrySales.Open;
+    end;
+  except
+    on e:EFDException do
+      raise EFDException.Create('Could not open database: ' + FDConnSQLite.Params.Values['Database']
+                  + sLineBreak + e.Message);
+  end;
+end;
+
+procedure TdmSQLiteSales.FDConnSQLiteBeforeConnect(Sender: TObject);
+var
+  DataPath: string;
+begin
+  {$IF DEFINED(iOS) or DEFINED(ANDROID)}
+  DataPath := TPath.GetDocumentsPath;
+  {$ELSEIF DEFINED(MSWINDOWS)}
+  DataPath := TPath.Combine(TPath.GetPublicPath, 'MobileSalesSQLiteData');
+  {$ELSE}
+  raise EProgrammerNotFound.Create('This platform is not supported in this application');
+  {$ENDIF}
+
+  FDConnSQLite.Params.Values['Database'] := TPath.Combine(DataPath, 'chinook.db');
 end;
 
 end.

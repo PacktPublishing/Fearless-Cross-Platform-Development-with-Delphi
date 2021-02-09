@@ -1,5 +1,6 @@
 object dmInterbaseSales: TdmInterbaseSales
   OldCreateOrder = False
+  OnCreate = DataModuleCreate
   Height = 244
   Width = 345
   object FDConnectionIB: TFDConnection
@@ -10,13 +11,12 @@ object dmInterbaseSales: TdmInterbaseSales
       'User_Name=sysdba'
       'Password=masterkey'
       'DriverID=IB')
-    Connected = True
     LoginPrompt = False
+    BeforeConnect = FDConnectionIBBeforeConnect
     Left = 88
     Top = 56
   end
   object tblSales: TFDTable
-    Active = True
     IndexFieldNames = 'PO_NUMBER'
     Connection = FDConnectionIB
     UpdateOptions.UpdateTableName = 'SALES'
@@ -93,7 +93,6 @@ object dmInterbaseSales: TdmInterbaseSales
     end
   end
   object qrySaleCustomers: TFDQuery
-    Active = True
     MasterSource = srcSales
     MasterFields = 'CUST_NO'
     DetailFields = 'CUST_NO'
@@ -118,5 +117,9 @@ object dmInterbaseSales: TdmInterbaseSales
     DataSet = tblSales
     Left = 232
     Top = 48
+  end
+  object FDPhysIBDriverLink1: TFDPhysIBDriverLink
+    Left = 72
+    Top = 136
   end
 end

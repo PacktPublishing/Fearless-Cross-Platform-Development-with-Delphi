@@ -125,6 +125,7 @@ Visible=True
 
 [dmSQLiteSales.qryInvoiceCustomer]
 Coordinates=724,1,192,285
+Visible=False
 
 [dmSQLiteSales.srcInvoices]
 Coordinates=342,453,149,33
