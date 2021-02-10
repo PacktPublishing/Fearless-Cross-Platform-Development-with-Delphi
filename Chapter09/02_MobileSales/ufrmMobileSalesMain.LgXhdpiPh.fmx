@@ -5,12 +5,14 @@ inherited frmMobileSalesSQLite_LgXhdpiPh: TfrmMobileSalesSQLite_LgXhdpiPh
   inherited tabCtrlMobileSales: TTabControl
     Size.Width = 450.000000000000000000
     Size.Height = 695.000000000000000000
+    TabIndex = 0
     Sizes = (
       450s
       646s
       450s
       646s)
     inherited tabSales: TTabItem
+      IsSelected = True
       Size.Width = 225.000000000000000000
       ExplicitSize.cx = 102.000000000000000000
       ExplicitSize.cy = 49.000000000000000000
@@ -23,6 +25,8 @@ inherited frmMobileSalesSQLite_LgXhdpiPh: TfrmMobileSalesSQLite_LgXhdpiPh
           450s
           646s)
         inherited tabSalesList: TTabItem
+          Size.Width = 10.000000000000000000
+          Size.Height = 10.000000000000000000
           ExplicitSize.cx = 8.000000000000000000
           ExplicitSize.cy = 8.000000000000000000
           inherited ToolBar3: TToolBar
@@ -31,10 +35,11 @@ inherited frmMobileSalesSQLite_LgXhdpiPh: TfrmMobileSalesSQLite_LgXhdpiPh
               Size.Width = 450.000000000000000000
             end
             inherited btnNext: TSpeedButton
-              Position.X = 385.000000000000000000
+              Position.X = 397.000000000000000000
+              Size.Width = 48.000000000000000000
             end
           end
-          inherited grdSales: TGrid
+          inherited StringGridBindSourceSales: TStringGrid
             Size.Width = 450.000000000000000000
             Size.Height = 598.000000000000000000
             Viewport.Width = 450.000000000000000000
@@ -42,12 +47,10 @@ inherited frmMobileSalesSQLite_LgXhdpiPh: TfrmMobileSalesSQLite_LgXhdpiPh
           end
         end
         inherited tabSalesDetails: TTabItem
+          Size.Width = 10.000000000000000000
+          Size.Height = 10.000000000000000000
           ExplicitSize.cx = 8.000000000000000000
           ExplicitSize.cy = 8.000000000000000000
-          inherited lvCustomerDetails: TListView
-            Size.Width = 450.000000000000000000
-            Size.Height = 598.000000000000000000
-          end
           inherited ToolBar2: TToolBar
             Size.Width = 450.000000000000000000
             inherited lblTitle2: TLabel
@@ -97,27 +100,37 @@ inherited frmMobileSalesSQLite_LgXhdpiPh: TfrmMobileSalesSQLite_LgXhdpiPh
           inherited DateEditInvoiceDate: TDateEdit
             Size.Height = 32.000000000000000000
             inherited LabelInvoiceDate: TLabel
-              TabOrder = 13
+              TabOrder = 10
             end
           end
         end
       end
     end
     inherited tabCustomers: TTabItem
+      IsSelected = False
       Size.Width = 225.000000000000000000
       ExplicitSize.cx = 101.000000000000000000
       ExplicitSize.cy = 49.000000000000000000
-      inherited grdCustomers: TGrid
-        Size.Width = 450.000000000000000000
-        Size.Height = 598.000000000000000000
-        Viewport.Width = 450.000000000000000000
-        Viewport.Height = 598.000000000000000000
-      end
       inherited tbCustomers: TToolBar
         Size.Width = 450.000000000000000000
         inherited lblTitle1: TLabel
           Size.Width = 450.000000000000000000
         end
+      end
+      inherited edtFirstName: TEdit
+        TabOrder = 5
+        Size.Height = 32.000000000000000000
+      end
+      inherited edtLastName: TEdit
+        Position.X = 184.000000000000000000
+        Size.Height = 32.000000000000000000
+      end
+      inherited StringGridBindSourceCustomers: TStringGrid
+        Position.Y = 192.000000000000000000
+        Size.Width = 450.000000000000000000
+        Size.Height = 454.000000000000000000
+        Viewport.Width = 450.000000000000000000
+        Viewport.Height = 454.000000000000000000
       end
     end
   end
@@ -147,6 +160,58 @@ inherited frmMobileSalesSQLite_LgXhdpiPh: TfrmMobileSalesSQLite_LgXhdpiPh
   inherited ActionList1: TActionList
     Left = 40
     Top = 416
+  end
+  inherited BindingsList: TBindingsList
+    inherited LinkGridToDataSourceBindSourceCustomers2: TLinkGridToDataSource
+      Columns = <
+        item
+          MemberName = 'CustomerId'
+          Header = 'ID'
+          TextWidth = 5
+        end
+        item
+          MemberName = 'FirstName'
+          Header = 'First Name'
+          TextWidth = 15
+        end
+        item
+          MemberName = 'LastName'
+          Header = 'Last Name'
+          TextWidth = 15
+        end
+        item
+          MemberName = 'Company'
+          TextWidth = 25
+        end>
+    end
+    inherited LinkGridToDataSourceBindSourceSales: TLinkGridToDataSource
+      Columns = <
+        item
+          MemberName = 'InvoiceDate'
+          Header = 'Date'
+          TextWidth = 15
+        end
+        item
+          MemberName = 'BillingCity'
+          Header = 'City'
+          TextWidth = 15
+        end
+        item
+          MemberName = 'BillingState'
+          Header = 'State'
+          TextWidth = 6
+        end
+        item
+          MemberName = 'BillingCountry'
+          Header = 'Country'
+          TextWidth = 13
+        end
+        item
+          MemberName = 'Total'
+          TextWidth = 9
+          ColumnStyle = 'CurrencyColumn'
+        end>
+    end
   end
   inherited BindSourceSales: TBindSourceDB
     Left = 304

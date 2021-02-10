@@ -18,7 +18,7 @@ inherited frmMobileSalesSQLite_Macintosh: TfrmMobileSalesSQLite_Macintosh
         inherited tabSalesList: TTabItem
           ExplicitSize.cx = 8.000000000000000000
           ExplicitSize.cy = 8.000000000000000000
-          inherited grdSales: TGrid
+          inherited StringGridBindSourceSales: TStringGrid
             Viewport.Width = 405.000000000000000000
             Viewport.Height = 499.000000000000000000
           end
@@ -72,9 +72,15 @@ inherited frmMobileSalesSQLite_Macintosh: TfrmMobileSalesSQLite_Macintosh
     inherited tabCustomers: TTabItem
       ExplicitSize.cx = 101.000000000000000000
       ExplicitSize.cy = 49.000000000000000000
-      inherited grdCustomers: TGrid
+      inherited edtFirstName: TEdit
+        TabOrder = 5
+        inherited Label1: TLabel
+          Position.X = 8.000000000000000000
+        end
+      end
+      inherited StringGridBindSourceCustomers: TStringGrid
         Viewport.Width = 405.000000000000000000
-        Viewport.Height = 499.000000000000000000
+        Viewport.Height = 379.000000000000000000
       end
     end
   end

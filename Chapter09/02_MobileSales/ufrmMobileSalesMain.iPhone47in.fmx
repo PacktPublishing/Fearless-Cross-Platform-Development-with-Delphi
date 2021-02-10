@@ -1,0 +1,213 @@
+inherited frmMobileSalesSQLite_iPhone47in: TfrmMobileSalesSQLite_iPhone47in
+  ClientHeight = 647
+  ClientWidth = 375
+  DesignerMasterStyle = 0
+  inherited tabCtrlMobileSales: TTabControl
+    Size.Width = 375.000000000000000000
+    Size.Height = 647.000000000000000000
+    TabIndex = 0
+    Sizes = (
+      375s
+      598s
+      375s
+      598s)
+    inherited tabSales: TTabItem
+      IsSelected = True
+      Size.Width = 187.000000000000000000
+      ExplicitSize.cx = 102.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+      inherited tabCtrlSales: TTabControl
+        Size.Width = 375.000000000000000000
+        Size.Height = 598.000000000000000000
+        Sizes = (
+          375s
+          598s
+          375s
+          598s)
+        inherited tabSalesList: TTabItem
+          Size.Width = 11.000000000000000000
+          Size.Height = 11.000000000000000000
+          ExplicitSize.cx = 8.000000000000000000
+          ExplicitSize.cy = 8.000000000000000000
+          inherited ToolBar3: TToolBar
+            Size.Width = 375.000000000000000000
+            Size.Height = 44.000000000000000000
+            inherited lblTitle3: TLabel
+              Size.Width = 375.000000000000000000
+              Size.Height = 44.000000000000000000
+            end
+            inherited btnNext: TSpeedButton
+              Position.X = 326.000000000000000000
+              Size.Width = 44.000000000000000000
+              Size.Height = 44.000000000000000000
+            end
+          end
+          inherited StringGridBindSourceSales: TStringGrid
+            Size.Width = 375.000000000000000000
+            Size.Height = 554.000000000000000000
+            Viewport.Width = 375.000000000000000000
+            Viewport.Height = 554.000000000000000000
+          end
+        end
+        inherited tabSalesDetails: TTabItem
+          Size.Width = 11.000000000000000000
+          Size.Height = 11.000000000000000000
+          ExplicitSize.cx = 8.000000000000000000
+          ExplicitSize.cy = 8.000000000000000000
+          inherited ToolBar2: TToolBar
+            Size.Width = 375.000000000000000000
+            Size.Height = 44.000000000000000000
+            inherited lblTitle2: TLabel
+              Size.Width = 375.000000000000000000
+              Size.Height = 44.000000000000000000
+            end
+            inherited btnBack: TSpeedButton
+              Size.Width = 44.000000000000000000
+              Size.Height = 44.000000000000000000
+            end
+          end
+          inherited EditPostalCode: TEdit
+            Size.Height = 30.000000000000000000
+          end
+          inherited EditPhone: TEdit
+            Size.Height = 30.000000000000000000
+          end
+          inherited EditState: TEdit
+            Size.Height = 30.000000000000000000
+          end
+          inherited EditLastName: TEdit
+            Size.Height = 30.000000000000000000
+          end
+          inherited EditFirstName: TEdit
+            Size.Height = 30.000000000000000000
+          end
+          inherited EditEmail: TEdit
+            Size.Height = 30.000000000000000000
+          end
+          inherited EditCountry: TEdit
+            Size.Height = 30.000000000000000000
+          end
+          inherited EditCompany: TEdit
+            Size.Height = 30.000000000000000000
+          end
+          inherited EditCity: TEdit
+            Size.Height = 30.000000000000000000
+          end
+          inherited EditAddress: TEdit
+            Size.Height = 30.000000000000000000
+          end
+          inherited DateEditInvoiceDate: TDateEdit
+            inherited LabelInvoiceDate: TLabel
+              TabOrder = 12
+            end
+          end
+        end
+      end
+    end
+    inherited tabCustomers: TTabItem
+      IsSelected = False
+      Size.Width = 188.000000000000000000
+      ExplicitSize.cx = 101.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+      inherited tbCustomers: TToolBar
+        Size.Width = 375.000000000000000000
+        Size.Height = 44.000000000000000000
+        inherited lblTitle1: TLabel
+          Size.Width = 375.000000000000000000
+          Size.Height = 44.000000000000000000
+        end
+      end
+      inherited edtFirstName: TEdit
+        TabOrder = 5
+        Size.Width = 153.000000000000000000
+        Size.Height = 30.000000000000000000
+      end
+      inherited edtLastName: TEdit
+        Position.X = 192.000000000000000000
+        Size.Width = 153.000000000000000000
+        Size.Height = 30.000000000000000000
+      end
+      inherited StringGridBindSourceCustomers: TStringGrid
+        Size.Width = 375.000000000000000000
+        Size.Height = 430.000000000000000000
+        Viewport.Width = 375.000000000000000000
+        Viewport.Height = 430.000000000000000000
+      end
+    end
+  end
+  inherited GestureManager1: TGestureManager
+    GestureData = <
+      item
+        Control = tabCtrlMobileSales
+        Collection = <
+          item
+            GestureID = sgiLeft
+          end
+          item
+            GestureID = sgiRight
+          end>
+      end
+      item
+        Control = tabCtrlSales
+        Collection = <
+          item
+            GestureID = sgiLeft
+          end
+          item
+            GestureID = sgiRight
+          end>
+      end>
+  end
+  inherited BindingsList: TBindingsList
+    inherited LinkGridToDataSourceBindSourceCustomers2: TLinkGridToDataSource
+      Columns = <
+        item
+          MemberName = 'CustomerId'
+          Header = 'ID'
+          TextWidth = 5
+        end
+        item
+          MemberName = 'FirstName'
+          Header = 'First Name'
+          TextWidth = 10
+        end
+        item
+          MemberName = 'LastName'
+          Header = 'Last Name'
+          TextWidth = 10
+        end
+        item
+          MemberName = 'Company'
+          TextWidth = 25
+        end>
+    end
+    inherited LinkGridToDataSourceBindSourceSales: TLinkGridToDataSource
+      Columns = <
+        item
+          MemberName = 'InvoiceDate'
+          Header = 'Date'
+          TextWidth = 14
+        end
+        item
+          MemberName = 'BillingCity'
+          Header = 'City'
+          TextWidth = 12
+        end
+        item
+          MemberName = 'BillingState'
+          Header = 'State'
+          TextWidth = 6
+        end
+        item
+          MemberName = 'BillingCountry'
+          Header = 'Country'
+          TextWidth = 10
+        end
+        item
+          MemberName = 'Total'
+          TextWidth = 8
+          ColumnStyle = 'CurrencyColumn'
+        end>
+    end
+  end
+end

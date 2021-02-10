@@ -47,26 +47,21 @@ Visible=False
 Coordinates=504,221,113,33
 
 [Module Settings]
-ModelLayerNames=sales;customers
-ActiveLayerNames=sales
-EditingLayerName=sales
-
-[grdCustomers]
-Coordinates=50,20,84,141
-LayerNames=customers
-Visible=True
+ModelLayerNames=sales;customers;"sale customer"
+ActiveLayerNames=customers
+EditingLayerName=customers
 
 []
-Coordinates=259,379,67,36
+Coordinates=10,50,57,141
 LayerNames=sales
-Visible=False
+Visible=True
 
 [tbCustomers]
 Coordinates=347,56,77,33
 Visible=False
 
 [tabCtrlMobileSales]
-Coordinates=347,1,107,33
+Coordinates=460,10,107,33
 Visible=False
 
 [dmMusicSales.tblCustomers]
@@ -77,11 +72,6 @@ Coordinates=90,70,177,36
 Coordinates=680,190,152,58
 LayerNames=sales
 
-[lvCustomerDetails]
-Coordinates=530,30,104,141
-Visible=True
-LayerNames=customers
-
 [StyleBookEmerald]
 Coordinates=511,276,105,33
 
@@ -89,11 +79,8 @@ Coordinates=511,276,105,33
 Coordinates=150,1,76,33
 
 [BindSourceCustomers]
-Coordinates=310,10,141,177
+Coordinates=760,10,141,303
 LayerNames=customers
-
-[dmSQLiteSales.qrySales]
-Coordinates=517,217,135,51
 
 [dmSQLiteSales.tblCustomers]
 Coordinates=517,331,159,33
@@ -103,12 +90,8 @@ Visible=False
 Coordinates=517,331,146,33
 Visible=False
 
-[grdSales]
-Coordinates=0,0,57,141
-Visible=True
-
 [tabCtrlSales]
-Coordinates=504,166,74,33
+Coordinates=600,40,74,33
 Visible=True
 
 [tabSalesList]
@@ -120,13 +103,142 @@ Coordinates=347,221,90,33
 Visible=False
 
 [BindSourceSales]
-Coordinates=517,331,129,231
+Coordinates=190,10,129,231
 Visible=True
+LayerNames=sales
 
 [dmSQLiteSales.qryInvoiceCustomer]
-Coordinates=724,1,192,285
+Coordinates=724,1,192,33
 Visible=False
 
 [dmSQLiteSales.srcInvoices]
 Coordinates=342,453,149,33
+
+[EditState]
+Coordinates=650,390,58,51
+LayerNames="sale customer"
+
+[LabelAddress]
+Coordinates=140,610,82,33
+Visible=False
+
+[DateEditInvoiceDate]
+Coordinates=360,70,115,51
+LayerNames=sales
+
+[LabelCity]
+Coordinates=65,481,60,33
+Visible=False
+
+[EditEmail]
+Coordinates=830,440,61,51
+LayerNames="sale customer"
+
+[LabelPhone]
+Coordinates=560,380,72,33
+Visible=False
+
+[LabelPostalCode]
+Coordinates=738,210,97,33
+Visible=False
+
+[LabelState]
+Coordinates=130,690,66,33
+Visible=False
+
+[LabelLastName]
+Coordinates=738,56,90,33
+Visible=False
+
+[BindSourceInvoiceCustomer]
+Coordinates=340,150,172,303
+LayerNames="sale customer"
+
+[EditLastName]
+Coordinates=590,210,83,51
+LayerNames="sale customer"
+
+[EditPhone]
+Coordinates=910,410,65,51
+LayerNames="sale customer"
+
+[EditInvoiceId]
+Coordinates=360,20,78,51
+LayerNames=sales
+
+[EditFirstName]
+Coordinates=590,150,84,51
+LayerNames="sale customer"
+
+[EditAddress]
+Coordinates=640,320,75,51
+LayerNames="sale customer"
+
+[LabelInvoiceId]
+Coordinates=738,287,85,33
+Visible=False
+
+[LabelInvoiceDate]
+Coordinates=738,595,99,33
+Visible=False
+
+[EditPostalCode]
+Coordinates=630,450,90,51
+LayerNames="sale customer"
+
+[LabelCountry]
+Coordinates=50,650,80,33
+Visible=False
+
+[LabelFirstName]
+Coordinates=738,518,91,33
+Visible=False
+
+[EditCity]
+Coordinates=730,360,53,51
+LayerNames="sale customer"
+
+[LabelCompany]
+Coordinates=134,481,88,33
+Visible=False
+
+[EditCountry]
+Coordinates=820,370,73,51
+LayerNames="sale customer"
+
+[EditCompany]
+Coordinates=590,270,80,51
+LayerNames="sale customer"
+
+[LabelEmail]
+Coordinates=110,630,68,33
+Visible=False
+
+[dmSQLiteSales.]
+Coordinates=890,390,135,51
+
+[StringGridBindSourceCustomers]
+Coordinates=520,20,176,123
+LayerNames=customers
+
+[lblTransState]
+Coordinates=60,270,79,33
+Visible=False
+
+[edtLastName]
+Coordinates=940,120,79,51
+
+[Label2]
+Coordinates=98,1,46,33
+Visible=False
+
+[edtFirstName]
+Coordinates=940,70,80,51
+
+[Label1]
+Coordinates=98,71,46,33
+Visible=False
+
+[StringGridBindSourceSales]
+Coordinates=0,0,149,51
 

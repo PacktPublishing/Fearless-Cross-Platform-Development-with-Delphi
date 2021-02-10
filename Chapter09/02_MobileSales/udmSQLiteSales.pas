@@ -15,7 +15,6 @@ type
   TdmSQLiteSales = class(TDataModule)
     FDConnSQLite: TFDConnection;
     tblCustomers: TFDTable;
-    qrySales: TFDQuery;
     tblInvoices: TFDTable;
     tblInvoicesInvoiceId: TFDAutoIncField;
     tblInvoicesCustomerId: TIntegerField;
@@ -42,6 +41,17 @@ type
     qryInvoiceCustomerEmail: TWideStringField;
     qryInvoiceCustomerSupportRepId: TIntegerField;
     FDPhysSQLiteDriverLink1: TFDPhysSQLiteDriverLink;
+    tblCustomersCustomerId: TFDAutoIncField;
+    tblCustomersFirstName: TWideStringField;
+    tblCustomersLastName: TWideStringField;
+    tblCustomersCompany: TWideStringField;
+    tblCustomersAddress: TWideStringField;
+    tblCustomersCity: TWideStringField;
+    tblCustomersState: TWideStringField;
+    tblCustomersCountry: TWideStringField;
+    tblCustomersPostalCode: TWideStringField;
+    tblCustomersPhone: TWideStringField;
+    tblCustomersEmail: TWideStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure FDConnSQLiteBeforeConnect(Sender: TObject);
   end;
@@ -64,7 +74,8 @@ begin
     FDConnSQLite.Open;
     if FDConnSQLite.Connected then begin
       tblInvoices.Open;
-      qrySales.Open;
+      qryInvoiceCustomer.Open;
+      tblCustomers.Open;
     end;
   except
     on e:EFDException do

@@ -1,0 +1,147 @@
+inherited frmMobileSalesIB_iPhone4in: TfrmMobileSalesIB_iPhone4in
+  ClientHeight = 548
+  ClientWidth = 320
+  DesignerMasterStyle = 0
+  inherited tabCtrlMobileSalesIB: TTabControl
+    Size.Width = 320.000000000000000000
+    Size.Height = 548.000000000000000000
+    Sizes = (
+      320s
+      499s
+      320s
+      499s)
+    inherited tabSales: TTabItem
+      Size.Width = 160.000000000000000000
+      ExplicitSize.cx = 101.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+      inherited tabCtrlSales: TTabControl
+        Size.Width = 320.000000000000000000
+        Size.Height = 499.000000000000000000
+        Sizes = (
+          320s
+          499s
+          320s
+          499s)
+        inherited tabSalesList: TTabItem
+          Size.Width = 11.000000000000000000
+          Size.Height = 11.000000000000000000
+          ExplicitSize.cx = 8.000000000000000000
+          ExplicitSize.cy = 8.000000000000000000
+          inherited ToolBar1: TToolBar
+            Size.Width = 320.000000000000000000
+            Size.Height = 44.000000000000000000
+            inherited lblSales: TLabel
+              Size.Width = 320.000000000000000000
+              Size.Height = 44.000000000000000000
+            end
+            inherited btnNext: TSpeedButton
+              Position.X = 271.000000000000000000
+              Size.Width = 44.000000000000000000
+              Size.Height = 44.000000000000000000
+            end
+          end
+          inherited grdSales: TStringGrid
+            Size.Width = 320.000000000000000000
+            Size.Height = 455.000000000000000000
+            Viewport.Width = 320.000000000000000000
+            Viewport.Height = 455.000000000000000000
+          end
+        end
+        inherited tabSaleDetails: TTabItem
+          Size.Width = 11.000000000000000000
+          Size.Height = 11.000000000000000000
+          ExplicitSize.cx = 8.000000000000000000
+          ExplicitSize.cy = 8.000000000000000000
+          inherited ToolBar2: TToolBar
+            Size.Width = 320.000000000000000000
+            inherited lblTitle2: TLabel
+              Size.Width = 320.000000000000000000
+            end
+          end
+          inherited DateEditSHIP_DATE: TDateEdit
+            inherited LabelSHIP_DATE: TLabel
+              TabOrder = 12
+            end
+          end
+        end
+      end
+    end
+    inherited tabCustomers: TTabItem
+      Size.Width = 160.000000000000000000
+      ExplicitSize.cx = 102.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+      inherited ToolBar3: TToolBar
+        Size.Width = 320.000000000000000000
+        Size.Height = 44.000000000000000000
+        inherited lblCustomers: TLabel
+          Size.Width = 320.000000000000000000
+          Size.Height = 44.000000000000000000
+        end
+      end
+      inherited gridCustomers: TStringGrid
+        Size.Width = 320.000000000000000000
+        Size.Height = 363.000000000000000000
+        Viewport.Width = 320.000000000000000000
+        Viewport.Height = 363.000000000000000000
+      end
+      inherited edtFirstName: TEdit
+        Size.Height = 30.000000000000000000
+      end
+      inherited edtLastName: TEdit
+        Size.Height = 30.000000000000000000
+      end
+    end
+  end
+  inherited GestureManager1: TGestureManager
+    GestureData = <
+      item
+        Control = tabCtrlMobileSalesIB
+        Collection = <
+          item
+            GestureID = sgiLeft
+          end
+          item
+            GestureID = sgiRight
+          end>
+      end
+      item
+        Control = tabCtrlSales
+        Collection = <
+          item
+            GestureID = sgiLeft
+          end
+          item
+            GestureID = sgiRight
+          end>
+      end>
+  end
+  inherited BindingsList: TBindingsList
+    inherited LinkGridToDataSourceBindSourceSales: TLinkGridToDataSource
+      Columns = <
+        item
+          MemberName = 'ORDER_STATUS'
+          Header = 'Status'
+          TextWidth = 11
+          Alignment = taCenter
+        end
+        item
+          MemberName = 'ORDER_DATE'
+          Header = 'Date'
+          TextWidth = 14
+          Alignment = taCenter
+        end
+        item
+          MemberName = 'QTY_ORDERED'
+          Header = 'Qty'
+          TextWidth = 7
+          ColumnStyle = 'IntegerColumn'
+        end
+        item
+          MemberName = 'TOTAL_VALUE'
+          Header = 'Total'
+          TextWidth = 12
+          ColumnStyle = 'CurrencyColumn'
+        end>
+    end
+  end
+end

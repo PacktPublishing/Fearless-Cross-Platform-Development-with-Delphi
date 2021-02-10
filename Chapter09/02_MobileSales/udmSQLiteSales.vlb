@@ -1,11 +1,8 @@
 ﻿[tblCustomers]
-Coordinates=10,10,80,51
+Coordinates=10,10,80,285
 
 [FDConnSQLite]
 Coordinates=99,71,87,33
-
-[qrySales]
-Coordinates=197,10,57,51
 
 [tblInvoicesInvoiceDate]
 Coordinates=175,1,125,33
@@ -81,4 +78,43 @@ Coordinates=624,53,131,33
 
 [qryInvoiceCustomerPhone]
 Coordinates=624,105,145,33
+
+[FDPhysSQLiteDriverLink1]
+Coordinates=495,365,142,33
+
+[]
+Coordinates=109,242,86,33
+
+[tblCustomersState]
+Coordinates=156,242,105,33
+
+[tblCustomersFirstName]
+Coordinates=415,1,131,33
+
+[tblCustomersCity]
+Coordinates=415,53,100,33
+
+[tblCustomersEmail]
+Coordinates=415,105,108,33
+
+[tblCustomersAddress]
+Coordinates=415,209,121,33
+
+[tblCustomersCompany]
+Coordinates=415,261,127,33
+
+[tblCustomersCountry]
+Coordinates=415,313,120,33
+
+[tblCustomersPhone]
+Coordinates=296,333,112,33
+
+[tblCustomersPostalCode]
+Coordinates=157,333,137,33
+
+[tblCustomersCustomerId]
+Coordinates=18,333,137,33
+
+[tblCustomersLastName]
+Coordinates=601,1,129,33
 

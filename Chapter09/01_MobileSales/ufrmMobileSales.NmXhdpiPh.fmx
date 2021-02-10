@@ -53,7 +53,7 @@ inherited frmMobileSalesIB_NmXhdpiPh: TfrmMobileSalesIB_NmXhdpiPh
           end
           inherited DateEditSHIP_DATE: TDateEdit
             inherited LabelSHIP_DATE: TLabel
-              TabOrder = 13
+              TabOrder = 10
             end
           end
         end
@@ -67,6 +67,28 @@ inherited frmMobileSalesIB_NmXhdpiPh: TfrmMobileSalesIB_NmXhdpiPh
         Size.Width = 400.000000000000000000
         inherited lblCustomers: TLabel
           Size.Width = 400.000000000000000000
+        end
+        inherited btnCancel: TButton
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
+        end
+      end
+      inherited gridCustomers: TStringGrid
+        Position.Y = 155.000000000000000000
+        Size.Width = 400.000000000000000000
+        Viewport.Width = 400.000000000000000000
+        Viewport.Height = 411.000000000000000000
+      end
+      inherited edtFirstName: TEdit
+        Size.Height = 32.000000000000000000
+        inherited Label1: TLabel
+          Position.X = 8.000000000000000000
+        end
+      end
+      inherited edtLastName: TEdit
+        Size.Height = 32.000000000000000000
+        inherited Label2: TLabel
+          Position.X = 8.000000000000000000
         end
       end
     end

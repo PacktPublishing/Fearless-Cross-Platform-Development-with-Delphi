@@ -32,16 +32,10 @@ type
     ActionList1: TActionList;
     NextTabAction1: TNextTabAction;
     PreviousTabAction1: TPreviousTabAction;
-    grdCustomers: TGrid;
     BindingsList: TBindingsList;
     BindSourceCustomers: TBindSourceDB;
-    LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource;
-    lvCustomerDetails: TListView;
-    LinkFillControlToField1: TLinkFillControlToField;
     StyleBookEmerald: TStyleBook;
     BindSourceSales: TBindSourceDB;
-    grdSales: TGrid;
-    LinkGridToDataSourceBindSourceDB12: TLinkGridToDataSource;
     DateEditInvoiceDate: TDateEdit;
     LabelInvoiceDate: TLabel;
     LinkControlToFieldInvoiceDate: TLinkControlToField;
@@ -79,6 +73,17 @@ type
     EditInvoiceId: TEdit;
     LabelInvoiceId: TLabel;
     LinkControlToFieldInvoiceId2: TLinkControlToField;
+    StringGridBindSourceCustomers: TStringGrid;
+    LinkGridToDataSourceBindSourceCustomers2: TLinkGridToDataSource;
+    lblTransState: TLabel;
+    edtFirstName: TEdit;
+    Label1: TLabel;
+    edtLastName: TEdit;
+    Label2: TLabel;
+    LinkControlToFieldFirstName2: TLinkControlToField;
+    LinkControlToFieldLastName2: TLinkControlToField;
+    StringGridBindSourceSales: TStringGrid;
+    LinkGridToDataSourceBindSourceSales: TLinkGridToDataSource;
     procedure GestureDone(Sender: TObject; const EventInfo: TGestureEventInfo; var Handled: Boolean);
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
@@ -96,6 +101,8 @@ implementation
 {$R *.LgXhdpiTb.fmx ANDROID}
 {$R *.LgXhdpiPh.fmx ANDROID}
 {$R *.Macintosh.fmx MACOS}
+{$R *.iPhone47in.fmx IOS}
+{$R *.SmXhdpiPh.fmx ANDROID}
 
 uses
   udmSQLiteSales;

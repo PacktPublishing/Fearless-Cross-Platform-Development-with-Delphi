@@ -1,37 +1,92 @@
 object dmSQLiteSales: TdmSQLiteSales
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Height = 240
+  Height = 247
   Width = 344
   object FDConnSQLite: TFDConnection
     Params.Strings = (
+      
+        'Database=V:\Fearless-Cross-Platform-Development-with-Delphi\Chap' +
+        'ter09\database\chinook.db'
       'DriverID=SQLite')
+    TxOptions.AutoStart = False
+    TxOptions.AutoStop = False
+    TxOptions.EnableNested = False
+    Connected = True
     LoginPrompt = False
     BeforeConnect = FDConnSQLiteBeforeConnect
     Left = 64
     Top = 56
   end
   object tblCustomers: TFDTable
+    Active = True
     IndexFieldNames = 'CustomerId'
     Connection = FDConnSQLite
     UpdateOptions.UpdateTableName = 'customers'
     TableName = 'customers'
-    Left = 240
-    Top = 168
-  end
-  object qrySales: TFDQuery
-    Connection = FDConnSQLite
-    SQL.Strings = (
-      
-        'select i.InvoiceId, i.CustomerId, c.LastName, c.FirstName, i.Inv' +
-        'oiceDate, i.BillingCountry, i.Total'
-      'from invoices i, customers c'
-      'where c.CustomerId = i.CustomerId'
-      'order by i.InvoiceDate desc')
-    Left = 160
-    Top = 160
+    Left = 168
+    Top = 152
+    object tblCustomersCustomerId: TFDAutoIncField
+      FieldName = 'CustomerId'
+      Origin = 'CustomerId'
+      ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
+    end
+    object tblCustomersFirstName: TWideStringField
+      FieldName = 'FirstName'
+      Origin = 'FirstName'
+      Required = True
+      Size = 40
+    end
+    object tblCustomersLastName: TWideStringField
+      FieldName = 'LastName'
+      Origin = 'LastName'
+      Required = True
+    end
+    object tblCustomersCompany: TWideStringField
+      FieldName = 'Company'
+      Origin = 'Company'
+      Size = 80
+    end
+    object tblCustomersAddress: TWideStringField
+      FieldName = 'Address'
+      Origin = 'Address'
+      Size = 70
+    end
+    object tblCustomersCity: TWideStringField
+      FieldName = 'City'
+      Origin = 'City'
+      Size = 40
+    end
+    object tblCustomersState: TWideStringField
+      FieldName = 'State'
+      Origin = 'State'
+      Size = 40
+    end
+    object tblCustomersCountry: TWideStringField
+      FieldName = 'Country'
+      Origin = 'Country'
+      Size = 40
+    end
+    object tblCustomersPostalCode: TWideStringField
+      FieldName = 'PostalCode'
+      Origin = 'PostalCode'
+      Size = 10
+    end
+    object tblCustomersPhone: TWideStringField
+      FieldName = 'Phone'
+      Origin = 'Phone'
+      Size = 24
+    end
+    object tblCustomersEmail: TWideStringField
+      FieldName = 'Email'
+      Origin = 'Email'
+      Required = True
+      Size = 60
+    end
   end
   object tblInvoices: TFDTable
+    Active = True
     IndexFieldNames = 'InvoiceId'
     Connection = FDConnSQLite
     UpdateOptions.UpdateTableName = 'invoices'
@@ -88,6 +143,7 @@ object dmSQLiteSales: TdmSQLiteSales
     end
   end
   object qryInvoiceCustomer: TFDQuery
+    Active = True
     MasterSource = srcInvoices
     MasterFields = 'CustomerId'
     DetailFields = 'CustomerId'

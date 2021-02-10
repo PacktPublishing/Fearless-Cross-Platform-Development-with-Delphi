@@ -11,12 +11,14 @@ object dmInterbaseSales: TdmInterbaseSales
       'User_Name=sysdba'
       'Password=masterkey'
       'DriverID=IB')
+    Connected = True
     LoginPrompt = False
     BeforeConnect = FDConnectionIBBeforeConnect
-    Left = 88
-    Top = 56
+    Left = 64
+    Top = 40
   end
   object tblSales: TFDTable
+    Active = True
     IndexFieldNames = 'PO_NUMBER'
     Connection = FDConnectionIB
     UpdateOptions.UpdateTableName = 'SALES'
@@ -93,6 +95,7 @@ object dmInterbaseSales: TdmInterbaseSales
     end
   end
   object qrySaleCustomers: TFDQuery
+    Active = True
     MasterSource = srcSales
     MasterFields = 'CUST_NO'
     DetailFields = 'CUST_NO'
@@ -119,7 +122,77 @@ object dmInterbaseSales: TdmInterbaseSales
     Top = 48
   end
   object FDPhysIBDriverLink1: TFDPhysIBDriverLink
-    Left = 72
-    Top = 136
+    Left = 64
+    Top = 96
+  end
+  object tblCustomers: TFDTable
+    Active = True
+    IndexFieldNames = 'CUST_NO'
+    Connection = FDConnectionIB
+    UpdateOptions.UpdateTableName = 'CUSTOMER'
+    TableName = 'CUSTOMER'
+    Left = 184
+    Top = 176
+    object tblCustomersCUST_NO: TIntegerField
+      FieldName = 'CUST_NO'
+      Origin = 'CUST_NO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object tblCustomersCUSTOMER: TStringField
+      FieldName = 'CUSTOMER'
+      Origin = 'CUSTOMER'
+      Required = True
+      Size = 25
+    end
+    object tblCustomersCONTACT_FIRST: TStringField
+      FieldName = 'CONTACT_FIRST'
+      Origin = 'CONTACT_FIRST'
+      Size = 15
+    end
+    object tblCustomersCONTACT_LAST: TStringField
+      FieldName = 'CONTACT_LAST'
+      Origin = 'CONTACT_LAST'
+    end
+    object tblCustomersPHONE_NO: TStringField
+      FieldName = 'PHONE_NO'
+      Origin = 'PHONE_NO'
+    end
+    object tblCustomersADDRESS_LINE1: TStringField
+      FieldName = 'ADDRESS_LINE1'
+      Origin = 'ADDRESS_LINE1'
+      Size = 30
+    end
+    object tblCustomersADDRESS_LINE2: TStringField
+      FieldName = 'ADDRESS_LINE2'
+      Origin = 'ADDRESS_LINE2'
+      Size = 30
+    end
+    object tblCustomersCITY: TStringField
+      FieldName = 'CITY'
+      Origin = 'CITY'
+      Size = 25
+    end
+    object tblCustomersSTATE_PROVINCE: TStringField
+      FieldName = 'STATE_PROVINCE'
+      Origin = 'STATE_PROVINCE'
+      Size = 15
+    end
+    object tblCustomersCOUNTRY: TStringField
+      FieldName = 'COUNTRY'
+      Origin = 'COUNTRY'
+      Size = 15
+    end
+    object tblCustomersPOSTAL_CODE: TStringField
+      FieldName = 'POSTAL_CODE'
+      Origin = 'POSTAL_CODE'
+      Size = 12
+    end
+    object tblCustomersON_HOLD: TStringField
+      FieldName = 'ON_HOLD'
+      Origin = 'ON_HOLD'
+      FixedChar = True
+      Size = 1
+    end
   end
 end

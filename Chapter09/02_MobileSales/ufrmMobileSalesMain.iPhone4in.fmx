@@ -23,50 +23,63 @@ inherited frmMobileSalesSQLite_iPhone4in: TfrmMobileSalesSQLite_iPhone4in
           320s
           499s)
         inherited tabSalesList: TTabItem
+          Size.Width = 11.000000000000000000
+          Size.Height = 11.000000000000000000
           ExplicitSize.cx = 8.000000000000000000
           ExplicitSize.cy = 8.000000000000000000
           inherited ToolBar3: TToolBar
             Size.Width = 320.000000000000000000
+            Size.Height = 44.000000000000000000
             inherited lblTitle3: TLabel
               Size.Width = 320.000000000000000000
+              Size.Height = 44.000000000000000000
             end
             inherited btnNext: TSpeedButton
-              Position.X = 255.000000000000000000
+              Position.X = 271.000000000000000000
+              Size.Width = 44.000000000000000000
+              Size.Height = 44.000000000000000000
             end
           end
-          inherited grdSales: TGrid
+          inherited StringGridBindSourceSales: TStringGrid
             Size.Width = 320.000000000000000000
-            Size.Height = 451.000000000000000000
+            Size.Height = 455.000000000000000000
             Viewport.Width = 320.000000000000000000
-            Viewport.Height = 451.000000000000000000
+            Viewport.Height = 455.000000000000000000
           end
         end
         inherited tabSalesDetails: TTabItem
+          Size.Width = 11.000000000000000000
+          Size.Height = 11.000000000000000000
           ExplicitSize.cx = 8.000000000000000000
           ExplicitSize.cy = 8.000000000000000000
-          inherited lvCustomerDetails: TListView
-            Size.Width = 320.000000000000000000
-            Size.Height = 451.000000000000000000
-          end
           inherited ToolBar2: TToolBar
             Size.Width = 320.000000000000000000
+            Size.Height = 44.000000000000000000
             inherited lblTitle2: TLabel
               Size.Width = 320.000000000000000000
+              Size.Height = 44.000000000000000000
+            end
+            inherited btnBack: TSpeedButton
+              Size.Width = 44.000000000000000000
+              Size.Height = 44.000000000000000000
             end
           end
           inherited EditPhone: TEdit
             Position.X = 16.000000000000000000
             Position.Y = 232.000000000000000000
             Size.Width = 113.000000000000000000
+            Size.Height = 30.000000000000000000
           end
           inherited EditState: TEdit
             Position.X = 120.000000000000000000
             Position.Y = 344.000000000000000000
+            Size.Height = 30.000000000000000000
           end
           inherited EditLastName: TEdit
             Position.X = 144.000000000000000000
             Position.Y = 176.000000000000000000
             Size.Width = 153.000000000000000000
+            Size.Height = 30.000000000000000000
           end
           inherited EditInvoiceId: TEdit
             Position.X = 96.000000000000000000
@@ -80,34 +93,40 @@ inherited frmMobileSalesSQLite_iPhone4in: TfrmMobileSalesSQLite_iPhone4in
             Position.X = 16.000000000000000000
             Position.Y = 176.000000000000000000
             Size.Width = 121.000000000000000000
+            Size.Height = 30.000000000000000000
           end
           inherited EditEmail: TEdit
             Position.X = 136.000000000000000000
             Position.Y = 232.000000000000000000
             Size.Width = 169.000000000000000000
+            Size.Height = 30.000000000000000000
           end
           inherited EditCountry: TEdit
             Position.X = 176.000000000000000000
             Position.Y = 344.000000000000000000
+            Size.Height = 30.000000000000000000
           end
           inherited EditCompany: TEdit
             Position.X = 16.000000000000000000
             Size.Width = 281.000000000000000000
+            Size.Height = 30.000000000000000000
           end
           inherited EditCity: TEdit
             Position.X = 16.000000000000000000
             Position.Y = 344.000000000000000000
+            Size.Height = 30.000000000000000000
           end
           inherited EditAddress: TEdit
             Position.X = 16.000000000000000000
             Position.Y = 288.000000000000000000
             Size.Width = 281.000000000000000000
+            Size.Height = 30.000000000000000000
           end
           inherited DateEditInvoiceDate: TDateEdit
             Position.X = 196.000000000000000000
             Position.Y = 64.000000000000000000
             inherited LabelInvoiceDate: TLabel
-              TabOrder = 13
+              TabOrder = 12
             end
           end
         end
@@ -117,17 +136,30 @@ inherited frmMobileSalesSQLite_iPhone4in: TfrmMobileSalesSQLite_iPhone4in
       Size.Width = 160.000000000000000000
       ExplicitSize.cx = 101.000000000000000000
       ExplicitSize.cy = 49.000000000000000000
-      inherited grdCustomers: TGrid
-        Size.Width = 320.000000000000000000
-        Size.Height = 451.000000000000000000
-        Viewport.Width = 320.000000000000000000
-        Viewport.Height = 451.000000000000000000
-      end
       inherited tbCustomers: TToolBar
         Size.Width = 320.000000000000000000
+        Size.Height = 44.000000000000000000
         inherited lblTitle1: TLabel
           Size.Width = 320.000000000000000000
+          Size.Height = 44.000000000000000000
         end
+      end
+      inherited edtFirstName: TEdit
+        TabOrder = 5
+        Position.X = 16.000000000000000000
+        Size.Width = 145.000000000000000000
+        Size.Height = 30.000000000000000000
+      end
+      inherited edtLastName: TEdit
+        Position.X = 168.000000000000000000
+        Size.Width = 145.000000000000000000
+        Size.Height = 30.000000000000000000
+      end
+      inherited StringGridBindSourceCustomers: TStringGrid
+        Position.Y = 120.000000000000000000
+        Size.Width = 320.000000000000000000
+        Viewport.Width = 320.000000000000000000
+        Viewport.Height = 379.000000000000000000
       end
     end
   end
@@ -157,6 +189,25 @@ inherited frmMobileSalesSQLite_iPhone4in: TfrmMobileSalesSQLite_iPhone4in
   inherited ActionList1: TActionList
     Left = 40
     Top = 408
+  end
+  inherited BindingsList: TBindingsList
+    inherited LinkGridToDataSourceBindSourceCustomers2: TLinkGridToDataSource
+      Columns = <
+        item
+          MemberName = 'FirstName'
+          Header = 'First Name'
+          TextWidth = 12
+        end
+        item
+          MemberName = 'LastName'
+          Header = 'Last Name'
+          TextWidth = 12
+        end
+        item
+          MemberName = 'Company'
+          TextWidth = 16
+        end>
+    end
   end
   inherited BindSourceSales: TBindSourceDB
     Left = 240

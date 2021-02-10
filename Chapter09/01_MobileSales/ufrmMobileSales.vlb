@@ -44,9 +44,6 @@ Visible=False
 [NextTabAction1]
 Coordinates=472,1,92,33
 
-[ActionList1]
-Coordinates=472,56,70,33
-
 [ToolBar3]
 Coordinates=10,146,58,33
 Visible=False
@@ -71,7 +68,7 @@ Coordinates=120,78,90,33
 Visible=False
 
 []
-Coordinates=73,249,126,33
+Coordinates=520,470,84,123
 Visible=False
 ExplicitSubNodes=Col
 
@@ -82,7 +79,7 @@ Coordinates=200,20,120,285
 Coordinates=200,0,144,285
 
 [grdSales]
-Coordinates=0,0,57,141
+Coordinates=70,20,57,141
 Visible=True
 LayerNames=sales
 
@@ -154,12 +151,12 @@ Visible=True
 LayerNames="sale details"
 
 [BindSourceSales]
-Coordinates=220,10,128,321
+Coordinates=240,10,128,321
 LayerNames=sales
 
 [Module Settings]
 ModelLayerNames=sales;"sale details"
-ActiveLayerNames=sales
+ActiveLayerNames=
 EditingLayerName=sales
 
 [EditPO_NUMBER]
@@ -243,6 +240,42 @@ Coordinates=247,133,84,33
 Visible=False
 
 [tabCtrlMobileSalesIB]
-Coordinates=330,220,74,33
+Coordinates=330,220,117,33
 Visible=False
+
+[dmInterbaseSales.srcSales]
+Coordinates=49,218,147,33
+
+[dmInterbaseSales.tblCustomers]
+Visible=False
+Coordinates=503,397,171,33
+
+[gridCustomers]
+Coordinates=220,390,87,123
+
+[BindSourceCustomers]
+Coordinates=10,200,152,321
+
+[Label1]
+Coordinates=63,283,46,33
+Visible=False
+
+[btnCancel]
+Coordinates=100,420,64,33
+Visible=False
+
+[edtFirstName]
+Coordinates=133,169,80,33
+Visible=False
+
+[Label2]
+Coordinates=179,428,46,33
+Visible=False
+
+[edtLastName]
+Coordinates=35,187,79,33
+Visible=False
+
+[aclMobileSalesIB]
+Coordinates=472,56,98,33
 

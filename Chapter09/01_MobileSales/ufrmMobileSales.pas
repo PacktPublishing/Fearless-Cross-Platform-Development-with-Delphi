@@ -8,7 +8,7 @@ uses
   FMX.Gestures, System.Actions, FMX.ActnList, System.Rtti, FMX.Grid.Style,
   Data.Bind.EngExt, Fmx.Bind.DBEngExt, Fmx.Bind.Grid, System.Bindings.Outputs,
   Fmx.Bind.Editors, Data.Bind.Components, Data.Bind.Grid, FMX.ScrollBox,
-  FMX.Grid, Data.Bind.DBScope, FMX.Edit, FMX.DateTimeCtrls;
+  FMX.Grid, Data.Bind.DBScope, FMX.Edit, FMX.DateTimeCtrls, FMX.ListBox;
 
 type
   TfrmMobileSalesIB = class(TForm)
@@ -27,7 +27,7 @@ type
     ToolBar3: TToolBar;
     lblCustomers: TLabel;
     GestureManager1: TGestureManager;
-    ActionList1: TActionList;
+    aclMobileSalesIB: TActionList;
     NextTabAction1: TNextTabAction;
     PreviousTabAction1: TPreviousTabAction;
     grdSales: TStringGrid;
@@ -74,6 +74,16 @@ type
     EditPOSTAL_CODE: TEdit;
     LabelPOSTAL_CODE: TLabel;
     LinkControlToFieldPOSTAL_CODE: TLinkControlToField;
+    BindSourceCustomers: TBindSourceDB;
+    gridCustomers: TStringGrid;
+    LinkGridToDataSourceBindSourceDB12: TLinkGridToDataSource;
+    edtFirstName: TEdit;
+    edtLastName: TEdit;
+    Label1: TLabel;
+    btnCancel: TButton;
+    Label2: TLabel;
+    LinkControlToFieldCONTACT_FIRST2: TLinkControlToField;
+    LinkControlToFieldCONTACT_LAST2: TLinkControlToField;
     procedure GestureDone(Sender: TObject; const EventInfo: TGestureEventInfo; var Handled: Boolean);
     procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
@@ -90,6 +100,12 @@ implementation
 
 {$R *.fmx}
 {$R *.NmXhdpiPh.fmx ANDROID}
+{$R *.iPhone.fmx IOS}
+{$R *.iPhone4in.fmx IOS}
+{$R *.iPhone47in.fmx IOS}
+{$R *.XLgXhdpiTb.fmx ANDROID}
+{$R *.SmXhdpiPh.fmx ANDROID}
+{$R *.LgXhdpiPh.fmx ANDROID}
 
 uses udmInterBaseSales;
 

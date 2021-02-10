@@ -30,6 +30,19 @@ type
     tblSalesITEM_TYPE: TStringField;
     tblSalesAGED: TFMTBCDField;
     FDPhysIBDriverLink1: TFDPhysIBDriverLink;
+    tblCustomers: TFDTable;
+    tblCustomersCUST_NO: TIntegerField;
+    tblCustomersCUSTOMER: TStringField;
+    tblCustomersCONTACT_FIRST: TStringField;
+    tblCustomersCONTACT_LAST: TStringField;
+    tblCustomersPHONE_NO: TStringField;
+    tblCustomersADDRESS_LINE1: TStringField;
+    tblCustomersADDRESS_LINE2: TStringField;
+    tblCustomersCITY: TStringField;
+    tblCustomersSTATE_PROVINCE: TStringField;
+    tblCustomersCOUNTRY: TStringField;
+    tblCustomersPOSTAL_CODE: TStringField;
+    tblCustomersON_HOLD: TStringField;
     procedure FDConnectionIBBeforeConnect(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
   private
@@ -57,6 +70,7 @@ begin
     if FDConnectionIB.Connected then begin
       tblSales.Open;
       qrySaleCustomers.Open;
+      tblCustomers.Open;
     end;
   except
     on e:EFDException do
