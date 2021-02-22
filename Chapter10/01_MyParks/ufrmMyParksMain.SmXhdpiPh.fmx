@@ -11,7 +11,7 @@ inherited frmMyParksMain_SmXhdpiPh: TfrmMyParksMain_SmXhdpiPh
       Text = 'My Parks - 3.5"'
     end
   end
-  inherited tabCtrlMyParks: TTabControl
+  inherited tabCtrlParks: TTabControl
     Size.Width = 250.000000000000000000
     Size.Height = 327.000000000000000000
     Sizes = (
@@ -24,89 +24,80 @@ inherited frmMyParksMain_SmXhdpiPh: TfrmMyParksMain_SmXhdpiPh
     inherited tabParkList: TTabItem
       Size.Width = 10.000000000000000000
       Size.Height = 10.000000000000000000
-      ExplicitSize.cx = 50.000000000000000000
-      ExplicitSize.cy = 49.000000000000000000
-      inherited tabCtrlParkViewEdit: TTabControl
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      inherited pnlParksButtons: TPanel
+        Position.Y = 287.000000000000000000
         Size.Width = 250.000000000000000000
-        Size.Height = 327.000000000000000000
-        TabHeight = 49.000000000000000000
-        Sizes = (
-          250s
-          327s
-          250s
-          327s)
-        inherited tabParkView: TTabItem
-          Size.Width = 10.000000000000000000
-          Size.Height = 10.000000000000000000
-          ExplicitSize.cx = 8.000000000000000000
-          ExplicitSize.cy = 8.000000000000000000
-          inherited pnlParksButtons: TPanel
-            Position.Y = 287.000000000000000000
-            Size.Width = 250.000000000000000000
-            inherited btnParksAdd: TButton
-              Size.Width = 48.000000000000000000
-              Size.Height = 48.000000000000000000
-            end
-          end
-          inherited lvParks: TListView
-            Size.Width = 250.000000000000000000
-            Size.Height = 287.000000000000000000
-          end
+        inherited btnParksAdd: TButton
+          Size.Height = 40.000000000000000000
         end
-        inherited tabParkEdit: TTabItem
-          Size.Width = 10.000000000000000000
-          Size.Height = 10.000000000000000000
-          ExplicitSize.cx = 8.000000000000000000
-          ExplicitSize.cy = 8.000000000000000000
-          inherited FlowLayoutParkEdit: TFlowLayout
-            Position.Y = 65.000000000000000000
-            Size.Width = 250.000000000000000000
-            inherited CheckBoxHasRestrooms: TCheckBox
-              Margins.Left = 50.000000000000000000
-              Position.X = 50.000000000000000000
-              Position.Y = 40.000000000000000000
-            end
-          end
-          inherited pnlParkNameEdit: TPanel
-            Size.Width = 250.000000000000000000
-            Size.Height = 65.000000000000000000
-            inherited EditParkName: TEdit
-              Position.X = 58.000000000000000000
-              Size.Width = 190.000000000000000000
-              Size.Height = 32.000000000000000000
-              inherited LabelParkName: TLabel
-                Size.Width = 169.000000000000000000
-              end
-            end
-            inherited btnParkEditBack: TButton
-              Position.Y = 8.000000000000000000
-              Size.Width = 48.000000000000000000
-              Size.Height = 48.000000000000000000
-            end
-          end
-          inherited tbBottom: TToolBar
-            Position.Y = 279.000000000000000000
-            Size.Width = 250.000000000000000000
-            Size.Height = 48.000000000000000000
-            inherited btnDeletePark: TButton
-              Size.Width = 48.000000000000000000
-              Size.Height = 48.000000000000000000
-            end
-          end
+      end
+      inherited lvParks: TListView
+        Size.Width = 250.000000000000000000
+        Size.Height = 287.000000000000000000
+      end
+    end
+    inherited tabParkEdit: TTabItem
+      Size.Width = 10.000000000000000000
+      Size.Height = 10.000000000000000000
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      inherited FlowLayoutParkEdit: TFlowLayout
+        Size.Width = 250.000000000000000000
+      end
+      inherited pnlParkNameEdit: TPanel
+        Size.Width = 250.000000000000000000
+        inherited EditParkName: TEdit
+          Position.Y = 25.000000000000000000
+          Size.Height = 32.000000000000000000
+        end
+        inherited btnParkEditBack: TButton
+          Position.Y = 4.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
+        end
+      end
+      inherited tbBottom: TToolBar
+        Position.Y = 279.000000000000000000
+        Size.Width = 250.000000000000000000
+        Size.Height = 48.000000000000000000
+        inherited btnDeletePark: TButton
+          Position.X = 202.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
+        end
+        inherited btnTakePic: TButton
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
+        end
+        inherited btnLoadPic: TButton
+          Position.X = 48.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
+        end
+        inherited btnNotes: TButton
+          Position.X = 96.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
+        end
+        inherited btnShare: TButton
+          Position.X = 144.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
+        end
+        inherited btnSchedule: TButton
+          Position.X = 192.000000000000000000
+          Size.Width = 48.000000000000000000
+          Size.Height = 48.000000000000000000
         end
       end
     end
-    inherited tabMap: TTabItem
+    inherited tabParkCalendar: TTabItem
       Size.Width = 10.000000000000000000
       Size.Height = 10.000000000000000000
-      ExplicitSize.cx = 50.000000000000000000
-      ExplicitSize.cy = 49.000000000000000000
-    end
-    inherited tabVisits: TTabItem
-      Size.Width = 10.000000000000000000
-      Size.Height = 10.000000000000000000
-      ExplicitSize.cx = 50.000000000000000000
-      ExplicitSize.cy = 49.000000000000000000
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
     end
   end
   inherited GestureManagerParks: TGestureManager
@@ -121,5 +112,22 @@ inherited frmMyParksMain_SmXhdpiPh: TfrmMyParksMain_SmXhdpiPh
             GestureID = sgiRight
           end>
       end>
+  end
+  inherited aclMyParks: TActionList
+    inherited TakePhotoFromLibraryAction: TTakePhotoFromLibraryAction
+      ImageIndex = 0
+    end
+    inherited actLoadParkPic: TAction
+      ImageIndex = 0
+    end
+    inherited actEditParkNotes: TAction
+      ImageIndex = 1
+    end
+    inherited actShareParkInfo: TAction
+      ImageIndex = 2
+    end
+    inherited actScheduleParkVisits: TAction
+      ImageIndex = 3
+    end
   end
 end

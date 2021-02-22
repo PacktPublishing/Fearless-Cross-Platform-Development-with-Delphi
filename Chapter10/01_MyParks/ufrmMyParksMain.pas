@@ -11,19 +11,15 @@ uses
   FMX.ListView.Types, FMX.ListView.Appearances, FMX.ListView.Adapters.Base,
   Data.Bind.EngExt, Fmx.Bind.DBEngExt, System.Rtti, System.Bindings.Outputs,
   Fmx.Bind.Editors, Data.Bind.Components, Data.Bind.DBScope, FMX.ListView,
-  FMX.Edit;
+  FMX.Edit, System.ImageList, FMX.ImgList;
 
 type
   TfrmMyParksMain = class(TForm)
     HeaderToolBar: TToolBar;
     lblMain: TLabel;
-    tabCtrlMyParks: TTabControl;
-    tabParkList: TTabItem;
-    tabMap: TTabItem;
-    tabVisits: TTabItem;
     GestureManagerParks: TGestureManager;
     aclMyParks: TActionList;
-    TakePhotoFromCameraAction1: TTakePhotoFromCameraAction;
+    TakePhotoFromCameraAction: TTakePhotoFromCameraAction;
     StyleBookEmeraldCrystal: TStyleBook;
     pnlParksButtons: TPanel;
     btnParksAdd: TButton;
@@ -31,8 +27,8 @@ type
     BindingsListParks: TBindingsList;
     BindSourceParks: TBindSourceDB;
     LinkListControlToFieldParkName: TLinkListControlToField;
-    tabCtrlParkViewEdit: TTabControl;
-    tabParkView: TTabItem;
+    tabCtrlParks: TTabControl;
+    tabParkList: TTabItem;
     tabParkEdit: TTabItem;
     actAddPark: TAction;
     FlowLayoutParkEdit: TFlowLayout;
@@ -46,11 +42,23 @@ type
     LabelParkName: TLabel;
     LinkControlToField1: TLinkControlToField;
     LinkControlToField2: TLinkControlToField;
-    NextAppTabAction: TNextTabAction;
     NextParkTabAction: TNextTabAction;
     ParkEditDoneTabAction: TPreviousTabAction;
     tbBottom: TToolBar;
     btnDeletePark: TButton;
+    tabParkCalendar: TTabItem;
+    btnTakePic: TButton;
+    btnLoadPic: TButton;
+    TakePhotoFromLibraryAction: TTakePhotoFromLibraryAction;
+    actTakeParkPic: TAction;
+    actLoadParkPic: TAction;
+    btnNotes: TButton;
+    actEditParkNotes: TAction;
+    btnShare: TButton;
+    actShareParkInfo: TAction;
+    btnSchedule: TButton;
+    actScheduleParkVisits: TAction;
+    imlMyParks: TImageList;
     procedure FormCreate(Sender: TObject);
     procedure FormGesture(Sender: TObject; const EventInfo: TGestureEventInfo; var Handled: Boolean);
     procedure lvParksItemClick(const Sender: TObject;
@@ -58,6 +66,11 @@ type
     procedure actAddParkExecute(Sender: TObject);
     procedure lvParksPullRefresh(Sender: TObject);
     procedure actDeleteParkExecute(Sender: TObject);
+    procedure actTakeParkPicExecute(Sender: TObject);
+    procedure actLoadParkPicExecute(Sender: TObject);
+    procedure actShareParkInfoExecute(Sender: TObject);
+    procedure actEditParkNotesExecute(Sender: TObject);
+    procedure actScheduleParkVisitsExecute(Sender: TObject);
   end;
 
 var
@@ -79,6 +92,11 @@ uses
   FMX.Platform, FMX.PhoneDialer, FMX.Maps, FMX.MediaLibrary, FMX.DialogService.Async,
   System.Permissions, udmParkData;
 
+procedure TfrmMyParksMain.FormCreate(Sender: TObject);
+begin
+  tabCtrlParks.ActiveTab := tabParkList;
+end;
+
 procedure TfrmMyParksMain.actAddParkExecute(Sender: TObject);
 begin
   dmParkData.tblParks.Insert;
@@ -91,27 +109,36 @@ begin
              [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], TMsgDlgBtn.mbNo, 0,
     procedure (const AResult: TModalResult)
     begin
-      case AResult of
-        mrYes:
-          begin
-            dmParkData.tblParks.Delete;
-            ParkEditDoneTabAction.Execute;
-          end;
-        mrNo:
-          begin
-            // ignored
-          end;
+      if AResult = mrYes then begin
+        dmParkData.tblParks.Delete;
+        ParkEditDoneTabAction.Execute;
       end;
     end);
 end;
 
-procedure TfrmMyParksMain.FormCreate(Sender: TObject);
+procedure TfrmMyParksMain.actEditParkNotesExecute(Sender: TObject);
 begin
-  tabCtrlMyParks.ActiveTab := tabParkList;
-  tabCtrlParkViewEdit.ActiveTab := tabParkView;
+  TDialogServiceAsync.ShowMessage('edit park notes');
+end;
 
-  if not TPlatformServices.Current.SupportsPlatformService(FMX.Maps.IFMXMapService) then
-    tabMap.Visible := False;
+procedure TfrmMyParksMain.actLoadParkPicExecute(Sender: TObject);
+begin
+  TDialogServiceAsync.ShowMessage('load pic');
+end;
+
+procedure TfrmMyParksMain.actScheduleParkVisitsExecute(Sender: TObject);
+begin
+  TDialogServiceAsync.ShowMessage('schedule park visits and see history');
+end;
+
+procedure TfrmMyParksMain.actShareParkInfoExecute(Sender: TObject);
+begin
+  TDialogServiceAsync.ShowMessage('share park info');
+end;
+
+procedure TfrmMyParksMain.actTakeParkPicExecute(Sender: TObject);
+begin
+  TDialogServiceAsync.ShowMessage('take pic');
 end;
 
 procedure TfrmMyParksMain.FormGesture(Sender: TObject;
@@ -121,15 +148,15 @@ begin
   case EventInfo.GestureID of
     sgiLeft:
     begin
-      if tabCtrlMyParks.ActiveTab <> tabCtrlMyParks.Tabs[tabCtrlMyParks.TabCount-1] then
-        tabCtrlMyParks.ActiveTab := tabCtrlMyParks.Tabs[tabCtrlMyParks.TabIndex+1];
+      if tabCtrlParks.ActiveTab <> tabCtrlParks.Tabs[tabCtrlParks.TabCount-1] then
+        tabCtrlParks.ActiveTab := tabCtrlParks.Tabs[tabCtrlParks.TabIndex+1];
       Handled := True;
     end;
 
     sgiRight:
     begin
-      if tabCtrlMyParks.ActiveTab <> tabCtrlMyParks.Tabs[0] then
-        tabCtrlMyParks.ActiveTab := tabCtrlMyParks.Tabs[tabCtrlMyParks.TabIndex-1];
+      if tabCtrlParks.ActiveTab <> tabCtrlParks.Tabs[0] then
+        tabCtrlParks.ActiveTab := tabCtrlParks.Tabs[tabCtrlParks.TabIndex-1];
       Handled := True;
     end;
   end;
