@@ -23,7 +23,6 @@ type
     tblParksMainPic: TBlobField;
     tblParksHasPlaygound: TBooleanField;
     tblParksHasRestrooms: TBooleanField;
-    tblParksSize: TFloatField;
     tblParksNotes: TWideMemoField;
     procedure DataModuleCreate(Sender: TObject);
   end;

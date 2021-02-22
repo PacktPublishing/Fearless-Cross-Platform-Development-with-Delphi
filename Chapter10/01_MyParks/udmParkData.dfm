@@ -56,10 +56,6 @@ object dmParkData: TdmParkData
       FieldName = 'HasRestrooms'
       Origin = 'HasRestrooms'
     end
-    object tblParksSize: TFloatField
-      FieldName = 'Size'
-      Origin = 'Size'
-    end
     object tblParksNotes: TWideMemoField
       FieldName = 'Notes'
       Origin = 'Notes'
