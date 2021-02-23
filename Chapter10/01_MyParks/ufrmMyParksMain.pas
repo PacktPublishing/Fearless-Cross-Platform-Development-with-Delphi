@@ -6,12 +6,12 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.TabControl,
   FMX.StdCtrls, FMX.Gestures, FMX.Controls.Presentation, FMX.Layouts,
-  FMX.ListBox, System.Actions, FMX.ActnList, FMX.StdActns,
+  FMX.ListBox, System.Actions, FMX.ActnList, FMX.StdActns, System.Permissions,
   FMX.MediaLibrary.Actions, FMX.AddressBook.Types, FMX.AddressBook,
   FMX.ListView.Types, FMX.ListView.Appearances, FMX.ListView.Adapters.Base,
   Data.Bind.EngExt, Fmx.Bind.DBEngExt, System.Rtti, System.Bindings.Outputs,
   Fmx.Bind.Editors, Data.Bind.Components, Data.Bind.DBScope, FMX.ListView,
-  FMX.Edit, System.ImageList, FMX.ImgList;
+  FMX.Edit, System.ImageList, FMX.ImgList, FMX.Objects;
 
 type
   TfrmMyParksMain = class(TForm)
@@ -19,7 +19,6 @@ type
     lblMain: TLabel;
     GestureManagerParks: TGestureManager;
     aclMyParks: TActionList;
-    TakePhotoFromCameraAction: TTakePhotoFromCameraAction;
     StyleBookEmeraldCrystal: TStyleBook;
     pnlParksButtons: TPanel;
     btnParksAdd: TButton;
@@ -59,10 +58,12 @@ type
     btnSchedule: TButton;
     actScheduleParkVisits: TAction;
     imlMyParks: TImageList;
+    imgParkPic: TImage;
+    TakePhotoFromCameraAction: TTakePhotoFromCameraAction;
+    LinkControlToField3: TLinkControlToField;
     procedure FormCreate(Sender: TObject);
     procedure FormGesture(Sender: TObject; const EventInfo: TGestureEventInfo; var Handled: Boolean);
-    procedure lvParksItemClick(const Sender: TObject;
-      const AItem: TListViewItem);
+    procedure lvParksItemClick(const Sender: TObject; const AItem: TListViewItem);
     procedure actAddParkExecute(Sender: TObject);
     procedure lvParksPullRefresh(Sender: TObject);
     procedure actDeleteParkExecute(Sender: TObject);
@@ -71,6 +72,11 @@ type
     procedure actShareParkInfoExecute(Sender: TObject);
     procedure actEditParkNotesExecute(Sender: TObject);
     procedure actScheduleParkVisitsExecute(Sender: TObject);
+    procedure TakePhotoFromCameraActionDidFinishTaking(Image: TBitmap);
+    procedure NextParkTabActionUpdate(Sender: TObject);
+  private
+    procedure LoadImageFromDatabase;
+    procedure SaveImageToDatabase;
   end;
 
 var
@@ -89,12 +95,14 @@ implementation
 {$R *.iPhone4in.fmx IOS}
 
 uses
-  FMX.Platform, FMX.PhoneDialer, FMX.Maps, FMX.MediaLibrary, FMX.DialogService.Async,
-  System.Permissions, udmParkData;
+  FMX.Platform, FMX.MediaLibrary, FMX.DialogService.Async,
+  udmParkData;
 
 procedure TfrmMyParksMain.FormCreate(Sender: TObject);
 begin
   tabCtrlParks.ActiveTab := tabParkList;
+
+  actTakeParkPic.Enabled := TPlatformServices.Current.SupportsPlatformService(IFMXCameraService);
 end;
 
 procedure TfrmMyParksMain.actAddParkExecute(Sender: TObject);
@@ -123,12 +131,19 @@ end;
 
 procedure TfrmMyParksMain.actLoadParkPicExecute(Sender: TObject);
 begin
-  TDialogServiceAsync.ShowMessage('load pic');
+  PermissionsService.RequestPermissions(['android.permission.READ_EXTERNAL_STORAGE'],
+    procedure (const APermissions: TArray<string>; const AGrantResults: TArray<TPermissionStatus>)
+    begin
+      if (Length(AGrantResults) = 1) and (AGrantResults[0] = TPermissionStatus.Granted) then
+        TakePhotoFromLibraryAction.Execute
+      else
+        TDialogServiceAsync.ShowMessage('Cannot take load pictures because access to storage was denied.');
+    end);
 end;
 
 procedure TfrmMyParksMain.actScheduleParkVisitsExecute(Sender: TObject);
 begin
-  TDialogServiceAsync.ShowMessage('schedule park visits and see history');
+  TDialogServiceAsync.ShowMessage('calendar pic');
 end;
 
 procedure TfrmMyParksMain.actShareParkInfoExecute(Sender: TObject);
@@ -138,13 +153,20 @@ end;
 
 procedure TfrmMyParksMain.actTakeParkPicExecute(Sender: TObject);
 begin
-  TDialogServiceAsync.ShowMessage('take pic');
+  PermissionsService.RequestPermissions(['android.permission.CAMERA', 'android.permission.WRITE_EXTERNAL_STORAGE'],
+    procedure (const APermissions: TArray<string>; const AGrantResults: TArray<TPermissionStatus>)
+    begin
+      if (Length(AGrantResults) = 2) and
+         (AGrantResults[0] = TPermissionStatus.Granted) and (AGrantResults[1] = TPermissionStatus.Granted) then
+        TakePhotoFromCameraAction.Execute
+      else
+        TDialogServiceAsync.ShowMessage('Cannot take park pictures because the camera and storage were denied access.');
+    end);
 end;
 
-procedure TfrmMyParksMain.FormGesture(Sender: TObject;
-  const EventInfo: TGestureEventInfo; var Handled: Boolean);
+procedure TfrmMyParksMain.FormGesture(Sender: TObject; const EventInfo: TGestureEventInfo; var Handled: Boolean);
 begin
-{$IFDEF ANDROID}
+  {$IFDEF ANDROID}
   case EventInfo.GestureID of
     sgiLeft:
     begin
@@ -160,7 +182,7 @@ begin
       Handled := True;
     end;
   end;
-{$ENDIF}
+  {$ENDIF}
 end;
 
 procedure TfrmMyParksMain.lvParksItemClick(const Sender: TObject; const AItem: TListViewItem);
@@ -172,6 +194,48 @@ procedure TfrmMyParksMain.lvParksPullRefresh(Sender: TObject);
 begin
   dmParkData.tblParks.Close;
   dmParkData.tblParks.Open;
+end;
+
+procedure TfrmMyParksMain.NextParkTabActionUpdate(Sender: TObject);
+begin
+//  LoadImageFromDatabase;
+end;
+
+procedure TfrmMyParksMain.LoadImageFromDatabase;
+var
+  PicStream: TMemoryStream;
+begin
+  PicStream := TMemoryStream.Create;
+  try
+    dmParkData.tblParksMainPic.SaveToStream(PicStream);
+    PicStream.Position := 0;
+    imgParkPic.Bitmap.LoadFromStream(PicStream);
+  finally
+    PicStream.Free;
+  end;
+end;
+
+procedure TfrmMyParksMain.SaveImageToDatabase;
+var
+  PicStream: TMemoryStream;
+begin
+  PicStream := TMemoryStream.Create;
+  try
+    imgParkPic.Bitmap.SaveToStream(PicStream);
+    PicStream.Position := 0;
+
+    dmParkData.tblParks.Edit;
+    dmParkData.tblParksMainPic.LoadFromStream(PicStream);
+    dmParkData.tblParks.Post;
+  finally
+    PicStream.Free;
+  end;
+end;
+
+procedure TfrmMyParksMain.TakePhotoFromCameraActionDidFinishTaking(Image: TBitmap);
+begin
+  imgParkPic.Bitmap.Assign(Image);
+  SaveImageToDatabase;
 end;
 
 end.

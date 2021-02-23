@@ -4,10 +4,8 @@ inherited frmMyParksMain_XLgXhdpiTb: TfrmMyParksMain_XLgXhdpiTb
   DesignerMasterStyle = 0
   inherited HeaderToolBar: TToolBar
     Size.Width = 800.000000000000000000
-    Size.Height = 48.000000000000000000
     inherited lblMain: TLabel
       Size.Width = 800.000000000000000000
-      Size.Height = 48.000000000000000000
     end
   end
   inherited tabCtrlParks: TTabControl
@@ -21,8 +19,6 @@ inherited frmMyParksMain_XLgXhdpiTb: TfrmMyParksMain_XLgXhdpiTb
       800s
       1207s)
     inherited tabParkList: TTabItem
-      Size.Width = 8.000000000000000000
-      Size.Height = 8.000000000000000000
       ExplicitSize.cx = 8.000000000000000000
       ExplicitSize.cy = 8.000000000000000000
       inherited pnlParksButtons: TPanel
@@ -38,8 +34,6 @@ inherited frmMyParksMain_XLgXhdpiTb: TfrmMyParksMain_XLgXhdpiTb
       end
     end
     inherited tabParkEdit: TTabItem
-      Size.Width = 10.000000000000000000
-      Size.Height = 10.000000000000000000
       ExplicitSize.cx = 8.000000000000000000
       ExplicitSize.cy = 8.000000000000000000
       inherited FlowLayoutParkEdit: TFlowLayout
@@ -51,45 +45,20 @@ inherited frmMyParksMain_XLgXhdpiTb: TfrmMyParksMain_XLgXhdpiTb
       end
       inherited pnlParkNameEdit: TPanel
         Size.Width = 800.000000000000000000
-        inherited EditParkName: TEdit
-          Position.Y = 25.000000000000000000
-          Size.Height = 32.000000000000000000
-        end
-        inherited btnParkEditBack: TButton
-          Size.Height = 57.000000000000000000
-        end
       end
       inherited tbBottom: TToolBar
-        Position.Y = 1163.000000000000000000
+        Position.Y = 1159.000000000000000000
         Size.Width = 800.000000000000000000
         inherited btnDeletePark: TButton
           Position.X = 752.000000000000000000
-          Size.Width = 48.000000000000000000
         end
-        inherited btnTakePic: TButton
-          Size.Width = 48.000000000000000000
-        end
-        inherited btnLoadPic: TButton
-          Position.X = 48.000000000000000000
-          Size.Width = 48.000000000000000000
-        end
-        inherited btnNotes: TButton
-          Position.X = 96.000000000000000000
-          Size.Width = 48.000000000000000000
-        end
-        inherited btnShare: TButton
-          Position.X = 144.000000000000000000
-          Size.Width = 48.000000000000000000
-        end
-        inherited btnSchedule: TButton
-          Position.X = 192.000000000000000000
-          Size.Width = 48.000000000000000000
-        end
+      end
+      inherited imgParkPic: TImage
+        Size.Width = 790.000000000000000000
+        Size.Height = 1020.000000000000000000
       end
     end
     inherited tabParkCalendar: TTabItem
-      Size.Width = 10.000000000000000000
-      Size.Height = 10.000000000000000000
       ExplicitSize.cx = 8.000000000000000000
       ExplicitSize.cy = 8.000000000000000000
     end

@@ -1,9 +1,11 @@
 program MyParks;
 
+
+
 uses
   System.StartUpCopy,
   FMX.Forms,
-  ufrmMyParksMain in 'ufrmMyParksMain.pas' {frmMyParksMain},
+  ufrmMyParksMain in 'ufrmMyParksMain.pas' {TabbedForm},
   udmParkData in 'udmParkData.pas' {dmParkData: TDataModule};
 
 {$R *.res}

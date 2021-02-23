@@ -14,7 +14,7 @@ Coordinates=156,20,117,33
 Visible=False
 
 []
-Coordinates=430,340,89,33
+Coordinates=248,56,168,33
 Visible=False
 LayerNames=
 
@@ -27,7 +27,7 @@ Coordinates=450,110,78,33
 Visible=False
 
 [lvParks]
-Coordinates=50,50,89,177
+Coordinates=30,50,89,177
 Visible=True
 LayerNames=
 
@@ -41,7 +41,7 @@ Coordinates=480,330,71,33
 Visible=False
 
 [BindSourceParks]
-Coordinates=230,10,103,249
+Coordinates=156,20,103,231
 LayerNames=
 
 [aclMyParks]
@@ -78,21 +78,84 @@ Visible=False
 Coordinates=410,110,136,51
 
 [pnlParkNameEdit]
-Coordinates=480,40,47,33
+Coordinates=480,40,99,33
 Visible=False
 
 [FlowLayoutParkEdit]
-Coordinates=640,90,77,33
+Coordinates=640,90,113,33
 Visible=False
 
 [tabCtrlParks]
-Coordinates=470,190,112,33
+Coordinates=470,190,75,33
 Visible=False
 
 [tabParkList]
-Coordinates=490,260,75,33
+Coordinates=490,260,70,33
 Visible=False
 
+[imlMyParks]
+Coordinates=114,1,71,33
+
+[btnNotes]
+Coordinates=640,120,58,33
+Visible=False
+
+[tbBottom]
+Coordinates=640,200,60,33
+Visible=False
+
+[tabParkCalendar]
+Coordinates=730,270,96,33
+Visible=False
+
+[btnShare]
+Coordinates=870,130,58,33
+Visible=False
+
+[actLoadParkPic]
+Coordinates=663,1,91,33
+
+[btnLoadPic]
+Coordinates=710,90,70,33
+Visible=False
+
+[NextParkTabAction]
+Coordinates=663,217,109,33
+
+[btnTakePic]
+Coordinates=610,20,69,33
+Visible=False
+
+[btnDeletePark]
+Coordinates=780,180,83,33
+Visible=False
+
+[actShareParkInfo]
+Coordinates=663,272,99,33
+
+[actTakeParkPic]
+Coordinates=663,327,90,33
+
+[btnSchedule]
+Coordinates=820,50,76,33
+Visible=False
+
+[ParkEditDoneTabAction]
+Coordinates=754,145,132,33
+
+[TakePhotoFromLibraryAction]
+Coordinates=807,1,159,33
+
+[actEditParkNotes]
+Coordinates=663,382,99,33
+
+[imgParkPic]
+Coordinates=410,240,70,51
+Visible=True
+
+[actScheduleParkVisits]
+Coordinates=644,420,124,33
+
 [TakePhotoFromCameraAction]
-Coordinates=248,56,168,33
+Coordinates=826,56,162,33
 
