@@ -13,11 +13,13 @@ object dmParkData: TdmParkData
         'Database=V:\Fearless-Cross-Platform-Development-with-Delphi\Chap' +
         'ter10\01_MyParks\MyParks.db'
       'DriverID=SQLite')
+    Connected = True
     LoginPrompt = False
     Left = 40
     Top = 32
   end
   object tblParks: TFDTable
+    Active = True
     IndexFieldNames = 'ID'
     Connection = FDConn
     UpdateOptions.UpdateTableName = 'Parks'

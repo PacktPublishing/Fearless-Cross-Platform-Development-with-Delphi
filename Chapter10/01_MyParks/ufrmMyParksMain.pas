@@ -11,7 +11,9 @@ uses
   FMX.ListView.Types, FMX.ListView.Appearances, FMX.ListView.Adapters.Base,
   Data.Bind.EngExt, Fmx.Bind.DBEngExt, System.Rtti, System.Bindings.Outputs,
   Fmx.Bind.Editors, Data.Bind.Components, Data.Bind.DBScope, FMX.ListView,
-  FMX.Edit, System.ImageList, FMX.ImgList, FMX.Objects;
+  FMX.Edit, System.ImageList, FMX.ImgList, FMX.Objects, FMX.Media,
+  System.Sensors, System.Sensors.Components, FMX.Memo.Types, FMX.ScrollBox,
+  FMX.Memo;
 
 type
   TfrmMyParksMain = class(TForm)
@@ -30,29 +32,21 @@ type
     tabParkList: TTabItem;
     tabParkEdit: TTabItem;
     actAddPark: TAction;
-    FlowLayoutParkEdit: TFlowLayout;
-    CheckBoxHasRestrooms: TCheckBox;
     btnParkEditBack: TButton;
-    LinkControlToField4: TLinkControlToField;
     actDeletePark: TAction;
-    CheckBoxHasPlaygound: TCheckBox;
     pnlParkNameEdit: TPanel;
-    EditParkName: TEdit;
     LabelParkName: TLabel;
-    LinkControlToField1: TLinkControlToField;
-    LinkControlToField2: TLinkControlToField;
     NextParkTabAction: TNextTabAction;
     ParkEditDoneTabAction: TPreviousTabAction;
     tbBottom: TToolBar;
     btnDeletePark: TButton;
-    tabParkCalendar: TTabItem;
+    tabParkVisits: TTabItem;
     btnTakePic: TButton;
     btnLoadPic: TButton;
     TakePhotoFromLibraryAction: TTakePhotoFromLibraryAction;
     actTakeParkPic: TAction;
     actLoadParkPic: TAction;
     btnNotes: TButton;
-    actEditParkNotes: TAction;
     btnShare: TButton;
     actShareParkInfo: TAction;
     btnSchedule: TButton;
@@ -61,6 +55,26 @@ type
     imgParkPic: TImage;
     TakePhotoFromCameraAction: TTakePhotoFromCameraAction;
     LinkControlToField3: TLinkControlToField;
+    mmoParkNotes: TMemo;
+    LinkControlToField5: TLinkControlToField;
+    tabctrlParkEdit: TTabControl;
+    FlowLayoutParkEdit: TFlowLayout;
+    CheckBoxHasRestrooms: TCheckBox;
+    CheckBoxHasPlaygound: TCheckBox;
+    tabParkEditMain: TTabItem;
+    tabParkEditNotes: TTabItem;
+    NextParkEditTabAction: TNextTabAction;
+    ParkNotesDoneTabAction: TPreviousTabAction;
+    LinkControlToField6: TLinkControlToField;
+    LinkControlToField7: TLinkControlToField;
+    pnlParkNotes: TPanel;
+    btnParkNotesBack: TButton;
+    lblParkNotesName: TLabel;
+    edtParkNameEdit: TEdit;
+    LinkControlToField1: TLinkControlToField;
+    LinkPropertyToFieldText: TLinkPropertyToField;
+    btnLocation: TButton;
+    actParkLocation: TAction;
     procedure FormCreate(Sender: TObject);
     procedure FormGesture(Sender: TObject; const EventInfo: TGestureEventInfo; var Handled: Boolean);
     procedure lvParksItemClick(const Sender: TObject; const AItem: TListViewItem);
@@ -70,10 +84,10 @@ type
     procedure actTakeParkPicExecute(Sender: TObject);
     procedure actLoadParkPicExecute(Sender: TObject);
     procedure actShareParkInfoExecute(Sender: TObject);
-    procedure actEditParkNotesExecute(Sender: TObject);
     procedure actScheduleParkVisitsExecute(Sender: TObject);
     procedure TakePhotoFromCameraActionDidFinishTaking(Image: TBitmap);
     procedure NextParkTabActionUpdate(Sender: TObject);
+    procedure actParkLocationExecute(Sender: TObject);
   private
     procedure LoadImageFromDatabase;
     procedure SaveImageToDatabase;
@@ -124,11 +138,6 @@ begin
     end);
 end;
 
-procedure TfrmMyParksMain.actEditParkNotesExecute(Sender: TObject);
-begin
-  TDialogServiceAsync.ShowMessage('edit park notes');
-end;
-
 procedure TfrmMyParksMain.actLoadParkPicExecute(Sender: TObject);
 begin
   PermissionsService.RequestPermissions(['android.permission.READ_EXTERNAL_STORAGE'],
@@ -139,6 +148,11 @@ begin
       else
         TDialogServiceAsync.ShowMessage('Cannot take load pictures because access to storage was denied.');
     end);
+end;
+
+procedure TfrmMyParksMain.actParkLocationExecute(Sender: TObject);
+begin
+  // location
 end;
 
 procedure TfrmMyParksMain.actScheduleParkVisitsExecute(Sender: TObject);
@@ -198,7 +212,7 @@ end;
 
 procedure TfrmMyParksMain.NextParkTabActionUpdate(Sender: TObject);
 begin
-//  LoadImageFromDatabase;
+  tabctrlParkEdit.ActiveTab := tabParkEditMain;
 end;
 
 procedure TfrmMyParksMain.LoadImageFromDatabase;
