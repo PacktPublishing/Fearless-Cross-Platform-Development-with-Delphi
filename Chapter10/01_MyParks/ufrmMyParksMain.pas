@@ -73,8 +73,9 @@ type
     edtParkNameEdit: TEdit;
     LinkControlToField1: TLinkControlToField;
     LinkPropertyToFieldText: TLinkPropertyToField;
-    btnLocation: TButton;
-    actParkLocation: TAction;
+    actSaveParkLocation: TAction;
+    LocationSensor: TLocationSensor;
+    btnSaveParkLocation: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormGesture(Sender: TObject; const EventInfo: TGestureEventInfo; var Handled: Boolean);
     procedure lvParksItemClick(const Sender: TObject; const AItem: TListViewItem);
@@ -87,8 +88,13 @@ type
     procedure actScheduleParkVisitsExecute(Sender: TObject);
     procedure TakePhotoFromCameraActionDidFinishTaking(Image: TBitmap);
     procedure NextParkTabActionUpdate(Sender: TObject);
-    procedure actParkLocationExecute(Sender: TObject);
+    procedure actSaveParkLocationExecute(Sender: TObject);
+    procedure ParkEditDoneTabActionUpdate(Sender: TObject);
+    procedure LocationSensorLocationChanged(Sender: TObject; const OldLocation, NewLocation: TLocationCoord2D);
+    procedure FormActivate(Sender: TObject);
   private
+    FParkLongitude: Double;
+    FParkLatitude : Double;
     procedure LoadImageFromDatabase;
     procedure SaveImageToDatabase;
   end;
@@ -109,8 +115,22 @@ implementation
 {$R *.iPhone4in.fmx IOS}
 
 uses
-  FMX.Platform, FMX.MediaLibrary, FMX.DialogService.Async,
+  FMX.Platform, FMX.MediaLibrary, FMX.DialogService.Async, Data.DB,
   udmParkData;
+
+procedure TfrmMyParksMain.FormActivate(Sender: TObject);
+const
+  PermissionAccessFineLocation = 'android.permission.ACCESS_FINE_LOCATION';
+begin
+  PermissionsService.RequestPermissions([PermissionAccessFineLocation],
+    procedure(const APermissions: TArray<string>; const AGrantResults: TArray<TPermissionStatus>)
+    begin
+      if (Length(AGrantResults) = 1) and (AGrantResults[0] = TPermissionStatus.Granted) then
+        LocationSensor.Active := True
+      else
+        TDialogServiceAsync.ShowMessage('Park location data will not be saved.');
+    end);
+end;
 
 procedure TfrmMyParksMain.FormCreate(Sender: TObject);
 begin
@@ -150,9 +170,23 @@ begin
     end);
 end;
 
-procedure TfrmMyParksMain.actParkLocationExecute(Sender: TObject);
+procedure TfrmMyParksMain.actSaveParkLocationExecute(Sender: TObject);
+var
+  WasEditing: Boolean;
 begin
-  // location
+  if not (dmParkData.tblParks.State in [TDataSetState.dsEdit, TDataSetState.dsInsert]) then begin
+    dmParkData.tblParks.Edit;
+    WasEditing := False;
+  end else
+    WasEditing := True;
+
+  dmParkData.tblParksLocX.AsFloat := FParkLatitude;
+  dmParkData.tblParksLocY.AsFloat := FParkLongitude;
+
+  if not WasEditing then
+    dmParkData.tblParks.Post;
+
+  TDialogServiceAsync.ShowMessage('The park''s location has been saved.');
 end;
 
 procedure TfrmMyParksMain.actScheduleParkVisitsExecute(Sender: TObject);
@@ -215,6 +249,11 @@ begin
   tabctrlParkEdit.ActiveTab := tabParkEditMain;
 end;
 
+procedure TfrmMyParksMain.ParkEditDoneTabActionUpdate(Sender: TObject);
+begin
+//  actSaveParkLocation.Enabled := False;
+end;
+
 procedure TfrmMyParksMain.LoadImageFromDatabase;
 var
   PicStream: TMemoryStream;
@@ -227,6 +266,13 @@ begin
   finally
     PicStream.Free;
   end;
+end;
+
+procedure TfrmMyParksMain.LocationSensorLocationChanged(Sender: TObject;
+               const OldLocation, NewLocation: TLocationCoord2D);
+begin
+  FParkLongitude := NewLocation.Longitude;
+  FParkLatitude  := NewLocation.Latitude;
 end;
 
 procedure TfrmMyParksMain.SaveImageToDatabase;

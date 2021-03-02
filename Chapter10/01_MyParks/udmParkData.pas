@@ -24,7 +24,9 @@ type
     tblParksHasPlaygound: TBooleanField;
     tblParksHasRestrooms: TBooleanField;
     tblParksNotes: TWideMemoField;
+    tblParksCoordinates: TStringField;
     procedure DataModuleCreate(Sender: TObject);
+    procedure tblParksCalcFields(DataSet: TDataSet);
   end;
 
 var
@@ -53,6 +55,15 @@ begin
   FDConn.Open;
 
   tblParks.Open;
+end;
+
+procedure TdmParkData.tblParksCalcFields(DataSet: TDataSet);
+begin
+  if tblParksLocX.IsNull or tblParksLocY.IsNull then
+    tblParksCoordinates.AsString := EmptyStr
+  else
+    tblParksCoordinates.AsString := Format('(%0.3f, %0.3f)',
+                [tblParksLocX.AsFloat, tblParksLocY.AsFloat]);
 end;
 
 end.

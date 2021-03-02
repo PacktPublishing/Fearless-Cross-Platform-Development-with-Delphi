@@ -14,8 +14,8 @@ Coordinates=156,20,117,33
 Visible=False
 
 []
-Coordinates=410,50,97,58
-Visible=True
+Coordinates=720,150,73,33
+Visible=False
 LayerNames=
 
 [pnlParksButtons]
@@ -27,7 +27,7 @@ Coordinates=450,110,78,33
 Visible=False
 
 [lvParks]
-Coordinates=30,30,89,177
+Coordinates=0,30,89,195
 Visible=True
 LayerNames=
 
@@ -41,7 +41,7 @@ Coordinates=480,330,71,33
 Visible=False
 
 [BindSourceParks]
-Coordinates=156,20,103,249
+Coordinates=156,20,103,267
 LayerNames=
 
 [aclMyParks]
@@ -139,7 +139,7 @@ Coordinates=644,420,124,33
 Coordinates=826,56,162,33
 
 [mmoParkNotes]
-Coordinates=380,210,89,51
+Coordinates=370,240,89,51
 Visible=True
 
 [tabctrlParkEdit]
@@ -154,7 +154,7 @@ Coordinates=250,280,113,33
 Visible=False
 
 [CheckBoxHasRestrooms]
-Coordinates=480,170,137,51
+Coordinates=480,200,137,51
 
 [tabParkEditNotes]
 Coordinates=270,260,100,33
@@ -188,9 +188,13 @@ Visible=False
 Coordinates=730,270,79,33
 Visible=False
 
-[btnLocation]
-Coordinates=72,336,73,51
+[actSaveParkLocation]
+Coordinates=55,226,118,33
 
-[actParkLocation]
-Coordinates=55,226,94,33
+[LocationSensor]
+Coordinates=520,432,92,33
+
+[btnSaveParkLocation]
+Coordinates=740,240,119,33
+Visible=False
 

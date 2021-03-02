@@ -13,13 +13,12 @@ object dmParkData: TdmParkData
         'Database=V:\Fearless-Cross-Platform-Development-with-Delphi\Chap' +
         'ter10\01_MyParks\MyParks.db'
       'DriverID=SQLite')
-    Connected = True
     LoginPrompt = False
     Left = 40
     Top = 32
   end
   object tblParks: TFDTable
-    Active = True
+    OnCalcFields = tblParksCalcFields
     IndexFieldNames = 'ID'
     Connection = FDConn
     UpdateOptions.UpdateTableName = 'Parks'
@@ -62,6 +61,12 @@ object dmParkData: TdmParkData
       FieldName = 'Notes'
       Origin = 'Notes'
       BlobType = ftWideMemo
+    end
+    object tblParksCoordinates: TStringField
+      FieldKind = fkCalculated
+      FieldName = 'Coordinates'
+      Size = 30
+      Calculated = True
     end
   end
 end
