@@ -40,7 +40,6 @@ type
     ParkEditDoneTabAction: TPreviousTabAction;
     tbBottom: TToolBar;
     btnDeletePark: TButton;
-    tabParkVisits: TTabItem;
     btnTakePic: TButton;
     btnLoadPic: TButton;
     TakePhotoFromLibraryAction: TTakePhotoFromLibraryAction;
@@ -84,7 +83,6 @@ type
     cmbMapType: TComboBox;
     MapViewParks: TMapView;
     procedure FormCreate(Sender: TObject);
-    procedure FormActivate(Sender: TObject);
     procedure FormGesture(Sender: TObject; const EventInfo: TGestureEventInfo; var Handled: Boolean);
     procedure lvParksItemClick(const Sender: TObject; const AItem: TListViewItem);
     procedure actAddParkExecute(Sender: TObject);
@@ -143,20 +141,6 @@ begin
   {$IFDEF ANDROID}
   cmbMapType.Items.Add('Terrain');
   {$ENDIF}
-end;
-
-procedure TfrmMyParksMain.FormActivate(Sender: TObject);
-const
-  PermissionAccessFineLocation = 'android.permission.ACCESS_FINE_LOCATION';
-begin
-  PermissionsService.RequestPermissions([PermissionAccessFineLocation],
-    procedure(const APermissions: TArray<string>; const AGrantResults: TArray<TPermissionStatus>)
-    begin
-      if (Length(AGrantResults) = 1) and (AGrantResults[0] = TPermissionStatus.Granted) then
-        LocationSensor.Active := True
-      else
-        TDialogServiceAsync.ShowMessage('Park location data will not be available.');
-    end);
 end;
 
 procedure TfrmMyParksMain.actAddParkExecute(Sender: TObject);
@@ -289,6 +273,20 @@ end;
 procedure TfrmMyParksMain.NextParkTabActionUpdate(Sender: TObject);
 begin
   tabctrlParkEdit.ActiveTab := tabParkEditMain;
+
+  TTask.Run(procedure
+    const
+      PermissionAccessFineLocation = 'android.permission.ACCESS_FINE_LOCATION';
+    begin
+      PermissionsService.RequestPermissions([PermissionAccessFineLocation],
+        procedure(const APermissions: TArray<string>; const AGrantResults: TArray<TPermissionStatus>)
+        begin
+          if (Length(AGrantResults) = 1) and (AGrantResults[0] = TPermissionStatus.Granted) then
+            LocationSensor.Active := True
+          else
+            TDialogServiceAsync.ShowMessage('Park location data will not be available.');
+        end);
+    end);
 end;
 
 procedure TfrmMyParksMain.LoadImageFromDatabase;
