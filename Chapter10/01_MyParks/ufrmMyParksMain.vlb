@@ -1,33 +1,33 @@
 ﻿[StyleBookEmeraldCrystal]
-Coordinates=270,1,140,33
+Coordinates=270,1,161,36
 
 [HeaderToolBar]
-Coordinates=260,350,88,33
+Coordinates=260,350,102,36
 Visible=False
 
 [lblMain]
-Coordinates=260,290,49,33
+Coordinates=260,290,56,36
 Visible=False
 
 [dmParkData.tblParks]
-Coordinates=156,20,117,33
+Coordinates=156,20,136,36
 Visible=False
 
 []
-Coordinates=720,150,73,33
-Visible=False
+Coordinates=500,210,137,51
+Visible=True
 LayerNames=
 
 [pnlParksButtons]
-Coordinates=18,70,96,33
+Coordinates=18,70,108,36
 Visible=False
 
 [btnParksAdd]
-Coordinates=450,110,78,33
+Coordinates=450,110,88,36
 Visible=False
 
 [lvParks]
-Coordinates=0,30,89,195
+Coordinates=-20,30,107,234
 Visible=True
 LayerNames=
 
@@ -37,164 +37,193 @@ ActiveLayerNames=
 EditingLayerName=
 
 [tabParkEdit]
-Coordinates=480,330,71,33
+Coordinates=480,330,81,36
 Visible=False
 
 [BindSourceParks]
-Coordinates=156,20,103,267
+Coordinates=156,20,123,306
 LayerNames=
 
 [aclMyParks]
-Coordinates=274,111,71,33
+Coordinates=274,111,81,36
 
 [GestureManagerParks]
-Coordinates=481,56,123,33
+Coordinates=481,56,144,36
 
 [BindingsListParks]
-Coordinates=297,163,104,33
+Coordinates=297,163,117,36
 
 [actAddPark]
-Coordinates=38,265,71,33
+Coordinates=38,265,81,36
 
 [btnParkEditBack]
-Coordinates=470,150,96,33
+Coordinates=470,150,110,36
 Visible=False
 
 [actDeletePark]
-Coordinates=0,0,82,33
+Coordinates=0,0,95,36
 
 [LabelParkName]
-Coordinates=480,70,91,33
+Coordinates=480,70,106,36
 Visible=False
 
 [pnlParkNameEdit]
-Coordinates=480,40,99,33
+Coordinates=480,40,115,36
 Visible=False
 
 [tabCtrlParks]
-Coordinates=470,190,75,33
+Coordinates=470,190,86,36
 Visible=False
 
 [tabParkList]
-Coordinates=490,260,70,33
+Coordinates=490,260,79,36
 Visible=False
 
 [imlMyParks]
-Coordinates=114,1,71,33
+Coordinates=114,1,81,36
 
 [btnNotes]
-Coordinates=640,120,58,33
+Coordinates=640,120,66,36
 Visible=False
 
 [tbBottom]
-Coordinates=640,200,60,33
+Coordinates=640,200,66,36
 Visible=False
 
 [btnShare]
-Coordinates=870,130,58,33
+Coordinates=870,130,67,36
 Visible=False
 
 [actLoadParkPic]
-Coordinates=663,1,91,33
+Coordinates=663,1,105,36
 
 [btnLoadPic]
-Coordinates=710,90,70,33
+Coordinates=710,90,79,36
 Visible=False
 
 [NextParkTabAction]
-Coordinates=663,217,109,33
+Coordinates=663,217,125,36
 
 [btnTakePic]
-Coordinates=610,20,69,33
+Coordinates=610,20,79,36
 Visible=False
 
 [btnDeletePark]
-Coordinates=780,180,83,33
+Coordinates=780,180,96,36
 Visible=False
 
 [actShareParkInfo]
-Coordinates=663,272,99,33
+Coordinates=663,272,114,36
 
 [actTakeParkPic]
-Coordinates=663,327,90,33
+Coordinates=663,327,105,36
 
 [btnSchedule]
-Coordinates=820,50,76,33
+Coordinates=820,50,86,36
 Visible=False
 
 [ParkEditDoneTabAction]
-Coordinates=754,145,132,33
+Coordinates=754,145,152,36
 
 [TakePhotoFromLibraryAction]
-Coordinates=807,1,159,33
+Coordinates=807,1,182,36
 
 [imgParkPic]
-Coordinates=350,120,70,51
+Coordinates=610,150,80,58
 Visible=True
 
 [actScheduleParkVisits]
-Coordinates=644,420,124,33
+Coordinates=644,420,143,36
 
 [TakePhotoFromCameraAction]
-Coordinates=826,56,162,33
+Coordinates=826,56,188,36
 
 [mmoParkNotes]
-Coordinates=370,240,89,51
+Coordinates=340,260,103,58
 Visible=True
 
 [tabctrlParkEdit]
-Coordinates=294,53,87,33
+Coordinates=294,53,99,36
 Visible=False
 
 [ParkNotesDoneTabAction]
-Coordinates=448,1,141,33
+Coordinates=448,1,163,36
 
 [FlowLayoutParkEdit]
-Coordinates=250,280,113,33
+Coordinates=560,240,129,36
 Visible=False
 
-[CheckBoxHasRestrooms]
-Coordinates=480,200,137,51
-
 [tabParkEditNotes]
-Coordinates=270,260,100,33
+Coordinates=270,260,115,36
 Visible=False
 
 [NextParkEditTabAction]
-Coordinates=642,379,128,33
+Coordinates=642,379,148,36
 
 [CheckBoxHasPlaygound]
-Coordinates=480,150,136,51
+Coordinates=460,220,156,58
 
 [tabParkEditMain]
-Coordinates=625,468,95,33
+Coordinates=625,468,109,36
+Visible=False
 
 [btnParkNotesBack]
-Coordinates=151,336,105,33
+Coordinates=151,336,121,36
 Visible=False
 
 [edtParkNameEdit]
-Coordinates=310,20,99,51
+Coordinates=320,20,115,58
 Visible=True
 
 [lblParkNotesName]
-Coordinates=430,60,105,51
+Coordinates=330,80,122,58
 
 [pnlParkNotes]
-Coordinates=310,250,80,33
+Coordinates=310,250,92,36
 Visible=False
 
 [tabParkVisits]
-Coordinates=730,270,79,33
+Coordinates=730,270,90,36
 Visible=False
 
 [actSaveParkLocation]
-Coordinates=55,226,118,33
+Coordinates=55,226,136,36
 
 [LocationSensor]
-Coordinates=520,432,92,33
+Coordinates=520,432,104,36
 
 [btnSaveParkLocation]
-Coordinates=740,240,119,33
+Coordinates=740,240,137,36
+Visible=False
+
+[actMapPark]
+Coordinates=62,379,83,36
+
+[MapViewParks]
+Coordinates=411,453,100,36
+Visible=False
+
+[Panel1]
+Coordinates=0,343,55,36
+Visible=False
+
+[tabParkMap]
+Coordinates=511,385,84,36
+Visible=False
+
+[Button1]
+Coordinates=0,0,59,36
+Visible=False
+
+[Button2]
+Coordinates=60,280,59,36
+Visible=False
+
+[lblParkMapName]
+Coordinates=320,140,113,58
+Visible=True
+
+[cmbMapType]
+Coordinates=580,240,92,36
 Visible=False
 

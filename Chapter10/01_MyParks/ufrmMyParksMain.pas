@@ -13,7 +13,7 @@ uses
   Fmx.Bind.Editors, Data.Bind.Components, Data.Bind.DBScope, FMX.ListView,
   FMX.Edit, System.ImageList, FMX.ImgList, FMX.Objects, FMX.Media,
   System.Sensors, System.Sensors.Components, FMX.Memo.Types, FMX.ScrollBox,
-  FMX.Memo;
+  FMX.Memo, FMX.Maps, FMX.EditBox, FMX.NumberBox;
 
 type
   TfrmMyParksMain = class(TForm)
@@ -59,13 +59,11 @@ type
     LinkControlToField5: TLinkControlToField;
     tabctrlParkEdit: TTabControl;
     FlowLayoutParkEdit: TFlowLayout;
-    CheckBoxHasRestrooms: TCheckBox;
     CheckBoxHasPlaygound: TCheckBox;
     tabParkEditMain: TTabItem;
     tabParkEditNotes: TTabItem;
     NextParkEditTabAction: TNextTabAction;
     ParkNotesDoneTabAction: TPreviousTabAction;
-    LinkControlToField6: TLinkControlToField;
     LinkControlToField7: TLinkControlToField;
     pnlParkNotes: TPanel;
     btnParkNotesBack: TButton;
@@ -76,7 +74,17 @@ type
     actSaveParkLocation: TAction;
     LocationSensor: TLocationSensor;
     btnSaveParkLocation: TButton;
+    actMapPark: TAction;
+    Button1: TButton;
+    tabParkMap: TTabItem;
+    Panel1: TPanel;
+    Button2: TButton;
+    lblParkMapName: TLabel;
+    LinkPropertyToFieldText2: TLinkPropertyToField;
+    cmbMapType: TComboBox;
+    MapViewParks: TMapView;
     procedure FormCreate(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
     procedure FormGesture(Sender: TObject; const EventInfo: TGestureEventInfo; var Handled: Boolean);
     procedure lvParksItemClick(const Sender: TObject; const AItem: TListViewItem);
     procedure actAddParkExecute(Sender: TObject);
@@ -89,12 +97,13 @@ type
     procedure TakePhotoFromCameraActionDidFinishTaking(Image: TBitmap);
     procedure NextParkTabActionUpdate(Sender: TObject);
     procedure actSaveParkLocationExecute(Sender: TObject);
-    procedure ParkEditDoneTabActionUpdate(Sender: TObject);
     procedure LocationSensorLocationChanged(Sender: TObject; const OldLocation, NewLocation: TLocationCoord2D);
-    procedure FormActivate(Sender: TObject);
+    procedure actMapParkExecute(Sender: TObject);
+    procedure cmbMapTypeChange(Sender: TObject);
   private
     FParkLongitude: Double;
     FParkLatitude : Double;
+    FCurrParkID: Integer;
     procedure LoadImageFromDatabase;
     procedure SaveImageToDatabase;
   end;
@@ -115,8 +124,26 @@ implementation
 {$R *.iPhone4in.fmx IOS}
 
 uses
+  System.Threading,
   FMX.Platform, FMX.MediaLibrary, FMX.DialogService.Async, Data.DB,
   udmParkData;
+
+procedure TfrmMyParksMain.FormCreate(Sender: TObject);
+begin
+  tabCtrlParks.TabPosition := TTabPosition.None;
+  tabctrlParkEdit.TabPosition := TTabPosition.None;
+
+  tabCtrlParks.ActiveTab := tabParkList;
+
+  actTakeParkPic.Enabled := TPlatformServices.Current.SupportsPlatformService(IFMXCameraService);
+
+  actSaveParkLocation.Enabled := TPlatformServices.Current.SupportsPlatformService(IFMXMapService);
+  actMapPark.Enabled          := TPlatformServices.Current.SupportsPlatformService(IFMXMapService);
+
+  {$IFDEF ANDROID}
+  cmbMapType.Items.Add('Terrain');
+  {$ENDIF}
+end;
 
 procedure TfrmMyParksMain.FormActivate(Sender: TObject);
 const
@@ -128,15 +155,8 @@ begin
       if (Length(AGrantResults) = 1) and (AGrantResults[0] = TPermissionStatus.Granted) then
         LocationSensor.Active := True
       else
-        TDialogServiceAsync.ShowMessage('Park location data will not be saved.');
+        TDialogServiceAsync.ShowMessage('Park location data will not be available.');
     end);
-end;
-
-procedure TfrmMyParksMain.FormCreate(Sender: TObject);
-begin
-  tabCtrlParks.ActiveTab := tabParkList;
-
-  actTakeParkPic.Enabled := TPlatformServices.Current.SupportsPlatformService(IFMXCameraService);
 end;
 
 procedure TfrmMyParksMain.actAddParkExecute(Sender: TObject);
@@ -170,23 +190,35 @@ begin
     end);
 end;
 
-procedure TfrmMyParksMain.actSaveParkLocationExecute(Sender: TObject);
-var
-  WasEditing: Boolean;
+procedure TfrmMyParksMain.actMapParkExecute(Sender: TObject);
 begin
-  if not (dmParkData.tblParks.State in [TDataSetState.dsEdit, TDataSetState.dsInsert]) then begin
-    dmParkData.tblParks.Edit;
-    WasEditing := False;
-  end else
-    WasEditing := True;
+  if dmParkData.tblParksLocX.IsNull or dmParkData.tblParksLocY.IsNull then
+    TDialogServiceAsync.ShowMessage('There are no coordinates saved for this park.')
+  else begin
+    var SavedLocation: TMapCoordinate;
+    SavedLocation.Latitude := dmParkData.tblParksLocX.AsFloat;
+    SavedLocation.               Longitude := dmParkData.tblParksLocY.AsFloat;
+    MapViewParks.Location := SavedLocation;
 
+    var ParkMarker: TMapMarkerDescriptor;
+    ParkMarker := TMapMarkerDescriptor.Create(SavedLocation, dmParkData.tblParksParkName.AsString);
+    ParkMarker.Draggable := True;
+    ParkMarker.Visible := True;
+    MapViewParks.AddMarker(ParkMarker);
+
+    NextParkTabAction.Execute;
+  end;
+end;
+
+procedure TfrmMyParksMain.actSaveParkLocationExecute(Sender: TObject);
+begin
+  dmParkData.tblParks.Edit;
   dmParkData.tblParksLocX.AsFloat := FParkLatitude;
   dmParkData.tblParksLocY.AsFloat := FParkLongitude;
+  dmParkData.tblParks.Post;
 
-  if not WasEditing then
-    dmParkData.tblParks.Post;
-
-  TDialogServiceAsync.ShowMessage('The park''s location has been saved.');
+  TDialogServiceAsync.ShowMessage(Format('The park''s location (%0.3f, %0.3f) has been saved.',
+                                         [FParkLatitude, FParkLongitude]));
 end;
 
 procedure TfrmMyParksMain.actScheduleParkVisitsExecute(Sender: TObject);
@@ -210,6 +242,16 @@ begin
       else
         TDialogServiceAsync.ShowMessage('Cannot take park pictures because the camera and storage were denied access.');
     end);
+end;
+
+procedure TfrmMyParksMain.cmbMapTypeChange(Sender: TObject);
+begin
+  case cmbMapType.ItemIndex of
+    0: MapViewParks.MapType := TMapType.Normal;
+    1: MapViewParks.MapType := TMapType.Satellite;
+    2: MapViewParks.MapType := TMapType.Hybrid;
+    3: MapViewParks.MapType := TMapType.Terrain;
+  end;
 end;
 
 procedure TfrmMyParksMain.FormGesture(Sender: TObject; const EventInfo: TGestureEventInfo; var Handled: Boolean);
@@ -247,11 +289,6 @@ end;
 procedure TfrmMyParksMain.NextParkTabActionUpdate(Sender: TObject);
 begin
   tabctrlParkEdit.ActiveTab := tabParkEditMain;
-end;
-
-procedure TfrmMyParksMain.ParkEditDoneTabActionUpdate(Sender: TObject);
-begin
-//  actSaveParkLocation.Enabled := False;
 end;
 
 procedure TfrmMyParksMain.LoadImageFromDatabase;

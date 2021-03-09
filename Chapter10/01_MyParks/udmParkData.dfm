@@ -19,7 +19,7 @@ object dmParkData: TdmParkData
   end
   object tblParks: TFDTable
     OnCalcFields = tblParksCalcFields
-    IndexFieldNames = 'ID'
+    IndexFieldNames = 'ParkName'
     Connection = FDConn
     UpdateOptions.UpdateTableName = 'Parks'
     TableName = 'Parks'
@@ -52,10 +52,6 @@ object dmParkData: TdmParkData
     object tblParksHasPlaygound: TBooleanField
       FieldName = 'HasPlaygound'
       Origin = 'HasPlaygound'
-    end
-    object tblParksHasRestrooms: TBooleanField
-      FieldName = 'HasRestrooms'
-      Origin = 'HasRestrooms'
     end
     object tblParksNotes: TWideMemoField
       FieldName = 'Notes'

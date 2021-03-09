@@ -22,7 +22,6 @@ type
     tblParksLocY: TFloatField;
     tblParksMainPic: TBlobField;
     tblParksHasPlaygound: TBooleanField;
-    tblParksHasRestrooms: TBooleanField;
     tblParksNotes: TWideMemoField;
     tblParksCoordinates: TStringField;
     procedure DataModuleCreate(Sender: TObject);
