@@ -10,9 +10,6 @@ Coordinates=93,157,65,33
 [tblParksMainPic]
 Coordinates=239,53,93,33
 
-[tblParksNotes]
-Coordinates=93,209,83,33
-
 [FDConn]
 Coordinates=34,232,54,33
 
@@ -29,7 +26,7 @@ Coordinates=239,157,126,33
 Coordinates=258,209,80,33
 
 []
-Coordinates=93,1,127,33
+Coordinates=93,209,83,33
 
 [tblParksCoordinates]
 Coordinates=103,1,115,33

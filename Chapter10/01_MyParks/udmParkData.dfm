@@ -1,8 +1,8 @@
 object dmParkData: TdmParkData
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Height = 254
-  Width = 321
+  Height = 200
+  Width = 252
   object FDPhysSQLiteDriverLink: TFDPhysSQLiteDriverLink
     Left = 56
     Top = 96
@@ -52,11 +52,6 @@ object dmParkData: TdmParkData
     object tblParksHasPlaygound: TBooleanField
       FieldName = 'HasPlaygound'
       Origin = 'HasPlaygound'
-    end
-    object tblParksNotes: TWideMemoField
-      FieldName = 'Notes'
-      Origin = 'Notes'
-      BlobType = ftWideMemo
     end
     object tblParksCoordinates: TStringField
       FieldKind = fkCalculated

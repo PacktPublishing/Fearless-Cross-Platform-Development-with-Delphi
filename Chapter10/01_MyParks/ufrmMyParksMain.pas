@@ -45,7 +45,6 @@ type
     TakePhotoFromLibraryAction: TTakePhotoFromLibraryAction;
     actTakeParkPic: TAction;
     actLoadParkPic: TAction;
-    btnNotes: TButton;
     btnShare: TButton;
     actShareParkInfo: TAction;
     btnSchedule: TButton;
@@ -54,22 +53,12 @@ type
     imgParkPic: TImage;
     TakePhotoFromCameraAction: TTakePhotoFromCameraAction;
     LinkControlToField3: TLinkControlToField;
-    mmoParkNotes: TMemo;
-    LinkControlToField5: TLinkControlToField;
     tabctrlParkEdit: TTabControl;
     FlowLayoutParkEdit: TFlowLayout;
     CheckBoxHasPlaygound: TCheckBox;
-    tabParkEditMain: TTabItem;
-    tabParkEditNotes: TTabItem;
-    NextParkEditTabAction: TNextTabAction;
-    ParkNotesDoneTabAction: TPreviousTabAction;
     LinkControlToField7: TLinkControlToField;
-    pnlParkNotes: TPanel;
-    btnParkNotesBack: TButton;
-    lblParkNotesName: TLabel;
     edtParkNameEdit: TEdit;
     LinkControlToField1: TLinkControlToField;
-    LinkPropertyToFieldText: TLinkPropertyToField;
     actSaveParkLocation: TAction;
     LocationSensor: TLocationSensor;
     btnSaveParkLocation: TButton;
@@ -95,7 +84,6 @@ type
     procedure actShareParkInfoExecute(Sender: TObject);
     procedure actScheduleParkVisitsExecute(Sender: TObject);
     procedure TakePhotoFromCameraActionDidFinishTaking(Image: TBitmap);
-    procedure NextParkTabActionUpdate(Sender: TObject);
     procedure actSaveParkLocationExecute(Sender: TObject);
     procedure LocationSensorLocationChanged(Sender: TObject; const OldLocation, NewLocation: TLocationCoord2D);
     procedure actMapParkExecute(Sender: TObject);
@@ -132,12 +120,9 @@ uses
 procedure TfrmMyParksMain.FormCreate(Sender: TObject);
 begin
   tabCtrlParks.TabPosition := TTabPosition.None;
-  tabctrlParkEdit.TabPosition := TTabPosition.None;
-
   tabCtrlParks.ActiveTab := tabParkList;
 
-  actTakeParkPic.Enabled := TPlatformServices.Current.SupportsPlatformService(IFMXCameraService);
-
+  actTakeParkPic.Enabled      := TPlatformServices.Current.SupportsPlatformService(IFMXCameraService);
   actSaveParkLocation.Enabled := TPlatformServices.Current.SupportsPlatformService(IFMXMapService);
   actMapPark.Enabled          := TPlatformServices.Current.SupportsPlatformService(IFMXMapService);
 
@@ -184,7 +169,7 @@ begin
   else begin
     var SavedLocation: TMapCoordinate;
     SavedLocation.Latitude := dmParkData.tblParksLocX.AsFloat;
-    SavedLocation.               Longitude := dmParkData.tblParksLocY.AsFloat;
+    SavedLocation.Longitude := dmParkData.tblParksLocY.AsFloat;
     MapViewParks.Location := SavedLocation;
 
     var ParkMarker: TMapMarkerDescriptor;
@@ -284,11 +269,6 @@ procedure TfrmMyParksMain.lvParksPullRefresh(Sender: TObject);
 begin
   dmParkData.tblParks.Close;
   dmParkData.tblParks.Open;
-end;
-
-procedure TfrmMyParksMain.NextParkTabActionUpdate(Sender: TObject);
-begin
-  tabctrlParkEdit.ActiveTab := tabParkEditMain;
 end;
 
 procedure TfrmMyParksMain.LoadImageFromDatabase;

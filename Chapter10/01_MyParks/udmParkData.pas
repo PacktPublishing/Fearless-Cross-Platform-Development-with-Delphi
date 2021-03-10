@@ -22,7 +22,6 @@ type
     tblParksLocY: TFloatField;
     tblParksMainPic: TBlobField;
     tblParksHasPlaygound: TBooleanField;
-    tblParksNotes: TWideMemoField;
     tblParksCoordinates: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure tblParksCalcFields(DataSet: TDataSet);
@@ -47,7 +46,7 @@ begin
   {$IF DEFINED(iOS) or DEFINED(ANDROID)}
   DataPath := TPath.GetDocumentsPath;
   {$ELSE}
-  raise EProgrammerNotFound.Create('This platform is not supported in this application');
+  raise EProgrammerNotFound.Create('This platform is not supported by this application');
   {$ENDIF}
 
   FDConn.Params.Values['Database'] := TPath.Combine(DataPath, 'MyParks.db');
