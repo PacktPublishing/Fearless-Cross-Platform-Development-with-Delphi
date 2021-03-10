@@ -82,6 +82,8 @@ type
     LinkPropertyToFieldText2: TLinkPropertyToField;
     cmbMapType: TComboBox;
     MapViewParks: TMapView;
+    ShowShareSheetAction: TShowShareSheetAction;
+    btnSharePic: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormGesture(Sender: TObject; const EventInfo: TGestureEventInfo; var Handled: Boolean);
     procedure lvParksItemClick(const Sender: TObject; const AItem: TListViewItem);
@@ -98,6 +100,7 @@ type
     procedure LocationSensorLocationChanged(Sender: TObject; const OldLocation, NewLocation: TLocationCoord2D);
     procedure actMapParkExecute(Sender: TObject);
     procedure cmbMapTypeChange(Sender: TObject);
+    procedure ShowShareSheetActionBeforeExecute(Sender: TObject);
   private
     FParkLongitude: Double;
     FParkLatitude : Double;
@@ -213,6 +216,8 @@ end;
 procedure TfrmMyParksMain.actShareParkInfoExecute(Sender: TObject);
 begin
   TDialogServiceAsync.ShowMessage('share park info');
+
+
 end;
 
 procedure TfrmMyParksMain.actTakeParkPicExecute(Sender: TObject);
@@ -260,8 +265,19 @@ begin
 end;
 
 procedure TfrmMyParksMain.lvParksItemClick(const Sender: TObject; const AItem: TListViewItem);
+const
+  PermissionAccessFineLocation = 'android.permission.ACCESS_FINE_LOCATION';
 begin
   NextParkTabAction.Execute;
+
+  PermissionsService.RequestPermissions([PermissionAccessFineLocation],
+    procedure(const APermissions: TArray<string>; const AGrantResults: TArray<TPermissionStatus>)
+    begin
+      if (Length(AGrantResults) = 1) and (AGrantResults[0] = TPermissionStatus.Granted) then
+        LocationSensor.Active := True
+      else
+        TDialogServiceAsync.ShowMessage('Park location data will not be available.');
+    end);
 end;
 
 procedure TfrmMyParksMain.lvParksPullRefresh(Sender: TObject);
@@ -273,20 +289,6 @@ end;
 procedure TfrmMyParksMain.NextParkTabActionUpdate(Sender: TObject);
 begin
   tabctrlParkEdit.ActiveTab := tabParkEditMain;
-
-  TTask.Run(procedure
-    const
-      PermissionAccessFineLocation = 'android.permission.ACCESS_FINE_LOCATION';
-    begin
-      PermissionsService.RequestPermissions([PermissionAccessFineLocation],
-        procedure(const APermissions: TArray<string>; const AGrantResults: TArray<TPermissionStatus>)
-        begin
-          if (Length(AGrantResults) = 1) and (AGrantResults[0] = TPermissionStatus.Granted) then
-            LocationSensor.Active := True
-          else
-            TDialogServiceAsync.ShowMessage('Park location data will not be available.');
-        end);
-    end);
 end;
 
 procedure TfrmMyParksMain.LoadImageFromDatabase;
@@ -325,6 +327,16 @@ begin
   finally
     PicStream.Free;
   end;
+end;
+
+procedure TfrmMyParksMain.ShowShareSheetActionBeforeExecute(Sender: TObject);
+begin
+  ShowShareSheetAction.Bitmap := imgParkPic.Bitmap;
+
+  ShowShareSheetAction.TextMessage := Format('%s (%0.5f, %0.5f)',
+                       [dmParkData.tblParksParkName.AsString,
+                        dmParkData.tblParksLocX.AsFloat,
+                        dmParkData.tblParksLocX.AsFloat]);
 end;
 
 procedure TfrmMyParksMain.TakePhotoFromCameraActionDidFinishTaking(Image: TBitmap);

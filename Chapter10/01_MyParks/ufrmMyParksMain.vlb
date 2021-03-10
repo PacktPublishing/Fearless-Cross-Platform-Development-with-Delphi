@@ -14,8 +14,8 @@ Coordinates=156,20,136,36
 Visible=False
 
 []
-Coordinates=500,210,137,51
-Visible=True
+Coordinates=730,270,90,36
+Visible=False
 LayerNames=
 
 [pnlParksButtons]
@@ -180,10 +180,6 @@ Coordinates=330,80,122,58
 
 [pnlParkNotes]
 Coordinates=310,250,92,36
-Visible=False
-
-[tabParkVisits]
-Coordinates=730,270,90,36
 Visible=False
 
 [actSaveParkLocation]
