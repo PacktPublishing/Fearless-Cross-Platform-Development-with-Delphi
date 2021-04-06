@@ -269,7 +269,7 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Android)'!=''">
         <VerInfo_Build>1</VerInfo_Build>
-        <Android_NotificationAccentColor>#000000</Android_NotificationAccentColor>
+        <AUP_BLUETOOTH_ADMIN>true</AUP_BLUETOOTH_ADMIN>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_iOSDevice64)'!=''">
         <Cfg_1_iOSDevice>true</Cfg_1_iOSDevice>

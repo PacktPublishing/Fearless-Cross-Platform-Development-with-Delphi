@@ -47,7 +47,7 @@ Coordinates=408,10,73,33
 Visible=False
 
 []
-Coordinates=0,0,74,33
+Coordinates=440,50,89,195
 Visible=False
 
 [BindingsList1]
@@ -79,15 +79,41 @@ Visible=True
 [tblPairdDevicesDeviceName]
 Coordinates=449,142,152,33
 
-[tblPairdDevicesState]
-Coordinates=639,1,116,33
-
-[tblPairdDevicesBTType]
-Coordinates=639,53,129,33
-
 [BindSourceDBPaired]
-Coordinates=270,20,118,141
+Coordinates=270,20,118,105
 
 [Bluetooth]
 Coordinates=96,253,62,33
+
+[tblFoundDevices]
+Visible=False
+Coordinates=639,53,97,33
+
+[tblFoundDevicesAddress]
+Coordinates=188,144,138,33
+
+[lblDiscAddress]
+Coordinates=740,170,89,33
+Visible=False
+
+[AniIndicatorDiscover]
+Coordinates=740,240,117,33
+Visible=False
+
+[actBTCDeviceDiscover]
+Coordinates=79,332,127,33
+
+[FlowLayoutDiscoverable]
+Coordinates=639,1,135,33
+Visible=False
+
+[tblFoundDevicesDeviceName]
+Coordinates=639,105,158,33
+
+[lvDiscoveredDevices]
+Coordinates=410,20,117,195
+Visible=True
+
+[BindSourceDBFound]
+Coordinates=600,20,118,105
 
