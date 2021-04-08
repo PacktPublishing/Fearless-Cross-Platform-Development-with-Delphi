@@ -42,8 +42,6 @@ type
     BindSourceDBPaired: TBindSourceDB;
     LinkListControlToFieldDeviceName: TLinkListControlToField;
     Bluetooth: TBluetooth;
-    FlowLayoutDiscoverable: TFlowLayout;
-    lblDiscAddress: TLabel;
     AniIndicatorDiscover: TAniIndicator;
     actBTCDeviceDiscover: TAction;
     lvDiscoveredDevices: TListView;
@@ -52,6 +50,19 @@ type
     tblFoundDevicesAddress: TStringField;
     BindSourceDBFound: TBindSourceDB;
     LinkListControlToFieldDeviceName2: TLinkListControlToField;
+    tbBTCServices: TToolBar;
+    lblServiceDevice: TLabel;
+    lvBTCServices: TListView;
+    tblServices: TFDMemTable;
+    actBTCDeviceServices: TAction;
+    AniIndicatorServices: TAniIndicator;
+    tblServicesServiceName: TStringField;
+    tblServicesServiceGUID: TStringField;
+    BindSourceDBServices: TBindSourceDB;
+    LinkListControlToFieldServiceName: TLinkListControlToField;
+    btnGetServices: TButton;
+    Button1: TButton;
+    actBTCPairDevice: TAction;
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormDeactivate(Sender: TObject);
@@ -59,8 +70,9 @@ type
     procedure actBTCDeviceRefreshExecute(Sender: TObject);
     procedure actBTCDeviceDiscoverExecute(Sender: TObject);
     procedure BluetoothDiscoveryEnd(const Sender: TObject; const ADeviceList: TBluetoothDeviceList);
-    procedure lvDiscoveredDevicesDblClick(Sender: TObject);
     procedure tabctrlBTCChange(Sender: TObject);
+    procedure actBTCDeviceServicesExecute(Sender: TObject);
+    procedure actBTCPairDeviceExecute(Sender: TObject);
   private
     var
       FAdapter: TBluetoothAdapter;
@@ -77,17 +89,21 @@ implementation
 
 {$R *.fmx}
 
+uses
+  System.Threading;
+
 procedure TfrmBTC.FormCreate(Sender: TObject);
 begin
   { This defines the default active tab at runtime }
   tabctrlBTC.ActiveTab := tabBTCDevices;
+
+  tblFoundDevices.EmptyDataSet;
+  tblPairdDevices.EmptyDataSet;
+  tblServices.EmptyDataSet;
 end;
 
 procedure TfrmBTC.FormActivate(Sender: TObject);
 begin
-  tblFoundDevices.EmptyDataSet;
-  tblPairdDevices.EmptyDataSet;
-
   Bluetooth.Enabled := True;
   UpdateBTName;
 end;
@@ -103,30 +119,26 @@ begin
   AniIndicatorDiscover.Visible := True;
   AniIndicatorDiscover.Enabled := True;
   actBTCDeviceDiscover.Enabled := False;
+  actBTCPairDevice.Enabled := False;
 
   if BluetoothActive then
-    Bluetooth.CurrentManager.Current.StartDiscovery(8000);
+    Bluetooth.CurrentManager.Current.StartDiscovery(20000);
 end;
 
 procedure TfrmBTC.BluetoothDiscoveryEnd(const Sender: TObject; const ADeviceList: TBluetoothDeviceList);
 begin
-  TThread.Synchronize(nil, procedure
-  begin
-    AniIndicatorDiscover.Visible := False;
-    AniIndicatorDiscover.Enabled := False;
-    btnBTDiscoverDevices.StyleLookup := 'refreshtoolbutton';
-    actBTCDeviceDiscover.Enabled := True;
+  AniIndicatorDiscover.Visible := False;
+  AniIndicatorDiscover.Enabled := False;
+  btnBTDiscoverDevices.StyleLookup := 'refreshtoolbutton';
+  actBTCDeviceDiscover.Enabled := True;
 
-    tblFoundDevices.EmptyDataSet;
-    FDiscoverDevices := ADeviceList;
-    for var i := 0 to FDiscoverDevices.Count - 1 do
-      tblFoundDevices.InsertRecord([FDiscoverDevices[i].DeviceName, FDiscoverDevices[i].Address]);
-  end);
-end;
+  tblFoundDevices.EmptyDataSet;
+  FDiscoverDevices := ADeviceList;
+  for var i := 0 to FDiscoverDevices.Count - 1 do
+    tblFoundDevices.InsertRecord([FDiscoverDevices[i].DeviceName, FDiscoverDevices[i].Address]);
 
-procedure TfrmBTC.lvDiscoveredDevicesDblClick(Sender: TObject);
-begin
-  FAdapter.Pair(FDiscoverDevices[lvDiscoveredDevices.ItemIndex]);
+  if tblFoundDevices.RecordCount > 0 then
+    actBTCPairDevice.Enabled := True;
 end;
 
 procedure TfrmBTC.tabctrlBTCChange(Sender: TObject);
@@ -140,11 +152,8 @@ begin
   if BluetoothActive then begin
     FAdapter := Bluetooth.CurrentAdapter;
     lblDiscoverableName.Text := 'This device: ' + FAdapter.AdapterName;
-    lblDiscAddress.Text := FAdapter.Address;
-  end else begin
+  end else
     lblDiscoverableName.Text := 'No Bluetooth device Found';
-    lblDiscAddress.Text := EmptyStr;
-  end;
 end;
 
 procedure TfrmBTC.actBTCDeviceRefreshExecute(Sender: TObject);
@@ -157,6 +166,41 @@ begin
       tblPairdDevices.InsertRecord([FPairedDevices[i].DeviceName,
                                     FPairedDevices[i].Address]);
   end;
+end;
+
+procedure TfrmBTC.actBTCDeviceServicesExecute(Sender: TObject);
+var
+  LServices: TBluetoothServiceList;
+begin
+  tabctrlBTC.ActiveTab := tabBTCServices;
+  lblServiceDevice.Text := EmptyStr;
+  tblServices.EmptyDataSet;
+
+  if BluetoothActive and (lvBTPaired.ItemIndex > -1) then begin
+    lblServiceDevice.Text := 'Services for ' + tblPairdDevicesDeviceName.AsString;
+    AniIndicatorServices.Enabled := True;
+    AniIndicatorServices.Visible := True;
+
+    TTask.Run(procedure
+      begin
+        LServices := FPairedDevices[lvBTPaired.ItemIndex].GetServices;
+        TThread.Synchronize(nil, procedure
+          begin
+            for var i := 0 to LServices.Count - 1 do
+              tblServices.InsertRecord([LServices[i].Name, GUIDToString(LServices[i].UUID)]);
+
+            AniIndicatorServices.Visible := False;
+            AniIndicatorServices.Enabled := False;
+          end);
+      end);
+  end
+end;
+
+procedure TfrmBTC.actBTCPairDeviceExecute(Sender: TObject);
+begin
+  if BluetoothActive then
+    if (lvDiscoveredDevices.ItemCount > 0) then
+      FAdapter.Pair(FDiscoverDevices.Items[lvDiscoveredDevices.ItemIndex])
 end;
 
 procedure TfrmBTC.FormDeactivate(Sender: TObject);

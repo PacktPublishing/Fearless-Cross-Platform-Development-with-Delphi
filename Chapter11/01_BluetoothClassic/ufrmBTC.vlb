@@ -1,119 +1,147 @@
 ﻿[tabctrlBTC]
-Coordinates=10,234,66,33
+Coordinates=10,234,75,36
 Visible=False
 
 [tabBTCDiscover]
-Coordinates=434,188,94,33
+Coordinates=434,188,108,36
 Visible=False
 
 [tbDevices]
-Coordinates=353,188,62,33
+Coordinates=353,188,71,36
 Visible=False
 
 [tabBTCDevices]
-Coordinates=239,188,89,33
+Coordinates=239,188,104,36
 Visible=False
 
 [lblBTC]
-Coordinates=345,10,47,33
+Coordinates=345,10,53,36
 Visible=False
 
 [tabBTCServices]
-Coordinates=122,188,93,33
+Coordinates=122,188,107,36
 Visible=False
 
 [actBTCDeviceRefresh]
-Coordinates=449,1,121,33
+Coordinates=449,1,142,36
 
 [StyleBook]
-Coordinates=284,261,64,33
+Coordinates=284,261,72,36
 
 [GestureManager1]
-Coordinates=165,261,101,33
+Coordinates=165,261,118,36
 
 [btnRefreshBTDevices]
-Coordinates=290,20,121,33
+Coordinates=290,20,139,36
 Visible=False
 
 [HeaderToolBar]
-Coordinates=10,188,88,33
+Coordinates=10,188,102,36
 Visible=False
 
 [aclBTC]
-Coordinates=27,261,49,33
+Coordinates=27,261,57,36
 
 [tabBTCChat]
-Coordinates=408,10,73,33
+Coordinates=408,10,85,36
 Visible=False
 
 []
-Coordinates=440,50,89,195
+Coordinates=639,1,155,36
 Visible=False
 
 [BindingsList1]
-Coordinates=206,79,82,33
+Coordinates=206,79,91,36
 
 [tbDiscoveries]
-Coordinates=164,1,81,33
+Coordinates=164,1,92,36
 Visible=False
 
 [btnBTDiscoverDevices]
-Coordinates=0,0,126,33
+Coordinates=0,0,145,36
 Visible=False
 
 [lblDiscoverableName]
-Coordinates=64,77,118,33
+Coordinates=64,77,136,36
 Visible=False
 
 [tblPairdDevices]
-Coordinates=260,50,91,33
+Coordinates=260,50,104,36
 Visible=False
 
 [tblPairdDevicesAddress]
-Coordinates=389,90,132,33
+Coordinates=389,90,151,36
 
 [lvBTPaired]
-Coordinates=80,20,89,195
+Coordinates=20,20,107,190
 Visible=True
 
 [tblPairdDevicesDeviceName]
-Coordinates=449,142,152,33
+Coordinates=449,142,178,36
 
 [BindSourceDBPaired]
-Coordinates=270,20,118,105
+Coordinates=180,20,136,124
 
 [Bluetooth]
-Coordinates=96,253,62,33
+Coordinates=96,253,69,36
 
 [tblFoundDevices]
 Visible=False
-Coordinates=639,53,97,33
+Coordinates=639,53,110,36
 
 [tblFoundDevicesAddress]
-Coordinates=188,144,138,33
-
-[lblDiscAddress]
-Coordinates=740,170,89,33
-Visible=False
+Coordinates=188,144,157,36
 
 [AniIndicatorDiscover]
-Coordinates=740,240,117,33
+Coordinates=740,240,133,36
 Visible=False
 
 [actBTCDeviceDiscover]
-Coordinates=79,332,127,33
-
-[FlowLayoutDiscoverable]
-Coordinates=639,1,135,33
-Visible=False
+Coordinates=79,332,147,36
 
 [tblFoundDevicesDeviceName]
-Coordinates=639,105,158,33
+Coordinates=639,105,184,36
 
 [lvDiscoveredDevices]
-Coordinates=410,20,117,195
+Coordinates=330,20,134,234
 Visible=True
 
 [BindSourceDBFound]
-Coordinates=600,20,118,105
+Coordinates=520,20,135,124
+
+[tblServices]
+Visible=False
+Coordinates=86,292,78,36
+
+[tblServicesServiceName]
+Coordinates=773,56,155,36
+
+[lvBTCServices]
+Coordinates=680,20,107,234
+Visible=True
+
+[tblServicesServiceGUID]
+Coordinates=773,295,153,36
+
+[BindSourceDBServices]
+Coordinates=850,20,148,124
+
+[lblServiceDevice]
+Coordinates=653,295,110,36
+Visible=False
+
+[actBTCDeviceServices]
+Coordinates=773,350,146,36
+
+[tbBTCServices]
+Coordinates=653,372,100,36
+Visible=False
+
+[AniIndicatorServices]
+Coordinates=653,427,132,36
+Visible=False
+
+[btnGetServices]
+Coordinates=590,180,103,36
+Visible=False
 
