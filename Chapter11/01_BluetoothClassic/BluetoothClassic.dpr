@@ -12,3 +12,4 @@ begin
   Application.CreateForm(TfrmBTC, frmBTC);
   Application.Run;
 end.
+
