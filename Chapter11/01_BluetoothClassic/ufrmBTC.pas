@@ -19,18 +19,17 @@ uses
 
 type
   TBTServerThread = class(TThread)
-  private
-    FServerSocket: TBluetoothServerSocket;
   strict private
-    FClientSocket: TBluetoothSocket;
+    FServerSocket: TBluetoothServerSocket;
+    FSrvrClientSocket: TBluetoothSocket;
   protected
     procedure Execute; override;
   public
     property ServerSocket: TBluetoothServerSocket read FServerSocket write FServerSocket;
+    property ClientSocket: TBluetoothSocket read FSrvrClientSocket;
     constructor Create(ACreateSuspended: Boolean);
     destructor Destroy; override;
     procedure ConnectClientDevice(ADevice: TBluetoothDevice; ServiceGUID: TGUID);
-    procedure SendChatMsg(const AMsg: string);
   end;
 
   TfrmBTC = class(TForm)
@@ -219,12 +218,9 @@ var
   LData: TBytes;
 begin
   tmrClientChatRcvr.Enabled := False;
-
   LData := FClientSocket.ReceiveData;
   if Length(LData) > 0 then
     ChatConversationAdd(TEncoding.UTF8.GetString(LData));
-
-  Application.ProcessMessages;
   tmrClientChatRcvr.Enabled := True;
 end;
 
@@ -295,32 +291,36 @@ end;
 
 procedure TfrmBTC.actSendClientChatMsgExecute(Sender: TObject);
 begin
-  if BluetoothActive then
+  if BluetoothActive then begin
     try
       var ToSend: TBytes;
       if FClientSocket <> nil then begin
         ToSend := TEncoding.UTF8.GetBytes(edtChatText.Text);
         FClientSocket.SendData(ToSend);
-        ChatConversationAdd('> ' + edtChatText.Text);
+        ChatConversationAdd('Cli > ' + edtChatText.Text);
       end else
-        ChatConversationAdd('[No client connected]');
+        ChatConversationAdd('[No server connected]');
     except
-      on E : Exception do begin
-        ChatConversationAdd(E.Message);
-      end;
+      on e:Exception do
+        ChatConversationAdd(e.Message);
     end;
+  end;
 end;
 
 procedure TfrmBTC.actSendServerChatMsgExecute(Sender: TObject);
 begin
   if BluetoothActive and (FChatServerThread <> nil) then
     try
-      FChatServerThread.SendChatMsg(edtChatText.Text);
-      ChatConversationAdd('>>> ' + edtChatText.Text);
+      if FChatServerThread.ClientSocket <> nil then begin
+        var ToSend: TBytes;
+        ToSend := TEncoding.UTF8.GetBytes(edtChatText.Text);
+        FChatServerThread.ClientSocket.SendData(ToSend);
+        ChatConversationAdd('Srv > ' + edtChatText.Text);
+      end else
+        ChatConversationAdd('[No client connected]');
     except
-      on E : Exception do begin
-        ChatConversationAdd(E.Message);
-      end;
+      on e:Exception do
+        ChatConversationAdd(e.Message);
     end;
 end;
 
@@ -346,13 +346,10 @@ end;
 procedure TfrmBTC.actStartChatClientExecute(Sender: TObject);
 var
   LDevice: TBluetoothDevice;
-  LServices: TBluetoothServiceList;
 begin
   if BluetoothActive and (lvBTPaired.ItemIndex > -1) then begin
     LDevice := FindBTDevice(FPairedDevices, lvBTPaired.Items[lvBTPaired.ItemIndex].Text);
     if Assigned(LDevice) then begin
-      LServices := LDevice.GetServices;
-
       tabctrlBTC.ActiveTab := tabBTCChat;
       ChatConversationAdd('Connecting to "' + CHAT_SERVICE_NAME + '" on ' + LDevice.DeviceName);
 
@@ -412,19 +409,18 @@ end;
 
 procedure TBTServerThread.ConnectClientDevice(ADevice: TBluetoothDevice; ServiceGUID: TGUID);
 begin
-  FClientSocket := ADevice.CreateClientSocket(ServiceGUID, False);
+  FSrvrClientSocket := ADevice.CreateClientSocket(ServiceGUID, False);
 end;
 
 constructor TBTServerThread.Create(ACreateSuspended: Boolean);
 begin
   inherited;
-  FClientSocket := nil;
+  FSrvrClientSocket := nil;
 end;
 
 destructor TBTServerThread.Destroy;
 begin
   FreeAndNil(FServerSocket);
-
   inherited;
 end;
 
@@ -436,9 +432,9 @@ begin
   while not Terminated do
     try
       // watch for possible server connection from client
-      while (not Terminated) and (FClientSocket = nil) do begin
-        FClientSocket := FServerSocket.Accept(100);
-        if Assigned(FClientSocket) then
+      while (not Terminated) and (FSrvrClientSocket = nil) do begin
+        FSrvrClientSocket := FServerSocket.Accept(100);
+        if Assigned(FSrvrClientSocket) then
           Synchronize(procedure
             begin
               frmBTC.btnSendChatMsg.Action := frmBTC.actSendServerChatMsg;
@@ -447,7 +443,7 @@ begin
 
       // show chat messages from client
       while not Terminated do begin
-        LData := FClientSocket.ReceiveData;
+        LData := FSrvrClientSocket.ReceiveData;
         if Length(LData) > 0 then
           Synchronize(procedure
             begin
@@ -464,16 +460,6 @@ begin
           end);
       end;
     end;
-end;
-
-procedure TBTServerThread.SendChatMsg(const AMsg: string);
-var
-  ToSend: TBytes;
-begin
-  if FClientSocket <> nil then begin
-    ToSend := TEncoding.UTF8.GetBytes(AMsg);
-    FClientSocket.SendData(ToSend);
-  end;
 end;
 
 end.
