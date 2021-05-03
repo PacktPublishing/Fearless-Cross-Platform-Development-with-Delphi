@@ -1,0 +1,274 @@
+object frmBeaconServer: TfrmBeaconServer
+  Left = 0
+  Top = 0
+  Caption = 'Fearless Beacon Server'
+  ClientHeight = 480
+  ClientWidth = 310
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 2
+  object lblBeaconAppTitle: TLabel
+    Align = Top
+    StyledSettings = [FontColor]
+    Padding.Left = 5.000000000000000000
+    Padding.Top = 5.000000000000000000
+    Padding.Right = 5.000000000000000000
+    Padding.Bottom = 5.000000000000000000
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Position.X = 5.000000000000000000
+    Position.Y = 5.000000000000000000
+    Size.Width = 300.000000000000000000
+    Size.Height = 20.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Family = 'Consolas'
+    TextSettings.Font.Size = 16.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    TextSettings.HorzAlign = Center
+    Text = 'Fearless Beacon Server'
+    TabOrder = 4
+  end
+  object lblBeaconUUID: TLabel
+    Align = Top
+    StyledSettings = [FontColor]
+    Padding.Left = 5.000000000000000000
+    Padding.Top = 5.000000000000000000
+    Padding.Right = 5.000000000000000000
+    Padding.Bottom = 5.000000000000000000
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 2.000000000000000000
+    Position.X = 5.000000000000000000
+    Position.Y = 35.000000000000000000
+    Size.Width = 300.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Family = 'Consolas'
+    TextSettings.HorzAlign = Center
+    Text = 'Fearless Beacon UUID'
+    TabOrder = 3
+  end
+  object lblBeaconTxPower: TLabel
+    Align = Top
+    StyledSettings = [FontColor]
+    Padding.Left = 5.000000000000000000
+    Padding.Top = 5.000000000000000000
+    Padding.Right = 5.000000000000000000
+    Padding.Bottom = 5.000000000000000000
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 2.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 2.000000000000000000
+    Position.X = 5.000000000000000000
+    Position.Y = 93.000000000000000000
+    Size.Width = 300.000000000000000000
+    Size.Height = 28.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Family = 'Consolas'
+    TextSettings.HorzAlign = Center
+    Text = 'Fearless Beacon TX Power'
+    TabOrder = 2
+  end
+  object lblBeaconIDs: TLabel
+    Align = Top
+    StyledSettings = [FontColor]
+    Padding.Left = 5.000000000000000000
+    Padding.Top = 5.000000000000000000
+    Padding.Right = 5.000000000000000000
+    Padding.Bottom = 5.000000000000000000
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 2.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 2.000000000000000000
+    Position.X = 5.000000000000000000
+    Position.Y = 61.000000000000000000
+    Size.Width = 300.000000000000000000
+    Size.Height = 28.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Family = 'Consolas'
+    TextSettings.HorzAlign = Center
+    Text = 'Fearless Beacon ID'
+    TabOrder = 1
+  end
+  object grdpnlButtons: TGridPanelLayout
+    Align = Top
+    Position.Y = 123.000000000000000000
+    Size.Width = 310.000000000000000000
+    Size.Height = 72.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+    ColumnCollection = <
+      item
+        Value = 50.000000000000000000
+      end
+      item
+        Value = 50.000000000000000000
+      end>
+    ControlCollection = <
+      item
+        Column = 0
+        Control = btnStart
+        Row = 0
+      end
+      item
+        Column = 1
+        Control = btnStop
+        Row = 0
+      end>
+    RowCollection = <
+      item
+        Value = 100.000000000000000000
+      end>
+    object btnStart: TButton
+      Action = actBeaconStart
+      Anchors = []
+      Enabled = False
+      Images = imlBeaconDevice
+      ImageIndex = 0
+      Position.X = 21.000000000000000000
+      Position.Y = 21.500000000000000000
+      Size.Width = 113.000000000000000000
+      Size.Height = 29.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'toolbuttonleft'
+      TabOrder = 0
+    end
+    object btnStop: TButton
+      Action = actBeaconStop
+      Anchors = []
+      Enabled = False
+      Images = imlBeaconDevice
+      ImageIndex = 1
+      Position.X = 176.000000000000000000
+      Position.Y = 21.500000000000000000
+      Size.Width = 113.000000000000000000
+      Size.Height = 29.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'toolbuttonleft'
+      TabOrder = 1
+    end
+  end
+  object mmoBeaconMessages: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Lines.Strings = (
+      'Log ...')
+    Align = Client
+    Margins.Left = 5.000000000000000000
+    Margins.Top = 5.000000000000000000
+    Margins.Right = 5.000000000000000000
+    Margins.Bottom = 5.000000000000000000
+    Size.Width = 300.000000000000000000
+    Size.Height = 275.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 8
+    Viewport.Width = 292.000000000000000000
+    Viewport.Height = 267.000000000000000000
+  end
+  object BeaconDevice: TBeaconDevice
+    ManufacturerId = '004C'
+    UUID = '{00000000-0000-0000-0000-000000000000}'
+    EddystoneNamespace = 'example.com'
+    EddystoneInstance = '000000000001'
+    Left = 88
+    Top = 280
+  end
+  object actBeaconDevice: TActionList
+    Images = imlBeaconDevice
+    Left = 184
+    Top = 312
+    object actBeaconStart: TAction
+      Text = 'Start'
+      Enabled = False
+      ImageIndex = 0
+      OnExecute = actBeaconStartExecute
+      ImageIndex = 0
+    end
+    object actBeaconStop: TAction
+      Text = 'Stop'
+      Enabled = False
+      ImageIndex = 1
+      OnExecute = actBeaconStopExecute
+      ImageIndex = 1
+    end
+  end
+  object imlBeaconDevice: TImageList
+    Source = <
+      item
+        MultiResBitmap.Height = 30
+        MultiResBitmap.Width = 30
+        MultiResBitmap.LoadSize = 0
+        MultiResBitmap = <
+          item
+            Width = 30
+            Height = 30
+            PNG = {
+              89504E470D0A1A0A0000000D494844520000001E0000001E08060000003B30AE
+              A2000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              011C49444154484BED96BB4A034114863722E92D245696B1D0343E415258A6F0
+              254C15422A7D047D047D0CB14B8A3C82A0452CAD15EC7333DFD91BB82C9BB99C
+              5D0CEC071F33738AF3C35E6626A8A98A463C6639C6733C0C57EEACF01DBFC3D5
+              0E46B8C45F251738C4424E503334517AB630E5201E13DAE8FB78F3909E67D134
+              221B9C5D6BF2A777994185EC4DF01867D1D40FDBE057ECE115BE49C115D7473D
+              C54B1CE097146CF179C7B22B3DA1FC260F281B85311A1FD70FDE61075FA46082
+              4670C21A6587324223580E94479CE3B5144CF0096EE22D7EE00D5A6DB5AEC17D
+              94DFE91E8FA4608B6DF0054EF019E54051A38B79C79A86D23B45F3ABB6E2DF04
+              6FE2B10C0A7B5776F5C9A392CB5ED1F5F6349A7AF38946D7DB9A1208822D55FF
+              87AD69E781720000000049454E44AE426082}
+            FileName = 
+              'C:\Users\David Cornelius\OneDrive\business\Cornelius Concepts\Pr' +
+              'ojects\PacktPub\Fearless Cross-Platform Apps with Delphi\Chapter' +
+              ' 11 - Extending Delphi with Bluetooth, IoT, and Raspberry Pi\Ch1' +
+              '1-images\Start_30px.png'
+          end>
+        Name = 'Start_30px'
+      end
+      item
+        MultiResBitmap.Height = 30
+        MultiResBitmap.Width = 30
+        MultiResBitmap.LoadSize = 0
+        MultiResBitmap = <
+          item
+            Width = 30
+            Height = 30
+            PNG = {
+              89504E470D0A1A0A0000000D494844520000001E0000001E08060000003B30AE
+              A2000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+              004E49444154484B631805A360D80146288D0D4C00620308936C7001880B204C
+              E2C10120FE4F2106998115304169BA83518BE906462DA61B18B5986E60D462BA
+              819167F1A06C088C825130140103030084811591115A51380000000049454E44
+              AE426082}
+            FileName = 
+              'C:\Users\David Cornelius\OneDrive\business\Cornelius Concepts\Pr' +
+              'ojects\PacktPub\Fearless Cross-Platform Apps with Delphi\Chapter' +
+              ' 11 - Extending Delphi with Bluetooth, IoT, and Raspberry Pi\Ch1' +
+              '1-images\Stop_30px.png'
+          end>
+        Name = 'Stop_30px'
+      end>
+    Destination = <
+      item
+        Layers = <
+          item
+            Name = 'Start_30px'
+            SourceRect.Right = 30.000000000000000000
+            SourceRect.Bottom = 30.000000000000000000
+          end>
+      end
+      item
+        Layers = <
+          item
+            Name = 'Stop_30px'
+            SourceRect.Right = 30.000000000000000000
+            SourceRect.Bottom = 30.000000000000000000
+          end>
+      end>
+    Left = 184
+    Top = 368
+  end
+end

@@ -1,0 +1,41 @@
+inherited frmBeaconServer_iPad: TfrmBeaconServer_iPad
+  ClientHeight = 1004
+  ClientWidth = 768
+  DesignerMasterStyle = 2
+  inherited lblBeaconAppTitle: TLabel
+    Size.Width = 758.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+  end
+  inherited lblBeaconUUID: TLabel
+    Size.Width = 758.000000000000000000
+  end
+  inherited lblBeaconTxPower: TLabel
+    Size.Width = 758.000000000000000000
+  end
+  inherited lblBeaconIDs: TLabel
+    Size.Width = 758.000000000000000000
+  end
+  inherited grdpnlButtons: TGridPanelLayout
+    Size.Width = 768.000000000000000000
+    inherited btnStart: TButton
+      Position.X = 135.500000000000000000
+    end
+    inherited btnStop: TButton
+      Position.X = 519.500000000000000000
+    end
+  end
+  inherited mmoBeaconMessages: TMemo
+    Size.Width = 758.000000000000000000
+    Size.Height = 799.000000000000000000
+    Viewport.Width = 758.000000000000000000
+    Viewport.Height = 799.000000000000000000
+  end
+  inherited actBeaconDevice: TActionList
+    inherited actBeaconStart: TAction
+      ImageIndex = 0
+    end
+    inherited actBeaconStop: TAction
+      ImageIndex = 1
+    end
+  end
+end

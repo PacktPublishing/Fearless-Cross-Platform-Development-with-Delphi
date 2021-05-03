@@ -1,0 +1,43 @@
+inherited frmBeaconServer_NmXhdpiPh: TfrmBeaconServer_NmXhdpiPh
+  ClientHeight = 615
+  ClientWidth = 400
+  DesignerMasterStyle = 0
+  inherited lblBeaconAppTitle: TLabel
+    Size.Width = 390.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+  end
+  inherited lblBeaconUUID: TLabel
+    Size.Width = 390.000000000000000000
+    TextSettings.Font.Size = 14.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+  end
+  inherited lblBeaconTxPower: TLabel
+    Size.Width = 390.000000000000000000
+  end
+  inherited lblBeaconIDs: TLabel
+    Size.Width = 390.000000000000000000
+  end
+  inherited grdpnlButtons: TGridPanelLayout
+    Size.Width = 400.000000000000000000
+    inherited btnStart: TButton
+      Position.X = 43.500000000000000000
+    end
+    inherited btnStop: TButton
+      Position.X = 243.500000000000000000
+    end
+  end
+  inherited mmoBeaconMessages: TMemo
+    Size.Width = 390.000000000000000000
+    Size.Height = 410.000000000000000000
+    Viewport.Width = 390.000000000000000000
+    Viewport.Height = 410.000000000000000000
+  end
+  inherited actBeaconDevice: TActionList
+    inherited actBeaconStart: TAction
+      ImageIndex = 0
+    end
+    inherited actBeaconStop: TAction
+      ImageIndex = 1
+    end
+  end
+end
