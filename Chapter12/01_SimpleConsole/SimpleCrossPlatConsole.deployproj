@@ -23,7 +23,18 @@
         </DeployFile>
     </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='Win32'"/>
-    <ItemGroup Condition="'$(Platform)'=='Linux64'"/>
+    <ItemGroup Condition="'$(Platform)'=='Linux64'">
+        <DeployFile Include="Linux64\Debug\SimpleCrossPlatConsole" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>SimpleCrossPlatConsole\</RemoteDir>
+            <RemoteName>SimpleCrossPlatConsole</RemoteName>
+            <DeployClass>ProjectOutput</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
+    </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='OSX64'">
         <DeployFile Include="OSX64\Debug\SimpleCrossPlatConsole.info.plist" Condition="'$(Config)'=='Debug'">
             <RemoteDir>SimpleCrossPlatConsole.app\Contents\</RemoteDir>
