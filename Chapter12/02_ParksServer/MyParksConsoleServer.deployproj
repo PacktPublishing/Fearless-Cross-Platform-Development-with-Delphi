@@ -24,6 +24,15 @@
         </DeployFile>
     </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='Linux64'">
+        <DeployFile Include="$(IBREDISTDIR)\linux64\libgds.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksConsoleServer\</RemoteDir>
+            <RemoteName>libgds.so</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="Linux64\Debug\MyParksConsoleServer" Condition="'$(Config)'=='Debug'">
             <RemoteDir>MyParksConsoleServer\</RemoteDir>
             <RemoteName>MyParksConsoleServer</RemoteName>
@@ -33,6 +42,33 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
             <Required>True</Required>
+        </DeployFile>
+        <DeployFile Include="$(IBREDISTDIR)\linux64\libgds.so" Condition="'$(Config)'=='Release'">
+            <RemoteDir>MyParksConsoleServer\</RemoteDir>
+            <RemoteName>libgds.so</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(IBREDISTDIR)\linux64\interbase.msg" Condition="'$(Config)'=='Release'">
+            <RemoteDir>MyParksConsoleServer\</RemoteDir>
+            <RemoteName>interbase.msg</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(IBREDISTDIR)\linux64\interbase.msg" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksConsoleServer\</RemoteDir>
+            <RemoteName>interbase.msg</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
         </DeployFile>
     </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='OSX64'">
@@ -45,11 +81,11 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="OSX64\Debug\MyParksConsoleServer.entitlements" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>MyParksConsoleServer.app\..\</RemoteDir>
-            <RemoteName>MyParksConsoleServer.entitlements</RemoteName>
-            <DeployClass>ProjectOSXEntitlements</DeployClass>
-            <Operation>1</Operation>
+        <DeployFile Include="$(IBREDISTDIR)\macos64\interbase.msg" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksConsoleServer.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>interbase.msg</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
@@ -72,6 +108,42 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
             <Required>True</Required>
+        </DeployFile>
+        <DeployFile Include="$(IBREDISTDIR)\macos64\libgds.dylib" Condition="'$(Config)'=='Release'">
+            <RemoteDir>MyParksConsoleServer.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>libgds.dylib</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(IBREDISTDIR)\macos64\libgds.dylib" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksConsoleServer.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>libgds.dylib</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(IBREDISTDIR)\macos64\interbase.msg" Condition="'$(Config)'=='Release'">
+            <RemoteDir>MyParksConsoleServer.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>interbase.msg</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="OSX64\Debug\MyParksConsoleServer.entitlements" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksConsoleServer.app\..\</RemoteDir>
+            <RemoteName>MyParksConsoleServer.entitlements</RemoteName>
+            <DeployClass>ProjectOSXEntitlements</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
         </DeployFile>
     </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='Android'"/>
