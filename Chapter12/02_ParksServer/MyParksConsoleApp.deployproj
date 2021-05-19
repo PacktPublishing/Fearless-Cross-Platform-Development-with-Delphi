@@ -1,0 +1,244 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Condition="Exists('$(BDS)\bin\CodeGear.Deployment.targets')" Project="$(BDS)\bin\CodeGear.Deployment.targets"/>
+    <ProjectExtensions>
+        <ProjectFileVersion>12</ProjectFileVersion>
+    </ProjectExtensions>
+    <PropertyGroup>
+        <DeviceId Condition="'$(Platform)'=='Android'"/>
+        <DeviceId Condition="'$(Platform)'=='Android64'"/>
+        <DeviceId Condition="'$(Platform)'=='iOSDevice64'"/>
+        <DeviceId Condition="'$(Platform)'=='iOSSimulator'"/>
+    </PropertyGroup>
+    <ItemGroup Condition="'$(Platform)'=='iOSDevice64'"/>
+    <ItemGroup Condition="'$(Platform)'=='Win64'">
+        <DeployFile Include="$(IBREDISTDIR)\win64\ibclient64.dll" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksConsoleApp\</RemoteDir>
+            <RemoteName>ibclient64.dll</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(IBREDISTDIR)\win64\interbase.msg" Condition="'$(Config)'=='Release'">
+            <RemoteDir>MyParksConsoleApp\</RemoteDir>
+            <RemoteName>interbase.msg</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(IBREDISTDIR)\win64\ibclient64.dll" Condition="'$(Config)'=='Release'">
+            <RemoteDir>MyParksConsoleApp\</RemoteDir>
+            <RemoteName>ibclient64.dll</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(IBREDISTDIR)\win64\interbase.msg" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksConsoleApp\</RemoteDir>
+            <RemoteName>interbase.msg</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Platform)'=='Win32'">
+        <DeployFile Include="Win32\Debug\MyParksConsoleApp.exe" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksConsoleApp\</RemoteDir>
+            <RemoteName>MyParksConsoleApp.exe</RemoteName>
+            <DeployClass>ProjectOutput</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
+        <DeployFile Include="$(IBREDISTDIR)\win32\gds32.dll" Condition="'$(Config)'=='Release'">
+            <RemoteDir>MyParksConsoleApp\</RemoteDir>
+            <RemoteName>gds32.dll</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(IBREDISTDIR)\win32\interbase.msg" Condition="'$(Config)'=='Release'">
+            <RemoteDir>MyParksConsoleApp\</RemoteDir>
+            <RemoteName>interbase.msg</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(IBREDISTDIR)\win32\interbase.msg" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksConsoleApp\</RemoteDir>
+            <RemoteName>interbase.msg</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(IBREDISTDIR)\win32\gds32.dll" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksConsoleApp\</RemoteDir>
+            <RemoteName>gds32.dll</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Platform)'=='Linux64'">
+        <DeployFile Include="$(IBREDISTDIR)\linux64\libgds.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksConsoleApp\</RemoteDir>
+            <RemoteName>libgds.so</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(IBREDISTDIR)\linux64\interbase.msg" Condition="'$(Config)'=='Release'">
+            <RemoteDir>MyParksConsoleApp\</RemoteDir>
+            <RemoteName>interbase.msg</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Linux64\Debug\MyParksConsoleApp" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksConsoleApp\</RemoteDir>
+            <RemoteName>MyParksConsoleApp</RemoteName>
+            <DeployClass>ProjectOutput</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
+        <DeployFile Include="$(IBREDISTDIR)\linux64\libgds.so" Condition="'$(Config)'=='Release'">
+            <RemoteDir>MyParksConsoleApp\</RemoteDir>
+            <RemoteName>libgds.so</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(IBREDISTDIR)\linux64\interbase.msg" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksConsoleApp\</RemoteDir>
+            <RemoteName>interbase.msg</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Platform)'=='OSX64'">
+        <DeployFile Include="OSX64\Debug\MyParksConsoleApp.dSYM" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksConsoleApp.app\..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF\</RemoteDir>
+            <RemoteName>MyParksConsoleApp</RemoteName>
+            <DeployClass>ProjectOSXDebug</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="OSX64\Debug\MyParksConsoleApp.info.plist" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksConsoleApp.app\Contents\</RemoteDir>
+            <RemoteName>Info.plist</RemoteName>
+            <DeployClass>ProjectOSXInfoPList</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(IBREDISTDIR)\macos64\libgds.dylib" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksConsoleApp.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>libgds.dylib</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="OSX64\Debug\MyParksConsoleApp.entitlements" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksConsoleApp.app\..\</RemoteDir>
+            <RemoteName>MyParksConsoleApp.entitlements</RemoteName>
+            <DeployClass>ProjectOSXEntitlements</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(IBREDISTDIR)\macos64\interbase.msg" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksConsoleApp.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>interbase.msg</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(IBREDISTDIR)\macos64\libgds.dylib" Condition="'$(Config)'=='Release'">
+            <RemoteDir>MyParksConsoleApp.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>libgds.dylib</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(IBREDISTDIR)\macos64\interbase.msg" Condition="'$(Config)'=='Release'">
+            <RemoteDir>MyParksConsoleApp.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>interbase.msg</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="OSX64\Debug\MyParksConsoleApp" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksConsoleApp.app\Contents\MacOS\</RemoteDir>
+            <RemoteName>MyParksConsoleApp</RemoteName>
+            <DeployClass>ProjectOutput</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Platform)'=='Android'"/>
+    <ItemGroup Condition="'$(Platform)'=='iOSSimulator'">
+        <DeployFile Include="$(BDS)\Redist\iossimulator\libcgunwind.1.0.dylib">
+            <RemoteDir>MyParksConsoleApp.app\</RemoteDir>
+            <RemoteName>libcgunwind.1.0.dylib</RemoteName>
+            <DeployClass>DependencyModule</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="$(BDS)\Redist\iossimulator\libpcre.dylib">
+            <RemoteDir>MyParksConsoleApp.app\</RemoteDir>
+            <RemoteName>libpcre.dylib</RemoteName>
+            <DeployClass>DependencyModule</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Platform)'=='Android64'"/>
+</Project>

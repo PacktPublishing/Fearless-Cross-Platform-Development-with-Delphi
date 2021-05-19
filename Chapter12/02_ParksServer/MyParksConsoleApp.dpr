@@ -1,4 +1,4 @@
-program MyParksConsoleServer;
+program MyParksConsoleApp;
 
 {$APPTYPE CONSOLE}
 
