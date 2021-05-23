@@ -1,4 +1,4 @@
-program MyParksTCPServer;
+program MyParksTCPServerConsole;
 
 {$APPTYPE CONSOLE}
 
