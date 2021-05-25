@@ -11,11 +11,9 @@ type
     procedure ServiceAfterInstall(Sender: TService);
     procedure ServiceStart(Sender: TService; var Started: Boolean);
     procedure ServiceStop(Sender: TService; var Stopped: Boolean);
-  private
-    { Private declarations }
+    procedure ServiceAfterUninstall(Sender: TService);
   public
     function GetServiceController: TServiceController; override;
-    { Public declarations }
   end;
 
 var
@@ -26,7 +24,12 @@ implementation
 {$R *.dfm}
 
 uses
-  System.Win.Registry, udmTCPParksServer;
+  System.Win.Registry,
+  LoggerPro.GlobalLogger,
+  udmTCPParksServer;
+
+const
+  LOG_TAG = 'service';
 
 procedure ServiceController(CtrlCode: DWord); stdcall;
 begin
@@ -42,6 +45,8 @@ procedure TMyParksIBService.ServiceAfterInstall(Sender: TService);
 var
   Reg: TRegistry;
 begin
+  Log.Info('Installed', LOG_TAG);
+
   Reg := TRegistry.Create(KEY_READ or KEY_WRITE);
   try
     Reg.RootKey := HKEY_LOCAL_MACHINE;
@@ -54,14 +59,21 @@ begin
   end;
 end;
 
+procedure TMyParksIBService.ServiceAfterUninstall(Sender: TService);
+begin
+  Log.Info('Uninstalled', LOG_TAG);
+end;
+
 procedure TMyParksIBService.ServiceStart(Sender: TService; var Started: Boolean);
 begin
   dmTCPParksServer.Start;
+  Log.Info('Started', LOG_TAG);
 end;
 
 procedure TMyParksIBService.ServiceStop(Sender: TService; var Stopped: Boolean);
 begin
   dmTCPParksServer.Stop;
+  Log.Info('Stopped', LOG_TAG);
 end;
 
 end.

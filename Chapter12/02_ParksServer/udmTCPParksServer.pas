@@ -45,28 +45,36 @@ implementation
 
 uses
   System.StrUtils, IdIOHandlerSocket,
+  LoggerPro.GlobalLogger,
   udmParksDB;
+
+const
+  LOG_TAG = 'tcp';
 
 procedure TdmTCPParksServer.DoOnConnect;
 begin
+  Log.Debug('OnConnect', LOG_TAG);
   if Assigned(FOnConnect) then
     FOnConnect(self);
 end;
 
 procedure TdmTCPParksServer.DoOnDisconnect;
 begin
+  Log.Debug('OnDisconnect', LOG_TAG);
   if Assigned(FOnDisconnect) then
     FOnDisconnect(self);
 end;
 
 procedure TdmTCPParksServer.DoOnException(const ExceptionMsg: string);
 begin
+  Log.Error('OnException: ' + ExceptionMsg, LOG_TAG);
   if Assigned(FOnException) then
     FOnExecute(ExceptionMsg);
 end;
 
 procedure TdmTCPParksServer.DoOnExecute(const AMessage: string);
 begin
+  Log.Debug('OnExecute', LOG_TAG);
   if Assigned(FOnExecute) then
     FOnExecute('Response: ' + AMessage);
 end;
@@ -93,6 +101,8 @@ var
   ReqLong, ReqLat: Double;
   ResponseStr: string;
 begin
+  Log.Info('Received Request', LOG_TAG);
+
   ValidRequest := False;
   ResponseStr := EmptyStr;
 
@@ -102,20 +112,26 @@ begin
     if Requests.Count = 2 then begin
       if TryStrToFloat(Requests.Values['longitude'], ReqLong) and
          TryStrToFloat(Requests.Values['latitude'], ReqLat) then begin
+           Log.Debug(Format('  Request parameters: longitude=%f, latitude=%f', [ReqLong, ReqLat]), LOG_TAG);
            var ParkInfo := dmParksDB.LookupParkByLocation(ReqLong, ReqLat);
            if ParkInfo.ParkName.Length > 0 then begin
              ResponseStr := ParkInfo.ParkName;
+             Log.Debug('  Returning park name: ' + ResponseStr, LOG_TAG);
              ValidRequest := True;
-           end else
+           end else begin
              ResponseStr := '<Unknown Park>';
+             Log.Warn('  Returning: ' + ResponseStr, LOG_TAG);
+           end;
          end;
     end;
   finally
     Requests.Free;
   end;
 
-  if (not ValidRequest) and (ResponseStr.Length = 0) then
+  if (not ValidRequest) and (ResponseStr.Length = 0) then begin
     ResponseStr := 'ERROR: Invalid request';
+    Log.Error('  Returning: ' + ResponseStr, LOG_TAG);
+  end;
 
   AContext.Connection.Socket.WriteLn(ResponseStr);
   DoOnExecute(ResponseStr);
@@ -128,11 +144,13 @@ end;
 
 procedure TdmTCPParksServer.Start;
 begin
+  Log.Info('START', LOG_TAG);
   IdTCPMyParksServer.Active := True;
 end;
 
 procedure TdmTCPParksServer.Stop;
 begin
+  Log.Info('STOP', LOG_TAG);
   IdTCPMyParksServer.Active := False;
 end;
 

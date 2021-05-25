@@ -2,6 +2,7 @@ program MyParksTCPServerService;
 
 uses
   Vcl.SvcMgr,
+  LoggerPro.GlobalLogger,
   udmMyParksService in 'udmMyParksService.pas' {MyParksIBService: TService},
   udmParksDB in 'udmParksDB.pas' {dmParksDB: TDataModule},
   udmTCPParksServer in 'udmTCPParksServer.pas' {dmTCPParksServer: TDataModule};

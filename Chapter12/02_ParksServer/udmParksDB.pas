@@ -40,10 +40,18 @@ implementation
 
 {$R *.dfm}
 
+uses
+  LoggerPro.GlobalLogger;
+
+const
+  LOG_TAG = 'database';
+
 { TdmParksDB }
 
 function TdmParksDB.LookupParkByLocation(const ALongitude, ALatitude: Double): TParkDataRec;
 begin
+  Log.Info(Format('LookupParkByLocation(%f, %f)', [ALongitude, ALatitude]), LOG_TAG);
+
   Result.Clear;
 
   try
@@ -61,6 +69,8 @@ begin
   finally
     qryParkLookup.Close;
   end;
+
+  Log.Info(Format('  returning ParkID=%d, ParkName=%s', [Result.ParkID, Result.ParkName]), LOG_TAG);
 end;
 
 { TdmParksDB.TParkDataRec }

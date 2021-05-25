@@ -5,7 +5,8 @@ program MyParksTCPServerConsole;
 {$R *.res}
 
 uses
-  System.SysUtils, System.Classes, System.Threading,
+  System.SysUtils, System.Classes, System.Threading, System.IOUtils,
+  LoggerPro.GlobalLogger,
   udmParksDB in 'udmParksDB.pas' {dmParksDB: TDataModule},
   udmTCPParksServer in 'udmTCPParksServer.pas' {dmTCPParksServer: TDataModule};
 
@@ -18,20 +19,26 @@ type
     procedure OnExecute(const s: string);
   end;
 
+const
+  LOG_TAG = 'console';
+
 { TConsoleParkDisplay }
 
 procedure TConsoleParkDisplay.OnConnect(Sender: TObject);
 begin
+  Log.Info('Client connected', LOG_TAG);
   Writeln('>> client connected');
 end;
 
 procedure TConsoleParkDisplay.OnDisconnect(Sender: TObject);
 begin
+  Log.Info('Client disconnected', LOG_TAG);
   Writeln('<< client disconnected');
 end;
 
 procedure TConsoleParkDisplay.OnException(const s: string);
 begin
+  Log.Error(s, LOG_TAG);
   Writeln('ERROR: ' + s);
 end;
 
@@ -43,7 +50,9 @@ end;
 var
   ConsoleDisplay: TConsoleParkDisplay;
 begin
+//  Log := BuildLogWriter([TLoggerProFileAppender.Create]);
   try
+    Log.Info('Starting MyParks TCP Server on port ' + dmTCPParksServer.IdTCPMyParksServer.DefaultPort.ToString, LOG_TAG);
     Writeln('Starting MyParks TCP Server on port ' + dmTCPParksServer.IdTCPMyParksServer.DefaultPort.ToString);
 
     ConsoleDisplay := TConsoleParkDisplay.Create;
@@ -62,8 +71,11 @@ begin
     end;
 
     Writeln('MyParks TCP Server quitting ');
+    Log.Info('MyParks TCP Server quitting ', LOG_TAG);
   except
-    on E: Exception do
+    on E: Exception do begin
+      Log.Error(E.ClassName + ': ' + E.Message, LOG_TAG);
       Writeln(E.ClassName, ': ', E.Message);
+    end;
   end;
 end.
