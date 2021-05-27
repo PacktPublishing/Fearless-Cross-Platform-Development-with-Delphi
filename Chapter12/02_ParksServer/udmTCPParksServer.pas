@@ -45,7 +45,7 @@ implementation
 
 uses
   System.StrUtils, IdIOHandlerSocket,
-  LoggerPro.GlobalLogger,
+  uMyParksLogging,
   udmParksDB;
 
 const

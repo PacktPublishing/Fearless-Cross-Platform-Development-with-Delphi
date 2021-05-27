@@ -4,7 +4,7 @@
         <ProjectVersion>19.2</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -149,19 +149,17 @@
         </DelphiCompile>
         <DCCReference Include="udmMyParksService.pas">
             <Form>MyParksIBService</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TService</DesignClass>
         </DCCReference>
         <DCCReference Include="udmParksDB.pas">
             <Form>dmParksDB</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="udmTCPParksServer.pas">
             <Form>dmTCPParksServer</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="uMyParksLogging.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

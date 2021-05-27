@@ -17,8 +17,6 @@ type
     qryParkLookupLONGITUDE: TFMTBCDField;
     qryParkLookupLATITUDE: TFMTBCDField;
     FDPhysIBDriverLink: TFDPhysIBDriverLink;
-  private
-    { Private declarations }
   public
     type
       TParkDataRec = record
@@ -40,17 +38,21 @@ implementation
 
 {$R *.dfm}
 
+{$IFNDEF MACOS}
 uses
-  LoggerPro.GlobalLogger;
+  uMyParksLogging;
 
 const
   LOG_TAG = 'database';
+{$ENDIF}
 
 { TdmParksDB }
 
 function TdmParksDB.LookupParkByLocation(const ALongitude, ALatitude: Double): TParkDataRec;
 begin
+  {$IFNDEF MACOS}
   Log.Info(Format('LookupParkByLocation(%f, %f)', [ALongitude, ALatitude]), LOG_TAG);
+  {$ENDIF}
 
   Result.Clear;
 
@@ -70,7 +72,9 @@ begin
     qryParkLookup.Close;
   end;
 
+  {$IFNDEF MACOS}
   Log.Info(Format('  returning ParkID=%d, ParkName=%s', [Result.ParkID, Result.ParkName]), LOG_TAG);
+  {$ENDIF}
 end;
 
 { TdmParksDB.TParkDataRec }

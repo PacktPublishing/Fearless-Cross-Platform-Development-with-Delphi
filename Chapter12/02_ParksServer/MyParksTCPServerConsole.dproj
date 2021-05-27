@@ -3,12 +3,12 @@
         <ProjectGuid>{68D9F135-7680-423F-AF99-709C88D8D093}</ProjectGuid>
         <MainSource>MyParksTCPServerConsole.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <TargetedPlatforms>131</TargetedPlatforms>
         <AppType>Console</AppType>
         <FrameworkType>None</FrameworkType>
         <ProjectVersion>19.2</ProjectVersion>
-        <Platform Condition="'$(Platform)'==''">Linux64</Platform>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
         <Base>true</Base>
@@ -214,6 +214,7 @@
             <Form>dmTCPParksServer</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="uMyParksLogging.pas"/>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -251,18 +252,6 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="\MyParksTCPServerConsole" Configuration="Debug" Class="ProjectOutput">
-                    <Platform Name="OSX64">
-                        <RemoteName>MyParksTCPServerConsole</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="MyParksTCPServerConsole" Configuration="Release" Class="ProjectOutput">
-                    <Platform Name="Linux64">
-                        <RemoteName>MyParksTCPServerConsole</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
                 <DeployFile LocalName="$(BDS)\bin\delphi_PROJECTICNS.icns" Configuration="Release" Class="ProjectOSXResource">
                     <Platform Name="OSX64">
                         <RemoteName>MyParksTCPServerConsole.icns</RemoteName>
@@ -280,6 +269,12 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="MyParksTCPServerConsole.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>MyParksTCPServerConsole.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="$(IBREDISTDIR)\win32\gds32.dll" Configuration="Release" Class="File">
                     <Platform Name="Win32">
                         <Overwrite>true</Overwrite>
@@ -291,7 +286,7 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="\MyParksTCPServerConsole" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="MyParksTCPServerConsole" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Linux64">
                         <RemoteName>MyParksTCPServerConsole</RemoteName>
                         <Overwrite>true</Overwrite>
@@ -340,6 +335,12 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="\MyParksTCPServerConsole" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Linux64">
+                        <RemoteName>MyParksTCPServerConsole</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="MyParksTCPServerConsole" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="OSX64">
                         <RemoteName>MyParksTCPServerConsole</RemoteName>
@@ -375,6 +376,12 @@
                 <DeployFile LocalName="$(IBREDISTDIR)\macos64\interbase.msg" Configuration="Release" Class="File">
                     <Platform Name="OSX64">
                         <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="\MyParksTCPServerConsole" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="OSX64">
+                        <RemoteName>MyParksTCPServerConsole</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
