@@ -5,8 +5,8 @@
         <FrameworkType>None</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
-        <Platform Condition="'$(Platform)'==''">OSX64</Platform>
-        <TargetedPlatforms>4227</TargetedPlatforms>
+        <Platform Condition="'$(Platform)'==''">Linux64</Platform>
+        <TargetedPlatforms>131</TargetedPlatforms>
         <AppType>Console</AppType>
         <MainSource>MyParksConsoleApp.dpr</MainSource>
     </PropertyGroup>
@@ -187,7 +187,6 @@
         </DelphiCompile>
         <DCCReference Include="udmParksDB.pas">
             <Form>dmParksDB</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <BuildConfiguration Include="Release">
@@ -222,12 +221,6 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="OSX64\Debug\MyParksConsoleServer.dSYM" Configuration="Debug" Class="ProjectOSXDebug">
-                    <Platform Name="OSX64">
-                        <RemoteName>MyParksConsoleServer</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
                 <DeployFile LocalName="$(IBREDISTDIR)\linux64\libgds.so" Configuration="Debug" Class="File">
                     <Platform Name="Linux64">
                         <Overwrite>true</Overwrite>
@@ -236,12 +229,6 @@
                 <DeployFile LocalName="Win32\Debug\MyParksConsoleApp.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>MyParksConsoleApp.exe</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="OSX64\Debug\MyParksConsoleServer.info.plist" Configuration="Debug" Class="ProjectOSXInfoPList">
-                    <Platform Name="OSX64">
-                        <RemoteName>Info.plist</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -256,11 +243,6 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="OSX64\Debug\MyParksConsoleServer.entitlements" Configuration="Debug" Class="ProjectOSXEntitlements">
-                    <Platform Name="OSX64">
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
                 <DeployFile LocalName="$(IBREDISTDIR)\linux64\interbase.msg" Configuration="Release" Class="File">
                     <Platform Name="Linux64">
                         <Overwrite>true</Overwrite>
@@ -268,6 +250,11 @@
                 </DeployFile>
                 <DeployFile LocalName="$(IBREDISTDIR)\win32\interbase.msg" Configuration="Release" Class="File">
                     <Platform Name="Win32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="OSX64\Debug\MyParksConsoleApp.entitlements" Configuration="Debug" Class="ProjectOSXEntitlements">
+                    <Platform Name="OSX64">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -279,6 +266,18 @@
                 <DeployFile LocalName="$(IBREDISTDIR)\macos64\interbase.msg" Configuration="Debug" Class="File">
                     <Platform Name="OSX64">
                         <RemoteDir>Contents\MacOS\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="OSX64\Debug\MyParksConsoleApp.info.plist" Configuration="Debug" Class="ProjectOSXInfoPList">
+                    <Platform Name="OSX64">
+                        <RemoteName>Info.plist</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="OSX64\Debug\MyParksConsoleApp.dSYM" Configuration="Debug" Class="ProjectOSXDebug">
+                    <Platform Name="OSX64">
+                        <RemoteName>MyParksConsoleApp</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -1128,7 +1127,7 @@
                 <Platform value="iOSDevice64">False</Platform>
                 <Platform value="iOSSimulator">False</Platform>
                 <Platform value="Linux64">True</Platform>
-                <Platform value="OSX64">True</Platform>
+                <Platform value="OSX64">False</Platform>
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">True</Platform>
             </Platforms>

@@ -145,24 +145,6 @@
         </DeployFile>
     </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='OSX64'">
-        <DeployFile Include="OSX64\Debug\MyParksConsoleApp.dSYM" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>MyParksConsoleApp.app\..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF\</RemoteDir>
-            <RemoteName>MyParksConsoleApp</RemoteName>
-            <DeployClass>ProjectOSXDebug</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="OSX64\Debug\MyParksConsoleApp.info.plist" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>MyParksConsoleApp.app\Contents\</RemoteDir>
-            <RemoteName>Info.plist</RemoteName>
-            <DeployClass>ProjectOSXInfoPList</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
         <DeployFile Include="$(IBREDISTDIR)\macos64\libgds.dylib" Condition="'$(Config)'=='Debug'">
             <RemoteDir>MyParksConsoleApp.app\Contents\MacOS\</RemoteDir>
             <RemoteName>libgds.dylib</RemoteName>
@@ -186,6 +168,24 @@
             <RemoteName>interbase.msg</RemoteName>
             <DeployClass>File</DeployClass>
             <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="OSX64\Debug\MyParksConsoleApp.info.plist" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksConsoleApp.app\Contents\</RemoteDir>
+            <RemoteName>Info.plist</RemoteName>
+            <DeployClass>ProjectOSXInfoPList</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="OSX64\Debug\MyParksConsoleApp.dSYM" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksConsoleApp.app\..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF\</RemoteDir>
+            <RemoteName>MyParksConsoleApp</RemoteName>
+            <DeployClass>ProjectOSXDebug</DeployClass>
+            <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
