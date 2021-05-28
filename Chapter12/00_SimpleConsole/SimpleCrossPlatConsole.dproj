@@ -5,7 +5,7 @@
         <FrameworkType>None</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
-        <Platform Condition="'$(Platform)'==''">Linux64</Platform>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>4227</TargetedPlatforms>
         <AppType>Console</AppType>
         <MainSource>SimpleCrossPlatConsole.dpr</MainSource>
@@ -220,6 +220,12 @@
             <Deployment Version="3">
                 <DeployFile LocalName="$(BDS)\Redist\osx32\libcgunwind.1.0.dylib" Class="DependencyModule">
                     <Platform Name="OSX32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Linux64\Debug\SimpleCrossPlatConsole" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Linux64">
+                        <RemoteName>SimpleCrossPlatConsole</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
