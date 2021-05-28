@@ -9,7 +9,9 @@ uses
   System.Classes,
   System.Threading,
   System.IOUtils,
-  LoggerPro.GlobalLogger,
+  LoggerPro,
+  LoggerPro.SimpleConsoleAppender,
+  LoggerPro.FileAppender,
   udmParksDB in 'udmParksDB.pas' {dmParksDB: TDataModule},
   udmTCPParksServer in 'udmTCPParksServer.pas' {dmTCPParksServer: TDataModule},
   uMyParksLogging in 'uMyParksLogging.pas';
@@ -52,6 +54,9 @@ end;
 var
   ConsoleDisplay: TConsoleParkDisplay;
 begin
+ writeln('initializing LoggerPro');
+  Log := BuildLogWriter([TLoggerProSimpleConsoleAppender.Create,
+                         TLoggerProFileAppender.Create]);
   try
     Log.Info('Starting MyParks TCP Server on port ' + dmTCPParksServer.IdTCPMyParksServer.DefaultPort.ToString, LOG_TAG);
 

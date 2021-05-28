@@ -32,13 +32,13 @@ object dmParksDB: TdmParksDB
         Name = 'LONG'
         DataType = ftSingle
         ParamType = ptInput
-        Value = -122.796997070313s
+        Value = -122.796997070312500000
       end
       item
         Name = 'LAT'
         DataType = ftSingle
         ParamType = ptInput
-        Value = 45.5900001525879s
+        Value = 45.590000152587890000
       end>
     object qryParkLookupPARK_ID: TIntegerField
       FieldName = 'PARK_ID'

@@ -49,6 +49,16 @@
         </DeployFile>
     </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='Win32'">
+        <DeployFile Include="MyParksTCPServerConsole.exe" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksTCPServerConsole\</RemoteDir>
+            <RemoteName>MyParksTCPServerConsole.exe</RemoteName>
+            <DeployClass>ProjectOutput</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
         <DeployFile Include="$(IBREDISTDIR)\win32\gds32.dll" Condition="'$(Config)'=='Release'">
             <RemoteDir>MyParksTCPServerConsole\</RemoteDir>
             <RemoteName>gds32.dll</RemoteName>
@@ -87,16 +97,6 @@
         </DeployFile>
     </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='Linux64'">
-        <DeployFile Include="MyParksTCPServerConsole" Condition="'$(Config)'=='Release'">
-            <RemoteDir>MyParksTCPServerConsole\</RemoteDir>
-            <RemoteName>MyParksTCPServerConsole</RemoteName>
-            <DeployClass>ProjectOutput</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-            <Required>True</Required>
-        </DeployFile>
         <DeployFile Include="$(IBREDISTDIR)\linux64\libgds.so" Condition="'$(Config)'=='Debug'">
             <RemoteDir>MyParksTCPServerConsole\</RemoteDir>
             <RemoteName>libgds.so</RemoteName>
@@ -106,7 +106,7 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="\MyParksTCPServerConsole" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="MyParksTCPServerConsole" Condition="'$(Config)'=='Release'">
             <RemoteDir>MyParksTCPServerConsole\</RemoteDir>
             <RemoteName>MyParksTCPServerConsole</RemoteName>
             <DeployClass>ProjectOutput</DeployClass>
@@ -124,6 +124,16 @@
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="MyParksTCPServerConsole" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksTCPServerConsole\</RemoteDir>
+            <RemoteName>MyParksTCPServerConsole</RemoteName>
+            <DeployClass>ProjectOutput</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
         </DeployFile>
         <DeployFile Include="$(IBREDISTDIR)\linux64\libgds.so" Condition="'$(Config)'=='Release'">
             <RemoteDir>MyParksTCPServerConsole\</RemoteDir>
@@ -145,16 +155,6 @@
         </DeployFile>
     </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='OSX64'">
-        <DeployFile Include="\MyParksTCPServerConsole" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>MyParksTCPServerConsole\</RemoteDir>
-            <RemoteName>MyParksTCPServerConsole</RemoteName>
-            <DeployClass>ProjectOutput</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-            <Required>True</Required>
-        </DeployFile>
         <DeployFile Include="$(BDS)\bin\delphi_PROJECTICNS.icns" Condition="'$(Config)'=='Release'">
             <RemoteDir>MyParksTCPServerConsole\Contents\Resources\</RemoteDir>
             <RemoteName>MyParksTCPServerConsole.icns</RemoteName>
@@ -254,6 +254,16 @@
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="\MyParksTCPServerConsole" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksTCPServerConsole\</RemoteDir>
+            <RemoteName>MyParksTCPServerConsole</RemoteName>
+            <DeployClass>ProjectOutput</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
         </DeployFile>
         <DeployFile Include="MyParksTCPServerConsole.info.plist" Condition="'$(Config)'=='Release'">
             <RemoteDir>MyParksTCPServerConsole\</RemoteDir>

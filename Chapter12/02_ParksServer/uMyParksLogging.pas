@@ -3,16 +3,11 @@ unit uMyParksLogging;
 interface
 
 uses
-  LoggerPro,
-  LoggerPro.FileAppender,
-  LoggerPro.ConsoleAppender;
+  LoggerPro;
 
 var
   Log: ILogWriter;
 
 implementation
 
-initialization
-  Log := BuildLogWriter([TLoggerProFileAppender.Create,
-                         TLoggerProConsoleAppender.Create]);
 end.
