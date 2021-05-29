@@ -2,6 +2,9 @@ program MyParksTCPServerService;
 
 uses
   Vcl.SvcMgr,
+  LoggerPro,
+  LoggerPro.FileAppender,
+  LoggerPro.WindowsEventLogAppender,
   udmMyParksService in 'udmMyParksService.pas' {MyParksIBService: TService},
   udmParksDB in 'udmParksDB.pas' {dmParksDB: TDataModule},
   udmTCPParksServer in 'udmTCPParksServer.pas' {dmTCPParksServer: TDataModule},
@@ -27,5 +30,9 @@ begin
   if not Application.DelayInitialize or Application.Installing then
     Application.Initialize;
   Application.CreateForm(TMyParksIBService, MyParksIBService);
+
+  Log := BuildLogWriter([TLoggerProFileAppender.Create,
+                         TLoggerProWindowsEventLogAppender.Create(MyParksIBService)]);
+
   Application.Run;
 end.
