@@ -73,6 +73,8 @@ type
     MapViewParks: TMapView;
     ShowShareSheetAction: TShowShareSheetAction;
     btnSharePic: TButton;
+    btnQueryPark: TButton;
+    actParkNearMe: TAction;
     procedure FormCreate(Sender: TObject);
     procedure FormGesture(Sender: TObject; const EventInfo: TGestureEventInfo; var Handled: Boolean);
     procedure lvParksItemClick(const Sender: TObject; const AItem: TListViewItem);
@@ -89,6 +91,7 @@ type
     procedure actMapParkExecute(Sender: TObject);
     procedure cmbMapTypeChange(Sender: TObject);
     procedure ShowShareSheetActionBeforeExecute(Sender: TObject);
+    procedure actParkNearMeExecute(Sender: TObject);
   private
     FParkLongitude: Double;
     FParkLatitude : Double;
@@ -115,9 +118,11 @@ implementation
 uses
   System.Threading,
   FMX.Platform, FMX.MediaLibrary, FMX.DialogService.Async, Data.DB,
-  udmParkData;
+  udmParkData, udmTCPParkClient;
 
 procedure TfrmMyParksMain.FormCreate(Sender: TObject);
+const
+  PermissionAccessFineLocation = 'android.permission.ACCESS_FINE_LOCATION';
 begin
   tabCtrlParks.TabPosition := TTabPosition.None;
   tabCtrlParks.ActiveTab := tabParkList;
@@ -129,6 +134,17 @@ begin
   {$IFDEF ANDROID}
   cmbMapType.Items.Add('Terrain');
   {$ENDIF}
+
+  PermissionsService.RequestPermissions([PermissionAccessFineLocation],
+    procedure(const APermissions: TArray<string>; const AGrantResults: TArray<TPermissionStatus>)
+    begin
+      if (Length(AGrantResults) = 1) and (AGrantResults[0] = TPermissionStatus.Granted) then
+        LocationSensor.Active := True
+      else begin
+        actParkNearMe.Enabled := False;
+        TDialogServiceAsync.ShowMessage('Park location data will not be available.');
+      end;
+    end);
 end;
 
 procedure TfrmMyParksMain.actAddParkExecute(Sender: TObject);
@@ -180,6 +196,25 @@ begin
 
     NextParkTabAction.Execute;
   end;
+end;
+
+procedure TfrmMyParksMain.actParkNearMeExecute(Sender: TObject);
+var
+  QueriedParkName: string;
+begin
+  // from client console app, IP address is temporarily hard-coded to test server
+  dmTCPParkClient.IdTCPMyParksClient.Host := '192.168.1.15';
+  dmTCPParkClient.IdTCPMyParksClient.Port := 8081;
+  dmTCPParkClient.Connect;
+
+  try
+    QueriedParkName := dmTCPParkClient.GetParkName(FParkLongitude, FParkLatitude);
+  finally
+    dmTCPParkClient.Disconnect;
+  end;
+
+  TDialogServiceAsync.ShowMessage(Format('The park at location (%6.3f, %6.3f) is "%s"',
+                                 [FParkLongitude, FParkLatitude, QueriedParkName]));
 end;
 
 procedure TfrmMyParksMain.actSaveParkLocationExecute(Sender: TObject);
@@ -250,19 +285,8 @@ begin
 end;
 
 procedure TfrmMyParksMain.lvParksItemClick(const Sender: TObject; const AItem: TListViewItem);
-const
-  PermissionAccessFineLocation = 'android.permission.ACCESS_FINE_LOCATION';
 begin
   NextParkTabAction.Execute;
-
-  PermissionsService.RequestPermissions([PermissionAccessFineLocation],
-    procedure(const APermissions: TArray<string>; const AGrantResults: TArray<TPermissionStatus>)
-    begin
-      if (Length(AGrantResults) = 1) and (AGrantResults[0] = TPermissionStatus.Granted) then
-        LocationSensor.Active := True
-      else
-        TDialogServiceAsync.ShowMessage('Park location data will not be available.');
-    end);
 end;
 
 procedure TfrmMyParksMain.lvParksPullRefresh(Sender: TObject);
