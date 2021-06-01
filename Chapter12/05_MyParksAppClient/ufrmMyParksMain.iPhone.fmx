@@ -1,0 +1,111 @@
+inherited frmMyParksMain_iPhone: TfrmMyParksMain_iPhone
+  ClientHeight = 460
+  ClientWidth = 320
+  DesignerMasterStyle = 0
+  inherited HeaderToolBar: TToolBar
+    Size.Width = 320.000000000000000000
+    Size.Height = 44.000000000000000000
+    inherited lblMain: TLabel
+      Size.Width = 320.000000000000000000
+      Size.Height = 44.000000000000000000
+    end
+  end
+  inherited tabCtrlMyParks: TTabControl
+    Size.Width = 320.000000000000000000
+    Size.Height = 416.000000000000000000
+    Sizes = (
+      320s
+      367s
+      320s
+      367s
+      320s
+      367s)
+    inherited tabParkList: TTabItem
+      Size.Width = 106.000000000000000000
+      ExplicitSize.cx = 50.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+      inherited tabCtrlParkViewEdit: TTabControl
+        Size.Width = 320.000000000000000000
+        Size.Height = 367.000000000000000000
+        TabHeight = 49.000000000000000000
+        Sizes = (
+          320s
+          367s
+          320s
+          367s)
+        inherited tabParkView: TTabItem
+          Size.Width = 11.000000000000000000
+          Size.Height = 11.000000000000000000
+          ExplicitSize.cx = 8.000000000000000000
+          ExplicitSize.cy = 8.000000000000000000
+          inherited pnlParksButtons: TPanel
+            Position.Y = 327.000000000000000000
+            Size.Width = 320.000000000000000000
+          end
+          inherited lvParks: TListView
+            Size.Width = 320.000000000000000000
+            Size.Height = 327.000000000000000000
+          end
+        end
+        inherited tabParkEdit: TTabItem
+          Size.Width = 11.000000000000000000
+          Size.Height = 11.000000000000000000
+          ExplicitSize.cx = 8.000000000000000000
+          ExplicitSize.cy = 8.000000000000000000
+          inherited FlowLayoutParkEdit: TFlowLayout
+            Position.Y = 65.000000000000000000
+            Size.Width = 320.000000000000000000
+            inherited CheckBoxHasRestrooms: TCheckBox
+              Margins.Left = 50.000000000000000000
+              Position.X = 50.000000000000000000
+              Position.Y = 40.000000000000000000
+              Size.Width = 160.000000000000000000
+            end
+            inherited CheckBoxHasPlaygound: TCheckBox
+              Size.Width = 160.000000000000000000
+            end
+          end
+          inherited pnlParkNameEdit: TPanel
+            Size.Width = 320.000000000000000000
+            Size.Height = 65.000000000000000000
+            inherited EditParkName: TEdit
+              Position.Y = 30.000000000000000000
+              Size.Width = 254.000000000000000000
+              Size.Height = 30.000000000000000000
+              inherited LabelParkName: TLabel
+                Size.Width = 161.000000000000000000
+              end
+            end
+            inherited btnParkEditBack: TButton
+              Position.Y = 10.000000000000000000
+              Size.Height = 44.000000000000000000
+            end
+          end
+        end
+      end
+    end
+    inherited tabMap: TTabItem
+      Size.Width = 106.000000000000000000
+      ExplicitSize.cx = 50.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+    end
+    inherited tabVisits: TTabItem
+      Size.Width = 108.000000000000000000
+      ExplicitSize.cx = 50.000000000000000000
+      ExplicitSize.cy = 49.000000000000000000
+    end
+  end
+  inherited GestureManagerParks: TGestureManager
+    GestureData = <
+      item
+        Control = Owner
+        Collection = <
+          item
+            GestureID = sgiLeft
+          end
+          item
+            GestureID = sgiRight
+          end>
+      end>
+  end
+end
