@@ -28,6 +28,7 @@ type
       var ReplaceText: string);
     procedure wmMyParkswaiDefaultAction(Sender: TObject; Request: TWebRequest; Response: TWebResponse;
       var Handled: Boolean);
+    procedure WebModuleDestroy(Sender: TObject);
   private
     FPageTitle: string;
     FLongitude, FLatitude: Double;
@@ -45,6 +46,7 @@ implementation
 {%CLASSGROUP 'FMX.Controls.TControl'}
 
 uses
+  System.IOUtils,
   LoggerPro,
   LoggerPro.FileAppender,
   uMyParksLogging,
@@ -54,29 +56,36 @@ uses
 
 const
   APP_NAME = 'My Parks';
+  LOG_TAG  = 'web';
 
 
 function TwmMyParks.CheckAppName(const TagString: string): string;
 begin
-  if SameText(TagString, 'AppName') then
-    Result := APP_NAME
-  else
+  if SameText(TagString, 'AppName') then begin
+    Log.Debug('CheckAppName: replacing AppName with: ' + APP_NAME, LOG_TAG);
+    Result := APP_NAME;
+  end else
     Result := EmptyStr;
 end;
 
 procedure TwmMyParks.ppPageHeaderHTMLTag(Sender: TObject; Tag: TTag; const TagString: string; TagParams: TStrings;
   var ReplaceText: string);
 begin
+  Log.Debug('Page Header; Tag: ' + TagString, LOG_TAG);
+
   ReplaceText := CheckAppName(TagString);
   if ReplaceText.IsEmpty then
-    if SameText(TagString, 'PageTitle') then
-      ReplaceText := FPageTitle
-    else
+    if SameText(TagString, 'PageTitle') then begin
+      Log.Debug('Replacing PageTitle with: ' + FPageTitle, LOG_TAG);
+      ReplaceText := FPageTitle;
+    end else
       ReplaceText := EmptyStr;
 end;
 
 function TwmMyParks.CheckFooter(const TagString: string): string;
 begin
+  Log.Debug('Page Footer; Tag: ' + TagString, LOG_TAG);
+
   if SameText(TagString, 'Footer') then
     Result := ppPageFooter.Content
   else
@@ -99,7 +108,9 @@ const
   end;
 
 begin
- Result :=
+  Log.Debug('Creating Menu for: ' + CurrPageProducer.Name, LOG_TAG);
+
+  Result :=
     UL_START +
     NavLink(ABOUT_FMT,   CurrPageProducer = ppAbout) +
     NavLink(GETPARK_FMT, CurrPageProducer = ppGetParkQuery) +
@@ -110,6 +121,8 @@ end;
 procedure TwmMyParks.ppStandardHTMLTag(Sender: TObject; Tag: TTag; const TagString: string;
   TagParams: TStrings; var ReplaceText: string);
 begin
+  Log.Debug('Standard HTML; Tag: ' + TagString, LOG_TAG);
+
   if SameText(TagString, 'Header') then begin
     if (TagParams.Count = 1) then begin
       FPageTitle := TagParams.Values['PageTitle'];
@@ -120,14 +133,18 @@ begin
   else if SameText(TagString, 'Footer') then
     ReplaceText := ppPageFooter.Content;
 
-  // only for Park List
+  // other
   if ReplaceText.IsEmpty and SameText(TagString, 'parklist') then
     ReplaceText := dstpMyParks.Content;
+  if ReplaceText.IsEmpty and SameText(TagString, 'ModuleFilename') then
+    ReplaceText := ExtractFileName(WebApplicationFileName);
 end;
 
 procedure TwmMyParks.ppShowParkFromCoordsHTMLTag(Sender: TObject; Tag: TTag; const TagString: string;
   TagParams: TStrings; var ReplaceText: string);
 begin
+  Log.Debug('ShowParkFromCoords; Tag: ' + TagString, LOG_TAG);
+
   if SameText(TagString, 'Header') then begin
     if (TagParams.Count = 1) then begin
       FPageTitle := TagParams.Values['PageTitle'];
@@ -156,6 +173,8 @@ end;
 procedure TwmMyParks.wmMyParkswaiShowParkFromCoordsAction(Sender: TObject;
   Request: TWebRequest; Response: TWebResponse; var Handled: Boolean);
 begin
+  Log.Debug('ShowParkFromCoords; Request: ' + Request.ToString, LOG_TAG);
+
   if Request.QueryFields.Count = 2 then begin
     var long, lat: Double;
     if TryStrToFloat(Request.QueryFields.Values['long'] , long) and
@@ -172,8 +191,14 @@ end;
 
 procedure TwmMyParks.WebModuleCreate(Sender: TObject);
 begin
-  // disable logging
-  Log := BuildLogWriter([]);
+  Log := BuildLogWriter([TLoggerProFileAppender.Create(5, 1000,
+                           TPath.Combine(WebApplicationDirectory, 'logs'))]);
+  Log.Info('web module created', LOG_TAG);
+end;
+
+procedure TwmMyParks.WebModuleDestroy(Sender: TObject);
+begin
+  Log.Info('web module shutting down', LOG_TAG);
 end;
 
 end.

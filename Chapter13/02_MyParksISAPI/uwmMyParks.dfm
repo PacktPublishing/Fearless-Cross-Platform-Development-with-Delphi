@@ -1,6 +1,7 @@
 object wmMyParks: TwmMyParks
   OldCreateOrder = False
   OnCreate = WebModuleCreate
+  OnDestroy = WebModuleDestroy
   Actions = <
     item
       Name = 'waiAbout'
@@ -82,7 +83,7 @@ object wmMyParks: TwmMyParks
         Title.Caption = 'Latitude'
       end>
     MaxRows = 200
-    DataSet = dmParksDB.qryParkList
+    DataSet = dmParksDB.qryParkLookup
     TableAttributes.Align = haCenter
     TableAttributes.BgColor = 'Lime'
     TableAttributes.Border = 1
@@ -103,7 +104,7 @@ object wmMyParks: TwmMyParks
         'ed">'
       ''
       '<h3>Find a Park by Location</h3>'
-      '<form action="/showpark">'
+      '<form action="<#ModuleFilename>/showpark">'
       '  <label for="long">Longitude:</label><br>'
       '  <input type="text" id="long" name="long"><br><br>'
       '  <label for="lat">Latitude:</label><br>'
