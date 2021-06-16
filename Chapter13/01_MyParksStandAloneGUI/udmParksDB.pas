@@ -34,7 +34,6 @@ type
         procedure Clear;
       end;
     function LookupParkByLocation(const ALongitude, ALatitude: Double): TParkDataRec;
-    function ListAllParks: TArray<TParkDataRec>;
   end;
 
 var
@@ -66,11 +65,6 @@ begin
     FDParkConnection.Connected := False;
 end;
 
-function TdmParksDB.ListAllParks: TArray<TParkDataRec>;
-begin
-
-end;
-
 function TdmParksDB.LookupParkByLocation(const ALongitude, ALatitude: Double): TParkDataRec;
 begin
   {$IFDEF LINUX}
@@ -91,11 +85,15 @@ begin
       qryParkLookup.ParamByName('lat').AsSingle  := ALatitude;
       {$IFDEF LINUX}
       syslog(LOG_DEBUG, 'opening query: ' + qryParkLookup.SQL.Text);
+      {$ELSE}
+      Log.Debug('opening query: ' + qryParkLookup.SQL.Text, LOG_TAG);
       {$ENDIF}
       qryParkLookup.Open;
 
       {$IFDEF LINUX}
       syslog(LOG_DEBUG, 'query recordcount: ' + qryParkLookup.RecordCount.ToString);
+      {$ELSE}
+      Log.Debug('query record count: ' + qryParkLookup.RecordCount.ToString, LOG_TAG);
       {$ENDIF}
       if qryParkLookup.RecordCount > 0 then begin
         Result.ParkID := qryParkLookupPARK_ID.AsInteger;
@@ -107,6 +105,8 @@ begin
       on e:Exception do begin
         {$IFDEF LINUX}
         syslog(LOG_ERR, 'database exception: ' + e.Message);
+        {$ELSE}
+        Log.Error('database exception: ' + e.Message, LOG_TAG);
         {$ENDIF}
       end;
     end;

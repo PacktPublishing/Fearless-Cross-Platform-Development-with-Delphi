@@ -1,6 +1,7 @@
 object wmMyParks: TwmMyParks
   OldCreateOrder = False
   OnCreate = WebModuleCreate
+  OnDestroy = WebModuleDestroy
   Actions = <
     item
       Default = True
