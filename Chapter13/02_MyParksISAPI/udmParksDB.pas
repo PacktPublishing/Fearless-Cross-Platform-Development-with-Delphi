@@ -34,7 +34,6 @@ type
         procedure Clear;
       end;
     function LookupParkByLocation(const ALongitude, ALatitude: Double): TParkDataRec;
-    function ListAllParks: TArray<TParkDataRec>;
   end;
 
 var
@@ -64,11 +63,6 @@ procedure TdmParksDB.DataModuleDestroy(Sender: TObject);
 begin
   if FDParkConnection.Connected then
     FDParkConnection.Connected := False;
-end;
-
-function TdmParksDB.ListAllParks: TArray<TParkDataRec>;
-begin
-
 end;
 
 function TdmParksDB.LookupParkByLocation(const ALongitude, ALatitude: Double): TParkDataRec;
