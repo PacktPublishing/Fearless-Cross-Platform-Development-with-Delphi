@@ -83,7 +83,7 @@ object wmMyParks: TwmMyParks
         Title.Caption = 'Latitude'
       end>
     MaxRows = 200
-    DataSet = dmParksDB.qryParkLookup
+    DataSet = dmParksDB.qryParkList
     TableAttributes.Align = haCenter
     TableAttributes.BgColor = 'Lime'
     TableAttributes.Border = 1
