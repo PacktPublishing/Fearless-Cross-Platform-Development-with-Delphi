@@ -29,10 +29,13 @@ type
     procedure wmMyParkswaiDefaultAction(Sender: TObject; Request: TWebRequest; Response: TWebResponse;
       var Handled: Boolean);
     procedure WebModuleDestroy(Sender: TObject);
+    procedure ppPageFooterHTMLTag(Sender: TObject; Tag: TTag;
+      const TagString: string; TagParams: TStrings; var ReplaceText: string);
   private
     FPageTitle: string;
     FLongitude, FLatitude: Double;
     FParkName: string;
+    function CheckRequestTags(const TagString: string): string;
     function CheckFooter(const TagString: string): string;
     function CheckAppName(const TagString: string): string;
     function GetMenu(CurrPageProducer: TPageProducer): string;
@@ -68,6 +71,12 @@ begin
     Result := EmptyStr;
 end;
 
+procedure TwmMyParks.ppPageFooterHTMLTag(Sender: TObject; Tag: TTag;
+  const TagString: string; TagParams: TStrings; var ReplaceText: string);
+begin
+  Replacetext := CheckRequestTags(TagString);
+end;
+
 procedure TwmMyParks.ppPageHeaderHTMLTag(Sender: TObject; Tag: TTag; const TagString: string; TagParams: TStrings;
   var ReplaceText: string);
 begin
@@ -90,6 +99,52 @@ begin
     Result := ppPageFooter.Content
   else
     Result := EmptyStr;
+end;
+
+function TwmMyParks.CheckRequestTags(const TagString: string): string;
+begin
+  if SameText(TagString, 'Method') then
+    Result := Request.Method
+  else if SameText(TagString, 'ProtocolVersion') then
+    Result := Request.ProtocolVersion
+  else if SameText(TagString, 'URL') then
+    Result := Request.URL
+  else if SameText(TagString, 'Query') then
+    Result := Request.Query
+  else if SameText(TagString, 'PathInfo') then
+    Result := Request.PathInfo
+  else if SameText(TagString, 'PathTranslated') then
+    Result := Request.PathTranslated
+  else if SameText(TagString, 'Authorization') then
+    Result := Request.Authorization
+  else if SameText(TagString, 'Accept') then
+    Result := Request.Accept
+  else if SameText(TagString, 'From') then
+    Result := Request.From
+  else if SameText(TagString, 'Host') then
+    Result := Request.Host
+  else if SameText(TagString, 'Referrer') then
+    Result := Request.Referer
+  else if SameText(TagString, 'UserAgent') then
+    Result := Request.UserAgent
+  else if SameText(TagString, 'ContentType') then
+    Result := Request.ContentType
+  else if SameText(TagString, 'Content') then
+    Result := Request.Content
+  else if SameText(TagString, 'Connection') then
+    Result := Request.Connection
+  else if SameText(TagString, 'Title') then
+    Result := Request.Title
+  else if SameText(TagString, 'RemoteAddr') then
+    Result := Request.RemoteAddr
+  else if SameText(TagString, 'RemoteHost') then
+    Result := Request.RemoteHost
+  else if SameText(TagString, 'ScriptName') then
+    Result := Request.ScriptName
+  else if SameText(TagString, 'InternalPathInfo') then
+    Result := Request.InternalPathInfo
+  else if SameText(TagString, 'RemoteIP') then
+    Result := Request.RemoteIP;
 end;
 
 function TwmMyParks.GetMenu(CurrPageProducer: TPageProducer): string;
@@ -134,10 +189,16 @@ begin
     ReplaceText := ppPageFooter.Content;
 
   // other
-  if ReplaceText.IsEmpty and SameText(TagString, 'parklist') then
+  if ReplaceText.IsEmpty and SameText(TagString, 'parklist') then begin
     ReplaceText := dstpMyParks.Content;
-  if ReplaceText.IsEmpty and SameText(TagString, 'ModuleFilename') then
+    Log.Debug('replacing parklist ', LOG_TAG);
+  end;
+  if ReplaceText.IsEmpty and SameText(TagString, 'ModuleFilename') then begin
     ReplaceText := ExtractFileName(WebApplicationFileName);
+    Log.Debug('replacing ModuleFilename: ' + ReplaceText, LOG_TAG);
+  end;
+  if ReplaceText.IsEmpty then
+    Replacetext := CheckRequestTags(TagString);
 end;
 
 procedure TwmMyParks.ppShowParkFromCoordsHTMLTag(Sender: TObject; Tag: TTag; const TagString: string;

@@ -104,7 +104,7 @@ object wmMyParks: TwmMyParks
         'ed">'
       ''
       '<h3>Find a Park by Location</h3>'
-      '<form action="<#ModuleFilename>/showpark">'
+      '<form action="<#URL>/showpark">'
       '  <label for="long">Longitude:</label><br>'
       '  <input type="text" id="long" name="long"><br><br>'
       '  <label for="lat">Latitude:</label><br>'
@@ -164,6 +164,21 @@ object wmMyParks: TwmMyParks
     HTMLDoc.Strings = (
       '  </div>'
       '</div>'
+      ''
+      ''
+      'Method = <#Method><br />'
+      'ProtocolVersion = <#ProtocolVersion><br />'
+      'URL = <#URL><br />'
+      'Query = <#Query><br />'
+      'PathInfo = <#PathInfo><br />'
+      'PathTranslated = <#PathTranslated><br />'
+      'Host = <#Host><br />'
+      'Referrer = <#Referrer><br />'
+      'ScriptName = <#ScriptName><br />'
+      'InternalPathInfo = <#InternalPathInfo><br />'
+      'RemoteIP = <#RemoteIP><br />'
+      ''
+      ''
       
         '<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/j' +
         's/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNU' +
@@ -171,6 +186,7 @@ object wmMyParks: TwmMyParks
         'ymous"></script>'
       '</body>'
       '</html>')
+    OnHTMLTag = ppPageFooterHTMLTag
     Left = 200
     Top = 80
   end
