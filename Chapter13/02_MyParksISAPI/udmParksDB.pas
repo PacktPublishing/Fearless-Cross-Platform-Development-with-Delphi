@@ -46,16 +46,10 @@ implementation
 {$R *.dfm}
 
 uses
-  {$IFDEF LINUX}
-  Posix.Syslog;
-  {$ELSE}
   uMyParksLogging;
-  {$ENDIF}
 
-{$IFNDEF LINUX}
 const
   LOG_TAG = 'db';
-{$ENDIF}
 
 { TdmParksDB }
 
@@ -67,11 +61,7 @@ end;
 
 function TdmParksDB.LookupParkByLocation(const ALongitude, ALatitude: Double): TParkDataRec;
 begin
-  {$IFDEF LINUX}
-  syslog(LOG_INFO, Format('LookupParkByLocation(%f, %f)', [ALongitude, ALatitude]));
-  {$ELSE}
   Log.Info(Format('LookupParkByLocation(%f, %f)', [ALongitude, ALatitude]), LOG_TAG);
-  {$ENDIF}
 
   Result.Clear;
 
@@ -83,14 +73,10 @@ begin
       qryParkLookup.Prepare;
       qryParkLookup.ParamByName('long').AsSingle := ALongitude;
       qryParkLookup.ParamByName('lat').AsSingle  := ALatitude;
-      {$IFDEF LINUX}
-      syslog(LOG_DEBUG, 'opening query: ' + qryParkLookup.SQL.Text);
-      {$ENDIF}
+      Log.Debug('opening query: ' + qryParkLookup.SQL.Text, LOG_TAG);
       qryParkLookup.Open;
 
-      {$IFDEF LINUX}
-      syslog(LOG_DEBUG, 'query recordcount: ' + qryParkLookup.RecordCount.ToString);
-      {$ENDIF}
+      Log.Debug('query recordcount: ' + qryParkLookup.RecordCount.ToString, LOG_TAG);
       if qryParkLookup.RecordCount > 0 then begin
         Result.ParkID := qryParkLookupPARK_ID.AsInteger;
         Result.ParkName := qryParkLookupPARK_NAME.AsString;
@@ -99,20 +85,14 @@ begin
       end;
     except
       on e:Exception do begin
-        {$IFDEF LINUX}
-        syslog(LOG_ERR, 'database exception: ' + e.Message);
-        {$ENDIF}
+        Log.Error('database exception: ' + e.Message, LOG_TAG);
       end;
     end;
   finally
     qryParkLookup.Close;
   end;
 
-  {$IFDEF LINUX}
-  syslog(LOG_DEBUG, Format('  returning ParkID=%d, ParkName=%s', [Result.ParkID, Result.ParkName]));
-  {$ELSE}
   Log.Info(Format('  returning ParkID=%d, ParkName=%s', [Result.ParkID, Result.ParkName]), LOG_TAG);
-  {$ENDIF}
 end;
 
 { TdmParksDB.TParkDataRec }
