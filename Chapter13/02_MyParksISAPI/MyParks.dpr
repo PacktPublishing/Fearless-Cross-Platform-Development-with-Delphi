@@ -1,4 +1,4 @@
-library MyParksISAPI;
+library MyParks;
 
 uses
   Winapi.ActiveX,
