@@ -165,20 +165,6 @@ object wmMyParks: TwmMyParks
       '  </div>'
       '</div>'
       ''
-      ''
-      'Method = <#Method><br />'
-      'ProtocolVersion = <#ProtocolVersion><br />'
-      'URL = <#URL><br />'
-      'Query = <#Query><br />'
-      'PathInfo = <#PathInfo><br />'
-      'PathTranslated = <#PathTranslated><br />'
-      'Host = <#Host><br />'
-      'Referrer = <#Referrer><br />'
-      'ScriptName = <#ScriptName><br />'
-      'InternalPathInfo = <#InternalPathInfo><br />'
-      'RemoteIP = <#RemoteIP><br />'
-      ''
-      ''
       
         '<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/j' +
         's/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNU' +
