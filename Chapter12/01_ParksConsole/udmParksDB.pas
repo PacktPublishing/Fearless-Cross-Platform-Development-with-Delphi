@@ -17,6 +17,7 @@ type
     qryParkLookupLONGITUDE: TFMTBCDField;
     qryParkLookupLATITUDE: TFMTBCDField;
     FDPhysIBDriverLink: TFDPhysIBDriverLink;
+    procedure FDParkConnectionBeforeConnect(Sender: TObject);
   public
     type
       TParkDataRec = record
@@ -40,6 +41,21 @@ implementation
 
 
 { TdmParksDB }
+
+procedure TdmParksDB.FDParkConnectionBeforeConnect(Sender: TObject);
+var
+  Server: string;
+  Port: Integer;
+  DBFile: string;
+begin
+  Server := FDParkConnection.Params.Values['Server'];
+  if not TryStrToInt(FDParkConnection.Params.Values['Port'], Port) then
+    Port := 0;
+  DBFile := FDParkConnection.Params.Values['Database'];
+
+  if Server.IsEmpty or (Port = 0) or DBFile.IsEmpty then
+    raise EDatabaseError.Create('Please configure the database connection settings.');
+end;
 
 function TdmParksDB.LookupParkByLocation(const ALongitude, ALatitude: Double): TParkDataRec;
 begin

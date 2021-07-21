@@ -4,16 +4,13 @@ object dmParksDB: TdmParksDB
   Width = 337
   object FDParkConnection: TFDConnection
     Params.Strings = (
-      'Server=192.168.1.15'
-      'Port=3051'
       'User_Name=sysdba'
       'Password=masterkey'
-      'Database=s:\databases\MyParks.ib'
       'DriverID=IB')
-    Connected = True
     LoginPrompt = False
-    Left = 120
-    Top = 80
+    BeforeConnect = FDParkConnectionBeforeConnect
+    Left = 144
+    Top = 72
   end
   object qryParkLookup: TFDQuery
     Connection = FDParkConnection
@@ -25,8 +22,8 @@ object dmParksDB: TdmParksDB
         ')'
       '    and :lat  between (LATITUDE  - 0.002) and (LATITUDE + 0.002)'
       '')
-    Left = 120
-    Top = 144
+    Left = 144
+    Top = 128
     ParamData = <
       item
         Name = 'LONG'
