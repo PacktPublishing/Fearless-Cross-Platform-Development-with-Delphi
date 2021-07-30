@@ -101,7 +101,7 @@ begin
   {$IFDEF VER310}   IntroLink1 := D101_IntroLink1; IntroLink2 := D101_IntroLink2; DirectivesLink := D101_DirectivesList; {$ENDIF}
   {$IFDEF VER320}   IntroLink1 := D102_IntroLink1; IntroLink2 := D102_IntroLink2; DirectivesLink := D102_DirectivesList; {$ENDIF}
   {$IFDEF VER330}   IntroLink1 := D103_IntroLink1; IntroLink2 := D103_IntroLink2; DirectivesLink := D103_DirectivesList; {$ENDIF}
-  {$IFDEF VER340}   IntroLink1 := D104_IntroLink1; IntroLink2 := D103_IntroLink2; DirectivesLink := D103_DirectivesList; {$ENDIF}
+  {$IFDEF VER340}   IntroLink1 := D104_IntroLink1; IntroLink2 := D104_IntroLink2; DirectivesLink := D104_DirectivesList; {$ENDIF}
 end;
 
 procedure GetConditionalDefines(GetCondDefProc: TGetConditionalDefine);
