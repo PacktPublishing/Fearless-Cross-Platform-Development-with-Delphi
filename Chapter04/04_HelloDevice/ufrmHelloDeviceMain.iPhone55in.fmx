@@ -1,0 +1,5 @@
+inherited frmHello_iPhone55in: TfrmHello_iPhone55in
+  ClientHeight = 716
+  ClientWidth = 414
+  DesignerMasterStyle = 0
+end
