@@ -1,6 +1,6 @@
 program DelphiVersionsVCL;
 
-{$R 'DelphiVersionsVCL.res' 'DelphiVersionsVCL.rc'}
+
 
 uses
   Forms,
@@ -11,7 +11,6 @@ uses
 
 begin
   Application.Initialize;
-  TStyleManager.TrySetStyle('CopperDark');
   Application.Title := 'Delphi Versions';
   Application.CreateForm(TfrmDelphiVersions, frmDelphiVersions);
   Application.Run;
