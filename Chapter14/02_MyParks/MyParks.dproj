@@ -1,6 +1,6 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{2710D6A5-D0A4-4D7E-B2B5-5B4A52071A0F}</ProjectGuid>
+        <ProjectGuid>{A5088542-ED49-4A9D-858F-E36FA2223B30}</ProjectGuid>
         <MainSource>MyParks.dpk</MainSource>
         <ProjectVersion>19.2</ProjectVersion>
         <FrameworkType>None</FrameworkType>
@@ -155,21 +155,17 @@
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="emsserverapi.dcp"/>
         <DCCReference Include="dbrtl.dcp"/>
-        <DCCReference Include="IndySystem.dcp"/>
         <DCCReference Include="FireDAC.dcp"/>
-        <DCCReference Include="FireDACCommonDriver.dcp"/>
         <DCCReference Include="FireDACCommon.dcp"/>
+        <DCCReference Include="FireDACCommonDriver.dcp"/>
         <DCCReference Include="FireDACIBDriver.dcp"/>
-        <DCCReference Include="uMyParksRS.pas"/>
-        <DCCReference Include="udmParksDB.pas">
-            <Form>dmParksDB</Form>
+        <DCCReference Include="RESTBackendComponents.dcp"/>
+        <DCCReference Include="RESTComponents.dcp"/>
+        <DCCReference Include="udmMyParksRS.pas">
+            <Form>MyParksResource1</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="uMyParksLogging.pas"/>
-        <DCCReference Include="V:\lib\LoggerPro\LoggerPro.pas"/>
-        <DCCReference Include="V:\lib\LoggerPro\LoggerPro.FileAppender.pas"/>
-        <DCCReference Include="V:\lib\LoggerPro\ThreadSafeQueueU.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

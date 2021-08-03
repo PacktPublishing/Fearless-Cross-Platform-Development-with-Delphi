@@ -32,18 +32,14 @@ requires
   rtl,
   emsserverapi,
   dbrtl,
-  IndySystem,
   FireDAC,
-  FireDACCommonDriver,
   FireDACCommon,
-  FireDACIBDriver;
+  FireDACCommonDriver,
+  FireDACIBDriver,
+  RESTBackendComponents,
+  RESTComponents;
 
 contains
-  uMyParksRS in 'uMyParksRS.pas',
-  udmParksDB in 'udmParksDB.pas' {dmParksDB: TDataModule},
-  uMyParksLogging in 'uMyParksLogging.pas',
-  LoggerPro in 'V:\lib\LoggerPro\LoggerPro.pas',
-  LoggerPro.FileAppender in 'V:\lib\LoggerPro\LoggerPro.FileAppender.pas',
-  ThreadSafeQueueU in 'V:\lib\LoggerPro\ThreadSafeQueueU.pas';
+  udmMyParksRS in 'udmMyParksRS.pas' {MyParksResource1: TDataModule};
 
 end.
