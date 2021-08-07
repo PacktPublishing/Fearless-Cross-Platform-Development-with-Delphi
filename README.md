@@ -31,7 +31,7 @@ Learn how to use Delphi to leverage modern GPU engines for graphic prowess.
 As you build mobile apps, you'll need to understand your options for saving data locally--and how this differs from using server or desktop database engines.
 
 ### 10 - Cameras, GPS, and More
-Focusing on SmartPhones, this chapter utilizes several mobile features to build an actual real-life app that you might actually find useful.
+Focusing on SmartPhones, this chapter utilizes several mobile features to build a real-life app that you might actually find useful.
 
 ### 11 - Extending Delphi with Bluetooth, IoT, and Raspberry Pi
 Learn how Bluetooth is the basis for all things categorized in the Internet-of-Things arena; while we're working with small devices, we digress and show how to get an Android app working on a Raspberry Pi!
