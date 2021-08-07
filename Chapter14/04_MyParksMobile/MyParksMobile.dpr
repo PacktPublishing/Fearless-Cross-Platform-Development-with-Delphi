@@ -1,4 +1,4 @@
-program MyParks;
+program MyParksMobile;
 
 
 uses

@@ -13,7 +13,12 @@ uses
   Fmx.Bind.Editors, Data.Bind.Components, Data.Bind.DBScope, FMX.ListView,
   FMX.Edit, System.ImageList, FMX.ImgList, FMX.Objects, FMX.Media,
   System.Sensors, System.Sensors.Components, FMX.Memo.Types, FMX.ScrollBox,
-  FMX.Memo, FMX.Maps, FMX.EditBox, FMX.NumberBox;
+  FMX.Memo, FMX.Maps, FMX.EditBox, FMX.NumberBox, REST.Backend.ServiceTypes, System.JSON,
+  REST.Backend.EMSServices, Data.Bind.ObjectScope, REST.Client, REST.Backend.EndPoint, REST.Backend.EMSProvider,
+  REST.Types, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, REST.Response.Adapter,
+  FireDAC.DApt, REST.Backend.EMSFireDAC, FMX.Grid.Style, Fmx.Bind.Grid, Data.Bind.Grid, FMX.Grid,
+  FireDAC.Stan.StorageBin;
 
 type
   TfrmMyParksMain = class(TForm)
@@ -73,6 +78,18 @@ type
     MapViewParks: TMapView;
     ShowShareSheetAction: TShowShareSheetAction;
     btnSharePic: TButton;
+    tabctrlLocalRemoteParks: TTabControl;
+    tabLocalParks: TTabItem;
+    tabRemote: TTabItem;
+    actGetRADServerParksRESTClient: TAction;
+    pnlRADRefresh: TPanel;
+    btnRefreshRADServer: TButton;
+    radParksAZ: TRadioButton;
+    radParksZA: TRadioButton;
+    RESTReqRADParks: TRESTRequest;
+    RESTRespRADParks: TRESTResponse;
+    RESTClientRADParks: TRESTClient;
+    lvRADParks: TListView;
     procedure FormCreate(Sender: TObject);
     procedure FormGesture(Sender: TObject; const EventInfo: TGestureEventInfo; var Handled: Boolean);
     procedure lvParksItemClick(const Sender: TObject; const AItem: TListViewItem);
@@ -89,10 +106,14 @@ type
     procedure actMapParkExecute(Sender: TObject);
     procedure cmbMapTypeChange(Sender: TObject);
     procedure ShowShareSheetActionBeforeExecute(Sender: TObject);
+    procedure actGetRADServerParksRESTClientExecute(Sender: TObject);
+    procedure lvRADParksItemClick(const Sender: TObject; const AItem: TListViewItem);
   private
     FParkLongitude: Double;
     FParkLatitude : Double;
-    FCurrParkID: Integer;
+    procedure AddRADParkToLocal;
+    function  PromptAddPark: Boolean;
+    procedure ShowRADServerParks;
     procedure LoadImageFromDatabase;
     procedure SaveImageToDatabase;
   end;
@@ -115,7 +136,7 @@ implementation
 
 uses
   System.Threading,
-  FMX.Platform, FMX.MediaLibrary, FMX.DialogService.Async, Data.DB,
+  FMX.Platform, FMX.MediaLibrary, FMX.DialogService.Async,
   udmParkData;
 
 procedure TfrmMyParksMain.FormCreate(Sender: TObject);
@@ -149,6 +170,24 @@ begin
         ParkEditDoneTabAction.Execute;
       end;
     end);
+end;
+
+procedure TfrmMyParksMain.actGetRADServerParksRESTClientExecute(Sender: TObject);
+begin
+  RESTReqRADParks.Params.Clear;
+
+  // add AppID header
+  RESTReqRADParks.Params.AddItem('X-Embarcadero-Application-Id', 'MyParks1234', TRESTRequestParameterKind.pkHTTPHEADER);
+
+  // add sorting
+  if radParksAZ.IsChecked then
+    RESTReqRADParks.Params.AddItem('sfPARK_NAME', 'A', TRESTRequestParameterKind.pkQUERY)
+  else
+    RESTReqRADParks.Params.AddItem('sfPARK_NAME', 'D', TRESTRequestParameterKind.pkQUERY);
+
+  RESTReqRADParks.Execute;
+
+  ShowRADServerParks;
 end;
 
 procedure TfrmMyParksMain.actLoadParkPicExecute(Sender: TObject);
@@ -219,6 +258,11 @@ begin
     end);
 end;
 
+procedure TfrmMyParksMain.AddRADParkToLocal;
+begin
+  { TODO : add selected park to local database }
+end;
+
 procedure TfrmMyParksMain.cmbMapTypeChange(Sender: TObject);
 begin
   case cmbMapType.ItemIndex of
@@ -272,6 +316,19 @@ begin
   dmParkData.tblParks.Open;
 end;
 
+procedure TfrmMyParksMain.lvRADParksItemClick(const Sender: TObject; const AItem: TListViewItem);
+begin
+  if PromptAddPark then
+    AddRADParkToLocal;
+end;
+
+function TfrmMyParksMain.PromptAddPark: Boolean;
+begin
+  { TODO : prompt user to add to local park }
+
+  Result := False;
+end;
+
 procedure TfrmMyParksMain.LoadImageFromDatabase;
 var
   PicStream: TMemoryStream;
@@ -308,6 +365,32 @@ begin
   finally
     PicStream.Free;
   end;
+end;
+
+procedure TfrmMyParksMain.ShowRADServerParks;
+var
+  RADParksArray: TJSONArray;
+  lvParkItem: TListViewItem;
+begin
+  if RESTRespRADParks.Status.SuccessOK_200 then begin
+    lvRADParks.Items.Clear;
+
+    RADParksArray := RESTRespRADParks.JSONValue.Clone as TJSONArray;
+    try
+      if RADParksArray.Count > 0 then begin
+        for var i := 0 to RADParksArray.Count - 1 do begin
+          lvParkItem := lvRADParks.Items.Add;
+          lvParkItem.Text := RADParksArray.Items[i].GetValue<string>('PARK_NAME');
+        end;
+      end else begin
+        lvParkItem := lvRADParks.Items.Add;
+        lvParkItem.Text := 'No parks found.';
+      end;
+    finally
+      RADParksArray.Free;
+    end;
+  end else
+    TDialogServiceAsync.ShowMessage('Could not get the parks from the server: ' + RESTRespRADParks.StatusText);
 end;
 
 procedure TfrmMyParksMain.ShowShareSheetActionBeforeExecute(Sender: TObject);
