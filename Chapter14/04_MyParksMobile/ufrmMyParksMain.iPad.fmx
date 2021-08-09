@@ -75,32 +75,57 @@ inherited frmMyParksMain_iPad: TfrmMyParksMain_iPad
       ExplicitSize.cy = 8.000000000000000000
       inherited tabctrlParkEdit: TTabControl
         Size.Width = 768.000000000000000000
-        Size.Height = 766.000000000000000000
+        Size.Height = 770.000000000000000000
       end
       inherited FlowLayoutParkEdit: TFlowLayout
         Size.Width = 768.000000000000000000
       end
       inherited imgParkPic: TImage
         Size.Width = 758.000000000000000000
-        Size.Height = 756.000000000000000000
+        Size.Height = 760.000000000000000000
       end
       inherited pnlParkNameEdit: TPanel
         Size.Width = 768.000000000000000000
         inherited btnParkEditBack: TButton
-          Size.Height = 10.000000000000000000
+          Size.Width = 44.000000000000000000
+          Size.Height = 44.000000000000000000
         end
         inherited edtParkNameEdit: TEdit
+          Position.Y = 27.000000000000000000
           Size.Width = 693.000000000000000000
+          Size.Height = 30.000000000000000000
         end
       end
       inherited tbBottom: TToolBar
-        Position.Y = 863.000000000000000000
+        Position.Y = 867.000000000000000000
         Size.Width = 768.000000000000000000
+        Size.Height = 44.000000000000000000
         inherited btnDeletePark: TButton
-          Position.X = 720.000000000000000000
+          Position.X = 724.000000000000000000
+          Size.Width = 44.000000000000000000
+          Size.Height = 44.000000000000000000
+        end
+        inherited btnTakePic: TButton
+          Size.Width = 44.000000000000000000
+          Size.Height = 44.000000000000000000
+        end
+        inherited btnLoadPic: TButton
+          Position.X = 44.000000000000000000
+          Size.Width = 44.000000000000000000
+          Size.Height = 44.000000000000000000
+        end
+        inherited btnSaveParkLocation: TButton
+          Position.X = 88.000000000000000000
+          Size.Width = 44.000000000000000000
+          Size.Height = 44.000000000000000000
+        end
+        inherited Button1: TButton
+          Position.X = 132.000000000000000000
+          Size.Width = 44.000000000000000000
+          Size.Height = 44.000000000000000000
         end
         inherited btnSharePic: TButton
-          Position.Y = 2.000000000000000000
+          Position.X = 176.000000000000000000
           Size.Width = 44.000000000000000000
           Size.Height = 44.000000000000000000
         end
@@ -148,12 +173,6 @@ inherited frmMyParksMain_iPad: TfrmMyParksMain_iPad
     end
     inherited actLoadParkPic: TAction
       ImageIndex = 0
-    end
-    inherited actShareParkInfo: TAction
-      ImageIndex = 2
-    end
-    inherited actScheduleParkVisits: TAction
-      ImageIndex = 3
     end
     inherited actSaveParkLocation: TAction
       ImageIndex = 4

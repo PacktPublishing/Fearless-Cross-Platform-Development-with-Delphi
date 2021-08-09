@@ -51,9 +51,7 @@ type
     actTakeParkPic: TAction;
     actLoadParkPic: TAction;
     btnShare: TButton;
-    actShareParkInfo: TAction;
     btnSchedule: TButton;
-    actScheduleParkVisits: TAction;
     imlMyParks: TImageList;
     imgParkPic: TImage;
     TakePhotoFromCameraAction: TTakePhotoFromCameraAction;
@@ -98,8 +96,6 @@ type
     procedure actDeleteParkExecute(Sender: TObject);
     procedure actTakeParkPicExecute(Sender: TObject);
     procedure actLoadParkPicExecute(Sender: TObject);
-    procedure actShareParkInfoExecute(Sender: TObject);
-    procedure actScheduleParkVisitsExecute(Sender: TObject);
     procedure TakePhotoFromCameraActionDidFinishTaking(Image: TBitmap);
     procedure actSaveParkLocationExecute(Sender: TObject);
     procedure LocationSensorLocationChanged(Sender: TObject; const OldLocation, NewLocation: TLocationCoord2D);
@@ -112,9 +108,8 @@ type
     FParkLongitude: Double;
     FParkLatitude : Double;
     procedure AddRADParkToLocal;
-    function  PromptAddPark: Boolean;
+    procedure PromptAndAddPark;
     procedure ShowRADServerParks;
-    procedure LoadImageFromDatabase;
     procedure SaveImageToDatabase;
   end;
 
@@ -135,7 +130,7 @@ implementation
 {$R *.iPad.fmx IOS}
 
 uses
-  System.Threading,
+  System.Threading, System.Generics.Collections,
   FMX.Platform, FMX.MediaLibrary, FMX.DialogService.Async,
   udmParkData;
 
@@ -230,18 +225,6 @@ begin
                                          [FParkLatitude, FParkLongitude]));
 end;
 
-procedure TfrmMyParksMain.actScheduleParkVisitsExecute(Sender: TObject);
-begin
-  TDialogServiceAsync.ShowMessage('calendar pic');
-end;
-
-procedure TfrmMyParksMain.actShareParkInfoExecute(Sender: TObject);
-begin
-  TDialogServiceAsync.ShowMessage('share park info');
-
-
-end;
-
 procedure TfrmMyParksMain.actTakeParkPicExecute(Sender: TObject);
 begin
   PermissionsService.RequestPermissions(['android.permission.CAMERA', 'android.permission.WRITE_EXTERNAL_STORAGE'],
@@ -315,29 +298,21 @@ end;
 
 procedure TfrmMyParksMain.lvRADParksItemClick(const Sender: TObject; const AItem: TListViewItem);
 begin
-  if PromptAddPark then
-    AddRADParkToLocal;
+  PromptAndAddPark;
 end;
 
-function TfrmMyParksMain.PromptAddPark: Boolean;
+procedure TfrmMyParksMain.PromptAndAddPark;
 begin
-  { TODO : prompt user to add to local park }
-
-  Result := False;
-end;
-
-procedure TfrmMyParksMain.LoadImageFromDatabase;
-var
-  PicStream: TMemoryStream;
-begin
-  PicStream := TMemoryStream.Create;
-  try
-    dmParkData.tblParksMainPic.SaveToStream(PicStream);
-    PicStream.Position := 0;
-    imgParkPic.Bitmap.LoadFromStream(PicStream);
-  finally
-    PicStream.Free;
-  end;
+  TDialogServiceAsync.MessageDialog(
+         'Would you like to save this park to your device?',
+         TMsgDlgType.mtConfirmation,
+         [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo],
+         TMsgDlgBtn.mbYes, 0,
+      procedure (const AResult: TModalResult)
+      begin
+        if AResult = mrYes then
+          AddRADParkToLocal;
+      end);
 end;
 
 procedure TfrmMyParksMain.LocationSensorLocationChanged(Sender: TObject;
@@ -378,6 +353,7 @@ begin
         for var i := 0 to RADParksArray.Count - 1 do begin
           lvParkItem := lvRADParks.Items.Add;
           lvParkItem.Text := RADParksArray.Items[i].GetValue<string>('PARK_NAME');
+          lvParkItem.Detail := RADParksArray.Items[i].GetValue<Integer>('PARK_ID').ToString;
         end;
       end else begin
         lvParkItem := lvRADParks.Items.Add;
