@@ -14,8 +14,8 @@ Coordinates=156,20,117,33
 Visible=False
 
 []
-Coordinates=650,50,122,69
-Visible=False
+Coordinates=490,70,116,249
+Visible=True
 LayerNames=
 
 [pnlParksButtons]
@@ -46,9 +46,6 @@ LayerNames=
 
 [aclMyParks]
 Coordinates=274,111,71,33
-
-[GestureManagerParks]
-Coordinates=481,56,123,33
 
 [BindingsListParks]
 Coordinates=297,163,104,33
@@ -168,14 +165,6 @@ Visible=False
 Coordinates=511,385,72,33
 Visible=False
 
-[Button1]
-Coordinates=0,0,53,33
-Visible=False
-
-[Button2]
-Coordinates=60,280,53,33
-Visible=False
-
 [lblParkMapName]
 Coordinates=330,90,97,51
 Visible=True
@@ -193,10 +182,6 @@ Visible=False
 
 [radParksAZ]
 Coordinates=171,376,72,33
-Visible=False
-
-[tabRemote]
-Coordinates=442,453,67,33
 Visible=False
 
 [tabLocalParks]
@@ -234,9 +219,6 @@ Visible=False
 Coordinates=524,1,90,33
 Visible=False
 
-[lvRADParks]
-Coordinates=490,70,89,141
-
 [RESTResponseDSAdapter]
 Coordinates=867,200,144,33
 
@@ -257,5 +239,21 @@ Coordinates=297,280,127,33
 Coordinates=297,280,117,33
 
 [BindSourceRADParks]
-Coordinates=640,70,122,141
+Coordinates=640,70,122,177
+
+[tabRemoteParks]
+Coordinates=442,453,95,33
+Visible=False
+
+[lvRADParks]
+Coordinates=840,60,89,213
+Visible=True
+
+[btnMapPark]
+Coordinates=0,0,53,33
+Visible=False
+
+[btnParkEditDone]
+Coordinates=60,280,53,33
+Visible=False
 

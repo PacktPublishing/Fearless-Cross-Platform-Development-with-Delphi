@@ -24,7 +24,6 @@ type
   TfrmMyParksMain = class(TForm)
     HeaderToolBar: TToolBar;
     lblMain: TLabel;
-    GestureManagerParks: TGestureManager;
     aclMyParks: TActionList;
     StyleBookEmeraldCrystal: TStyleBook;
     pnlParksButtons: TPanel;
@@ -66,10 +65,10 @@ type
     LocationSensor: TLocationSensor;
     btnSaveParkLocation: TButton;
     actMapPark: TAction;
-    Button1: TButton;
+    btnMapPark: TButton;
     tabParkMap: TTabItem;
     Panel1: TPanel;
-    Button2: TButton;
+    btnParkEditDone: TButton;
     lblParkMapName: TLabel;
     LinkPropertyToFieldText2: TLinkPropertyToField;
     cmbMapType: TComboBox;
@@ -78,7 +77,7 @@ type
     btnSharePic: TButton;
     tabctrlLocalRemoteParks: TTabControl;
     tabLocalParks: TTabItem;
-    tabRemote: TTabItem;
+    tabRemoteParks: TTabItem;
     actGetRADServerParksRESTClient: TAction;
     pnlRADRefresh: TPanel;
     btnRefreshRADServer: TButton;
@@ -87,7 +86,6 @@ type
     RESTReqRADParks: TRESTRequest;
     RESTRespRADParks: TRESTResponse;
     RESTClientRADParks: TRESTClient;
-    lvRADParks: TListView;
     RESTResponseDSAdapter: TRESTResponseDataSetAdapter;
     tblRADParks: TFDMemTable;
     tblRADParksPARK_ID: TIntegerField;
@@ -95,7 +93,12 @@ type
     tblRADParksLongitude: TFloatField;
     tblRADParksLatitude: TFloatField;
     BindSourceRADParks: TBindSourceDB;
-    LinkListControlToField1: TLinkListControlToField;
+    lvRADParks: TListView;
+    LinkListControlToField3: TLinkListControlToField;
+    btnToggleRADParkEditMode: TButton;
+    actToggleRADParksEditMode: TAction;
+    btnDownloadRADPark: TButton;
+    actDownloadRADPark: TAction;
     procedure FormCreate(Sender: TObject);
     procedure FormGesture(Sender: TObject; const EventInfo: TGestureEventInfo; var Handled: Boolean);
     procedure lvParksItemClick(const Sender: TObject; const AItem: TListViewItem);
@@ -111,12 +114,21 @@ type
     procedure cmbMapTypeChange(Sender: TObject);
     procedure ShowShareSheetActionBeforeExecute(Sender: TObject);
     procedure actGetRADServerParksRESTClientExecute(Sender: TObject);
-    procedure lvRADParksItemClick(const Sender: TObject; const AItem: TListViewItem);
+    procedure actToggleRADParksEditModeExecute(Sender: TObject);
+    procedure actDownloadRADParkExecute(Sender: TObject);
   private
-    FParkLongitude: Double;
-    FParkLatitude : Double;
-    procedure AddRADParkToLocal;
-    procedure PromptAndAddPark;
+    type
+      TParkUpdateRec = record
+        ParkID: Integer;
+        ParkName: string;
+        Longitude: Double;
+        Latitude: Double;
+      end;
+    var
+      FParkLongitude: Double;
+      FParkLatitude : Double;
+    procedure UpdateRADParkName(AParkUpdateRec: TParkUpdateRec);
+    procedure AddRADParksToLocal;
     procedure SaveImageToDatabase;
   end;
 
@@ -172,6 +184,20 @@ begin
         ParkEditDoneTabAction.Execute;
       end;
     end);
+end;
+
+procedure TfrmMyParksMain.actDownloadRADParkExecute(Sender: TObject);
+begin
+  TDialogServiceAsync.MessageDialog(
+         'Would you like to save the selected parks to your device?',
+         TMsgDlgType.mtConfirmation,
+         [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo],
+         TMsgDlgBtn.mbYes, 0,
+      procedure (const AResult: TModalResult)
+      begin
+        if AResult = mrYes then
+          AddRADParksToLocal;
+      end);
 end;
 
 procedure TfrmMyParksMain.actGetRADServerParksRESTClientExecute(Sender: TObject);
@@ -244,13 +270,31 @@ begin
     end);
 end;
 
-procedure TfrmMyParksMain.AddRADParkToLocal;
+procedure TfrmMyParksMain.actToggleRADParksEditModeExecute(Sender: TObject);
 begin
-  dmParkData.tblParks.Insert;
-  dmParkData.tblParksParkName.AsString := tblRADParksPARK_NAME.AsString;
-  dmParkData.tblParksLocX.AsFloat      := tblRADParksLongitude.AsFloat;
-  dmParkData.tblParksLocY.AsFloat      := tblRADParksLatitude.AsFloat;
-  dmParkData.tblParks.Post;
+  lvRADParks.EditMode := not lvRADParks.EditMode;
+  actDownloadRADPark.Visible := lvRADParks.EditMode;
+end;
+
+procedure TfrmMyParksMain.AddRADParksToLocal;
+var
+  ParkAddedCount: Integer;
+begin
+  ParkAddedCount := 0;
+  for var i in lvRADParks.Items.CheckedIndexes(True) do begin
+    try
+      dmParkData.tblParks.Insert;
+      dmParkData.tblParksParkName.AsString := lvRADParks.Items[i].Text;
+      dmParkData.tblParks.Post;
+      Inc(ParkAddedCount);
+    except
+      on e:Exception do
+        TDialogServiceAsync.ShowMessage('Problem adding ' + lvRADParks.Items[i].Text + ': ' + e.Message);
+    end;
+  end;
+
+  actToggleRADParksEditMode.Execute;
+  TDialogServiceAsync.ShowMessage('Added ' + ParkAddedCount.ToString + ' parks.');
 end;
 
 procedure TfrmMyParksMain.cmbMapTypeChange(Sender: TObject);
@@ -306,25 +350,6 @@ begin
   dmParkData.tblParks.Open;
 end;
 
-procedure TfrmMyParksMain.lvRADParksItemClick(const Sender: TObject; const AItem: TListViewItem);
-begin
-  PromptAndAddPark;
-end;
-
-procedure TfrmMyParksMain.PromptAndAddPark;
-begin
-  TDialogServiceAsync.MessageDialog(
-         'Would you like to save this park to your device?',
-         TMsgDlgType.mtConfirmation,
-         [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo],
-         TMsgDlgBtn.mbYes, 0,
-      procedure (const AResult: TModalResult)
-      begin
-        if AResult = mrYes then
-          AddRADParkToLocal;
-      end);
-end;
-
 procedure TfrmMyParksMain.LocationSensorLocationChanged(Sender: TObject;
                const OldLocation, NewLocation: TLocationCoord2D);
 begin
@@ -363,6 +388,11 @@ procedure TfrmMyParksMain.TakePhotoFromCameraActionDidFinishTaking(Image: TBitma
 begin
   imgParkPic.Bitmap.Assign(Image);
   SaveImageToDatabase;
+end;
+
+procedure TfrmMyParksMain.UpdateRADParkName(AParkUpdateRec: TParkUpdateRec);
+begin
+  //TDialogServiceAsync.ShowMessage('update a park');
 end;
 
 end.
