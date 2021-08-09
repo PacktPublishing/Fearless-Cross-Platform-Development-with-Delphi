@@ -88,6 +88,14 @@ type
     RESTRespRADParks: TRESTResponse;
     RESTClientRADParks: TRESTClient;
     lvRADParks: TListView;
+    RESTResponseDSAdapter: TRESTResponseDataSetAdapter;
+    tblRADParks: TFDMemTable;
+    tblRADParksPARK_ID: TIntegerField;
+    tblRADParksPARK_NAME: TWideStringField;
+    tblRADParksLongitude: TFloatField;
+    tblRADParksLatitude: TFloatField;
+    BindSourceRADParks: TBindSourceDB;
+    LinkListControlToField1: TLinkListControlToField;
     procedure FormCreate(Sender: TObject);
     procedure FormGesture(Sender: TObject; const EventInfo: TGestureEventInfo; var Handled: Boolean);
     procedure lvParksItemClick(const Sender: TObject; const AItem: TListViewItem);
@@ -109,7 +117,6 @@ type
     FParkLatitude : Double;
     procedure AddRADParkToLocal;
     procedure PromptAndAddPark;
-    procedure ShowRADServerParks;
     procedure SaveImageToDatabase;
   end;
 
@@ -178,8 +185,6 @@ begin
     RESTReqRADParks.Params.AddItem('sfPARK_NAME', 'D', TRESTRequestParameterKind.pkQUERY);
 
   RESTReqRADParks.Execute;
-
-  ShowRADServerParks;
 end;
 
 procedure TfrmMyParksMain.actLoadParkPicExecute(Sender: TObject);
@@ -196,8 +201,9 @@ end;
 
 procedure TfrmMyParksMain.actMapParkExecute(Sender: TObject);
 begin
-  if dmParkData.tblParksLocX.IsNull or dmParkData.tblParksLocY.IsNull then
-    TDialogServiceAsync.ShowMessage('There are no coordinates saved for this park.')
+  if dmParkData.tblParksLocX.IsNull or dmParkData.tblParksLocY.IsNull or
+     (dmParkData.tblParksLocX.AsInteger = 0) or (dmParkData.tblParksLocY.AsInteger = 0) then
+    TDialogServiceAsync.ShowMessage('The coordinates for this park are missing.')
   else begin
     var SavedLocation: TMapCoordinate;
     SavedLocation.Latitude := dmParkData.tblParksLocX.AsFloat;
@@ -240,7 +246,11 @@ end;
 
 procedure TfrmMyParksMain.AddRADParkToLocal;
 begin
-  { TODO : add selected park to local database }
+  dmParkData.tblParks.Insert;
+  dmParkData.tblParksParkName.AsString := tblRADParksPARK_NAME.AsString;
+  dmParkData.tblParksLocX.AsFloat      := tblRADParksLongitude.AsFloat;
+  dmParkData.tblParksLocY.AsFloat      := tblRADParksLatitude.AsFloat;
+  dmParkData.tblParks.Post;
 end;
 
 procedure TfrmMyParksMain.cmbMapTypeChange(Sender: TObject);
@@ -337,33 +347,6 @@ begin
   finally
     PicStream.Free;
   end;
-end;
-
-procedure TfrmMyParksMain.ShowRADServerParks;
-var
-  RADParksArray: TJSONArray;
-  lvParkItem: TListViewItem;
-begin
-  if RESTRespRADParks.Status.SuccessOK_200 then begin
-    lvRADParks.Items.Clear;
-
-    RADParksArray := RESTRespRADParks.JSONValue.Clone as TJSONArray;
-    try
-      if RADParksArray.Count > 0 then begin
-        for var i := 0 to RADParksArray.Count - 1 do begin
-          lvParkItem := lvRADParks.Items.Add;
-          lvParkItem.Text := RADParksArray.Items[i].GetValue<string>('PARK_NAME');
-          lvParkItem.Detail := RADParksArray.Items[i].GetValue<Integer>('PARK_ID').ToString;
-        end;
-      end else begin
-        lvParkItem := lvRADParks.Items.Add;
-        lvParkItem.Text := 'No parks found.';
-      end;
-    finally
-      RADParksArray.Free;
-    end;
-  end else
-    TDialogServiceAsync.ShowMessage('Could not get the parks from the server: ' + RESTRespRADParks.StatusText);
 end;
 
 procedure TfrmMyParksMain.ShowShareSheetActionBeforeExecute(Sender: TObject);
