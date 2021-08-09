@@ -99,6 +99,8 @@ type
     actToggleRADParksEditMode: TAction;
     btnDownloadRADPark: TButton;
     actDownloadRADPark: TAction;
+    RESTReqParkNameUpdate: TRESTRequest;
+    RESTRespParkNameUpdate: TRESTResponse;
     procedure FormCreate(Sender: TObject);
     procedure FormGesture(Sender: TObject; const EventInfo: TGestureEventInfo; var Handled: Boolean);
     procedure lvParksItemClick(const Sender: TObject; const AItem: TListViewItem);
@@ -116,6 +118,7 @@ type
     procedure actGetRADServerParksRESTClientExecute(Sender: TObject);
     procedure actToggleRADParksEditModeExecute(Sender: TObject);
     procedure actDownloadRADParkExecute(Sender: TObject);
+    procedure lvRADParksGesture(Sender: TObject; const EventInfo: TGestureEventInfo; var Handled: Boolean);
   private
     type
       TParkUpdateRec = record
@@ -127,7 +130,8 @@ type
     var
       FParkLongitude: Double;
       FParkLatitude : Double;
-    procedure UpdateRADParkName(AParkUpdateRec: TParkUpdateRec);
+      FInNameChange: Boolean;
+    procedure UpdateRADParkName(AParkRec: TParkUpdateRec);
     procedure AddRADParksToLocal;
     procedure SaveImageToDatabase;
   end;
@@ -165,6 +169,8 @@ begin
   {$IFDEF ANDROID}
   cmbMapType.Items.Add('Terrain');
   {$ENDIF}
+
+  FInNameChange := False;
 end;
 
 procedure TfrmMyParksMain.actAddParkExecute(Sender: TObject);
@@ -350,6 +356,31 @@ begin
   dmParkData.tblParks.Open;
 end;
 
+procedure TfrmMyParksMain.lvRADParksGesture(Sender: TObject; const EventInfo: TGestureEventInfo; var Handled: Boolean);
+begin
+  if FInNameChange then
+    Handled := True
+  else if EventInfo.GestureID = System.UITypes.igiLongTap then begin
+    Handled := True;
+    FInNameChange := True;
+    TDialogServiceAsync.InputQuery('Change a Park',
+       ['Change the name of the park:'],
+       [tblRADParksPARK_NAME.AsString],
+       procedure (const AResult: TModalResult; const AValues: array of string)
+       begin
+         FInNameChange := False;
+         if AResult = mrOK then begin
+           var ParkUpdateRec: TParkUpdateRec;
+           ParkUpdateRec.ParkID := tblRADParksPARK_ID.AsInteger;
+           ParkUpdateRec.ParkName := AValues[0];
+           ParkUpdateRec.Longitude := tblRADParksLongitude.AsFloat;
+           ParkUpdateRec.Latitude  := tblRADParksLatitude.AsFloat;
+           UpdateRADParkName(ParkUpdateRec);
+         end;
+       end);
+  end;
+end;
+
 procedure TfrmMyParksMain.LocationSensorLocationChanged(Sender: TObject;
                const OldLocation, NewLocation: TLocationCoord2D);
 begin
@@ -390,9 +421,26 @@ begin
   SaveImageToDatabase;
 end;
 
-procedure TfrmMyParksMain.UpdateRADParkName(AParkUpdateRec: TParkUpdateRec);
+procedure TfrmMyParksMain.UpdateRADParkName(AParkRec: TParkUpdateRec);
+var
+  UpdateJSON: TJSONObject;
 begin
-  //TDialogServiceAsync.ShowMessage('update a park');
+  UpdateJSON := TJSONObject.Create;
+  try
+    UpdateJSON.AddPair('PARK_ID', TJSONNumber.Create(AParkRec.ParkID));
+    UpdateJSON.AddPair('PARK_NAME', AParkRec.ParkName);
+    UpdateJSON.AddPair('LONGITUDE', TJSONNumber.Create(AParkRec.Longitude));
+    UpdateJSON.AddPair('LATITUDE', TJSONNumber.Create(AParkRec.Latitude));
+
+    RESTReqParkNameUpdate.Body.ClearBody;
+    RESTReqParkNameUpdate.Body.Add(UpdateJSON);
+    RESTReqParkNameUpdate.ResourceSuffix := AParkRec.ParkID.ToString;
+    RESTReqParkNameUpdate.Execute;
+
+    TDialogServiceAsync.ShowMessage('Park update result: ' + RESTRespParkNameUpdate.StatusText);
+  finally
+    UpdateJSON.Free;
+  end;
 end;
 
 end.

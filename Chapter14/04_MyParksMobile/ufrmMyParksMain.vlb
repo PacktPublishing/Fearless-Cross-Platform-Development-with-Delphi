@@ -239,21 +239,43 @@ Coordinates=297,280,127,33
 Coordinates=297,280,117,33
 
 [BindSourceRADParks]
-Coordinates=640,70,122,177
+Coordinates=450,30,122,141
 
 [tabRemoteParks]
 Coordinates=442,453,95,33
 Visible=False
 
 [lvRADParks]
-Coordinates=840,60,89,213
+Coordinates=630,30,89,141
 Visible=True
 
 [btnMapPark]
-Coordinates=0,0,53,33
+Coordinates=0,0,73,33
 Visible=False
 
 [btnParkEditDone]
-Coordinates=60,280,53,33
+Coordinates=60,280,97,33
+Visible=False
+
+[btnToggleRADParkEditMode]
+Coordinates=460,80,155,33
+Visible=False
+
+[btnDownloadRADPark]
+Coordinates=740,220,124,33
+Visible=False
+
+[actToggleRADParksEditMode]
+Coordinates=792,369,159,33
+
+[actDownloadRADPark]
+Coordinates=131,336,123,33
+
+[RESTRespParkNameUpdate]
+Coordinates=740,20,152,33
+Visible=False
+
+[RESTReqParkNameUpdate]
+Coordinates=550,230,146,33
 Visible=False
 
