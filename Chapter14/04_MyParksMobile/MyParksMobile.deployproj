@@ -5,15 +5,15 @@
     </ProjectExtensions>
     <PropertyGroup>
         <DeviceId Condition="'$(Platform)'=='Android'"/>
-        <DeviceId Condition="'$(Platform)'=='Android64'">f49accba</DeviceId>
+        <DeviceId Condition="'$(Platform)'=='Android64'"/>
         <DeviceId Condition="'$(Platform)'=='iOSDevice64'">ca076282157f0b9f556a2bf1d857bccf78b6442e</DeviceId>
         <DeviceId Condition="'$(Platform)'=='iOSSimulator'"/>
     </PropertyGroup>
     <ItemGroup Condition="'$(Platform)'=='iOSDevice64'">
-        <DeployFile Include="iOSDevice64\Debug\MyParksMobile.dSYM" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>MyParksMobile.app\..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF\</RemoteDir>
-            <RemoteName>MyParksMobile</RemoteName>
-            <DeployClass>ProjectiOSDeviceDebug</DeployClass>
+        <DeployFile Include="iOSDevice64\Debug\MyParksMobile.entitlements" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksMobile.app\..\</RemoteDir>
+            <RemoteName>MyParksMobile.entitlements</RemoteName>
+            <DeployClass>ProjectiOSEntitlements</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -23,15 +23,6 @@
             <RemoteDir>MyParksMobile.app\..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset\</RemoteDir>
             <RemoteName>FM_SettingIcon_87x87.png</RemoteName>
             <DeployClass>iPhone_Setting87</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="iOSDevice64\Debug\MyParksMobile.info.plist" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>MyParksMobile.app\</RemoteDir>
-            <RemoteName>Info.plist</RemoteName>
-            <DeployClass>ProjectiOSInfoPList</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>
@@ -100,11 +91,38 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="iOSDevice64\Debug\MyParksMobile.info.plist" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksMobile.app\</RemoteDir>
+            <RemoteName>Info.plist</RemoteName>
+            <DeployClass>ProjectiOSInfoPList</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="iOSDevice64\Debug\MyParksMobile.dSYM" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksMobile.app\..\$(PROJECTNAME).app.dSYM\Contents\Resources\DWARF\</RemoteDir>
+            <RemoteName>MyParksMobile</RemoteName>
+            <DeployClass>ProjectiOSDeviceDebug</DeployClass>
+            <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="$(BDS)\bin\Artwork\iOS\iPad\FM_SettingIcon_58x58.png" Condition="'$(Config)'=='Debug'">
             <RemoteDir>MyParksMobile.app\..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset\</RemoteDir>
             <RemoteName>FM_SettingIcon_58x58.png</RemoteName>
             <DeployClass>iPad_Setting58</DeployClass>
             <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="iOSDevice64\Debug\MyParksMobile.launchscreen" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MyParksMobile.app\..\$(PROJECTNAME).launchscreen\</RemoteDir>
+            <RemoteName>MyParksMobile.launchscreen</RemoteName>
+            <DeployClass>ProjectiOSLaunchScreen</DeployClass>
+            <Operation>64</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
@@ -132,15 +150,6 @@
             <RemoteName>FM_ApplicationIcon_120x120.png</RemoteName>
             <DeployClass>iPhone_AppIcon120</DeployClass>
             <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="iOSDevice64\Debug\MyParksMobile.launchscreen" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>MyParksMobile.app\..\$(PROJECTNAME).launchscreen\</RemoteDir>
-            <RemoteName>MyParksMobile.launchscreen</RemoteName>
-            <DeployClass>ProjectiOSLaunchScreen</DeployClass>
-            <Operation>64</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
@@ -185,15 +194,6 @@
             <RemoteDir>MyParksMobile.app\..\$(PROJECTNAME).launchscreen\Assets\AppIcon.appiconset\</RemoteDir>
             <RemoteName>FM_SpotlightSearchIcon_80x80.png</RemoteName>
             <DeployClass>iPad_SpotLight80</DeployClass>
-            <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="iOSDevice64\Debug\MyParksMobile.entitlements" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>MyParksMobile.app\..\</RemoteDir>
-            <RemoteName>MyParksMobile.entitlements</RemoteName>
-            <DeployClass>ProjectiOSEntitlements</DeployClass>
             <Operation>1</Operation>
             <LocalCommand/>
             <RemoteCommand/>

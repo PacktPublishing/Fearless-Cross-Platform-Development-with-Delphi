@@ -176,9 +176,6 @@ procedure TfrmMyParksMain.actGetRADServerParksRESTClientExecute(Sender: TObject)
 begin
   RESTReqRADParks.Params.Clear;
 
-  // add AppID header
-  RESTReqRADParks.Params.AddItem('X-Embarcadero-Application-Id', 'MyParks1234', TRESTRequestParameterKind.pkHTTPHEADER);
-
   // add sorting
   if radParksAZ.IsChecked then
     RESTReqRADParks.Params.AddItem('sfPARK_NAME', 'A', TRESTRequestParameterKind.pkQUERY)
