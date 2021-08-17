@@ -11,7 +11,7 @@ uses
 
 type
   TdmParksDB = class(TDataModule)
-    FDParkConnection: TFDConnection;
+    FDParkCn: TFDConnection;
     qryParkLookup: TFDQuery;
     qryParkLookupPARK_ID: TIntegerField;
     qryParkLookupPARK_NAME: TStringField;
@@ -24,7 +24,11 @@ type
     qryParkListLONGITUDE: TFMTBCDField;
     qryParkListLATITUDE: TFMTBCDField;
     procedure DataModuleDestroy(Sender: TObject);
+    procedure FDParkCnBeforeConnect(Sender: TObject);
+  private
+    FConfigFileName: string;
   public
+    property ConfigFileName: string read FConfigFileName write FConfigFileName;
     type
       TParkDataRec = record
         ParkID: Integer;
@@ -57,8 +61,30 @@ const
 
 procedure TdmParksDB.DataModuleDestroy(Sender: TObject);
 begin
-  if FDParkConnection.Connected then
-    FDParkConnection.Connected := False;
+  if FDParkCn.Connected then
+    FDParkCn.Connected := False;
+end;
+
+procedure TdmParksDB.FDParkCnBeforeConnect(Sender: TObject);
+const
+  DBSection = 'Database';
+var
+  Cfg: TIniFile;
+begin
+  Cfg := TIniFile.Create(FConfigFileName);
+  try
+    FDParkCn.Params.Clear;
+    FDParkCn.Params.AddPair('Server',       Cfg.ReadString(DBSection, 'Server', EmptyStr));
+    FDParkCn.Params.AddPair('Port',         Cfg.ReadInteger(DBSection, 'Port', 3050).ToString);
+    FDParkCn.Params.AddPair('User_Name',    Cfg.ReadString(DBSection, 'Username', 'SYSDBA'));
+    FDParkCn.Params.AddPair('Password',     Cfg.ReadString(DBSection, 'Password', 'masterkey'));
+    FDParkCn.Params.AddPair('Protocol',     Cfg.ReadString(DBSection, 'Protocol', 'TCPIP'));
+    FDParkCn.Params.AddPair('Database',     Cfg.ReadString(DBSection, 'DBFile', EmptyStr));
+    FDParkCn.Params.AddPair('CharacterSet', Cfg.ReadString(DBSection, 'CharSet', 'UTF8'));
+    FDParkCn.Params.AddPair('DriverID', 'IB');
+  finally
+    Cfg.Free;
+  end;
 end;
 
 function TdmParksDB.LookupParkByLocation(const ALongitude, ALatitude: Double): TParkDataRec;
@@ -71,8 +97,8 @@ begin
 
   try
     try
-      if not FDParkConnection.Connected then
-        FDParkConnection.Connected := True;
+      if not FDParkCn.Connected then
+        FDParkCn.Connected := True;
 
       qryParkLookup.Prepare;
       qryParkLookup.ParamByName('long').AsSingle := ALongitude;

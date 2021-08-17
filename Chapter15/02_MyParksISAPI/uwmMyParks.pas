@@ -229,7 +229,6 @@ procedure TwmMyParks.wmMyParkswaiDefaultAction(Sender: TObject; Request: TWebReq
   var Handled: Boolean);
 begin
   Response.SendRedirect(ExtractFileName(WebApplicationFileName) + '/about');
-  Response.ContentType
 end;
 
 procedure TwmMyParks.wmMyParkswaiShowParkFromCoordsAction(Sender: TObject;
@@ -256,6 +255,8 @@ begin
   Log := BuildLogWriter([TLoggerProFileAppender.Create(5, 1000,
                            TPath.Combine(WebApplicationDirectory, 'logs'))]);
   Log.Info('web module created', LOG_TAG);
+
+  dmParksDB.ConfigFileName := ChangeFileExt(WebApplicationFileName, '.ini');
 end;
 
 procedure TwmMyParks.WebModuleDestroy(Sender: TObject);

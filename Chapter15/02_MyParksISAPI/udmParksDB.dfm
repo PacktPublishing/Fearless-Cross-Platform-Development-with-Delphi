@@ -3,24 +3,21 @@ object dmParksDB: TdmParksDB
   OnDestroy = DataModuleDestroy
   Height = 240
   Width = 337
-  object FDParkConnection: TFDConnection
+  object FDParkCn: TFDConnection
     Params.Strings = (
-      'Server=127.0.0.1'
-      'Port=3050'
-      'User_Name=sysdba'
-      'Password=masterkey'
-      
-        'Database=C:\Users\David Cornelius\dev\Fearless-Cross-Platform-De' +
-        'velopment-with-Delphi\data\MYPARKS.IB'
       'Protocol=TCPIP'
-      'DriverID=IB')
+      'CharacterSet=UTF8'
+      'DriverID=IB'
+      'User_Name=sysdba'
+      'Password=masterkey')
     ResourceOptions.AssignedValues = [rvStoreItems]
     LoginPrompt = False
+    BeforeConnect = FDParkCnBeforeConnect
     Left = 128
     Top = 80
   end
   object qryParkLookup: TFDQuery
-    Connection = FDParkConnection
+    Connection = FDParkCn
     SQL.Strings = (
       'select PARK_ID, PARK_NAME, LONGITUDE, LATITUDE'
       'from Parks'
@@ -72,7 +69,7 @@ object dmParksDB: TdmParksDB
     Top = 40
   end
   object qryParkList: TFDQuery
-    Connection = FDParkConnection
+    Connection = FDParkCn
     SQL.Strings = (
       'SELECT PARK_ID, PARK_NAME, LONGITUDE, LATITUDE '
       'FROM Parks '
