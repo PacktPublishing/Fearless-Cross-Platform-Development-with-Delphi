@@ -73,15 +73,11 @@ var
 begin
   Cfg := TIniFile.Create(FConfigFileName);
   try
-    FDParkCn.Params.Clear;
     FDParkCn.Params.AddPair('Server',       Cfg.ReadString(DBSection, 'Server', EmptyStr));
     FDParkCn.Params.AddPair('Port',         Cfg.ReadInteger(DBSection, 'Port', 3050).ToString);
     FDParkCn.Params.AddPair('User_Name',    Cfg.ReadString(DBSection, 'Username', 'SYSDBA'));
     FDParkCn.Params.AddPair('Password',     Cfg.ReadString(DBSection, 'Password', 'masterkey'));
-    FDParkCn.Params.AddPair('Protocol',     Cfg.ReadString(DBSection, 'Protocol', 'TCPIP'));
     FDParkCn.Params.AddPair('Database',     Cfg.ReadString(DBSection, 'DBFile', EmptyStr));
-    FDParkCn.Params.AddPair('CharacterSet', Cfg.ReadString(DBSection, 'CharSet', 'UTF8'));
-    FDParkCn.Params.AddPair('DriverID', 'IB');
   finally
     Cfg.Free;
   end;
