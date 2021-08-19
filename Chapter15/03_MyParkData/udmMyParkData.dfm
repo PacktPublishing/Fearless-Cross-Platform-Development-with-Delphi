@@ -1,16 +1,15 @@
-object dmMyParksList: TdmMyParksList
+object dmMyParksData: TdmMyParksData
   OldCreateOrder = False
   Height = 276
   Width = 395
-  object FDConnection: TFDConnection
+  object FDParkCn: TFDConnection
     Params.Strings = (
+      'Protocol=TCPIP'
       'User_Name=sysdba'
       'Password=masterkey'
-      'Protocol=TCPIP'
-      'Port=050'
-      'SEPassword=myparks R s3cur3!'
       'DriverID=IB')
     LoginPrompt = False
+    BeforeConnect = FDParkCnBeforeConnect
     Left = 104
     Top = 56
   end
@@ -19,7 +18,7 @@ object dmMyParksList: TdmMyParksList
     Top = 128
   end
   object qryMyParksData: TFDQuery
-    Connection = FDConnection
+    Connection = FDParkCn
     SQL.Strings = (
       'SELECT * FROM PARKS'
       '{IF &SORT} ORDER BY &SORT {FI}')
