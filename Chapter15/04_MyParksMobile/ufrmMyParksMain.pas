@@ -101,6 +101,8 @@ type
     actDownloadRADPark: TAction;
     RESTReqParkNameUpdate: TRESTRequest;
     RESTRespParkNameUpdate: TRESTResponse;
+    Button1: TButton;
+    actShowInfo: TAction;
     procedure FormCreate(Sender: TObject);
     procedure FormGesture(Sender: TObject; const EventInfo: TGestureEventInfo; var Handled: Boolean);
     procedure lvParksItemClick(const Sender: TObject; const AItem: TListViewItem);
@@ -119,6 +121,7 @@ type
     procedure actToggleRADParksEditModeExecute(Sender: TObject);
     procedure actDownloadRADParkExecute(Sender: TObject);
     procedure lvRADParksGesture(Sender: TObject; const EventInfo: TGestureEventInfo; var Handled: Boolean);
+    procedure actShowInfoExecute(Sender: TObject);
   private
     type
       TParkUpdateRec = record
@@ -261,6 +264,11 @@ begin
 
   TDialogServiceAsync.ShowMessage(Format('The park''s location (%0.3f, %0.3f) has been saved.',
                                          [FParkLatitude, FParkLongitude]));
+end;
+
+procedure TfrmMyParksMain.actShowInfoExecute(Sender: TObject);
+begin
+  TDialogServiceAsync.ShowMessage('MyParks tutorial app to accompany the book, Fearless Cross-Platform Development with Delphi, by David Cornelius, published by Packt Publishing. Icons by Icons8: https://icons8.com');
 end;
 
 procedure TfrmMyParksMain.actTakeParkPicExecute(Sender: TObject);
