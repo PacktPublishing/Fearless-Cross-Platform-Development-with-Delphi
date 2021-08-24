@@ -1,20 +1,29 @@
 ﻿[tblPaths]
 Visible=False
-Coordinates=230,20,61,36
+Coordinates=230,20,54,33
 
 [tblPathsPathValue]
-Coordinates=126,199,121,36
+Coordinates=126,199,104,33
 
 [tblPathsPathName]
-Coordinates=107,253,122,36
+Coordinates=107,253,105,33
 
 [BindSourceDB1]
-Coordinates=230,20,106,124
+Coordinates=230,20,92,105
 
 [BindingsList1]
-Coordinates=285,1,91,36
+Coordinates=285,1,82,33
 
 [lvPaths]
-Coordinates=10,10,107,234
+Coordinates=10,10,89,195
 Visible=True
+
+[pnlBottom]
+Coordinates=118,141,65,33
+
+[btnInfo]
+Coordinates=118,1,49,51
+
+[lblTitle]
+Coordinates=118,71,47,51
 

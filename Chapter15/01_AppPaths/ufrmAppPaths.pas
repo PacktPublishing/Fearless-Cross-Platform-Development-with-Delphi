@@ -19,7 +19,11 @@ type
     BindingsList1: TBindingsList;
     LinkListControlToField1: TLinkListControlToField;
     BindSourceDB1: TBindSourceDB;
+    pnlBottom: TPanel;
+    btnInfo: TButton;
+    lblTitle: TLabel;
     procedure FormCreate(Sender: TObject);
+    procedure btnInfoClick(Sender: TObject);
   end;
 
 var
@@ -28,9 +32,18 @@ var
 implementation
 
 {$R *.fmx}
+{$R *.Macintosh.fmx MACOS}
 
 uses
-  System.IOUtils;
+  FMX.DialogService.Async, System.IOUtils;
+
+procedure TfrmAppPaths.btnInfoClick(Sender: TObject);
+begin
+  TDialogServiceAsync.ShowMessage('AppPaths - Display the value of several path funtions in Delphi''s TPath class.' + sLineBreak + sLineBreak +
+                                  'A tutorial example app in the book Fearless Cross-Platform Development with Delphi' + sLineBreak +
+                                  'by David Cornelius, published by Packt Publishing. ' + sLineBreak + sLineBreak +
+                                  'Icons by Icons8, https://icons8.com');
+end;
 
 procedure TfrmAppPaths.FormCreate(Sender: TObject);
 begin
@@ -40,9 +53,10 @@ begin
   tblPaths.AppendRecord(['Temp', TPath.GetTempPath]);
   tblPaths.AppendRecord(['Home', TPath.GetHomePath]);
   tblPaths.AppendRecord(['Documents', TPath.GetDocumentsPath]);
-  tblPaths.AppendRecord(['Shared', TPath.GetSharedDocumentsPath]);
   tblPaths.AppendRecord(['Library', TPath.GetLibraryPath]);
   tblPaths.AppendRecord(['Cache', TPath.GetCachePath]);
+  {$IFNDEF IOS}
+  tblPaths.AppendRecord(['Shared', TPath.GetSharedDocumentsPath]);
   tblPaths.AppendRecord(['Public', TPath.GetPublicPath]);
   tblPaths.AppendRecord(['Pictures', TPath.GetPicturesPath]);
   tblPaths.AppendRecord(['Shared Pictures', TPath.GetSharedPicturesPath]);
@@ -58,6 +72,7 @@ begin
   tblPaths.AppendRecord(['Shared Downloads', TPath.GetSharedDownloadsPath]);
   tblPaths.AppendRecord(['Ringtones', TPath.GetRingtonesPath]);
   tblPaths.AppendRecord(['Shared Ringtones', TPath.GetSharedRingtonesPath]);
+  {$ENDIF}
 end;
 
 end.

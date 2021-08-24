@@ -17,7 +17,7 @@ object frmAppPaths: TfrmAppPaths
     ItemIndex = 1
     Align = Client
     Size.Width = 446.000000000000000000
-    Size.Height = 537.000000000000000000
+    Size.Height = 503.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
     ItemAppearance.ItemHeight = 56
@@ -40,6 +40,33 @@ object frmAppPaths: TfrmAppPaths
     ItemAppearanceObjects.FooterObjects.Text.Height = 16.000000000000000000
     ItemAppearanceObjects.FooterObjects.Text.Visible = False
     ItemAppearanceObjects.FooterObjects.Text.PlaceOffset.Y = 40.000000000000000000
+  end
+  object pnlBottom: TPanel
+    Align = Bottom
+    Position.Y = 503.000000000000000000
+    Size.Width = 446.000000000000000000
+    Size.Height = 34.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 6
+    object lblTitle: TLabel
+      Align = Client
+      Size.Width = 405.000000000000000000
+      Size.Height = 34.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Center
+      Text = 'AppPaths'
+      TabOrder = 1
+    end
+    object btnInfo: TButton
+      Align = Left
+      Size.Width = 41.000000000000000000
+      Size.Height = 34.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'infotoolbutton'
+      TabOrder = 0
+      Text = 'btnInfo'
+      OnClick = btnInfoClick
+    end
   end
   object tblPaths: TFDMemTable
     Active = True

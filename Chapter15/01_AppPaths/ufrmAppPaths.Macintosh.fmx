@@ -1,0 +1,6 @@
+inherited frmAppPaths_Macintosh: TfrmAppPaths_Macintosh
+  DesignerMasterStyle = 0
+  inherited lvPaths: TListView
+    ItemAppearanceObjects.ItemObjects.Text.Font.StyleExt = {00070000000000000004000000}
+  end
+end
