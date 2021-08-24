@@ -24,6 +24,9 @@ type
     lblTitle: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnInfoClick(Sender: TObject);
+  private
+    procedure CheckYesButton(Sender: TObject; const AResult: TModalResult);
+    procedure GotoGitHub;
   end;
 
 var
@@ -35,15 +38,19 @@ implementation
 {$R *.Macintosh.fmx MACOS}
 
 uses
+  uOpenURL,
   FMX.DialogService.Async, System.IOUtils;
 
 procedure TfrmAppPaths.btnInfoClick(Sender: TObject);
 begin
-  TDialogServiceAsync.ShowMessage('AppPaths - Display the value of several path funtions in Delphi''s TPath class.' + sLineBreak + sLineBreak +
-                                  'A tutorial example app in the book Fearless Cross-Platform Development with Delphi' + sLineBreak +
-                                  'by David Cornelius, published by Packt Publishing and open source at: ' + sLineBreak +
-                                  'https://github.com/PacktPublishing/Fearless-Cross-Platform-Development-with-Delphi/tree/master/Chapter15/01_AppPaths' + sLineBreak + sLineBreak +
-                                  'Icons by Icons8, https://icons8.com');
+  TDialogServiceAsync.MessageDialog('AppPaths - Display the value of several path funtions in Delphi''s TPath class.' + sLineBreak + sLineBreak +
+                                    'A tutorial example app in the book Fearless Cross-Platform Development with Delphi' + sLineBreak +
+                                    'by David Cornelius, published by Packt Publishing' + sLineBreak + sLineBreak +
+                                    'Icon by Icons8, https://icons8.com' + sLineBreak + sLineBreak +
+                                    'Visit the GitHub site?',
+                                    TMsgDlgType.mtInformation,
+                                    [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbClose],
+                                    TMsgDlgBtn.mbClose, 0, CheckYesButton);
 end;
 
 procedure TfrmAppPaths.FormCreate(Sender: TObject);
@@ -74,6 +81,17 @@ begin
   tblPaths.AppendRecord(['Ringtones', TPath.GetRingtonesPath]);
   tblPaths.AppendRecord(['Shared Ringtones', TPath.GetSharedRingtonesPath]);
   {$ENDIF}
+end;
+
+procedure TfrmAppPaths.CheckYesButton(Sender: TObject; const AResult: TModalResult);
+begin
+  if AResult = mrYes then
+    GotoGitHub;
+end;
+
+procedure TfrmAppPaths.GotoGitHub;
+begin
+  tUrlOpen.Open('https://github.com/PacktPublishing/Fearless-Cross-Platform-Development-with-Delphi/tree/master/Chapter15/01_AppPaths');
 end;
 
 end.

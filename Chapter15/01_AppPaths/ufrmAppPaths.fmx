@@ -50,16 +50,16 @@ object frmAppPaths: TfrmAppPaths
     TabOrder = 6
     object lblTitle: TLabel
       Align = Client
-      Size.Width = 405.000000000000000000
+      Size.Width = 413.000000000000000000
       Size.Height = 34.000000000000000000
       Size.PlatformDefault = False
       TextSettings.HorzAlign = Center
-      Text = 'AppPaths'
+      Text = 'AppPaths - Open Source on GitHub'
       TabOrder = 1
     end
     object btnInfo: TButton
       Align = Left
-      Size.Width = 41.000000000000000000
+      Size.Width = 33.000000000000000000
       Size.Height = 34.000000000000000000
       Size.PlatformDefault = False
       StyleLookup = 'infotoolbutton'

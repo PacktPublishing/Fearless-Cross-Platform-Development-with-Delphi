@@ -3,7 +3,8 @@ program AppPaths;
 uses
   System.StartUpCopy,
   FMX.Forms,
-  ufrmAppPaths in 'ufrmAppPaths.pas' {frmAppPaths};
+  ufrmAppPaths in 'ufrmAppPaths.pas' {frmAppPaths},
+  uOpenURL in 'uOpenURL.pas';
 
 {$R *.res}
 
