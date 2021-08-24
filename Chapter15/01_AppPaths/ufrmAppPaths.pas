@@ -41,7 +41,8 @@ procedure TfrmAppPaths.btnInfoClick(Sender: TObject);
 begin
   TDialogServiceAsync.ShowMessage('AppPaths - Display the value of several path funtions in Delphi''s TPath class.' + sLineBreak + sLineBreak +
                                   'A tutorial example app in the book Fearless Cross-Platform Development with Delphi' + sLineBreak +
-                                  'by David Cornelius, published by Packt Publishing. ' + sLineBreak + sLineBreak +
+                                  'by David Cornelius, published by Packt Publishing and open source at: ' + sLineBreak +
+                                  'https://github.com/PacktPublishing/Fearless-Cross-Platform-Development-with-Delphi/tree/master/Chapter15/01_AppPaths' + sLineBreak + sLineBreak +
                                   'Icons by Icons8, https://icons8.com');
 end;
 
