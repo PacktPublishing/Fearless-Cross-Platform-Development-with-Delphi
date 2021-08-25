@@ -90,7 +90,6 @@ type
     tmrClientChatRcvr: TTimer;
     procedure FormCreate(Sender: TObject);
     procedure FormActivate(Sender: TObject);
-    procedure FormDeactivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormGesture(Sender: TObject; const EventInfo: TGestureEventInfo; var Handled: Boolean);
     procedure actBTCDeviceRefreshExecute(Sender: TObject);
@@ -365,11 +364,6 @@ begin
         ChatConversationAdd('Could not connect to chat service.');
     end;
   end
-end;
-
-procedure TfrmBTC.FormDeactivate(Sender: TObject);
-begin
-  Bluetooth.Enabled := False;
 end;
 
 procedure TfrmBTC.FormGesture(Sender: TObject;
