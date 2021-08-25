@@ -154,9 +154,9 @@ end;
 function TfrmBTC.FindBTDevice(BTDeviceList: TBluetoothDeviceList; const SearchDeviceName: string): TBluetoothDevice;
 begin
   Result := nil;
-  for var i := 0 to BTDeviceList.Count - 1 do
-    if SameText(BTDeviceList[i].DeviceName, SearchDeviceName) then begin
-      Result := BTDeviceList[i];
+  for var LBTDevice in BTDeviceList do
+    if SameText(LBTDevice.DeviceName, SearchDeviceName) then begin
+      Result := LBTDevice;
       Break;
     end;
 end;
@@ -195,8 +195,8 @@ begin
 
   tblFoundDevices.EmptyDataSet;
   FDiscoverDevices := ADeviceList;
-  for var i := 0 to FDiscoverDevices.Count - 1 do
-    tblFoundDevices.InsertRecord([FDiscoverDevices[i].DeviceName, FDiscoverDevices[i].Address]);
+  for var LDevice in FDiscoverDevices do
+    tblFoundDevices.InsertRecord([LDevice.DeviceName, LDevice.Address]);
 
   if tblFoundDevices.RecordCount > 0 then
     actBTCPairDevice.Enabled := True;
@@ -239,9 +239,9 @@ begin
     tblPairdDevices.EmptyDataSet;
     FPairedDevices := Bluetooth.CurrentManager.Current.GetPairedDevices;
 
-    for var i := 0 to FPairedDevices.Count - 1 do
-      tblPairdDevices.InsertRecord([FPairedDevices[i].DeviceName,
-                                    FPairedDevices[i].Address]);
+    for var LPairdDevice in FPairedDevices do
+      tblPairdDevices.InsertRecord([LPairdDevice.DeviceName,
+                                    LPairdDevice.Address]);
   end;
 end;
 
@@ -266,8 +266,8 @@ begin
           LServices := LSelectedDevice.GetServices;
           TThread.Synchronize(nil, procedure
             begin
-              for var i := 0 to LServices.Count - 1 do
-                tblServices.InsertRecord([LServices[i].Name, GUIDToString(LServices[i].UUID)]);
+              for var LService in LServices do
+                tblServices.InsertRecord([LService.Name, GUIDToString(LService.UUID)]);
 
               AniIndicatorServices.Visible := False;
               AniIndicatorServices.Enabled := False;
