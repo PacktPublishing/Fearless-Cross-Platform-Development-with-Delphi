@@ -8,8 +8,7 @@ uses
   Fmx.Bind.GenData, System.Rtti, System.Bindings.Outputs, Fmx.Bind.Editors, Data.Bind.EngExt, Fmx.Bind.DBEngExt,
   Data.Bind.Components, Data.Bind.ObjectScope, FMX.Objects, FMX.StdCtrls, FMX.ListView, FMX.ListView.Appearances,
   FMX.Layouts, FMX.MultiView,FMX.Memo, Fmx.Bind.Navigator, System.Actions, FMX.ActnList,
-  FMX.ListView.Adapters.Base, FMX.Memo.Types, FMX.ScrollBox, FMX.Controls.Presentation, Beyond.Bind.Json,
-  Beyond.Bind.DateUtils, Beyond.Bind.StrUtils;
+  FMX.ListView.Adapters.Base, FMX.Memo.Types, FMX.ScrollBox, FMX.Controls.Presentation;
 
 type
   TMasterDetailForm = class(TForm)
