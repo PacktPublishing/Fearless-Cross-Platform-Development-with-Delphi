@@ -5,11 +5,9 @@ object dmParksDB: TdmParksDB
   Width = 337
   object FDParkConnection: TFDConnection
     Params.Strings = (
-      'Server=192.168.1.15'
-      'Port=3051'
+      'Port=3050'
       'User_Name=sysdba'
       'Password=masterkey'
-      'Database=s:\databases\MyParks.ib'
       'DriverID=IB')
     ResourceOptions.AssignedValues = [rvStoreItems]
     LoginPrompt = False
@@ -71,7 +69,9 @@ object dmParksDB: TdmParksDB
   object qryParkList: TFDQuery
     Connection = FDParkConnection
     SQL.Strings = (
-      'select * from Parks order by park_name')
+      'SELECT PARK_ID, PARK_NAME, LONGITUDE, LATITUDE '
+      'FROM Parks '
+      'ORDER BY PARK_NAME')
     Left = 216
     Top = 112
     object qryParkListPARK_ID: TIntegerField

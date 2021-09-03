@@ -5,11 +5,8 @@ object dmParksDB: TdmParksDB
   Width = 337
   object FDParkConnection: TFDConnection
     Params.Strings = (
-      'Server=192.168.1.15'
-      'Port=3051'
       'User_Name=sysdba'
       'Password=masterkey'
-      'Database=s:\databases\MyParks.ib'
       'DriverID=IB')
     ResourceOptions.AssignedValues = [rvStoreItems]
     LoginPrompt = False
