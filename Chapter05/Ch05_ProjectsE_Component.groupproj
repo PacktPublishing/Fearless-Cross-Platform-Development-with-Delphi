@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{B844E4B1-F2DF-4BE7-B101-3995DC61C9FA}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="05_HideStringComponent\HideStringRT.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="05_HideStringComponent\HideStringDT.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="05_HideStringComponent\HideStringComponentDemo.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="HideStringRT">
+        <MSBuild Projects="05_HideStringComponent\HideStringRT.dproj"/>
+    </Target>
+    <Target Name="HideStringRT:Clean">
+        <MSBuild Projects="05_HideStringComponent\HideStringRT.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="HideStringRT:Make">
+        <MSBuild Projects="05_HideStringComponent\HideStringRT.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="HideStringDT">
+        <MSBuild Projects="05_HideStringComponent\HideStringDT.dproj"/>
+    </Target>
+    <Target Name="HideStringDT:Clean">
+        <MSBuild Projects="05_HideStringComponent\HideStringDT.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="HideStringDT:Make">
+        <MSBuild Projects="05_HideStringComponent\HideStringDT.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="HideStringComponentDemo">
+        <MSBuild Projects="05_HideStringComponent\HideStringComponentDemo.dproj"/>
+    </Target>
+    <Target Name="HideStringComponentDemo:Clean">
+        <MSBuild Projects="05_HideStringComponent\HideStringComponentDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="HideStringComponentDemo:Make">
+        <MSBuild Projects="05_HideStringComponent\HideStringComponentDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="HideStringRT;HideStringDT;HideStringComponentDemo"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="HideStringRT:Clean;HideStringDT:Clean;HideStringComponentDemo:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="HideStringRT:Make;HideStringDT:Make;HideStringComponentDemo:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

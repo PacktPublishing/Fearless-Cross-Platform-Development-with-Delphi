@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{D3BB31CD-6EBC-4631-A5B3-07A63873F02C}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="01_HideStringDLL\HideStringLib.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="01_HideStringDLL\HideStringLibDemo.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="HideStringLib">
+        <MSBuild Projects="01_HideStringDLL\HideStringLib.dproj"/>
+    </Target>
+    <Target Name="HideStringLib:Clean">
+        <MSBuild Projects="01_HideStringDLL\HideStringLib.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="HideStringLib:Make">
+        <MSBuild Projects="01_HideStringDLL\HideStringLib.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="HideStringLibDemo">
+        <MSBuild Projects="01_HideStringDLL\HideStringLibDemo.dproj"/>
+    </Target>
+    <Target Name="HideStringLibDemo:Clean">
+        <MSBuild Projects="01_HideStringDLL\HideStringLibDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="HideStringLibDemo:Make">
+        <MSBuild Projects="01_HideStringDLL\HideStringLibDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="HideStringLib;HideStringLibDemo"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="HideStringLib:Clean;HideStringLibDemo:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="HideStringLib:Make;HideStringLibDemo:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
