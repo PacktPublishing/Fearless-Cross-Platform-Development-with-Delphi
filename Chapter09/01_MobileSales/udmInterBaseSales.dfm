@@ -5,20 +5,15 @@ object dmInterbaseSales: TdmInterbaseSales
   Width = 345
   object FDConnectionIB: TFDConnection
     Params.Strings = (
-      
-        'Database=C:\Users\Public\Documents\Embarcadero\Studio\21.0\Sampl' +
-        'es\Data\EMPLOYEE.GDB'
       'User_Name=sysdba'
       'Password=masterkey'
       'DriverID=IB')
-    Connected = True
     LoginPrompt = False
     BeforeConnect = FDConnectionIBBeforeConnect
     Left = 64
     Top = 40
   end
   object tblSales: TFDTable
-    Active = True
     IndexFieldNames = 'PO_NUMBER'
     Connection = FDConnectionIB
     UpdateOptions.UpdateTableName = 'SALES'
@@ -95,7 +90,6 @@ object dmInterbaseSales: TdmInterbaseSales
     end
   end
   object qrySaleCustomers: TFDQuery
-    Active = True
     MasterSource = srcSales
     MasterFields = 'CUST_NO'
     DetailFields = 'CUST_NO'
@@ -126,7 +120,6 @@ object dmInterbaseSales: TdmInterbaseSales
     Top = 96
   end
   object tblCustomers: TFDTable
-    Active = True
     IndexFieldNames = 'CUST_NO'
     Connection = FDConnectionIB
     UpdateOptions.UpdateTableName = 'CUSTOMER'

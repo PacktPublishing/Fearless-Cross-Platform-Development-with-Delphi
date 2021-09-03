@@ -5,21 +5,16 @@ object dmSQLiteSales: TdmSQLiteSales
   Width = 344
   object FDConnSQLite: TFDConnection
     Params.Strings = (
-      
-        'Database=V:\Fearless-Cross-Platform-Development-with-Delphi\Chap' +
-        'ter09\database\chinook.db'
       'DriverID=SQLite')
     TxOptions.AutoStart = False
     TxOptions.AutoStop = False
     TxOptions.EnableNested = False
-    Connected = True
     LoginPrompt = False
     BeforeConnect = FDConnSQLiteBeforeConnect
     Left = 64
     Top = 56
   end
   object tblCustomers: TFDTable
-    Active = True
     IndexFieldNames = 'CustomerId'
     Connection = FDConnSQLite
     UpdateOptions.UpdateTableName = 'customers'
@@ -86,7 +81,6 @@ object dmSQLiteSales: TdmSQLiteSales
     end
   end
   object tblInvoices: TFDTable
-    Active = True
     IndexFieldNames = 'InvoiceId'
     Connection = FDConnSQLite
     UpdateOptions.UpdateTableName = 'invoices'
@@ -143,7 +137,6 @@ object dmSQLiteSales: TdmSQLiteSales
     end
   end
   object qryInvoiceCustomer: TFDQuery
-    Active = True
     MasterSource = srcInvoices
     MasterFields = 'CustomerId'
     DetailFields = 'CustomerId'
