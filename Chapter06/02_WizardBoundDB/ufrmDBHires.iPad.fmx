@@ -1,0 +1,74 @@
+inherited frmDBContacts_iPad: TfrmDBContacts_iPad
+  ClientHeight = 748
+  ClientWidth = 1024
+  DesignerMasterStyle = 0
+  inherited EditFIRST_NAME: TEdit
+    Position.Y = 104.000000000000000000
+    Size.Width = 97.000000000000000000
+    Size.Height = 30.000000000000000000
+    inherited LabelFIRST_NAME: TLabel
+      Position.Y = -27.000000000000000000
+    end
+  end
+  inherited NavigatorBindSourceEMPLOYEE: TBindNavigator
+    Position.Y = 144.000000000000000000
+    Size.Width = 545.000000000000000000
+    Size.Height = 33.000000000000000000
+  end
+  inherited EditLAST_NAME: TEdit
+    Position.X = 128.000000000000000000
+    Position.Y = 104.000000000000000000
+    Size.Width = 97.000000000000000000
+    Size.Height = 30.000000000000000000
+    inherited LabelLAST_NAME: TLabel
+      Position.Y = -27.000000000000000000
+    end
+  end
+  inherited DateEditHIRE_DATE: TDateEdit
+    Position.X = 232.000000000000000000
+    Position.Y = 104.000000000000000000
+    Size.Width = 113.000000000000000000
+    Size.Height = 30.000000000000000000
+    Size.PlatformDefault = False
+    inherited LabelHIRE_DATE: TLabel
+      Position.Y = -27.000000000000000000
+      TabOrder = 12
+    end
+  end
+  inherited EditJOB_CODE: TEdit
+    Position.X = 352.000000000000000000
+    Position.Y = 104.000000000000000000
+    Size.Width = 73.000000000000000000
+    Size.Height = 30.000000000000000000
+    inherited LabelJOB_CODE: TLabel
+      Position.X = -8.000000000000000000
+      Position.Y = -27.000000000000000000
+    end
+  end
+  inherited boxNameBG: TRectangle
+    Size.Width = 1024.000000000000000000
+    inherited lblFullName: TLabel
+      Size.Width = 1024.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+    end
+  end
+  inherited GridBindSourceEMPLOYEE: TGrid
+    Position.Y = 208.000000000000000000
+    Size.Width = 1024.000000000000000000
+    Size.Height = 540.000000000000000000
+    Viewport.Width = 1024.000000000000000000
+    Viewport.Height = 540.000000000000000000
+  end
+  inherited EditSALARY: TEdit
+    Position.X = 432.000000000000000000
+    Position.Y = 104.000000000000000000
+    Size.Width = 137.000000000000000000
+    Size.Height = 30.000000000000000000
+    inherited LabelSALARY: TLabel
+      Position.Y = -27.000000000000000000
+    end
+  end
+  inherited BindingsList1: TBindingsList
+    Top = 173
+  end
+end

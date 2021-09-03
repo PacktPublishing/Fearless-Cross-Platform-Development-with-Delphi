@@ -1,0 +1,64 @@
+inherited frmCustomBoundMain_iPad: TfrmCustomBoundMain_iPad
+  ClientHeight = 748
+  ClientWidth = 1024
+  DesignerMasterStyle = 0
+  inherited EditContactTitle1: TEdit
+    Size.Height = 30.000000000000000000
+  end
+  inherited DateEditDateTimeField1: TDateEdit
+    inherited LabelDateTimeField1: TLabel
+      TabOrder = 12
+    end
+  end
+  inherited EditContactName1: TEdit
+    Size.Height = 30.000000000000000000
+  end
+  inherited grdContacts: TGrid
+    Position.Y = 224.000000000000000000
+    Size.Width = 1020.000000000000000000
+    Size.Height = 522.000000000000000000
+    Viewport.Width = 1020.000000000000000000
+    Viewport.Height = 522.000000000000000000
+  end
+  inherited Rectangle1: TRectangle
+    Size.Width = 1024.000000000000000000
+    inherited lblContactName: TLabel
+      Size.Width = 1024.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+    end
+  end
+  inherited EditSalary2: TEdit
+    Size.Height = 30.000000000000000000
+  end
+  inherited BindingsList1: TBindingsList
+    inherited LinkGridToDataSourcePrototypeBindSource12: TLinkGridToDataSource
+      Columns = <
+        item
+          MemberName = 'ContactName'
+          Header = 'Contact'
+          Width = 150
+        end
+        item
+          MemberName = 'Title'
+          Width = 150
+        end
+        item
+          MemberName = 'Salary'
+          ColumnStyle = 'CurrencyColumn'
+          DecimalDigits = 0
+        end
+        item
+          MemberName = 'HireDate'
+          Header = 'Hired'
+          Width = 120
+          Alignment = taCenter
+        end
+        item
+          MemberName = 'AvailNow'
+          Header = 'Available Now'
+          Width = 90
+          Alignment = taCenter
+        end>
+    end
+  end
+end

@@ -1,0 +1,96 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{298B162E-A10E-4F17-9A33-75FC9746F735}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="01_DesignerIntro\HeaderFooterNavigation.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="02_WizardBoundDB\DBContacts.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="03_WizardBoundProto\PrototypeContacts.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="04_FormattedContcts\CustomContacts.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="05_ContactsWithCustomMethods\FearlessLiveMethods.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="05_ContactsWithCustomMethods\CustomMethodsContacts.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="HeaderFooterNavigation">
+        <MSBuild Projects="01_DesignerIntro\HeaderFooterNavigation.dproj"/>
+    </Target>
+    <Target Name="HeaderFooterNavigation:Clean">
+        <MSBuild Projects="01_DesignerIntro\HeaderFooterNavigation.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="HeaderFooterNavigation:Make">
+        <MSBuild Projects="01_DesignerIntro\HeaderFooterNavigation.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DBContacts">
+        <MSBuild Projects="02_WizardBoundDB\DBContacts.dproj"/>
+    </Target>
+    <Target Name="DBContacts:Clean">
+        <MSBuild Projects="02_WizardBoundDB\DBContacts.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DBContacts:Make">
+        <MSBuild Projects="02_WizardBoundDB\DBContacts.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PrototypeContacts">
+        <MSBuild Projects="03_WizardBoundProto\PrototypeContacts.dproj"/>
+    </Target>
+    <Target Name="PrototypeContacts:Clean">
+        <MSBuild Projects="03_WizardBoundProto\PrototypeContacts.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PrototypeContacts:Make">
+        <MSBuild Projects="03_WizardBoundProto\PrototypeContacts.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="CustomContacts">
+        <MSBuild Projects="04_FormattedContcts\CustomContacts.dproj"/>
+    </Target>
+    <Target Name="CustomContacts:Clean">
+        <MSBuild Projects="04_FormattedContcts\CustomContacts.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CustomContacts:Make">
+        <MSBuild Projects="04_FormattedContcts\CustomContacts.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="FearlessLiveMethods">
+        <MSBuild Projects="05_ContactsWithCustomMethods\FearlessLiveMethods.dproj"/>
+    </Target>
+    <Target Name="FearlessLiveMethods:Clean">
+        <MSBuild Projects="05_ContactsWithCustomMethods\FearlessLiveMethods.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="FearlessLiveMethods:Make">
+        <MSBuild Projects="05_ContactsWithCustomMethods\FearlessLiveMethods.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="CustomMethodsContacts">
+        <MSBuild Projects="05_ContactsWithCustomMethods\CustomMethodsContacts.dproj"/>
+    </Target>
+    <Target Name="CustomMethodsContacts:Clean">
+        <MSBuild Projects="05_ContactsWithCustomMethods\CustomMethodsContacts.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CustomMethodsContacts:Make">
+        <MSBuild Projects="05_ContactsWithCustomMethods\CustomMethodsContacts.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="HeaderFooterNavigation;DBContacts;PrototypeContacts;CustomContacts;FearlessLiveMethods;CustomMethodsContacts"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="HeaderFooterNavigation:Clean;DBContacts:Clean;PrototypeContacts:Clean;CustomContacts:Clean;FearlessLiveMethods:Clean;CustomMethodsContacts:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="HeaderFooterNavigation:Make;DBContacts:Make;PrototypeContacts:Make;CustomContacts:Make;FearlessLiveMethods:Make;CustomMethodsContacts:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

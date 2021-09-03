@@ -74,6 +74,16 @@ var
 implementation
 
 {$R *.fmx}
+{$R *.iPad.fmx IOS}
+{$R *.iPhone47in.fmx IOS}
+{$R *.iPhone.fmx IOS}
+{$R *.iPhone4in.fmx IOS}
+{$R *.iPhone55in.fmx IOS}
+{$R *.SmXhdpiPh.fmx ANDROID}
+{$R *.LgXhdpiPh.fmx ANDROID}
+{$R *.NmXhdpiPh.fmx ANDROID}
+{$R *.LgXhdpiTb.fmx ANDROID}
+{$R *.Windows.fmx MSWINDOWS}
 
 uses
   System.StrUtils;

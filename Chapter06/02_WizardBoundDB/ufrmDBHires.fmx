@@ -110,7 +110,7 @@ object frmDBContacts: TfrmDBContacts
     TabOrder = 12
     RowCount = 42
     Options = [Editing, ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
-    Viewport.Width = 438.000000000000000000
+    Viewport.Width = 454.000000000000000000
     Viewport.Height = 248.000000000000000000
   end
   object EditSALARY: TEdit
@@ -210,8 +210,8 @@ object frmDBContacts: TfrmDBContacts
   end
   object FDConnectionEMPLOYEE: TFDConnection
     Params.Strings = (
+      'Database='
       'ConnectionDef=EMPLOYEE')
-    Connected = True
     LoginPrompt = False
     Left = 88
     Top = 248
@@ -232,7 +232,6 @@ object frmDBContacts: TfrmDBContacts
     Top = 232
   end
   object FDTableEMPLOYEE: TFDTable
-    Active = True
     IndexFieldNames = 'EMP_NO'
     Connection = FDConnectionEMPLOYEE
     UpdateOptions.UpdateTableName = 'EMPLOYEE'

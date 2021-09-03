@@ -58,5 +58,6 @@ var
 implementation
 
 {$R *.fmx}
+{$R *.iPad.fmx IOS}
 
 end.

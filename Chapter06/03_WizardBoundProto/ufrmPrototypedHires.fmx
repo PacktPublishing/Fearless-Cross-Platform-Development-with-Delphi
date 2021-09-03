@@ -36,7 +36,7 @@ object frmWizardBoundMain: TfrmWizardBoundMain
     yRadius = 4.000000000000000000
   end
   object DateEditDateTimeField1: TDateEdit
-    Date = 44135.000000000000000000
+    Date = 44501.000000000000000000
     Position.X = 216.000000000000000000
     Position.Y = 80.000000000000000000
     TabOrder = 4
@@ -360,7 +360,7 @@ object frmWizardBoundMain: TfrmWizardBoundMain
     ScopeMappings = <>
     OnCreateAdapter = PrototypeBindSource1CreateAdapter
     Left = 144
-    Top = 184
+    Top = 208
   end
   object AdapterBindSource1: TAdapterBindSource
     AutoActivate = True

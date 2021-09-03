@@ -1,0 +1,33 @@
+inherited frmCustomBoundMain_iPhone47in: TfrmCustomBoundMain_iPhone47in
+  ClientHeight = 647
+  ClientWidth = 375
+  DesignerMasterStyle = 0
+  inherited EditContactTitle1: TEdit
+    Size.Height = 30.000000000000000000
+  end
+  inherited DateEditDateTimeField1: TDateEdit
+    inherited LabelDateTimeField1: TLabel
+      TabOrder = 12
+    end
+  end
+  inherited EditContactName1: TEdit
+    Size.Height = 30.000000000000000000
+  end
+  inherited grdContacts: TGrid
+    Position.Y = 216.000000000000000000
+    Size.Width = 371.000000000000000000
+    Size.Height = 429.000000000000000000
+    Viewport.Width = 371.000000000000000000
+    Viewport.Height = 429.000000000000000000
+  end
+  inherited Rectangle1: TRectangle
+    Size.Width = 375.000000000000000000
+    inherited lblContactName: TLabel
+      Size.Width = 375.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+    end
+  end
+  inherited EditSalary2: TEdit
+    Size.Height = 30.000000000000000000
+  end
+end

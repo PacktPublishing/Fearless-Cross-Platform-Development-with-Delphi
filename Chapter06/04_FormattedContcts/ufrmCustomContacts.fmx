@@ -39,7 +39,7 @@ object frmCustomBoundMain: TfrmCustomBoundMain
     yRadius = 4.000000000000000000
   end
   object DateEditDateTimeField1: TDateEdit
-    Date = 44135.000000000000000000
+    Date = 44501.000000000000000000
     Position.X = 368.000000000000000000
     Position.Y = 80.000000000000000000
     TabOrder = 2
