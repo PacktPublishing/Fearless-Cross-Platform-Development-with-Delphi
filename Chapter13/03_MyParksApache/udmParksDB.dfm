@@ -44,18 +44,21 @@ object dmParksDB: TdmParksDB
       Origin = 'PARK_ID'
     end
     object qryParkLookupPARK_NAME: TStringField
+      DisplayLabel = 'Park Name'
       FieldName = 'PARK_NAME'
       Origin = 'PARK_NAME'
       Required = True
       Size = 50
     end
     object qryParkLookupLONGITUDE: TFMTBCDField
+      DisplayLabel = 'Longitude'
       FieldName = 'LONGITUDE'
       Origin = 'LONGITUDE'
       Precision = 9
       Size = 6
     end
     object qryParkLookupLATITUDE: TFMTBCDField
+      DisplayLabel = 'Latitude'
       FieldName = 'LATITUDE'
       Origin = 'LATITUDE'
       Precision = 9

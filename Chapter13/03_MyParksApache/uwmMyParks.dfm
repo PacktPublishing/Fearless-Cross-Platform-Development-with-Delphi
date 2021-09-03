@@ -22,7 +22,7 @@ object wmMyParks: TwmMyParks
     item
       Name = 'waiParkList'
       PathInfo = '/parklist'
-      Producer = ppParkList
+      Producer = dstpMyParks
     end>
   Height = 347
   Width = 415
@@ -172,22 +172,13 @@ object wmMyParks: TwmMyParks
   object dstpMyParks: TDataSetTableProducer
     Columns = <
       item
-        FieldName = 'PARK_ID'
-        Title.Align = haRight
-        Title.Caption = 'ID'
-      end
-      item
         FieldName = 'PARK_NAME'
-        Title.Align = haLeft
-        Title.Caption = 'Name'
       end
       item
         FieldName = 'LONGITUDE'
-        Title.Caption = 'Longitude'
       end
       item
         FieldName = 'LATITUDE'
-        Title.Caption = 'Latitude'
       end>
     MaxRows = 200
     DataSet = dmParksDB.qryParkList

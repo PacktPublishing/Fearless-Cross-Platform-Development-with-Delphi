@@ -4,8 +4,8 @@ interface
 
 uses
   System.SysUtils, System.StrUtils, System.Classes, Web.HTTPApp, Web.HTTPProd, Web.DSProd, FireDAC.UI.Intf,
-  {$IFNDEF LINUX} FireDAC.FMXUI.Wait, {$ENDIF}
-  FireDAC.Stan.Intf, FireDAC.Comp.UI, Web.DBWeb;
+  {$IFDEF LINUX} FireDAC.ConsoleUI.Wait, {$ELSE} FireDAC.VCLUI.Wait, FireDAC.Comp.UI, {$ENDIF}
+  FireDAC.Stan.Intf, Web.DBWeb;
 
 type
   TwmMyParks = class(TWebModule)
@@ -52,7 +52,12 @@ uses
 {$R *.dfm}
 
 const
-  APP_NAME = 'My Parks';
+  {$IFDEF MSWINDOWS}
+  APP_NAME = 'My Parks - Apache Windows';
+  {$ELSE}
+  APP_NAME = 'My Parks - Apache Linux';
+  {$ENDIF}
+
   LOG_TAG  = 'web';
 
 
@@ -162,19 +167,16 @@ end;
 function TwmMyParks.GetParkList: string;
 begin
 {$IFDEF LINUX}
-  Result := '<p>DataSets, such as the Park List, are not available on Linux.</p>';
+  Result := '<p>DataSets, such as the Park List, are not available on Linux due to a need for a wait cursor.</p>';
 {$ELSE}
+  Log.Debug('getting park list', LOG_TAG);
   try
-    try
-      dmParksDB.OpenParks;
-      Result := dstpMyParks.Content;
-    except
-      on e:Exception do
-        Log.Error(e.Message, LOG_TAG);
-    end;
-  finally
-    dmParksDB.CloseParks;
+    Result := dstpMyParks.Content;
+  except
+    on e:Exception do
+      Log.Error(e.Message, LOG_TAG);
   end;
+  Log.Debug('parks are closed', LOG_TAG);
 {$ENDIF}
 end;
 
@@ -237,8 +239,12 @@ end;
 
 procedure TwmMyParks.WebModuleCreate(Sender: TObject);
 begin
+{$IFDEF MSWINDOWS}
+  Log := BuildLogWriter([TLoggerProFileAppender.Create]);
+{$ELSE}
   Log := BuildLogWriter([TLoggerProFileAppender.Create(5, 1000,
-                           TPath.Combine(WebApplicationDirectory, 'logs'))]);
+                TPath.Combine(WebApplicationDirectory, 'logs'))]);
+{$ENDIF}
   Log.Info('web module created', LOG_TAG);
 end;
 

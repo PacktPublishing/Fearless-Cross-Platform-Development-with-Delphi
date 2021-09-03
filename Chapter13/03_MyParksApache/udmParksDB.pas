@@ -99,12 +99,15 @@ end;
 
 procedure TdmParksDB.OpenParks;
 begin
+  Log.Debug('opening park list query', LOG_TAG);
   qryParkList.Open;
+  Log.Debug('park list record count: ' + IntToStr(qryParkList.RecordCount), LOG_TAG);
 end;
 
 procedure TdmParksDB.CloseParks;
 begin
   qryParkList.Close;
+  Log.Debug('park list closed', LOG_TAG);
 end;
 
 { TdmParksDB.TParkDataRec }
