@@ -9,9 +9,6 @@ object dmParkData: TdmParkData
   end
   object FDConn: TFDConnection
     Params.Strings = (
-      
-        'Database=V:\Fearless-Cross-Platform-Development-with-Delphi\Chap' +
-        'ter10\01_MyParks\MyParks.db'
       'DriverID=SQLite')
     LoginPrompt = False
     Left = 40
