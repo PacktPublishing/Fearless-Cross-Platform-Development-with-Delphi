@@ -203,7 +203,7 @@ var
   QueriedParkName: string;
 begin
   // from client console app, IP address is temporarily hard-coded to test server
-  dmTCPParkClient.IdTCPMyParksClient.Host := '192.168.1.15';
+  dmTCPParkClient.IdTCPMyParksClient.Host := '50.39.141.217';
   dmTCPParkClient.IdTCPMyParksClient.Port := 8081;
   dmTCPParkClient.Connect;
 

@@ -4,7 +4,7 @@ object dmTCPParksServer: TdmTCPParksServer
   Width = 255
   object IdTCPMyParksServer: TIdTCPServer
     Bindings = <>
-    DefaultPort = 8081
+    DefaultPort = 8085
     OnConnect = IdTCPMyParksServerConnect
     OnDisconnect = IdTCPMyParksServerDisconnect
     OnException = IdTCPMyParksServerException

@@ -1,0 +1,108 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{5203CA83-52D5-4D36-8086-44D813333F43}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="00_SimpleConsole\SimpleCrossPlatConsole.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="01_ParksConsole\MyParksConsoleApp.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="02_ParksServer\MyParksTCPServerConsole.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="02_ParksServer\MyParksTCPServerService.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="03_ParkClient\MyParksTCPClientConsole.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="04_ParksLinuxDaemon\MyParksTCPServerd.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="05_MyParksAppClient\MyParks.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="SimpleCrossPlatConsole">
+        <MSBuild Projects="00_SimpleConsole\SimpleCrossPlatConsole.dproj"/>
+    </Target>
+    <Target Name="SimpleCrossPlatConsole:Clean">
+        <MSBuild Projects="00_SimpleConsole\SimpleCrossPlatConsole.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SimpleCrossPlatConsole:Make">
+        <MSBuild Projects="00_SimpleConsole\SimpleCrossPlatConsole.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MyParksConsoleApp">
+        <MSBuild Projects="01_ParksConsole\MyParksConsoleApp.dproj"/>
+    </Target>
+    <Target Name="MyParksConsoleApp:Clean">
+        <MSBuild Projects="01_ParksConsole\MyParksConsoleApp.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MyParksConsoleApp:Make">
+        <MSBuild Projects="01_ParksConsole\MyParksConsoleApp.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MyParksTCPServerConsole">
+        <MSBuild Projects="02_ParksServer\MyParksTCPServerConsole.dproj"/>
+    </Target>
+    <Target Name="MyParksTCPServerConsole:Clean">
+        <MSBuild Projects="02_ParksServer\MyParksTCPServerConsole.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MyParksTCPServerConsole:Make">
+        <MSBuild Projects="02_ParksServer\MyParksTCPServerConsole.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MyParksTCPServerService">
+        <MSBuild Projects="02_ParksServer\MyParksTCPServerService.dproj"/>
+    </Target>
+    <Target Name="MyParksTCPServerService:Clean">
+        <MSBuild Projects="02_ParksServer\MyParksTCPServerService.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MyParksTCPServerService:Make">
+        <MSBuild Projects="02_ParksServer\MyParksTCPServerService.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MyParksTCPClientConsole">
+        <MSBuild Projects="03_ParkClient\MyParksTCPClientConsole.dproj"/>
+    </Target>
+    <Target Name="MyParksTCPClientConsole:Clean">
+        <MSBuild Projects="03_ParkClient\MyParksTCPClientConsole.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MyParksTCPClientConsole:Make">
+        <MSBuild Projects="03_ParkClient\MyParksTCPClientConsole.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MyParksTCPServerd">
+        <MSBuild Projects="04_ParksLinuxDaemon\MyParksTCPServerd.dproj"/>
+    </Target>
+    <Target Name="MyParksTCPServerd:Clean">
+        <MSBuild Projects="04_ParksLinuxDaemon\MyParksTCPServerd.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MyParksTCPServerd:Make">
+        <MSBuild Projects="04_ParksLinuxDaemon\MyParksTCPServerd.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MyParks">
+        <MSBuild Projects="05_MyParksAppClient\MyParks.dproj"/>
+    </Target>
+    <Target Name="MyParks:Clean">
+        <MSBuild Projects="05_MyParksAppClient\MyParks.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MyParks:Make">
+        <MSBuild Projects="05_MyParksAppClient\MyParks.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="SimpleCrossPlatConsole;MyParksConsoleApp;MyParksTCPServerConsole;MyParksTCPServerService;MyParksTCPClientConsole;MyParksTCPServerd;MyParks"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="SimpleCrossPlatConsole:Clean;MyParksConsoleApp:Clean;MyParksTCPServerConsole:Clean;MyParksTCPServerService:Clean;MyParksTCPClientConsole:Clean;MyParksTCPServerd:Clean;MyParks:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="SimpleCrossPlatConsole:Make;MyParksConsoleApp:Make;MyParksTCPServerConsole:Make;MyParksTCPServerService:Make;MyParksTCPClientConsole:Make;MyParksTCPServerd:Make;MyParks:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

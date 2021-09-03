@@ -6,7 +6,14 @@ object dmParksDB: TdmParksDB
     Params.Strings = (
       'User_Name=sysdba'
       'Password=masterkey'
+      
+        'Database=C:\Users\David Cornelius\dev\Fearless-Cross-Platform-De' +
+        'velopment-with-Delphi\data\MYPARKS.IB'
+      'Protocol=Remote'
+      'Server=127.0.0.1'
+      'Port=3050'
       'DriverID=IB')
+    Connected = True
     LoginPrompt = False
     BeforeConnect = FDParkConnectionBeforeConnect
     Left = 144

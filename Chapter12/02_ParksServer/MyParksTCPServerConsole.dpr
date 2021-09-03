@@ -54,7 +54,6 @@ end;
 var
   ConsoleDisplay: TConsoleParkDisplay;
 begin
- writeln('initializing LoggerPro');
   Log := BuildLogWriter([TLoggerProSimpleConsoleAppender.Create,
                          TLoggerProFileAppender.Create]);
   try

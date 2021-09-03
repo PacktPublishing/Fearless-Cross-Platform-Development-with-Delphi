@@ -4,13 +4,11 @@ object dmParksDB: TdmParksDB
   Width = 337
   object FDParkConnection: TFDConnection
     Params.Strings = (
-      'Server=192.168.1.15'
-      'Port=3051'
+      'Server=127.0.0.1'
+      'Port=3050'
       'User_Name=sysdba'
       'Password=masterkey'
-      'Database=s:\databases\MyParks.ib'
       'DriverID=IB')
-    Connected = True
     LoginPrompt = False
     Left = 120
     Top = 80
