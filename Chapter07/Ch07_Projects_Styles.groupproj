@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{58C0805B-07D5-4E53-9B92-DF2EB2A78F3D}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="07_01_DefaultStyleControls\DefaultStyledControls.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="07_02_CustomStyleControls\CustomStyledControls.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="07_03_MultiFormControls\MultiFormControls.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="07_04_CentralStyle\CentralStyleForms.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="DefaultStyledControls">
+        <MSBuild Projects="07_01_DefaultStyleControls\DefaultStyledControls.dproj"/>
+    </Target>
+    <Target Name="DefaultStyledControls:Clean">
+        <MSBuild Projects="07_01_DefaultStyleControls\DefaultStyledControls.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DefaultStyledControls:Make">
+        <MSBuild Projects="07_01_DefaultStyleControls\DefaultStyledControls.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="CustomStyledControls">
+        <MSBuild Projects="07_02_CustomStyleControls\CustomStyledControls.dproj"/>
+    </Target>
+    <Target Name="CustomStyledControls:Clean">
+        <MSBuild Projects="07_02_CustomStyleControls\CustomStyledControls.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CustomStyledControls:Make">
+        <MSBuild Projects="07_02_CustomStyleControls\CustomStyledControls.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MultiFormControls">
+        <MSBuild Projects="07_03_MultiFormControls\MultiFormControls.dproj"/>
+    </Target>
+    <Target Name="MultiFormControls:Clean">
+        <MSBuild Projects="07_03_MultiFormControls\MultiFormControls.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MultiFormControls:Make">
+        <MSBuild Projects="07_03_MultiFormControls\MultiFormControls.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="CentralStyleForms">
+        <MSBuild Projects="07_04_CentralStyle\CentralStyleForms.dproj"/>
+    </Target>
+    <Target Name="CentralStyleForms:Clean">
+        <MSBuild Projects="07_04_CentralStyle\CentralStyleForms.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CentralStyleForms:Make">
+        <MSBuild Projects="07_04_CentralStyle\CentralStyleForms.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="DefaultStyledControls;CustomStyledControls;MultiFormControls;CentralStyleForms"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="DefaultStyledControls:Clean;CustomStyledControls:Clean;MultiFormControls:Clean;CentralStyleForms:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="DefaultStyledControls:Make;CustomStyledControls:Make;MultiFormControls:Make;CentralStyleForms:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
