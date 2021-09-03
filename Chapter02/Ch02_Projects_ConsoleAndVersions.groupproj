@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{F66F3FA8-F51D-4A2C-BC88-C5C54EF2FE58}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="00_SmallestConsoleApp\TinyConsoleApp.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="01_BuildScript\DelphiVersionsConsole.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="01_BuildScript\DelphiVersionsVCL.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="01_BuildScript\DelphiVersionsFM.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="TinyConsoleApp">
+        <MSBuild Projects="00_SmallestConsoleApp\TinyConsoleApp.dproj"/>
+    </Target>
+    <Target Name="TinyConsoleApp:Clean">
+        <MSBuild Projects="00_SmallestConsoleApp\TinyConsoleApp.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TinyConsoleApp:Make">
+        <MSBuild Projects="00_SmallestConsoleApp\TinyConsoleApp.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DelphiVersionsConsole">
+        <MSBuild Projects="01_BuildScript\DelphiVersionsConsole.dproj"/>
+    </Target>
+    <Target Name="DelphiVersionsConsole:Clean">
+        <MSBuild Projects="01_BuildScript\DelphiVersionsConsole.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DelphiVersionsConsole:Make">
+        <MSBuild Projects="01_BuildScript\DelphiVersionsConsole.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DelphiVersionsVCL">
+        <MSBuild Projects="01_BuildScript\DelphiVersionsVCL.dproj"/>
+    </Target>
+    <Target Name="DelphiVersionsVCL:Clean">
+        <MSBuild Projects="01_BuildScript\DelphiVersionsVCL.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DelphiVersionsVCL:Make">
+        <MSBuild Projects="01_BuildScript\DelphiVersionsVCL.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DelphiVersionsFM">
+        <MSBuild Projects="01_BuildScript\DelphiVersionsFM.dproj"/>
+    </Target>
+    <Target Name="DelphiVersionsFM:Clean">
+        <MSBuild Projects="01_BuildScript\DelphiVersionsFM.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DelphiVersionsFM:Make">
+        <MSBuild Projects="01_BuildScript\DelphiVersionsFM.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="TinyConsoleApp;DelphiVersionsConsole;DelphiVersionsVCL;DelphiVersionsFM"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="TinyConsoleApp:Clean;DelphiVersionsConsole:Clean;DelphiVersionsVCL:Clean;DelphiVersionsFM:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="TinyConsoleApp:Make;DelphiVersionsConsole:Make;DelphiVersionsVCL:Make;DelphiVersionsFM:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
