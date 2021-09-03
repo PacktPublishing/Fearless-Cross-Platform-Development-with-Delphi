@@ -7,7 +7,6 @@ object MyParksResource1: TMyParksResource1
       'User_Name=sysdba'
       'Password=masterkey'
       'Protocol=TCPIP'
-      'Server=127.0.0.1'
       'Port=3050'
       'DriverID=IB')
     LoginPrompt = False
