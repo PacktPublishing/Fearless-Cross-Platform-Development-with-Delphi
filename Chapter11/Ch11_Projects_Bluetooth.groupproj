@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{53A54EE5-1D6D-4D63-9399-60EB37DFB365}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="01_BluetoothClassic\BluetoothClassic.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="02_Beacons\BeaconServer.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="02_Beacons\BeaconClient.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="BluetoothClassic">
+        <MSBuild Projects="01_BluetoothClassic\BluetoothClassic.dproj"/>
+    </Target>
+    <Target Name="BluetoothClassic:Clean">
+        <MSBuild Projects="01_BluetoothClassic\BluetoothClassic.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="BluetoothClassic:Make">
+        <MSBuild Projects="01_BluetoothClassic\BluetoothClassic.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="BeaconServer">
+        <MSBuild Projects="02_Beacons\BeaconServer.dproj"/>
+    </Target>
+    <Target Name="BeaconServer:Clean">
+        <MSBuild Projects="02_Beacons\BeaconServer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="BeaconServer:Make">
+        <MSBuild Projects="02_Beacons\BeaconServer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="BeaconClient">
+        <MSBuild Projects="02_Beacons\BeaconClient.dproj"/>
+    </Target>
+    <Target Name="BeaconClient:Clean">
+        <MSBuild Projects="02_Beacons\BeaconClient.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="BeaconClient:Make">
+        <MSBuild Projects="02_Beacons\BeaconClient.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="BluetoothClassic;BeaconServer;BeaconClient"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="BluetoothClassic:Clean;BeaconServer:Clean;BeaconClient:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="BluetoothClassic:Make;BeaconServer:Make;BeaconClient:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
