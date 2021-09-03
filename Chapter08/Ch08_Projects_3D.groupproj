@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{F99560DF-5BB5-4A73-87F6-9064386DC711}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="01_Quadrants\Quadrants3D.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="02_Escape1985\Escape1985.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Quadrants3D">
+        <MSBuild Projects="01_Quadrants\Quadrants3D.dproj"/>
+    </Target>
+    <Target Name="Quadrants3D:Clean">
+        <MSBuild Projects="01_Quadrants\Quadrants3D.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Quadrants3D:Make">
+        <MSBuild Projects="01_Quadrants\Quadrants3D.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Escape1985">
+        <MSBuild Projects="02_Escape1985\Escape1985.dproj"/>
+    </Target>
+    <Target Name="Escape1985:Clean">
+        <MSBuild Projects="02_Escape1985\Escape1985.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Escape1985:Make">
+        <MSBuild Projects="02_Escape1985\Escape1985.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Quadrants3D;Escape1985"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Quadrants3D:Clean;Escape1985:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Quadrants3D:Make;Escape1985:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
