@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{37878ADA-6FC1-4979-988D-10B9043097D0}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="01_MyParksStandAloneGUI\MyParksGUIWebServer.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="02_MyParksISAPI\MyParks.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="03_MyParksApache\mod_MyParks.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="MyParksGUIWebServer">
+        <MSBuild Projects="01_MyParksStandAloneGUI\MyParksGUIWebServer.dproj"/>
+    </Target>
+    <Target Name="MyParksGUIWebServer:Clean">
+        <MSBuild Projects="01_MyParksStandAloneGUI\MyParksGUIWebServer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MyParksGUIWebServer:Make">
+        <MSBuild Projects="01_MyParksStandAloneGUI\MyParksGUIWebServer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MyParks">
+        <MSBuild Projects="02_MyParksISAPI\MyParks.dproj"/>
+    </Target>
+    <Target Name="MyParks:Clean">
+        <MSBuild Projects="02_MyParksISAPI\MyParks.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MyParks:Make">
+        <MSBuild Projects="02_MyParksISAPI\MyParks.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="mod_MyParks">
+        <MSBuild Projects="03_MyParksApache\mod_MyParks.dproj"/>
+    </Target>
+    <Target Name="mod_MyParks:Clean">
+        <MSBuild Projects="03_MyParksApache\mod_MyParks.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="mod_MyParks:Make">
+        <MSBuild Projects="03_MyParksApache\mod_MyParks.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="MyParksGUIWebServer;MyParks;mod_MyParks"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="MyParksGUIWebServer:Clean;MyParks:Clean;mod_MyParks:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="MyParksGUIWebServer:Make;MyParks:Make;mod_MyParks:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
