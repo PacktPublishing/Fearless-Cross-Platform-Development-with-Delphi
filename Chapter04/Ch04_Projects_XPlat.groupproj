@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{1B714DB0-EAFB-4EC4-90DF-8AA4E012B7B6}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="01_HelloFireMonkey\HelloFireMonkey.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="02_RttiExplorerFM\RttiExplorerFM.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="03_ClientList\ClientList.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="04_HelloDevice\HelloDevice.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="HelloFireMonkey">
+        <MSBuild Projects="01_HelloFireMonkey\HelloFireMonkey.dproj"/>
+    </Target>
+    <Target Name="HelloFireMonkey:Clean">
+        <MSBuild Projects="01_HelloFireMonkey\HelloFireMonkey.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="HelloFireMonkey:Make">
+        <MSBuild Projects="01_HelloFireMonkey\HelloFireMonkey.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="RttiExplorerFM">
+        <MSBuild Projects="02_RttiExplorerFM\RttiExplorerFM.dproj"/>
+    </Target>
+    <Target Name="RttiExplorerFM:Clean">
+        <MSBuild Projects="02_RttiExplorerFM\RttiExplorerFM.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="RttiExplorerFM:Make">
+        <MSBuild Projects="02_RttiExplorerFM\RttiExplorerFM.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ClientList">
+        <MSBuild Projects="03_ClientList\ClientList.dproj"/>
+    </Target>
+    <Target Name="ClientList:Clean">
+        <MSBuild Projects="03_ClientList\ClientList.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ClientList:Make">
+        <MSBuild Projects="03_ClientList\ClientList.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="HelloDevice">
+        <MSBuild Projects="04_HelloDevice\HelloDevice.dproj"/>
+    </Target>
+    <Target Name="HelloDevice:Clean">
+        <MSBuild Projects="04_HelloDevice\HelloDevice.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="HelloDevice:Make">
+        <MSBuild Projects="04_HelloDevice\HelloDevice.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="HelloFireMonkey;RttiExplorerFM;ClientList;HelloDevice"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="HelloFireMonkey:Clean;RttiExplorerFM:Clean;ClientList:Clean;HelloDevice:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="HelloFireMonkey:Make;RttiExplorerFM:Make;ClientList:Make;HelloDevice:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

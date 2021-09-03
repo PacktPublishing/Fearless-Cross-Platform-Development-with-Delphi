@@ -380,7 +380,9 @@
                     <Source Name="MainSource">ClientList.dpr</Source>
                 </Source>
                 <Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\21.0\Bpl\LiveBindingsBeyond.bpl">LiveBindings and Beyond</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k270.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Program Files (x86)\Winsoft\DirectX Joystick for FireMonkey\Delphi104-Win32\FDxJoystickP.bpl">Winsoft Joystick for FireMonkey</Excluded_Packages>
                     <Excluded_Packages Name="C:\Program Files (x86)\Winsoft\Media Recorder for Android\Delphi104-Win32\Winsoft.Android.MediaRecorderP.bpl">Winsoft MediaRecorder for Android</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
