@@ -1,0 +1,108 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{E305D6D1-26DF-42FB-B7F6-54BB0343B084}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="01_BasicSyntaxDemo\BasicSyntaxDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="02_NestedTypesDemo\PeopleList.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="03_GenericPeople\GenericPeopleList.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="04_ProcessSimulator\ProcessSimulator.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="05_RttiExplorer\RttiExplorer.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="06_SimpleAttributes\SimpleAttributes.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="07_ManagedRecords\ManagedRecordsDemo.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="BasicSyntaxDemo">
+        <MSBuild Projects="01_BasicSyntaxDemo\BasicSyntaxDemo.dproj"/>
+    </Target>
+    <Target Name="BasicSyntaxDemo:Clean">
+        <MSBuild Projects="01_BasicSyntaxDemo\BasicSyntaxDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="BasicSyntaxDemo:Make">
+        <MSBuild Projects="01_BasicSyntaxDemo\BasicSyntaxDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PeopleList">
+        <MSBuild Projects="02_NestedTypesDemo\PeopleList.dproj"/>
+    </Target>
+    <Target Name="PeopleList:Clean">
+        <MSBuild Projects="02_NestedTypesDemo\PeopleList.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PeopleList:Make">
+        <MSBuild Projects="02_NestedTypesDemo\PeopleList.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="GenericPeopleList">
+        <MSBuild Projects="03_GenericPeople\GenericPeopleList.dproj"/>
+    </Target>
+    <Target Name="GenericPeopleList:Clean">
+        <MSBuild Projects="03_GenericPeople\GenericPeopleList.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="GenericPeopleList:Make">
+        <MSBuild Projects="03_GenericPeople\GenericPeopleList.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ProcessSimulator">
+        <MSBuild Projects="04_ProcessSimulator\ProcessSimulator.dproj"/>
+    </Target>
+    <Target Name="ProcessSimulator:Clean">
+        <MSBuild Projects="04_ProcessSimulator\ProcessSimulator.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ProcessSimulator:Make">
+        <MSBuild Projects="04_ProcessSimulator\ProcessSimulator.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="RttiExplorer">
+        <MSBuild Projects="05_RttiExplorer\RttiExplorer.dproj"/>
+    </Target>
+    <Target Name="RttiExplorer:Clean">
+        <MSBuild Projects="05_RttiExplorer\RttiExplorer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="RttiExplorer:Make">
+        <MSBuild Projects="05_RttiExplorer\RttiExplorer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="SimpleAttributes">
+        <MSBuild Projects="06_SimpleAttributes\SimpleAttributes.dproj"/>
+    </Target>
+    <Target Name="SimpleAttributes:Clean">
+        <MSBuild Projects="06_SimpleAttributes\SimpleAttributes.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SimpleAttributes:Make">
+        <MSBuild Projects="06_SimpleAttributes\SimpleAttributes.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ManagedRecordsDemo">
+        <MSBuild Projects="07_ManagedRecords\ManagedRecordsDemo.dproj"/>
+    </Target>
+    <Target Name="ManagedRecordsDemo:Clean">
+        <MSBuild Projects="07_ManagedRecords\ManagedRecordsDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ManagedRecordsDemo:Make">
+        <MSBuild Projects="07_ManagedRecords\ManagedRecordsDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="BasicSyntaxDemo;PeopleList;GenericPeopleList;ProcessSimulator;RttiExplorer;SimpleAttributes;ManagedRecordsDemo"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="BasicSyntaxDemo:Clean;PeopleList:Clean;GenericPeopleList:Clean;ProcessSimulator:Clean;RttiExplorer:Clean;SimpleAttributes:Clean;ManagedRecordsDemo:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="BasicSyntaxDemo:Make;PeopleList:Make;GenericPeopleList:Make;ProcessSimulator:Make;RttiExplorer:Make;SimpleAttributes:Make;ManagedRecordsDemo:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
