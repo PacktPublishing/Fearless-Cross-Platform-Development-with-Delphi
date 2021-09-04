@@ -43,11 +43,9 @@ uses
 
 procedure TfrmAppPaths.btnInfoClick(Sender: TObject);
 begin
-  TDialogServiceAsync.MessageDialog('AppPaths - Display the value of several path funtions in Delphi''s TPath class.' + sLineBreak + sLineBreak +
-                                    'A tutorial example app in the book Fearless Cross-Platform Development with Delphi' + sLineBreak +
-                                    'by David Cornelius, published by Packt Publishing' + sLineBreak + sLineBreak +
-                                    'Icon by Icons8, https://icons8.com' + sLineBreak + sLineBreak +
-                                    'Visit the GitHub site?',
+  TDialogServiceAsync.MessageDialog('AppPaths - Display the value of several path funtions in Delphi''s TPath class using just ONE code base and compiling to FOUR platforms (Windows, Mac, Android, and iOS).' + sLineBreak + sLineBreak +
+                                    'A tutorial app in the book, Fearless Cross-Platform Development with Delphi, by David Cornelius, published by Packt Publishing.  Icon by Icons8, https://icons8.com' + sLineBreak + sLineBreak +
+                                    'Would you like to visit the GitHub project site?',
                                     TMsgDlgType.mtInformation,
                                     [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbClose],
                                     TMsgDlgBtn.mbClose, 0, CheckYesButton);
