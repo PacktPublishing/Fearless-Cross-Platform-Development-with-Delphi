@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{8BE0838A-E751-4F7F-8621-18F8316347E4}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="01_AppPaths\AppPaths.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="02_MyParksISAPI\MyParksISAPI.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="03_MyParkData\MyParksData.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="04_MyParksMobile\MyParks.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="AppPaths">
+        <MSBuild Projects="01_AppPaths\AppPaths.dproj"/>
+    </Target>
+    <Target Name="AppPaths:Clean">
+        <MSBuild Projects="01_AppPaths\AppPaths.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AppPaths:Make">
+        <MSBuild Projects="01_AppPaths\AppPaths.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MyParksISAPI">
+        <MSBuild Projects="02_MyParksISAPI\MyParksISAPI.dproj"/>
+    </Target>
+    <Target Name="MyParksISAPI:Clean">
+        <MSBuild Projects="02_MyParksISAPI\MyParksISAPI.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MyParksISAPI:Make">
+        <MSBuild Projects="02_MyParksISAPI\MyParksISAPI.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MyParksData">
+        <MSBuild Projects="03_MyParkData\MyParksData.dproj"/>
+    </Target>
+    <Target Name="MyParksData:Clean">
+        <MSBuild Projects="03_MyParkData\MyParksData.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MyParksData:Make">
+        <MSBuild Projects="03_MyParkData\MyParksData.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MyParks">
+        <MSBuild Projects="04_MyParksMobile\MyParks.dproj"/>
+    </Target>
+    <Target Name="MyParks:Clean">
+        <MSBuild Projects="04_MyParksMobile\MyParks.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MyParks:Make">
+        <MSBuild Projects="04_MyParksMobile\MyParks.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="AppPaths;MyParksISAPI;MyParksData;MyParks"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="AppPaths:Clean;MyParksISAPI:Clean;MyParksData:Clean;MyParks:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="AppPaths:Make;MyParksISAPI:Make;MyParksData:Make;MyParks:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
