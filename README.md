@@ -67,7 +67,7 @@ We also provide a PDF file that has color images of the screenshots/diagrams use
 
 * Hands-On Design Patterns with Delphi [[Packt]](https://www.packtpub.com/product/hands-on-design-patterns-with-delphi/9781789343243?utm_source=github&utm_medium=repository&utm_campaign=9781789343243) [[Amazon]](https://www.amazon.com/dp/1789343240)
 
-*  [[Packt]]() [[Amazon]](https://www.amazon.com/dp/)
+
 
 ## Get to Know the Author
 **David Cornelius**
