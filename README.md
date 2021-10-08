@@ -10,14 +10,14 @@ This is the code repository for [Fearless Cross-Platform Development with Delphi
 Delphi is a strongly typed, event-driven programming language with a rich ecosystem of frameworks and support tools. It comes with an extensive set of web and database libraries for rapid application development on desktop, mobile, and internet-enabled devices. This book will help you keep up with the latest IDE features and provide a sound foundation of project management and recent language enhancements to take your productivity to the next level. 
 
 This book covers the following exciting features:
-Discover the latest enhancements in the Delphi IDE
-Overcome the barriers that hold you back from embracing cross-platform development
-Become fluent with FireMonkey controls, styles, LiveBindings, and 3D objects
-Build Delphi packages to extend RAD Server or modularize your applications
-Use FireDAC to get quick and direct access to any data
-Leverage IoT technologies such as Bluetooth and Beacons and learn how to put your app on a Raspberry Pi
-Enable remote apps with backend servers on Windows and Linux through REST APIs
-Develop modules for IIS and Apache web servers
+* Discover the latest enhancements in the Delphi IDE
+* Overcome the barriers that hold you back from embracing cross-platform development
+* Become fluent with FireMonkey controls, styles, LiveBindings, and 3D objects
+* Build Delphi packages to extend RAD Server or modularize your applications
+* Use FireDAC to get quick and direct access to any data
+* Leverage IoT technologies such as Bluetooth and Beacons and learn how to put your app on a Raspberry Pi
+* Enable remote apps with backend servers on Windows and Linux through REST APIs
+* Develop modules for IIS and Apache web servers
 
 If you feel this book is for you, get your [copy](https://www.amazon.com/dp/1800203829) today!
 
