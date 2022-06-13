@@ -1,7 +1,3 @@
-## [Get this title for $10 on Packt's Spring Sale](https://www.packt.com/B16230?utm_source=github&utm_medium=packt-github-repo&utm_campaign=spring_10_dollar_2022)
------
-For a limited period, all eBooks and Videos are only $10. All the practical content you need \- by developers, for developers
-
 # Fearless Cross-Platform Development with Delphi
 
 <a href="https://www.packtpub.com/in/programming/fearless-cross-platform-development-with-delphi?utm_source=github&utm_medium=repository&utm_campaign=9781800203822"><img src="https://static.packt-cdn.com/products/9781800203822/cover/smaller" alt="Fearless Cross-Platform Development with Delphi" height="256px" align="right"></a>
