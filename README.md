@@ -74,3 +74,7 @@ We also provide a PDF file that has color images of the screenshots/diagrams use
 is a software engineer in the Pacific Northwest of the US with over 30 years of experience writing applications for education, research, finance, inventory management, and retail. He has been the coordinator for the Oregon Delphi User Group for two decades and keeps active in various online forums. David is the founder and principal developer at Cornelius Concepts, LLC. and an Embarcadero MVP.
 In his spare time, he likes to ride his motorcycle, escape the city with his RV, play the tuba or bass guitar, and play strategy board games with friends.
 
+### Download a free PDF
+
+ <i>If you have already purchased a print or Kindle version of this book, you can get a DRM-free PDF version at no cost.<br>Simply click on the link to claim your free PDF.</i>
+<p align="center"> <a href="https://packt.link/free-ebook/9781800203822">https://packt.link/free-ebook/9781800203822 </a> </p>
