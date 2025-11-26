@@ -54,11 +54,19 @@ With the following software and hardware list you can run all code files present
 ### Software and Hardware List
 | Chapter | Software required | OS required |
 | -------- | ------------------------------------ | ----------------------------------- |
-| 1 | Delphi 10.4 Sydney | Windows |
-| 10 | Linux applications | Ubuntu 14.04 or RedHat Enterprises 7 |
-| 11 | Mac Development| macOS 10.13 High Sierra - 11 Big Sur |
-| 12 | iOS Development | iOS 11,12 or 13 |
-| 12 | Android Development | Android 6 Marshmallow - Android 10.0 |
+| ALL | Delphi 10.4 Sydney | Windows |
+| 4 | Mac Development| macOS 10.13 High Sierra - 11 Big Sur |
+| 4 | iOS Development | iOS 11,12 or 13 |
+| 4 | Android Development | Android 6 Marshmallow - Android 10.0 |
+| 9 | Mac Development| macOS 10.13 High Sierra - 11 Big Sur |
+| 9 | iOS Development | iOS 11,12 or 13 |
+| 9 | Android Development | Android 6 Marshmallow - Android 10.0 |
+| 10 | iOS Development | iOS 11,12 or 13 |
+| 10 | Android Development | Android 6 Marshmallow - Android 10.0 |
+| 11 | iOS Development | iOS 11,12 or 13 |
+| 11 | Android Development | Android 6 Marshmallow - Android 10.0 |
+| 11 | Raspberry Pi Development | Raspberry Pi Model 3 or 4 |
+| 12 | Linux applications | Ubuntu 16.09 or RedHat Enterprises 7 |
 
 
 We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it](https://static.packt-cdn.com/downloads/9781800203822_ColorImages.pdf).
